@@ -1,8 +1,8 @@
 ---
-title: "CV i contacte"
+title: "CV and contact"
 ---
 
-## Contacte
+## Contact
 
 INEFC Lleida — Institut Nacional d'Educació Física de Catalunya
 Universitat de Lleida
@@ -10,75 +10,75 @@ Universitat de Lleida
 <!-- PENDENT: adreça electrònica institucional. No hi posis cap correu personal
      (CLAUDE.md §8). Confirmar amb en Rafel quina vol publicar. -->
 
-## Situació actual
+## Current position
 
-Professor Titular de Cinesiologia, INEFC Lleida (Universitat de Lleida). Plaça obtinguda
-el 2026; vinculat al centre des del 2016.
+Associate Professor of Kinesiology, INEFC Lleida (Universitat de Lleida), tenured in 2026
+and affiliated with the centre since 2016.
 
-Cap de Projecte de Suport a la Recerca i Transferència del Coneixement de l'INEFC Lleida
-des del 2022, i membre de la Junta de Recerca del centre.
+Head of Research Support and Knowledge Transfer at INEFC Lleida since 2022, and member of
+the centre's Research Board.
 
-## Formació
+## Education
 
 | | |
 |---|---|
-| 2020 | Doctorat en Activitat Física i Esport, Universitat de Lleida — excel·lent, menció internacional |
-| 2018 | Postgrau d'especialista en docència universitària, UdL |
-| 2015 | Màster en Activitat Física i Salut, Universitat de Barcelona |
-| 2015 | Postgrau en prescripció d'exercici físic per a la salut, UdL |
-| 2014 | Grau en Ciències de l'Activitat Física i l'Esport, UdL |
+| 2020 | PhD in Physical Activity and Sport, Universitat de Lleida — Excellent, international mention |
+| 2018 | Postgraduate specialist in university teaching, UdL |
+| 2015 | MSc in Physical Activity and Health, Universitat de Barcelona |
+| 2015 | Postgraduate certificate in exercise prescription for health, UdL |
+| 2014 | BSc in Physical Activity and Sport Sciences, UdL |
 
-**Tesi doctoral**: *Troponin, exercise and growth: exercise-induced release of cardiac
-troponin in healthy, trained, prepubertal and pubertal males*. Directors: Francisco Corbi
-Soler i Joaquín Reverter Masià.
+**Doctoral thesis**: *Troponin, exercise and growth: exercise-induced release of cardiac
+troponin in healthy, trained, prepubertal and pubertal males*. Supervisors: Francisco Corbi
+Soler and Joaquín Reverter Masià.
 
-## Acreditacions
+## Accreditations
 
-Tram de recerca autonòmic (AQU, 2023) · Acreditació de Recerca (AQU, 2024) · Acreditació
-de Professor Lector (AQU, 2021).
+Regional research assessment period (AQU, 2023) · Research accreditation (AQU, 2024) ·
+Accreditation as Lecturer (AQU, 2021).
 
-## Estades de recerca
+## Research stays
 
-- Universidad de Zaragoza, Facultad de Enfermería y Fisioterapia (Osca), 2021, 3 mesos.
-  Supervisió: Isaac López-Laval.
-- Universidad Autónoma de Nuevo León, Facultad de Organización Deportiva (Mèxic), 2019,
-  3 mesos. Supervisió: Luis Enrique Carranza García.
+- Universidad de Zaragoza, Faculty of Nursing and Physiotherapy (Huesca), 2021, 3 months.
+  Host: Isaac López-Laval.
+- Universidad Autónoma de Nuevo León, Faculty of Sport Organisation (Mexico), 2019,
+  3 months. Host: Luis Enrique Carranza García.
 
-## Projectes
+## Projects
 
-**Com a investigador principal**
+**As principal investigator**
 
-- **EXCURSE** — *Muscle Excursion Range in Strength Training*. INEFC, 2025–2028.
-  IP conjunta amb Xavier Peirau Terès.
+- **EXCURSE** — *Muscle Excursion Range in Strength Training: Implications for Performance
+  and Injury Prevention*. INEFC, 2025–2028. Co-led with Xavier Peirau Terès.
 
-**Com a participant (selecció)**
+**As participant (selection)**
 
-- *EUPAP — A European Model for Physical Activity on Prescription*. Comissió Europea,
+- *EUPAP — A European Model for Physical Activity on Prescription*. European Commission,
   2019–2022.
-- *Evaluación de diversos parámetros de salud y niveles de actividad física en la escuela
-  primaria y secundaria*. 2017–2021.
-- *Prevenció de la lesió del lligament encreuat anterior en jugadores d'handbol
-  adolescents*. Generalitat de Catalunya, 2018–2022.
+- *Assessment of health parameters and physical activity levels in primary and secondary
+  school*. 2017–2021.
+- *Prevention of anterior cruciate ligament injury in adolescent female handball players*.
+  Generalitat de Catalunya, 2018–2022.
 
-## Grups de recerca
+## Research groups
 
-- Grup de Recerca Moviment Humà (Grup Consolidat Finançat, 2021 SGR 01619), INEFC/UdL —
-  des del 2014.
-- Grupo de Investigación Movimiento Humano, Universidad de Zaragoza — des del 2019.
-- Clinical Neurosciences, IRBLleida — des del 2023, responsable d'anàlisi estadística.
+- Human Movement Research Group (Consolidated Funded Group, 2021 SGR 01619), INEFC/UdL —
+  since 2014.
+- Grupo de Investigación Movimiento Humano, Universidad de Zaragoza — since 2019.
+- Clinical Neurosciences, IRBLleida — since 2023, responsible for statistical analysis.
 
-## Revisió de manuscrits
+## Peer review
 
 Frontiers in Physiology · Pediatric Exercise Science · International Journal of Sports
 Medicine · Sports · Journal of Clinical Medicine · Applied Physiology, Nutrition and
 Metabolism.
 
-## Reconeixements
+## Awards
 
-- Guardó de l'Esport 2025 (projecte ESCA), Generalitat de Catalunya.
-- Guardó d'Esport 2022 (projecte COR-School), Fundació Catalana per a l'Esport.
+- Sport Award 2025 (ESCA project), Generalitat de Catalunya.
+- Sport Award 2022 (COR-School project), Fundació Catalana per a l'Esport.
 
 ---
 
-Identificadors: [ORCID 0000-0001-6687-8201](https://orcid.org/0000-0001-6687-8201) ·
+Identifiers: [ORCID 0000-0001-6687-8201](https://orcid.org/0000-0001-6687-8201) ·
 Scopus 57194537687 · Researcher ID G-4163-2015

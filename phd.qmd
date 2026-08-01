@@ -1,0 +1,45 @@
+---
+title: "Doctoral projects"
+---
+
+I do not expect you to arrive knowing how to do a PhD. A PhD is, precisely, the time we will spend learning how.
+
+There is currently room for people who want to pursue a PhD within EXCURSE — *Muscle Excursion Range in Strength Training: Implications for Performance and Injury Prevention* (2025–2028). It is the most natural entry point because the funding, team, timeline, and laboratory infrastructure are already in place.
+
+## How we will work
+
+We will meet every week. Not because you need to account for what you have done, but because a PhD progresses better when there is a regular space to think aloud, revisit decisions, and agree on the next step.
+
+You will have the freedom to plan your work, follow your own pace, and explore your intuition. I will accompany you, ask questions, help you identify problems, and offer guidance while you develop your own judgement. I also expect to learn from you: a good PhD should take us somewhere neither of us fully knows.
+
+I will not do the PhD for you. I will not write the papers or solve the analyses on your behalf. But I will not assume that you already know how to do those things. You may arrive without ever having written a scientific paper, without mastering statistics, and without knowing how to defend a methodological decision. Doing a PhD means learning all of this.
+
+The aim is that, by the end, you can formulate a question, design a study, analyse the data, write the work, and defend your decisions without depending on me.
+
+## How we do research
+
+The projects I supervise sit at the intersection of exercise physiology, measurement, and modelling. We want to understand what changes, how we can quantify it, and how far the data allow us to interpret those changes.
+
+We will work almost entirely in English. We will read, write, code, and prepare publications in English, although our meetings may be in Catalan or Spanish.
+
+We currently use R for data analysis, but I do not regard it as an identity or a doctrine. It is simply the tool that is most useful to us today. That may change. I try to keep up to date, question procedures that have become routine, and adopt new tools when they genuinely improve the work.
+
+Artificial intelligence will also be part of our workflow. We will use it to code, explore ideas, review writing, and accelerate tasks, but not to outsource judgement. We will learn what can be entrusted to it, what must be checked, and what should never be accepted without understanding it.
+
+## What I look for
+
+You do not need prior publications or advanced statistical training. You do need curiosity, consistency, and a willingness to develop independence as a researcher.
+
+I am looking for someone willing to write from the beginning, even when it is difficult; to work with data, even before feeling confident with them; and to ask why an analysis works or fails, rather than only whether it produces a statistically significant result.
+
+I value the ability to learn more than prior skills.
+
+## Open topics
+
+My current project is EXCURSE, which addresses questions about muscle excursion range, adaptations to strength training, and variability in responses between people and over time.
+
+I may also consider proposals related to the validation of field tests or the modelling of physiological responses to exercise, provided that there is a clear question and a strong methodological fit.
+
+## Contact
+
+If this way of working resembles what you are looking for, write to me. Tell me briefly about your background, what makes you curious, and why you want to spend a few years investigating it. [Contact details](cv.qmd).

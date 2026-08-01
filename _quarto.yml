@@ -12,21 +12,23 @@ website:
   site-url: "https://rcirer.github.io"
   description: "Professor Titular de Cinesiologia a l'INEFC Lleida. Biomarcadors cardíacs, valoració del rendiment i mecànica muscular."
   navbar:
+    # Lloc en anglès per defecte. Teaching és l'única pàgina en català,
+    # perquè el seu públic són els estudiants d'aquí (CLAUDE.md §5).
     left:
       - href: index.qmd
-        text: Inici
+        text: Home
       - href: research.qmd
-        text: Recerca
+        text: Research
       - href: publications.qmd
-        text: Publicacions
+        text: Publications
       - href: blog/index.qmd
         text: Blog
-      - href: docencia.qmd
-        text: Docència
-      - href: doctorat.qmd
-        text: Doctorat
+      - href: teaching.qmd
+        text: Teaching
+      - href: phd.qmd
+        text: PhD
       - href: cv.qmd
-        text: CV i contacte
+        text: CV
     right:
       - text: ORCID
         href: https://orcid.org/0000-0001-6687-8201

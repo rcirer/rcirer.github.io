@@ -2,60 +2,42 @@
 title: "Research"
 ---
 
-The question that ties my work together is **how we measure what exercise does to the
-body, and what we can honestly conclude from those measurements**.
+The question that ties my research together is how we measure what exercise does to the body and what we can claim from what we have measured. Three research lines follow from it. They do not carry the same weight or belong to the same stage of my career, but they share the same question: how the body adapts, how we measure that adaptation, and how it responds acutely to exercise.
 
-Three lines follow from it. They are not separate projects — they are the same question at
-three points: how the body responds, how we measure the response, and how it adapts.
+## How the body adapts
 
-## How the body responds
+My main current research line focuses on strength and muscle mechanics. It is organised around EXCURSE—*Muscle Excursion Range in Strength Training: Implications for Performance and Injury Prevention* (2025–2028).
 
-Exercise-induced release of cardiac troponin (cTnT, cTnI) and NT-proBNP, with a focus on
-children and adolescents, and on modelling the post-exercise kinetics rather than reading
-a single time point.
+EXCURSE examines how the muscle lengths at which strength training is performed shape subsequent adaptation. We compare different muscle excursion ranges and analyse their effects on muscle architecture, strength, neuromuscular activation, and mechanical properties. The aim is to determine whether looking at exercise from the perspective of the muscle, rather than only through joint motion, allows us to explain these adaptations more clearly.
 
-The clinical stake is concrete: healthy young athletes routinely show troponin
-concentrations that would suggest myocardial injury in a clinical setting. Knowing the
-expected time course is what separates a normal physiological response from a finding that
-warrants concern.
-
-This line comes out of my doctoral thesis and is the most consolidated of the three.
-
-*Main collaborators: Keith George (Liverpool John Moores University), Fred S. Apple
-(University of Minnesota), Alejandro Legaz-Arrese (Universidad de Zaragoza), Luis Enrique
-Carranza-García (Universidad Autónoma de Nuevo León).*
+This is the research line I am currently building, and we are looking for doctoral researchers to join it. [Find out more](phd.qmd).
 
 ## How we measure it
 
-Validation of field tests as alternatives to laboratory protocols: functional threshold
-power, prediction of VO~2~max from short tests, an updated version of the Allen & Coggan
-equation, anthropometry and muscle stiffness in road cycling.
+This line examines the extent to which field tests can replace or complement laboratory protocols.
 
-The practical question is whether a test a coach can actually run tells you what a
-laboratory test would have told you — and where it stops doing so. This is the line with
-the widest applied readership.
+My work includes validating functional threshold power, predicting VO~2~max from short tests, updating the Allen and Coggan equation, and studying anthropometric measures and muscle stiffness in road cycling.
 
-*Main collaborators: Sebastian Sitko, Isaac López-Laval (Universidad de Zaragoza).*
+The question is whether a test that can be used under real-world conditions tells us what we need to know—and where it stops doing so. This is my most applied research line.
 
-## How it adapts
+*Main collaborators: Sebastian Sitko and Isaac López-Laval (Universidad de Zaragoza).*
 
-Strength and muscle mechanics, currently organised around **EXCURSE** — *Muscle Excursion
-Range in Strength Training: Implications for Performance and Injury Prevention*
-(2025–2028), which I lead together with Xavier Peirau Terès.
+## How the body responds
 
-The earlier anchor of this line is a meta-analysis on the contralateral effects of
-unilateral strength training, which remains my most cited first-author work.
+This line originated in my doctoral thesis and examines the response of cardiac biomarkers to exercise, particularly in children and adolescents.
 
-This is the line I am building now, and the one with room for doctoral projects.
-[More on that here](doctorat.qmd).
+I have been especially interested in modelling their time course: not only the value we observe, but how it evolves in the hours after exercise. This helps contextualise physiological responses that may resemble clinically concerning findings.
+
+It is the most established of the three lines and the source of many of the methodological questions that continue to guide my research, although it now plays a more limited role in my current work.
+
+*Main collaborators: Keith George (Liverpool John Moores University), Alejandro Legaz-Arrese (Universidad de Zaragoza), and Luis Enrique Carranza-García (Universidad Autónoma de Nuevo León).*
 
 ## The method underneath
 
-Applied biostatistics is not a fourth line — it is how the other three are done: modelling
-the time course of biological responses, Bayesian linear regression, systematic review and
-meta-analysis.
+Applied biostatistics is not a fourth research line: it is the perspective from which I approach the other three.
 
-It is also what explains work outside sport science. Since 2023 I have been responsible for
-statistical analysis in the Clinical Neurosciences group at IRBLleida, including the
-REMOTE-CAT clinical trial on prehospital remote ischaemic perconditioning in acute
-ischaemic stroke.
+I am fascinated by the Bayesian paradigm because it forces us to make explicit what we assume, what we learn from the data, and how much uncertainty remains. I am particularly interested in building models that respect the actual structure of a problem: repeated measurements, time series, between-person variability, and responses that are rarely as tidy as we would like them to be.
+
+I work with mixed-effects models, Bayesian regression, systematic reviews, and meta-analysis. I am not interested in applying the most conventional model by default, but in finding the one that best represents the process we are trying to understand. Sometimes this means leaving familiar recipes behind, testing new structures, and accepting that a more honest answer may also be a less comfortable one.
+
+For me, statistics does not arrive at the end of a study to decide whether a result is significant. It begins much earlier: it helps formulate the question, design the study, and establish what we will be able to conclude once the data arrive.

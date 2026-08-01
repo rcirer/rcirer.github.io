@@ -3,6 +3,11 @@ title: "Docència"
 subtitle: "Materials i recursos oberts."
 ---
 
+::: {.callout-note appearance="simple"}
+This page is in Catalan: the teaching material is used in Catalan-taught courses, and
+translating it would help nobody. The rest of the site is in English.
+:::
+
 Aquí penjo el material docent que pot servir fora de l'aula: guions, apunts i codi.
 Està organitzat per assignatura, no per curs acadèmic.
 

@@ -98,8 +98,13 @@ Qualsevol text de presentació parteix d'aquest marc.
 
 Sense duplicar contingut i sense maquinària multilingüe:
 
-- Recerca, blog i publicacions: **anglès**.
-- Docència i bio breu: **català**.
+- **Anglès per defecte**, navegació inclosa. El públic objectiu són doctorands i
+  col·laboradors internacionals.
+- **Docència (`teaching.qmd`) és l'única excepció i va en català**, perquè el seu públic
+  són els estudiants d'aquí. Duu un avís en anglès al capdamunt que ho explica.
+
+Els noms de fitxer són URL públiques i han de ser en anglès i estables
+(`phd.qmd`, `teaching.qmd`...). Renombrar-los un cop publicats trenca enllaços externs.
 
 ---
 
