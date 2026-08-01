@@ -1,0 +1,21 @@
+---
+title: "Títol del post"
+description: "Una frase que digui de què va. Surt al llistat del blog."
+date: 2026-01-01
+categories: [methods]
+draft: true
+---
+
+<!--
+PLANTILLA. El nom comença amb guió baix, així que Quarto no la renderitza mai.
+
+Per escriure un post nou: copia aquest fitxer a blog/posts/nom-del-post.qmd,
+treu el `draft: true` quan estigui a punt per publicar.
+
+Recordatoris (CLAUDE.md §7):
+  - 600–900 paraules.
+  - Primera persona del singular, directe, sense hipèrbole.
+  - El valor és el que no surt publicat: per què vam fer l'estudi, què ens va
+    sorprendre, quina decisió metodològica va costar, què faria diferent avui.
+  - Ni un post per article.
+-->

@@ -2,10 +2,11 @@
 
 Context permanent del projecte per a Claude Code. Llegeix-lo sencer abans de fer res.
 
-Fonts d'aquest document:
-- `instruccions-projecte-web.md` — decisions i preferències del projecte (document mestre).
-- `cv-extracte-web.md` — **font factual única**. Qualsevol dada de carrera, publicació,
-  projecte o mètrica surt d'aquí. No inventis res que no hi sigui i no arrodoneixis xifres.
+Aquest fitxer és el **document mestre** de decisions i preferències del projecte. No en
+facis còpies: si cal canviar una regla, canvia-la aquí.
+
+`cv-extracte-web.md` és la **font factual única**. Qualsevol dada de carrera, publicació,
+projecte o mètrica surt d'aquí. No inventis res que no hi sigui i no arrodoneixis xifres.
 
 Si aquests dos fitxers i el que has escrit tu es contradiuen, manen ells.
 
@@ -198,7 +199,17 @@ Pendents. Recorda-les-hi quan siguin rellevants per a la tasca en curs.
 
 ## 11. Estat actual del projecte
 
-El directori encara **no és un repositori git** i no hi ha projecte Quarto: només hi ha
-aquests tres documents de context. Els primers passos pendents són inicialitzar el
-repositori (amb el `.gitignore` de la secció 8 al primer commit) i crear l'esquelet Quarto.
-No els facis sense demanar-ho: van d'una decisió en una.
+Fet:
+
+- Repositori git local a `/Users/rcirer/Projects/rafelcirer`, branca `main`.
+- Remot `origin` → `git@github.com:rcirer/rcirer.github.io.git` (públic), per SSH.
+- `.gitignore` amb `*.pdf` present des del primer commit.
+
+Pendent, en aquest ordre:
+
+1. Esquelet del projecte Quarto (`_quarto.yml` i pàgines mínimes).
+2. Primera publicació a GitHub Pages i comprovació a `https://rcirer.github.io`.
+3. Pipeline de publicacions des d'ORCID/OpenAlex (secció 6).
+4. Domini personalitzat (secció 10).
+
+No facis cap d'aquests passos sense demanar-ho: van d'una decisió en una.

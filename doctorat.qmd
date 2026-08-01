@@ -1,0 +1,49 @@
+---
+title: "Doctoral projects"
+---
+
+I currently supervise four doctoral candidates, and I have room for more within
+**EXCURSE** — *Muscle Excursion Range in Strength Training: Implications for Performance
+and Injury Prevention* (2025–2028), which I co-lead with Xavier Peirau Terès. That project
+is where the funding, the timeline and the laboratory infrastructure already exist, so it
+is the most realistic entry point.
+
+## What a project with me looks like
+
+The work sits at the intersection of exercise physiology and applied statistics. In
+practice that means a substantial part of any thesis I supervise is measurement and
+modelling: how the response is quantified, how the time course is modelled, and what the
+data will not support.
+
+I expect candidates to end up able to defend their own analysis, not to outsource it.
+
+## What I look for
+
+- Comfort with quantitative work, or a clear intention to become comfortable. R is the
+  working language in my group.
+- Willingness to write. A thesis that is not written as it goes is a thesis that stalls.
+- Interest in why a method fails, not only in whether the result is significant.
+
+Prior publications are not a requirement.
+
+## Topics currently open
+
+Within EXCURSE: muscle excursion range in strength training, and inter- and
+intra-individual variability in the response to strength training.
+
+Adjacent topics I would consider, given the right candidate: post-exercise kinetics of
+cardiac biomarkers in young athletes, and validation of field-based performance tests.
+
+## Current candidates
+
+| Candidate | Topic | Institution |
+|---|---|---|
+| Ruth Arroyo Cera | Muscle excursion range in strength training (EXCURSE) | UdL |
+| Marc Clèries Aran | Cycling comfort through biomechanical analysis under load and fatigue | UdL |
+| Xavier Mena Hoekendijk | Gamified exergame system for isometric assessment and training | UdL |
+| Sergi Manzano Pedrós | Variability in the response to strength training: time-course modelling | University of Jyväskylä |
+
+## Getting in touch
+
+If this fits what you want to work on, write to me with a short description of your
+background and what you would like to study. [Contact details here](cv.qmd).

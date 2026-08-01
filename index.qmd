@@ -1,0 +1,35 @@
+---
+title: "Rafel Cirer-Sastre"
+subtitle: "Professor Titular de Cinesiologia · INEFC Lleida, Universitat de Lleida"
+toc: false
+---
+
+Sóc professor titular de Cinesiologia a l'INEFC Lleida i doctor en Activitat Física i
+Esport per la Universitat de Lleida. Des del 2022 dirigeixo el suport a la recerca i la
+transferència del coneixement del centre.
+
+Treballo sobretot com a metodòleg: modelatge del curs temporal de respostes biològiques,
+regressió bayesiana, revisió sistemàtica i meta-anàlisi. És el que sosté tant la meva
+recerca pròpia com la col·laboració amb el grup de Neurociències Clíniques de l'IRBLleida.
+
+La pregunta que enfila tot el que faig és **com mesurem el que l'exercici fa al cos i què
+en podem concloure de veritat**.
+
+## Tres línies
+
+**Com respon el cos.** Alliberament de troponina cardíaca i altres biomarcadors després de
+l'exercici, amb èmfasi en poblacions infantils i adolescents.
+
+**Com el mesurem.** Validació de tests de camp com a alternativa al laboratori: llindar
+funcional de potència, predicció del VO~2~max, valoració de la potència en ciclisme.
+
+**Com s'adapta.** Força, mecànica muscular i rang d'excursió. És la línia que lidero ara,
+al voltant del projecte EXCURSE (2025–2028).
+
+[Llegeix-ne més →](research.qmd)
+
+## Enllaços
+
+- [ORCID 0000-0001-6687-8201](https://orcid.org/0000-0001-6687-8201)
+- [Scopus 57194537687](https://www.scopus.com/authid/detail.uri?authorId=57194537687)
+- [Publons / Researcher ID G-4163-2015](https://www.webofscience.com/wos/author/record/G-4163-2015)

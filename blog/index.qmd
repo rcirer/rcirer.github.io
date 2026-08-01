@@ -1,0 +1,12 @@
+---
+title: "Blog"
+subtitle: "Methodological notes, and what did not make it into the papers."
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  fields: [date, title, description, reading-time]
+  feed: true
+page-layout: full
+toc: false
+---

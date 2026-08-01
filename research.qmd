@@ -1,0 +1,61 @@
+---
+title: "Research"
+---
+
+The question that ties my work together is **how we measure what exercise does to the
+body, and what we can honestly conclude from those measurements**.
+
+Three lines follow from it. They are not separate projects — they are the same question at
+three points: how the body responds, how we measure the response, and how it adapts.
+
+## How the body responds
+
+Exercise-induced release of cardiac troponin (cTnT, cTnI) and NT-proBNP, with a focus on
+children and adolescents, and on modelling the post-exercise kinetics rather than reading
+a single time point.
+
+The clinical stake is concrete: healthy young athletes routinely show troponin
+concentrations that would suggest myocardial injury in a clinical setting. Knowing the
+expected time course is what separates a normal physiological response from a finding that
+warrants concern.
+
+This line comes out of my doctoral thesis and is the most consolidated of the three.
+
+*Main collaborators: Keith George (Liverpool John Moores University), Fred S. Apple
+(University of Minnesota), Alejandro Legaz-Arrese (Universidad de Zaragoza), Luis Enrique
+Carranza-García (Universidad Autónoma de Nuevo León).*
+
+## How we measure it
+
+Validation of field tests as alternatives to laboratory protocols: functional threshold
+power, prediction of VO~2~max from short tests, an updated version of the Allen & Coggan
+equation, anthropometry and muscle stiffness in road cycling.
+
+The practical question is whether a test a coach can actually run tells you what a
+laboratory test would have told you — and where it stops doing so. This is the line with
+the widest applied readership.
+
+*Main collaborators: Sebastian Sitko, Isaac López-Laval (Universidad de Zaragoza).*
+
+## How it adapts
+
+Strength and muscle mechanics, currently organised around **EXCURSE** — *Muscle Excursion
+Range in Strength Training: Implications for Performance and Injury Prevention*
+(2025–2028), which I lead together with Xavier Peirau Terès.
+
+The earlier anchor of this line is a meta-analysis on the contralateral effects of
+unilateral strength training, which remains my most cited first-author work.
+
+This is the line I am building now, and the one with room for doctoral projects.
+[More on that here](doctorat.qmd).
+
+## The method underneath
+
+Applied biostatistics is not a fourth line — it is how the other three are done: modelling
+the time course of biological responses, Bayesian linear regression, systematic review and
+meta-analysis.
+
+It is also what explains work outside sport science. Since 2023 I have been responsible for
+statistical analysis in the Clinical Neurosciences group at IRBLleida, including the
+REMOTE-CAT clinical trial on prehospital remote ischaemic perconditioning in acute
+ischaemic stroke.

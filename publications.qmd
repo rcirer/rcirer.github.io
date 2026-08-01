@@ -1,0 +1,22 @@
+---
+title: "Publications"
+---
+
+::: {.callout-note}
+This page will be generated automatically from ORCID. Nothing here is maintained by hand.
+:::
+
+<!--
+PENDENT (CLAUDE.md §6). Aquesta pàgina s'ha d'alimentar de:
+  - Font de veritat: ORCID 0000-0001-6687-8201
+  - Lectura tècnica: OpenAlex, filtrant per ORCID, sense token
+  - extres.yml     -> el que les API no veuen
+  - exclusions.yml -> duplicats i falsos positius
+Recuperació sempre per ORCID, mai per nom.
+No escriguis aquí cap llista d'articles a mà.
+-->
+
+40 indexed publications · 331 citations · h-index 10 *(as of January 2026)*.
+
+Meanwhile, the complete and up-to-date list is on
+[ORCID](https://orcid.org/0000-0001-6687-8201).

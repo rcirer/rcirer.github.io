@@ -1,0 +1,41 @@
+project:
+  type: website
+  output-dir: _site
+  # Només els .qmd són pàgines del lloc. Sense això, Quarto publicaria també
+  # qualsevol .md de la carpeta (CLAUDE.md, cv-extracte-web.md...), que són
+  # documents interns i no han de sortir al web.
+  render:
+    - "**/*.qmd"
+
+website:
+  title: "Rafel Cirer-Sastre"
+  site-url: "https://rcirer.github.io"
+  description: "Professor Titular de Cinesiologia a l'INEFC Lleida. Biomarcadors cardíacs, valoració del rendiment i mecànica muscular."
+  navbar:
+    left:
+      - href: index.qmd
+        text: Inici
+      - href: research.qmd
+        text: Recerca
+      - href: publications.qmd
+        text: Publicacions
+      - href: blog/index.qmd
+        text: Blog
+      - href: docencia.qmd
+        text: Docència
+      - href: doctorat.qmd
+        text: Doctorat
+      - href: cv.qmd
+        text: CV i contacte
+    right:
+      - text: ORCID
+        href: https://orcid.org/0000-0001-6687-8201
+  page-footer:
+    center: "Rafel Cirer-Sastre · INEFC Lleida, Universitat de Lleida"
+
+format:
+  html:
+    theme: litera
+    toc: true
+    toc-title: "En aquesta pàgina"
+    anchor-sections: true
