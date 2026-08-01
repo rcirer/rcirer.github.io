@@ -1,0 +1,22 @@
+# --- Regla del projecte (CLAUDE.md §8) -------------------------------
+# Cap PDF al repositori: ni PDFs d'editorial ni, sobretot, el CV
+# normalitzat d'AQU amb dades identificatives.
+*.pdf
+
+# --- Sortida de Quarto ------------------------------------------------
+# Fitxers generats en renderitzar. Es reconstrueixen sols; no es versionen.
+/_site/
+/.quarto/
+
+# --- macOS ------------------------------------------------------------
+.DS_Store
+
+# --- R ----------------------------------------------------------------
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# --- Python -----------------------------------------------------------
+__pycache__/
+.venv/
