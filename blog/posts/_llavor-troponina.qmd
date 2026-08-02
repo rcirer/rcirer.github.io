@@ -1,0 +1,30 @@
+---
+title: "[esborrany] The molecule with two meanings"
+description: "Cardiac troponin says heart attack in an emergency room and says nothing in a healthy athlete. Same molecule, same rise."
+date: 2026-01-01
+categories: [methods, cardiac biomarkers]
+draft: true
+---
+
+<!--
+LLAVOR, NO POST. Fitxer amb guió baix: Quarto no el renderitza mai.
+
+Aquest text el va escriure en Rafel per a la portada. En retallar-la va quedar
+fora, però és bon material de blog i és seu, no generat. Es conserva aquí com a
+punt de partida del primer post.
+
+Per convertir-lo en post: copia'l a blog/posts/nom-del-post.qmd, amplia'l fins a
+600-900 paraules i treu el draft: true. El que hi falta és el que la secció 7 del
+CLAUDE.md descriu com a valuós: quina decisió metodològica va costar, què va
+sorprendre, què faria diferent avui.
+-->
+
+I first began thinking about this while studying cardiac troponin, the biomarker used in
+emergency care to help diagnose a heart attack. The paradox is that it also rises in healthy
+athletes after a race or a match. The same molecule. The same increase. And two incompatible
+meanings.
+
+I devoted my doctoral thesis to understanding this paradox. But what I really took from it
+was a question that still guides everything I do: how do we measure what exercise does to
+the body, why do we measure it that way, and, above all, what can we claim from what we have
+measured?
