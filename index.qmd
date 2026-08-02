@@ -4,22 +4,24 @@ subtitle: "Institut Nacional d'Educació Física de Catalunya (INEFC), Universit
 toc: false
 ---
 
-Many measurements strike me as more convincing than reliable.
+I am an Associate Professor of Kinesiology at INEFC Lleida and, since 2022, I have
+coordinated the centre's research support.
 
-I first began thinking about this while studying cardiac troponin, the biomarker used in emergency care to help diagnose a heart attack. The paradox is that it also rises in healthy athletes after a race or a match. The same molecule. The same increase. And two incompatible meanings.
+Many measurements strike me as more convincing than reliable. That is the thread through
+everything I work on: how we measure what exercise does to the body, and what we can claim
+from what we have measured.
 
-I devoted my doctoral thesis to understanding this paradox. But what I really took from it was a question that still guides everything I do: how do we measure what exercise does to the body, why do we measure it that way, and, above all, what can we claim from what we have measured?
+I currently lead EXCURSE (2025–2028), a project examining how muscle excursion range during
+strength training shapes adaptation. It is funded by INEFC under reference 2025 PINEF 00018
+and co-led with Xavier Peirau Terès.
 
-Since then, I have been as interested in what we measure as in how we measure it. Instruments always return a number. The difficult part is deciding whether that number deserves the confidence we tend to place in it.
+My other work examines the validation of field tests for endurance performance, and cardiac
+biomarkers after exercise in children and adolescents. Applied biostatistics runs through
+all three lines: time-course modelling, Bayesian regression, systematic review and
+meta-analysis.
 
-That is where my fascination with statistics comes from: not only as a tool for analysing data, but as a way of thinking about what we know, what we do not know, and how certain we can be about a claim. It is also why I teach research methods at master's level and spend much of my time collaborating on projects far removed from my own.
-
-I currently lead EXCURSE (2025–2028), a project examining how muscle excursion range during strength training shapes adaptation. We compare training across different regions of the muscle's excursion range to study changes in muscle architecture, strength, neuromuscular activation, and mechanical properties. We want to know whether describing exercise from the perspective of the muscle—not only through joint motion—allows us to understand training adaptations more clearly.
-
-I am an Associate Professor of Kinesiology at INEFC Lleida and, since 2022, I have coordinated the centre's research support. My work combines exercise physiology, biomechanics, and methodology, but almost all of it ultimately revolves around the same idea: how much confidence can we place in a measurement?
-
-
-[More about my research →](research.qmd)
+I am recruiting doctoral candidates to work within EXCURSE from late 2026.
+[Read about the PhD opportunity](phd.qmd).
 
 ## Profiles
 

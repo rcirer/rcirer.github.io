@@ -2,42 +2,83 @@
 title: "Research"
 ---
 
-The question that ties my research together is how we measure what exercise does to the body and what we can claim from what we have measured. Three research lines follow from it. They do not carry the same weight or belong to the same stage of my career, but they share the same question: how the body adapts, how we measure that adaptation, and how it responds acutely to exercise.
+The question that ties my research together is how we measure what exercise does to the
+body and what we can claim from what we have measured. Three research lines follow from it.
+They do not carry the same weight or belong to the same stage of my career.
 
-## How the body adapts
+## Strength training and muscle mechanics
 
-My main current research line focuses on strength and muscle mechanics. It is organised around EXCURSE—*Muscle Excursion Range in Strength Training: Implications for Performance and Injury Prevention* (2025–2028).
+This is the active line I am building: how the body adapts to strength training, and whether
+describing exercise from the perspective of the muscle explains those adaptations better
+than joint motion alone.
 
-EXCURSE examines how the muscle lengths at which strength training is performed shape subsequent adaptation. We compare different muscle excursion ranges and analyse their effects on muscle architecture, strength, neuromuscular activation, and mechanical properties. The aim is to determine whether looking at exercise from the perspective of the muscle, rather than only through joint motion, allows us to explain these adaptations more clearly.
+I lead EXCURSE — *Muscle Excursion Range in Strength Training: Implications for Performance
+and Injury Prevention* (2025–2028), funded by INEFC under reference 2025 PINEF 00018 and
+co-led with Xavier Peirau Terès. We compare training across different regions of muscle
+excursion and study changes in muscle architecture, strength, neuromuscular activation, and
+mechanical properties.
 
-This is the research line I am currently building, and we are looking for doctoral researchers to join it. [Find out more](phd.qmd).
+The open questions are whether adaptations differ according to the region of muscle
+excursion used during training, and how much responses vary between people and over time.
 
-## How we measure it
+The antecedent of this line is a [meta-analysis of contralateral effects after unilateral
+strength training](https://pubmed.ncbi.nlm.nih.gov/28630570/). More recent related work
+includes [conventional resistance training compared with core exercise in road
+cyclists](https://doi.org/10.7759/cureus.59371) and [pedalling muscle stiffness across
+cyclist performance levels](https://doi.org/10.3390/medicina57060606).
 
-This line examines the extent to which field tests can replace or complement laboratory protocols.
+I am recruiting doctoral researchers for this line. [Read about the PhD
+opportunity](phd.qmd).
 
-My work includes validating functional threshold power, predicting VO~2~max from short tests, updating the Allen and Coggan equation, and studying anthropometric measures and muscle stiffness in road cycling.
+## Field-test validation and endurance performance
 
-The question is whether a test that can be used under real-world conditions tells us what we need to know—and where it stops doing so. This is my most applied research line.
+This is my most applied line: how we measure endurance performance outside the laboratory,
+and where a practical field test stops being an adequate substitute for a laboratory
+protocol.
+
+My work has examined functional threshold power, prediction of VO~2~max from a short maximal
+test, and the variability of time to exhaustion at an estimated threshold. Studies include
+comparisons of [functional threshold power with lactate
+thresholds](https://doi.org/10.1519/JSC.0000000000004070), a [five-minute power-based test
+to predict VO~2~max](https://doi.org/10.1123/ijspp.2020-0923), and [time to exhaustion at
+estimated functional threshold power](https://doi.org/10.1016/j.jsams.2022.06.007).
+
+The open questions are which field-test estimates remain valid at the level of the
+individual athlete, and how test error, performance level, and between-person variability
+should affect interpretation.
 
 *Main collaborators: Sebastian Sitko and Isaac López-Laval (Universidad de Zaragoza).*
 
-## How the body responds
+## Cardiac biomarkers after exercise
 
-This line originated in my doctoral thesis and examines the response of cardiac biomarkers to exercise, particularly in children and adolescents.
+This is my most established line, although it is now less central to my work: how the body
+responds acutely to exercise, particularly how cardiac troponin changes in children and
+adolescents.
 
-I have been especially interested in modelling their time course: not only the value we observe, but how it evolves in the hours after exercise. This helps contextualise physiological responses that may resemble clinically concerning findings.
+I have focused on the time course of the response rather than a single post-exercise value.
+The work includes a [systematic review and meta-analysis in healthy children and
+adolescents](https://doi.org/10.1123/pes.2018-0058), a study of [maturational status and
+cardiac troponin T in young swimmers](https://doi.org/10.1016/j.jsams.2020.06.019), and a
+[comparison of modelled cTnT and cTnI
+kinetics](https://doi.org/10.1080/1354750X.2022.2080272).
 
-It is the most established of the three lines and the source of many of the methodological questions that continue to guide my research, although it now plays a more limited role in my current work.
+The open questions are how sampling time changes the interpretation of an observed value,
+and how maturation, exercise load, and between-person variability shape the response.
 
-*Main collaborators: Keith George (Liverpool John Moores University), Alejandro Legaz-Arrese (Universidad de Zaragoza), and Luis Enrique Carranza-García (Universidad Autónoma de Nuevo León).*
+*Main collaborators: Keith George (Liverpool John Moores University), Alejandro Legaz-Arrese
+(Universidad de Zaragoza), and Luis Enrique Carranza-García (Universidad Autónoma de Nuevo
+León).*
 
 ## The method underneath
 
-Applied biostatistics is not a fourth research line: it is the perspective from which I approach the other three.
+Applied biostatistics is not a fourth research line. It is the perspective from which I
+approach the other three.
 
-I am fascinated by the Bayesian paradigm because it forces us to make explicit what we assume, what we learn from the data, and how much uncertainty remains. I am particularly interested in building models that respect the actual structure of a problem: repeated measurements, time series, between-person variability, and responses that are rarely as tidy as we would like them to be.
+I work with mixed-effects models, Bayesian regression, systematic reviews, and
+meta-analysis. For repeated biological measurements, I model observations within individuals
+and the shape of change over time rather than analyse each time point as if it were
+independent. I also conduct statistical analysis for the Clinical Neurosciences group at
+IRBLleida, including the REMOTE-CAT stroke trial.
 
-I work with mixed-effects models, Bayesian regression, systematic reviews, and meta-analysis. I am not interested in applying the most conventional model by default, but in finding the one that best represents the process we are trying to understand. Sometimes this means leaving familiar recipes behind, testing new structures, and accepting that a more honest answer may also be a less comfortable one.
-
-For me, statistics does not arrive at the end of a study to decide whether a result is significant. It begins much earlier: it helps formulate the question, design the study, and establish what we will be able to conclude once the data arrive.
+Statistics begins before the data arrive: it helps formulate the question, design the study,
+and establish what the study will be able to support.

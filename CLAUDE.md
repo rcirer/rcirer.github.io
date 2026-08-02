@@ -191,6 +191,24 @@ No admeten excepció.
 
 ---
 
+## 9 bis. Condicions del doctorat (EXCURSE)
+
+Fets confirmats per en Rafel. Són la base de `phd.qmd`; no els suavitzis ni els ampliïs.
+
+- **No hi ha contracte predoctoral atorgat.** EXCURSE té finançament de despeses de
+  recerca, però la beca l'ha de demanar i guanyar el candidat en convocatòria competitiva
+  (AGAUR/FI, FPU, o equivalent del seu país). Dir-ho clar: és una plaça per la qual competir,
+  no una plaça concedida.
+- Hi caben **2 o 3 doctorands**.
+- Inici previst: **finals del 2026**.
+- Requisit: **màster oficial** (accés al programa de doctorat de la UdL).
+- **Presencialitat obligatòria** a la facultat de Lleida.
+- Hi ha **docència associada**.
+- Procés: **primer parlar amb en Rafel**, abans de cap tràmit formal.
+
+Pendent: qui codirigeix les tesis. EXCURSE el co-lidera Xavier Peirau Terès, però no està
+confirmat que codirigeixi.
+
 ## 10. Decisions obertes
 
 Pendents. Recorda-les-hi quan siguin rellevants per a la tasca en curs.
