@@ -4,11 +4,10 @@ title: "CV and contact"
 
 ## Contact
 
+rcirer *at* gencat *dot* cat
+
 INEFC Lleida — Institut Nacional d'Educació Física de Catalunya
 Universitat de Lleida
-
-<!-- PENDENT: adreça electrònica institucional. No hi posis cap correu personal
-     (CLAUDE.md §8). Confirmar amb en Rafel quina vol publicar. -->
 
 ## Current position
 

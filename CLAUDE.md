@@ -170,6 +170,9 @@ No admeten excepció.
   git en conserva l'historial per sempre. `cv-extracte-web.md` sí que hi pot ser — és
   l'extracte ja depurat d'aquestes dades.
 - El repositori porta un `.gitignore` amb `*.pdf` des del primer commit.
+- **L'adreça de contacte s'escriu desglossada** (`rcirer *at* gencat *dot* cat`), mai com
+  a `mailto:` ni en text pla. És deliberat, per dificultar els recol·lectors de correu.
+  No ho «arreglis» convertint-ho en un enllaç clicable.
 - El CV públic del web serà un document diferent, sense dades identificatives.
 
 ---

@@ -42,4 +42,4 @@ I may also consider proposals related to the validation of field tests or the mo
 
 ## Contact
 
-If this way of working resembles what you are looking for, write to me. Tell me briefly about your background, what makes you curious, and why you want to spend a few years investigating it. [Contact details](cv.qmd#contact).
+If this way of working resembles what you are looking for, write to me. Tell me briefly about your background, what makes you curious, and why you want to spend a few years investigating it. [Contact details](cv.qmd).
