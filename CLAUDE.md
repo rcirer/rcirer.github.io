@@ -231,11 +231,20 @@ Fet:
 - Remot `origin` → `git@github.com:rcirer/rcirer.github.io.git` (públic), per SSH.
 - `.gitignore` amb `*.pdf` present des del primer commit.
 
+- Lloc Quarto amb set pàgines, **publicat i viu a https://rcirer.github.io**.
+- Publicació amb `quarto publish gh-pages`. La branca `gh-pages` conté només l'HTML;
+  `main` conté el codi font. GitHub Pages serveix des de `gh-pages`, arrel.
+
 Pendent, en aquest ordre:
 
-1. Esquelet del projecte Quarto (`_quarto.yml` i pàgines mínimes).
-2. Primera publicació a GitHub Pages i comprovació a `https://rcirer.github.io`.
-3. Pipeline de publicacions des d'ORCID/OpenAlex (secció 6).
+1. Pipeline de publicacions des d'ORCID/OpenAlex (secció 6). `publications.qmd` és
+   ara una pàgina buida a propòsit. Primera decisió: script en R o en Python.
+2. Imatges: retrat a la portada i esquema d'EXCURSE (rang articular vs rang d'excursió).
+3. Primer post del blog, a partir de `blog/posts/_llavor-troponina.qmd`.
 4. Domini personalitzat (secció 10).
 
 No facis cap d'aquests passos sense demanar-ho: van d'una decisió en una.
+
+**Avís après per experiència:** no facis `git add -A` sense mirar abans què s'hi afegeix.
+L'editor d'en Rafel pot re-desar fitxers que acabes de renombrar, i un `add -A` cec els
+reintrodueix. Va passar amb `doctorat.qmd`, que hauria publicat text ja retirat.
