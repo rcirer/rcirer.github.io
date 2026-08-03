@@ -66,8 +66,9 @@ systematic review and meta-analysis. [More about the research →](research.qmd)
 
 ## The question behind EXCURSE
 
-![Strength training rarely loads a muscle across its whole length range. EXCURSE compares
-what happens when it is trained short, mid or long.](images/excursion-range.svg){.wide}
+![A joint angle does not tell you at what length a muscle worked. EXCURSE compares four
+muscle excursion ranges, each defined against the limits of voluntary shortening and
+lengthening.](images/excursion-range.svg){.wide}
 
 I lead EXCURSE (2025–2028), funded by INEFC under reference 2025 PINEF 00018 and co-led
 with Xavier Peirau Terès.

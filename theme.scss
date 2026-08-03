@@ -176,6 +176,20 @@ figcaption {
   margin-top: 0.6rem;
 }
 
+// Un diagrama que porta text a dins no es pot encongir tant com es vulgui:
+// per sota d'uns 700 px les etiquetes queden il·legibles. En pantalla estreta,
+// doncs, no l'encongim més: el deixem a 700 px i es llisca amb el dit.
+// S'aplica només a les imatges marcades amb {.wide}.
+@media (max-width: 700px) {
+  figure:has(img.wide) > p {
+    overflow-x: auto;
+  }
+  img.wide {
+    max-width: none;
+    width: 700px;
+  }
+}
+
 // --- Llista de perfils --------------------------------------------------
 .profiles {
   list-style: none;
