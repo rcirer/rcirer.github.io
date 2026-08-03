@@ -24,6 +24,8 @@ COM FUNCIONA, i per què així
 Dependències: PyYAML. La resta és biblioteca estàndard.
 """
 
+import base64
+import collections
 import json
 import sys
 import time
@@ -247,6 +249,37 @@ def tria_revista(orcid_val, api_val):
     return GRAFIES.get(nom.lower().replace(" ", ""), nom)
 
 
+def escriu_histograma(publicacions):
+    """
+    Escriu `histograma.css` amb l'amplada de la barra de cada any.
+
+    Quarto pinta el filtre de categories com a <div class="category"
+    data-category="BASE64"> i nosaltres només hi afegim una variable CSS.
+    Els elements segueixen sent els seus i el filtre continua funcionant;
+    si algun dia Quarto canvia aquesta estructura, les barres deixaran de
+    sortir però la llista i el filtre continuaran igual.
+    """
+    compte = collections.Counter(
+        str(p["year"]) for p in publicacions if p.get("year")
+    )
+    if not compte:
+        return
+    maxim = max(compte.values())
+
+    linies = [
+        "/* GENERAT per scripts/publications.py — no l'editis a mà. */",
+        "/* Amplada de la barra de cada any, proporcional al màxim. */",
+    ]
+    for any_, n in sorted(compte.items()):
+        clau = base64.b64encode(any_.encode()).decode()
+        linies.append(
+            f'.quarto-listing-category .category[data-category="{clau}"]'
+            f" {{ --barra: {round(100 * n / maxim)}%; }}"
+        )
+    (ARREL / "histograma.css").write_text("\n".join(linies) + "\n", encoding="utf-8")
+    print(f"Escrit histograma.css: {len(compte)} anys, màxim {maxim}")
+
+
 def formata_autors(noms, maxim=8):
     if not noms:
         return None
@@ -383,6 +416,8 @@ def main():
         + yaml.safe_dump(sortida, allow_unicode=True, sort_keys=False, width=100),
         encoding="utf-8",
     )
+
+    escriu_histograma(sortida)
 
     print(f"\nEscrit {SORTIDA.name}: {len(sortida)} publicacions")
     if sense_doi:

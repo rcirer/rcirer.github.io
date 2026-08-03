@@ -226,6 +226,62 @@ figcaption {
   }
 }
 
+// --- Filtre d'anys com a histograma -------------------------------------
+// Quarto pinta cada any com <div class="category" data-category="BASE64">
+// amb el text de l'any i un <span> amb el recompte. En fer-ne una graella
+// de tres columnes, aquells dos nodes cauen a les dues primeres i el
+// pseudoelement ::after ocupa la tercera: la barra.
+//
+// L'amplada de cada barra ve de --barra, que escriu scripts/publications.py
+// a histograma.css. Si aquell fitxer no hi és, --barra val 0 i la llista es
+// veu com sempre: no es trenca res.
+.quarto-listing-category {
+  .category {
+    display: grid;
+    grid-template-columns: 2.7rem 2.1rem 1fr;
+    align-items: center;
+    column-gap: 0.4rem;
+    padding: 0.2rem 0;
+
+    &::after {
+      content: "";
+      height: 6px;
+      border-radius: 3px;
+      background: $accent;
+      opacity: 0.3;
+      width: var(--barra, 0%);
+      transform-origin: left center;
+      animation: creix-barra 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      transition: opacity 0.15s ease;
+    }
+    &:hover::after { opacity: 0.6; }
+    &.active::after { opacity: 0.95; }
+
+    // "All" no és un any: no té barra.
+    &[data-category=""]::after { display: none; }
+  }
+
+  .quarto-category-count {
+    font-size: 0.82rem;
+    color: $ink-muted;
+  }
+
+  // Les barres entren escalonades, de dalt a baix.
+  @for $i from 1 through 14 {
+    .category:nth-child(#{$i})::after { animation-delay: #{$i * 0.045}s; }
+  }
+}
+
+@keyframes creix-barra {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+// Qui hagi demanat menys moviment al sistema no ha de veure l'animació.
+@media (prefers-reduced-motion: reduce) {
+  .quarto-listing-category .category::after { animation: none; }
+}
+
 // --- Llista de perfils --------------------------------------------------
 .profiles {
   list-style: none;

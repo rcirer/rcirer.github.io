@@ -29,16 +29,14 @@
   citations: 46
 
 # --------------------------------------------------------------------------
-# TEMPORALS. Aquests dos articles tenen DOI i les API els coneixen: només cal
-# el DOI i l'script omple títol, revista, autors i citacions tot sol.
+# TEMPORAL. Aquest article té DOI i les API el coneixen: només cal el DOI i
+# l'script omple títol, revista, autors i citacions tot sol.
 #
-# Hi són perquè al teu ORCID hi falta alguna cosa:
-#   · L'IL-6 hi és, però sense el DOI, i per això no s'enriqueix.
-#   · El de bike-fitting directament no hi és.
+# Hi és perquè la seva entrada d'ORCID no porta el DOI i per això no
+# s'enriqueix. Arregla-ho al perfil; quan ho facis, l'script t'avisarà que
+# ja arriba per la via bona i podràs esborrar aquest bloc.
 #
-# Arregla-ho al perfil d'ORCID. Quan ho facis, l'script t'avisarà que ja
-# arriben per la via bona i podràs esborrar aquests dos blocs.
+# (El de bike-fitting era aquí pel mateix motiu i ja s'ha pogut treure:
+#  el 3 d'agost de 2026 es va afegir a ORCID i el pipeline ho va detectar sol.)
 # --------------------------------------------------------------------------
 - doi: "10.4067/s0717-95022025000100304"    # IL-6 en futbolistes, Int J Morphol 2025
-
-- doi: "10.7759/cureus.101718"              # bike-fitting i dolor lumbar, Cureus 2026

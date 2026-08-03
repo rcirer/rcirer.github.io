@@ -10,13 +10,16 @@ listing:
     title: "Title"
     journal: "Journal"
     citations: "Cited"
-    oa: ""
+    oa: "Access"
   sort: "year desc"
   categories: true
   filter-ui: true
   sort-ui: [year, citations, title]
   page-size: 60
 toc: false
+# Amplades de les barres del filtre d'anys. El genera
+# scripts/publications.py; no l'editis a mà.
+css: histograma.css
 ---
 
 This list is generated from my [ORCID record](https://orcid.org/0000-0001-6687-8201) and
