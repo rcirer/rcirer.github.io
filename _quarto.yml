@@ -10,7 +10,10 @@ project:
 website:
   title: "Rafel Cirer-Sastre"
   site-url: "https://rcirer.github.io"
-  description: "Professor Titular de Cinesiologia a l'INEFC Lleida. Biomarcadors cardíacs, valoració del rendiment i mecànica muscular."
+  description: "Associate Professor of Kinesiology at INEFC Lleida. Strength and muscle mechanics, field-test validation, and cardiac biomarkers after exercise."
+  favicon: images/favicon.svg
+  open-graph: true
+  image: images/lecture-hall.jpg
   navbar:
     # Lloc en anglès per defecte. Teaching és l'única pàgina en català,
     # perquè el seu públic són els estudiants d'aquí (CLAUDE.md §5).
@@ -39,5 +42,11 @@ format:
   html:
     theme: [cosmo, theme.scss]
     toc: true
-    toc-title: "En aquesta pàgina"
+    # El lloc és en anglès: aquest text sortia en català a totes les pàgines.
+    # teaching.qmd, que sí que és en català, el sobreescriu al seu capçal.
+    toc-title: "On this page"
     anchor-sections: true
+
+# Idioma per defecte del lloc. Importa per als lectors de pantalla, que
+# apliquen les regles de pronunciació segons aquest atribut.
+lang: en

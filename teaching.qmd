@@ -1,6 +1,11 @@
 ---
 title: "Docència"
 subtitle: "Materials i recursos oberts."
+# Aquesta pàgina és l'excepció catalana del lloc (CLAUDE.md §5). L'atribut
+# lang importa perquè els lectors de pantalla la pronunciïn en català.
+lang: ca
+toc-title: "En aquesta pàgina"
+description: "Materials docents oberts de cinesiologia, anatomia aplicada i metodologia de la investigació."
 ---
 
 ::: {.callout-note appearance="simple"}
@@ -42,11 +47,10 @@ Metodologia de la Investigació en Activitat Física i Salut, des del curs 2024-
 Cursos que he impartit al programa de doctorat de l'INEFC i que poden interessar més enllà
 de l'aula:
 
-- Iniciació al tractament de dades amb R
-- Introducció a la revisió sistemàtica i meta-anàlisi
-- Microsoft Word per a la recerca
-
-*(Materials pendents de publicar.)*
+- **[Iniciació al tractament de dades amb R](https://github.com/rcirer/24-intro-R)** —
+  materials del curs, disponibles a GitHub.
+- Introducció a la revisió sistemàtica i meta-anàlisi *(pendent de publicar)*
+- Microsoft Word per a la recerca *(pendent de publicar)*
 
 ---
 
