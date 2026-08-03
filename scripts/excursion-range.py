@@ -119,7 +119,11 @@ svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="9
 
        Tots els músculs neixen a l'origen x=150. Límit d'escurçament x=330,
        longitud de repòs x=530, límit d'allargament x=810, ancoratge de les
-       gomes x=884. Cada fila té tendó fix, panxa, tendó mòbil, inserció
+       gomes x=884. ATENCIÓ: com tota la figura, aquestes posicions són
+       esquemàtiques, no mesures. La de repòs (530, el 42 % del rang
+       voluntari) és una tria de dibuix i té una conseqüència visible que
+       convé mirar abans de reutilitzar la figura: deixa Inner MER sencer
+       per sota de la longitud de repòs i Outer MER sencer per sobre. Cada fila té tendó fix, panxa, tendó mòbil, inserció
        distal i goma. La panxa engreixa en escurçar-se (gruix = 470/√amplada,
        el volum es manté); els tendons no canvien de llarg.
 
