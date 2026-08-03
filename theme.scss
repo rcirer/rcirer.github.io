@@ -40,6 +40,14 @@ main.content > blockquote {
 }
 main.content > p, main.content > ul, main.content > ol { color: $ink; }
 
+// Un paràgraf que només conté una imatge no és text corregut: Quarto
+// embolcalla les imatges soltes dins un <p>, i sense aquesta excepció
+// hereten el límit de 68 caràcters i queden estretes i descentrades.
+main.content > p:has(> img),
+main.content > p:has(> a > img) {
+  max-width: none;
+}
+
 // --- Ritme vertical -----------------------------------------------------
 h2 {
   margin-top: 3rem;
