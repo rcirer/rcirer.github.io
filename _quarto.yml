@@ -24,8 +24,11 @@ website:
         text: Research
       - href: publications.qmd
         text: Publications
-      - href: blog/index.qmd
-        text: Blog
+      # Blog amagat del menú fins que hi hagi un primer post publicat: un
+      # apartat buit resta credibilitat. La pàgina segueix existint a
+      # /blog/; per tornar-la a mostrar, descomenta aquestes dues línies.
+      # - href: blog/index.qmd
+      #   text: Blog
       - href: teaching.qmd
         text: Teaching
       - href: phd.qmd
@@ -50,3 +53,8 @@ format:
 # Idioma per defecte del lloc. Importa per als lectors de pantalla, que
 # apliquen les regles de pronunciació segons aquest atribut.
 lang: en
+
+# Per defecte, Quarto etiqueta el camp de data com a "Published". Al CV la
+# data és la de l'últim canvi, i dir-ne "publicat" enganya.
+language:
+  title-block-published: "Last updated"

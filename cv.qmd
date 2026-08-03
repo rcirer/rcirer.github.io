@@ -1,5 +1,9 @@
 ---
 title: "CV and contact"
+# Quarto hi posa la data de l'últim canvi del fitxer. Així la pàgina no pot
+# quedar amb una data falsa: si no l'has tocat, es veu.
+date: last-modified
+date-format: "MMMM YYYY"
 ---
 
 ## Contact
