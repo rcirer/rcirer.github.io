@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" width="900" height="460" role="img" aria-labelledby="exc-t exc-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img" aria-labelledby="exc-t exc-d">
   <title id="exc-t">The four muscle excursion ranges compared in EXCURSE</title>
-  <desc id="exc-d">Four muscles are drawn one above another on a horizontal muscle length axis, all fixed at the same origin on the left. Each is a rounded rectangle standing for the muscle belly, joined by a short tendon at either end to two marked attachment points: a fixed proximal one at the origin and a distal one that moves. Two vertical lines mark the shortening limit, the shortest length the muscle reaches voluntarily, and the lengthening limit, the longest; a dashed line between them marks the resting length. Each muscle shortens and lengthens only within its own excursion range: IMER works against the shortening limit and stays shorter than resting length, OMER works against the lengthening limit and stays longer than resting length, MMER straddles resting length without reaching either limit, and CMER travels the whole distance from one limit to the other. The belly thickens as it shortens and thins as it lengthens, while the tendons keep their length. A bar under each muscle marks the travel of its distal attachment, which is that muscle excursion range.</desc>
+  <desc id="exc-d">Four muscles are drawn one above another on a horizontal muscle length axis, all fixed at the same origin on the left. Each is a rounded rectangle standing for the muscle belly, joined by a short tendon at either end to two marked attachment points: a fixed proximal one at the origin and a distal one that moves. From that distal attachment an elastic band runs to a fixed anchor on the right, so every muscle works against a resistance. All four bands are at rest, with the same spacing between coils, when their muscle is at its longest; each then stretches by the length of its own excursion as the muscle shortens. Two vertical lines mark the shortening limit, the shortest length the muscle reaches voluntarily, and the lengthening limit, the longest; a dashed line between them marks the resting length. Each muscle shortens and lengthens only within its own excursion range: Inner MER works against the shortening limit and stays shorter than resting length, Outer MER works against the lengthening limit and stays longer than resting length, Mid MER straddles resting length without reaching either limit, and Complete MER travels the whole distance from one limit to the other. The belly thickens as it shortens and thins as it lengthens, while the tendons keep their length. A bar under each muscle marks the travel of its distal attachment, which is that muscle excursion range.</desc>
 
   <style>
     .lim  { font: 600 14px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #0e6b5e; }
@@ -9,41 +9,41 @@
     .glo  { font: 400 12.5px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #5c6670; }
     .axn  { font: 700 12px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #5c6670; letter-spacing: 0.1em; }
     .note { font: 400 13px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #5c6670; }
-    .rng  { font: 400 12.5px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #a2603f; }
+    .leg  { font: 400 13px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #15181b; }
     .belly { fill: #c9825f; fill-opacity: 0.78; stroke: #a2603f; stroke-width: 1.2; }
     .tend  { stroke: #a2603f; stroke-width: 3; stroke-linecap: round; }
     .ins   { fill: #a2603f; }
     .trav  { stroke: #a2603f; stroke-width: 1.4; fill: none; }
+    .elas  { stroke: #5c6670; stroke-width: 2; fill: none; stroke-linejoin: round; }
+    .wall  { stroke: #5c6670; stroke-width: 1.6; fill: none; }
   </style>
 
   <!-- =====================================================================
-       COM ESTÀ FET
+       AQUEST FITXER ES GENERA. No l'editis a mà: els camins de les molles
+       tenen fins a 143 punts. Canvia els números a scripts/excursion-range.py
+       i torna a executar:  python3 scripts/excursion-range.py
+
        Tots els músculs neixen a l'origen x=150. Límit d'escurçament x=330,
-       longitud de repòs x=530, límit d'allargament x=810. Cada fila té:
-       tendó fix (150→168), panxa (rectangle que comença sempre a x=168 i
-       canvia d'amplada), tendó mòbil i inserció distal. La panxa engreixa
-       en escurçar-se: gruix = 470/√amplada, de manera que el volum es manté.
-       Els tendons no canvien de llarg.
+       longitud de repòs x=530, límit d'allargament x=810, ancoratge de les
+       gomes x=884. Cada fila té tendó fix, panxa, tendó mòbil, inserció
+       distal i goma. La panxa engreixa en escurçar-se (gruix = 470/√amplada,
+       el volum es manté); els tendons no canvien de llarg.
 
        Recorregut de la inserció distal, per fila:
-         IMER 330→510 · MMER 450→670 · OMER 630→810 · CMER 330→810
+         Inner 330→510 · Mid 450→670 · Outer 630→810 · Complete 330→810
 
-       Les quatre files van totes alhora (begin="0s"). És deliberat: així,
-       en qualsevol instant, les quatre insercions són al mateix punt de la
-       mateixa repetició i la diferència que es veu és la condició, no la
-       fase. Si algun dia les vols desfasades un quart de cicle, posa
-       begin="-1.5s", "-3s" i "-4.5s" a les files 2, 3 i 4. Tots els
-       <animate> d'una mateixa fila han de dur el MATEIX begin, o la fila
-       es desmunta.
+       LES MOLLES tenen un nombre de bucles diferent a cada fila, calculat
+       perquè totes quatre tinguin el mateix pas (PITCH) amb el múscul
+       allargat, que és l'inici del recorregut. Llegit físicament: són la
+       mateixa goma de llargades diferents, totes en repòs a l'inici, i cada
+       una s'estira exactament el que val la seva excursió.
 
-       RITME 1:3. El cicle dura 6 s i keyTimes="0;0.75;1" el parteix en
-       dos trams desiguals: del 0 al 75 % el múscul s'allarga (excèntrica,
-       4,5 s) i del 75 % al 100 % s'escurça (concèntrica, 1,5 s). Per canviar
-       el ritme, toca keyTimes a TOTS els <animate>: 0.5 seria 1:1 i 0.6667
-       seria 1:2. La durada total es canvia amb dur.
+       Les quatre files van totes alhora (begin="0s"): així, en qualsevol
+       instant, les insercions són al mateix punt de la mateixa repetició i
+       la diferència que es veu és la condició, no la fase.
 
-       Per moure una fila, canvia els dos valors de cada <animate> d'aquella
-       fila.
+       RITME 1:3. keyTimes="0;0.75;1" parteix el cicle de 6 s en excèntrica
+       (4,5 s) i concèntrica (1,5 s).
        ===================================================================== -->
 
   <!-- fites -->
@@ -62,15 +62,27 @@
   <line x1="530" y1="96" x2="530" y2="376" stroke="#c3cacd" stroke-width="1.5" stroke-dasharray="5 5"/>
   <line x1="810" y1="96" x2="810" y2="376" stroke="#0e6b5e" stroke-width="1.6"/>
 
-  <!-- ============================ IMER ============================ -->
-  <text class="acr" x="128" y="124" text-anchor="end">IMER</text>
+  <!-- ancoratge de les gomes -->
+  <path class="wall" d="M884 104 V376"/>
+  <path class="wall" d="M884 116 l10 -9 M884 140 l10 -9 M884 164 l10 -9 M884 188 l10 -9 M884 212 l10 -9 M884 236 l10 -9 M884 260 l10 -9 M884 284 l10 -9 M884 308 l10 -9 M884 332 l10 -9 M884 356 l10 -9 M884 380 l10 -9"/>
+
+  <!-- ========================== Inner MER ========================== -->
+  <text class="acr" x="128" y="124" text-anchor="end">Inner MER</text>
   <text class="glo" x="128" y="141" text-anchor="end">concentric end</text>
+
+  <path class="elas" d="M330.0,128.0 L336.0,128.0 L339.9,134.0 L343.7,122.0 L347.6,134.0 L351.5,122.0 L355.4,134.0 L359.2,122.0 L363.1,134.0 L367.0,122.0 L370.8,134.0 L374.7,122.0 L378.6,134.0 L382.5,122.0 L386.3,134.0 L390.2,122.0 L394.1,134.0 L397.9,122.0 L401.8,134.0 L405.7,122.0 L409.6,134.0 L413.4,122.0 L417.3,134.0 L421.2,122.0 L425.0,134.0 L428.9,122.0 L432.8,134.0 L436.7,122.0 L440.5,134.0 L444.4,122.0 L448.3,134.0 L452.1,122.0 L456.0,134.0 L459.9,122.0 L463.8,134.0 L467.6,122.0 L471.5,134.0 L475.4,122.0 L479.2,134.0 L483.1,122.0 L487.0,134.0 L490.9,122.0 L494.7,134.0 L498.6,122.0 L502.5,134.0 L506.3,122.0 L510.2,134.0 L514.1,122.0 L518.0,134.0 L521.8,122.0 L525.7,134.0 L529.6,122.0 L533.4,134.0 L537.3,122.0 L541.2,134.0 L545.1,122.0 L548.9,134.0 L552.8,122.0 L556.7,134.0 L560.5,122.0 L564.4,134.0 L568.3,122.0 L572.2,134.0 L576.0,122.0 L579.9,134.0 L583.8,122.0 L587.6,134.0 L591.5,122.0 L595.4,134.0 L599.3,122.0 L603.1,134.0 L607.0,122.0 L610.9,134.0 L614.7,122.0 L618.6,134.0 L622.5,122.0 L626.4,134.0 L630.2,122.0 L634.1,134.0 L638.0,122.0 L641.8,134.0 L645.7,122.0 L649.6,134.0 L653.5,122.0 L657.3,134.0 L661.2,122.0 L665.1,134.0 L668.9,122.0 L672.8,134.0 L676.7,122.0 L680.6,134.0 L684.4,122.0 L688.3,134.0 L692.2,122.0 L696.0,134.0 L699.9,122.0 L703.8,134.0 L707.7,122.0 L711.5,134.0 L715.4,122.0 L719.3,134.0 L723.1,122.0 L727.0,134.0 L730.9,122.0 L734.8,134.0 L738.6,122.0 L742.5,134.0 L746.4,122.0 L750.2,134.0 L754.1,122.0 L758.0,134.0 L761.9,122.0 L765.7,134.0 L769.6,122.0 L773.5,134.0 L777.3,122.0 L781.2,134.0 L785.1,122.0 L789.0,134.0 L792.8,122.0 L796.7,134.0 L800.6,122.0 L804.4,134.0 L808.3,122.0 L812.2,134.0 L816.1,122.0 L819.9,134.0 L823.8,122.0 L827.7,134.0 L831.5,122.0 L835.4,134.0 L839.3,122.0 L843.2,134.0 L847.0,122.0 L850.9,134.0 L854.8,122.0 L858.6,134.0 L862.5,122.0 L866.4,134.0 L870.3,122.0 L874.1,134.0 L878.0,128.0 L884.0,128.0">
+    <animate attributeName="d" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"
+      values="M330.0,128.0 L336.0,128.0 L339.9,134.0 L343.7,122.0 L347.6,134.0 L351.5,122.0 L355.4,134.0 L359.2,122.0 L363.1,134.0 L367.0,122.0 L370.8,134.0 L374.7,122.0 L378.6,134.0 L382.5,122.0 L386.3,134.0 L390.2,122.0 L394.1,134.0 L397.9,122.0 L401.8,134.0 L405.7,122.0 L409.6,134.0 L413.4,122.0 L417.3,134.0 L421.2,122.0 L425.0,134.0 L428.9,122.0 L432.8,134.0 L436.7,122.0 L440.5,134.0 L444.4,122.0 L448.3,134.0 L452.1,122.0 L456.0,134.0 L459.9,122.0 L463.8,134.0 L467.6,122.0 L471.5,134.0 L475.4,122.0 L479.2,134.0 L483.1,122.0 L487.0,134.0 L490.9,122.0 L494.7,134.0 L498.6,122.0 L502.5,134.0 L506.3,122.0 L510.2,134.0 L514.1,122.0 L518.0,134.0 L521.8,122.0 L525.7,134.0 L529.6,122.0 L533.4,134.0 L537.3,122.0 L541.2,134.0 L545.1,122.0 L548.9,134.0 L552.8,122.0 L556.7,134.0 L560.5,122.0 L564.4,134.0 L568.3,122.0 L572.2,134.0 L576.0,122.0 L579.9,134.0 L583.8,122.0 L587.6,134.0 L591.5,122.0 L595.4,134.0 L599.3,122.0 L603.1,134.0 L607.0,122.0 L610.9,134.0 L614.7,122.0 L618.6,134.0 L622.5,122.0 L626.4,134.0 L630.2,122.0 L634.1,134.0 L638.0,122.0 L641.8,134.0 L645.7,122.0 L649.6,134.0 L653.5,122.0 L657.3,134.0 L661.2,122.0 L665.1,134.0 L668.9,122.0 L672.8,134.0 L676.7,122.0 L680.6,134.0 L684.4,122.0 L688.3,134.0 L692.2,122.0 L696.0,134.0 L699.9,122.0 L703.8,134.0 L707.7,122.0 L711.5,134.0 L715.4,122.0 L719.3,134.0 L723.1,122.0 L727.0,134.0 L730.9,122.0 L734.8,134.0 L738.6,122.0 L742.5,134.0 L746.4,122.0 L750.2,134.0 L754.1,122.0 L758.0,134.0 L761.9,122.0 L765.7,134.0 L769.6,122.0 L773.5,134.0 L777.3,122.0 L781.2,134.0 L785.1,122.0 L789.0,134.0 L792.8,122.0 L796.7,134.0 L800.6,122.0 L804.4,134.0 L808.3,122.0 L812.2,134.0 L816.1,122.0 L819.9,134.0 L823.8,122.0 L827.7,134.0 L831.5,122.0 L835.4,134.0 L839.3,122.0 L843.2,134.0 L847.0,122.0 L850.9,134.0 L854.8,122.0 L858.6,134.0 L862.5,122.0 L866.4,134.0 L870.3,122.0 L874.1,134.0 L878.0,128.0 L884.0,128.0;
+              M510.0,128.0 L516.0,128.0 L518.6,134.0 L521.2,122.0 L523.8,134.0 L526.3,122.0 L528.9,134.0 L531.5,122.0 L534.1,134.0 L536.7,122.0 L539.3,134.0 L541.9,122.0 L544.4,134.0 L547.0,122.0 L549.6,134.0 L552.2,122.0 L554.8,134.0 L557.4,122.0 L560.0,134.0 L562.5,122.0 L565.1,134.0 L567.7,122.0 L570.3,134.0 L572.9,122.0 L575.5,134.0 L578.1,122.0 L580.6,134.0 L583.2,122.0 L585.8,134.0 L588.4,122.0 L591.0,134.0 L593.6,122.0 L596.2,134.0 L598.7,122.0 L601.3,134.0 L603.9,122.0 L606.5,134.0 L609.1,122.0 L611.7,134.0 L614.3,122.0 L616.8,134.0 L619.4,122.0 L622.0,134.0 L624.6,122.0 L627.2,134.0 L629.8,122.0 L632.4,134.0 L634.9,122.0 L637.5,134.0 L640.1,122.0 L642.7,134.0 L645.3,122.0 L647.9,134.0 L650.5,122.0 L653.0,134.0 L655.6,122.0 L658.2,134.0 L660.8,122.0 L663.4,134.0 L666.0,122.0 L668.6,134.0 L671.1,122.0 L673.7,134.0 L676.3,122.0 L678.9,134.0 L681.5,122.0 L684.1,134.0 L686.7,122.0 L689.2,134.0 L691.8,122.0 L694.4,134.0 L697.0,122.0 L699.6,134.0 L702.2,122.0 L704.8,134.0 L707.3,122.0 L709.9,134.0 L712.5,122.0 L715.1,134.0 L717.7,122.0 L720.3,134.0 L722.9,122.0 L725.4,134.0 L728.0,122.0 L730.6,134.0 L733.2,122.0 L735.8,134.0 L738.4,122.0 L741.0,134.0 L743.5,122.0 L746.1,134.0 L748.7,122.0 L751.3,134.0 L753.9,122.0 L756.5,134.0 L759.1,122.0 L761.6,134.0 L764.2,122.0 L766.8,134.0 L769.4,122.0 L772.0,134.0 L774.6,122.0 L777.2,134.0 L779.7,122.0 L782.3,134.0 L784.9,122.0 L787.5,134.0 L790.1,122.0 L792.7,134.0 L795.3,122.0 L797.8,134.0 L800.4,122.0 L803.0,134.0 L805.6,122.0 L808.2,134.0 L810.8,122.0 L813.4,134.0 L815.9,122.0 L818.5,134.0 L821.1,122.0 L823.7,134.0 L826.3,122.0 L828.9,134.0 L831.5,122.0 L834.0,134.0 L836.6,122.0 L839.2,134.0 L841.8,122.0 L844.4,134.0 L847.0,122.0 L849.6,134.0 L852.1,122.0 L854.7,134.0 L857.3,122.0 L859.9,134.0 L862.5,122.0 L865.1,134.0 L867.7,122.0 L870.2,134.0 L872.8,122.0 L875.4,134.0 L878.0,128.0 L884.0,128.0;
+              M330.0,128.0 L336.0,128.0 L339.9,134.0 L343.7,122.0 L347.6,134.0 L351.5,122.0 L355.4,134.0 L359.2,122.0 L363.1,134.0 L367.0,122.0 L370.8,134.0 L374.7,122.0 L378.6,134.0 L382.5,122.0 L386.3,134.0 L390.2,122.0 L394.1,134.0 L397.9,122.0 L401.8,134.0 L405.7,122.0 L409.6,134.0 L413.4,122.0 L417.3,134.0 L421.2,122.0 L425.0,134.0 L428.9,122.0 L432.8,134.0 L436.7,122.0 L440.5,134.0 L444.4,122.0 L448.3,134.0 L452.1,122.0 L456.0,134.0 L459.9,122.0 L463.8,134.0 L467.6,122.0 L471.5,134.0 L475.4,122.0 L479.2,134.0 L483.1,122.0 L487.0,134.0 L490.9,122.0 L494.7,134.0 L498.6,122.0 L502.5,134.0 L506.3,122.0 L510.2,134.0 L514.1,122.0 L518.0,134.0 L521.8,122.0 L525.7,134.0 L529.6,122.0 L533.4,134.0 L537.3,122.0 L541.2,134.0 L545.1,122.0 L548.9,134.0 L552.8,122.0 L556.7,134.0 L560.5,122.0 L564.4,134.0 L568.3,122.0 L572.2,134.0 L576.0,122.0 L579.9,134.0 L583.8,122.0 L587.6,134.0 L591.5,122.0 L595.4,134.0 L599.3,122.0 L603.1,134.0 L607.0,122.0 L610.9,134.0 L614.7,122.0 L618.6,134.0 L622.5,122.0 L626.4,134.0 L630.2,122.0 L634.1,134.0 L638.0,122.0 L641.8,134.0 L645.7,122.0 L649.6,134.0 L653.5,122.0 L657.3,134.0 L661.2,122.0 L665.1,134.0 L668.9,122.0 L672.8,134.0 L676.7,122.0 L680.6,134.0 L684.4,122.0 L688.3,134.0 L692.2,122.0 L696.0,134.0 L699.9,122.0 L703.8,134.0 L707.7,122.0 L711.5,134.0 L715.4,122.0 L719.3,134.0 L723.1,122.0 L727.0,134.0 L730.9,122.0 L734.8,134.0 L738.6,122.0 L742.5,134.0 L746.4,122.0 L750.2,134.0 L754.1,122.0 L758.0,134.0 L761.9,122.0 L765.7,134.0 L769.6,122.0 L773.5,134.0 L777.3,122.0 L781.2,134.0 L785.1,122.0 L789.0,134.0 L792.8,122.0 L796.7,134.0 L800.6,122.0 L804.4,134.0 L808.3,122.0 L812.2,134.0 L816.1,122.0 L819.9,134.0 L823.8,122.0 L827.7,134.0 L831.5,122.0 L835.4,134.0 L839.3,122.0 L843.2,134.0 L847.0,122.0 L850.9,134.0 L854.8,122.0 L858.6,134.0 L862.5,122.0 L866.4,134.0 L870.3,122.0 L874.1,134.0 L878.0,128.0 L884.0,128.0"/>
+    <animate attributeName="stroke-width" values="1.6;2.4;1.6" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+  </path>
 
   <line class="tend" x1="150" y1="128" x2="168" y2="128"/>
   <circle class="ins" cx="150" cy="128" r="4.5"/>
   <rect class="belly" x="168" y="108.4" width="144" height="39.2" rx="9">
-    <animate attributeName="width"  values="144;324;144"       dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-    <animate attributeName="height" values="39.2;26.1;39.2"    dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+    <animate attributeName="width"  values="144;324;144" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+    <animate attributeName="height" values="39.2;26.1;39.2" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
     <animate attributeName="y"      values="108.4;114.9;108.4" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
   </rect>
   <line class="tend" x1="312" y1="128" x2="330" y2="128">
@@ -81,18 +93,24 @@
     <animate attributeName="cx" values="330;510;330" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
   </circle>
   <path class="trav" d="M330 152 v12 M330 158 H510 M510 152 v12"/>
-  <text class="rng" x="545" y="162">excursion range: how far the insertion travels</text>
-
-  <!-- ============================ MMER ============================ -->
-  <text class="acr" x="128" y="192" text-anchor="end">MMER</text>
+  <!-- ========================== Mid MER ========================== -->
+  <text class="acr" x="128" y="192" text-anchor="end">Mid MER</text>
   <text class="glo" x="128" y="209" text-anchor="end">neither extreme</text>
+
+  <path class="elas" d="M450.0,196.0 L456.0,196.0 L461.4,202.0 L466.8,190.0 L472.2,202.0 L477.6,190.0 L483.1,202.0 L488.5,190.0 L493.9,202.0 L499.3,190.0 L504.7,202.0 L510.1,190.0 L515.5,202.0 L520.9,190.0 L526.3,202.0 L531.7,190.0 L537.2,202.0 L542.6,190.0 L548.0,202.0 L553.4,190.0 L558.8,202.0 L564.2,190.0 L569.6,202.0 L575.0,190.0 L580.4,202.0 L585.8,190.0 L591.3,202.0 L596.7,190.0 L602.1,202.0 L607.5,190.0 L612.9,202.0 L618.3,190.0 L623.7,202.0 L629.1,190.0 L634.5,202.0 L639.9,190.0 L645.4,202.0 L650.8,190.0 L656.2,202.0 L661.6,190.0 L667.0,202.0 L672.4,190.0 L677.8,202.0 L683.2,190.0 L688.6,202.0 L694.1,190.0 L699.5,202.0 L704.9,190.0 L710.3,202.0 L715.7,190.0 L721.1,202.0 L726.5,190.0 L731.9,202.0 L737.3,190.0 L742.7,202.0 L748.2,190.0 L753.6,202.0 L759.0,190.0 L764.4,202.0 L769.8,190.0 L775.2,202.0 L780.6,190.0 L786.0,202.0 L791.4,190.0 L796.8,202.0 L802.3,190.0 L807.7,202.0 L813.1,190.0 L818.5,202.0 L823.9,190.0 L829.3,202.0 L834.7,190.0 L840.1,202.0 L845.5,190.0 L850.9,202.0 L856.4,190.0 L861.8,202.0 L867.2,190.0 L872.6,202.0 L878.0,196.0 L884.0,196.0">
+    <animate attributeName="d" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"
+      values="M450.0,196.0 L456.0,196.0 L461.4,202.0 L466.8,190.0 L472.2,202.0 L477.6,190.0 L483.1,202.0 L488.5,190.0 L493.9,202.0 L499.3,190.0 L504.7,202.0 L510.1,190.0 L515.5,202.0 L520.9,190.0 L526.3,202.0 L531.7,190.0 L537.2,202.0 L542.6,190.0 L548.0,202.0 L553.4,190.0 L558.8,202.0 L564.2,190.0 L569.6,202.0 L575.0,190.0 L580.4,202.0 L585.8,190.0 L591.3,202.0 L596.7,190.0 L602.1,202.0 L607.5,190.0 L612.9,202.0 L618.3,190.0 L623.7,202.0 L629.1,190.0 L634.5,202.0 L639.9,190.0 L645.4,202.0 L650.8,190.0 L656.2,202.0 L661.6,190.0 L667.0,202.0 L672.4,190.0 L677.8,202.0 L683.2,190.0 L688.6,202.0 L694.1,190.0 L699.5,202.0 L704.9,190.0 L710.3,202.0 L715.7,190.0 L721.1,202.0 L726.5,190.0 L731.9,202.0 L737.3,190.0 L742.7,202.0 L748.2,190.0 L753.6,202.0 L759.0,190.0 L764.4,202.0 L769.8,190.0 L775.2,202.0 L780.6,190.0 L786.0,202.0 L791.4,190.0 L796.8,202.0 L802.3,190.0 L807.7,202.0 L813.1,190.0 L818.5,202.0 L823.9,190.0 L829.3,202.0 L834.7,190.0 L840.1,202.0 L845.5,190.0 L850.9,202.0 L856.4,190.0 L861.8,202.0 L867.2,190.0 L872.6,202.0 L878.0,196.0 L884.0,196.0;
+              M670.0,196.0 L676.0,196.0 L678.6,202.0 L681.2,190.0 L683.8,202.0 L686.4,190.0 L688.9,202.0 L691.5,190.0 L694.1,202.0 L696.7,190.0 L699.3,202.0 L701.9,190.0 L704.5,202.0 L707.1,190.0 L709.7,202.0 L712.3,190.0 L714.8,202.0 L717.4,190.0 L720.0,202.0 L722.6,190.0 L725.2,202.0 L727.8,190.0 L730.4,202.0 L733.0,190.0 L735.6,202.0 L738.2,190.0 L740.7,202.0 L743.3,190.0 L745.9,202.0 L748.5,190.0 L751.1,202.0 L753.7,190.0 L756.3,202.0 L758.9,190.0 L761.5,202.0 L764.1,190.0 L766.6,202.0 L769.2,190.0 L771.8,202.0 L774.4,190.0 L777.0,202.0 L779.6,190.0 L782.2,202.0 L784.8,190.0 L787.4,202.0 L789.9,190.0 L792.5,202.0 L795.1,190.0 L797.7,202.0 L800.3,190.0 L802.9,202.0 L805.5,190.0 L808.1,202.0 L810.7,190.0 L813.3,202.0 L815.8,190.0 L818.4,202.0 L821.0,190.0 L823.6,202.0 L826.2,190.0 L828.8,202.0 L831.4,190.0 L834.0,202.0 L836.6,190.0 L839.2,202.0 L841.7,190.0 L844.3,202.0 L846.9,190.0 L849.5,202.0 L852.1,190.0 L854.7,202.0 L857.3,190.0 L859.9,202.0 L862.5,190.0 L865.1,202.0 L867.6,190.0 L870.2,202.0 L872.8,190.0 L875.4,202.0 L878.0,196.0 L884.0,196.0;
+              M450.0,196.0 L456.0,196.0 L461.4,202.0 L466.8,190.0 L472.2,202.0 L477.6,190.0 L483.1,202.0 L488.5,190.0 L493.9,202.0 L499.3,190.0 L504.7,202.0 L510.1,190.0 L515.5,202.0 L520.9,190.0 L526.3,202.0 L531.7,190.0 L537.2,202.0 L542.6,190.0 L548.0,202.0 L553.4,190.0 L558.8,202.0 L564.2,190.0 L569.6,202.0 L575.0,190.0 L580.4,202.0 L585.8,190.0 L591.3,202.0 L596.7,190.0 L602.1,202.0 L607.5,190.0 L612.9,202.0 L618.3,190.0 L623.7,202.0 L629.1,190.0 L634.5,202.0 L639.9,190.0 L645.4,202.0 L650.8,190.0 L656.2,202.0 L661.6,190.0 L667.0,202.0 L672.4,190.0 L677.8,202.0 L683.2,190.0 L688.6,202.0 L694.1,190.0 L699.5,202.0 L704.9,190.0 L710.3,202.0 L715.7,190.0 L721.1,202.0 L726.5,190.0 L731.9,202.0 L737.3,190.0 L742.7,202.0 L748.2,190.0 L753.6,202.0 L759.0,190.0 L764.4,202.0 L769.8,190.0 L775.2,202.0 L780.6,190.0 L786.0,202.0 L791.4,190.0 L796.8,202.0 L802.3,190.0 L807.7,202.0 L813.1,190.0 L818.5,202.0 L823.9,190.0 L829.3,202.0 L834.7,190.0 L840.1,202.0 L845.5,190.0 L850.9,202.0 L856.4,190.0 L861.8,202.0 L867.2,190.0 L872.6,202.0 L878.0,196.0 L884.0,196.0"/>
+    <animate attributeName="stroke-width" values="1.6;2.4;1.6" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+  </path>
 
   <line class="tend" x1="150" y1="196" x2="168" y2="196"/>
   <circle class="ins" cx="150" cy="196" r="4.5"/>
-  <rect class="belly" x="168" y="181.6" width="264" height="28.9" rx="9">
-    <animate attributeName="width"  values="264;484;264"       dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-    <animate attributeName="height" values="28.9;21.4;28.9"    dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-    <animate attributeName="y"      values="181.6;185.3;181.6" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+  <rect class="belly" x="168" y="181.5" width="264" height="28.9" rx="9">
+    <animate attributeName="width"  values="264;484;264" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+    <animate attributeName="height" values="28.9;21.4;28.9" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+    <animate attributeName="y"      values="181.5;185.3;181.5" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
   </rect>
   <line class="tend" x1="432" y1="196" x2="450" y2="196">
     <animate attributeName="x1" values="432;652;432" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
@@ -102,17 +120,24 @@
     <animate attributeName="cx" values="450;670;450" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
   </circle>
   <path class="trav" d="M450 220 v12 M450 226 H670 M670 220 v12"/>
-
-  <!-- ============================ OMER ============================ -->
-  <text class="acr" x="128" y="260" text-anchor="end">OMER</text>
+  <!-- ========================== Outer MER ========================== -->
+  <text class="acr" x="128" y="260" text-anchor="end">Outer MER</text>
   <text class="glo" x="128" y="277" text-anchor="end">eccentric end</text>
+
+  <path class="elas" d="M630.0,264.0 L636.0,264.0 L646.1,270.0 L656.2,258.0 L666.2,270.0 L676.3,258.0 L686.4,270.0 L696.5,258.0 L706.6,270.0 L716.7,258.0 L726.8,270.0 L736.8,258.0 L746.9,270.0 L757.0,258.0 L767.1,270.0 L777.2,258.0 L787.2,270.0 L797.3,258.0 L807.4,270.0 L817.5,258.0 L827.6,270.0 L837.7,258.0 L847.8,270.0 L857.8,258.0 L867.9,270.0 L878.0,264.0 L884.0,264.0">
+    <animate attributeName="d" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"
+      values="M630.0,264.0 L636.0,264.0 L646.1,270.0 L656.2,258.0 L666.2,270.0 L676.3,258.0 L686.4,270.0 L696.5,258.0 L706.6,270.0 L716.7,258.0 L726.8,270.0 L736.8,258.0 L746.9,270.0 L757.0,258.0 L767.1,270.0 L777.2,258.0 L787.2,270.0 L797.3,258.0 L807.4,270.0 L817.5,258.0 L827.6,270.0 L837.7,258.0 L847.8,270.0 L857.8,258.0 L867.9,270.0 L878.0,264.0 L884.0,264.0;
+              M810.0,264.0 L816.0,264.0 L818.6,270.0 L821.2,258.0 L823.8,270.0 L826.3,258.0 L828.9,270.0 L831.5,258.0 L834.1,270.0 L836.7,258.0 L839.2,270.0 L841.8,258.0 L844.4,270.0 L847.0,258.0 L849.6,270.0 L852.2,258.0 L854.8,270.0 L857.3,258.0 L859.9,270.0 L862.5,258.0 L865.1,270.0 L867.7,258.0 L870.2,270.0 L872.8,258.0 L875.4,270.0 L878.0,264.0 L884.0,264.0;
+              M630.0,264.0 L636.0,264.0 L646.1,270.0 L656.2,258.0 L666.2,270.0 L676.3,258.0 L686.4,270.0 L696.5,258.0 L706.6,270.0 L716.7,258.0 L726.8,270.0 L736.8,258.0 L746.9,270.0 L757.0,258.0 L767.1,270.0 L777.2,258.0 L787.2,270.0 L797.3,258.0 L807.4,270.0 L817.5,258.0 L827.6,270.0 L837.7,258.0 L847.8,270.0 L857.8,258.0 L867.9,270.0 L878.0,264.0 L884.0,264.0"/>
+    <animate attributeName="stroke-width" values="1.6;2.4;1.6" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+  </path>
 
   <line class="tend" x1="150" y1="264" x2="168" y2="264"/>
   <circle class="ins" cx="150" cy="264" r="4.5"/>
-  <rect class="belly" x="168" y="252.9" width="444" height="22.3" rx="9">
-    <animate attributeName="width"  values="444;624;444"       dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-    <animate attributeName="height" values="22.3;18.8;22.3"    dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-    <animate attributeName="y"      values="252.9;254.6;252.9" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+  <rect class="belly" x="168" y="252.8" width="444" height="22.3" rx="9">
+    <animate attributeName="width"  values="444;624;444" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+    <animate attributeName="height" values="22.3;18.8;22.3" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+    <animate attributeName="y"      values="252.8;254.6;252.8" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
   </rect>
   <line class="tend" x1="612" y1="264" x2="630" y2="264">
     <animate attributeName="x1" values="612;792;612" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
@@ -122,16 +147,23 @@
     <animate attributeName="cx" values="630;810;630" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
   </circle>
   <path class="trav" d="M630 288 v12 M630 294 H810 M810 288 v12"/>
-
-  <!-- ============================ CMER ============================ -->
-  <text class="acr" x="128" y="326" text-anchor="end">CMER</text>
+  <!-- ========================== Complete MER ========================== -->
+  <text class="acr" x="128" y="326" text-anchor="end">Complete MER</text>
   <text class="glo" x="128" y="343" text-anchor="end">limit to limit</text>
+
+  <path class="elas" d="M330.0,330.0 L336.0,330.0 L358.6,336.0 L381.2,324.0 L403.8,336.0 L426.3,324.0 L448.9,336.0 L471.5,324.0 L494.1,336.0 L516.7,324.0 L539.2,336.0 L561.8,324.0 L584.4,336.0 L607.0,324.0 L629.6,336.0 L652.2,324.0 L674.8,336.0 L697.3,324.0 L719.9,336.0 L742.5,324.0 L765.1,336.0 L787.7,324.0 L810.2,336.0 L832.8,324.0 L855.4,336.0 L878.0,330.0 L884.0,330.0">
+    <animate attributeName="d" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"
+      values="M330.0,330.0 L336.0,330.0 L358.6,336.0 L381.2,324.0 L403.8,336.0 L426.3,324.0 L448.9,336.0 L471.5,324.0 L494.1,336.0 L516.7,324.0 L539.2,336.0 L561.8,324.0 L584.4,336.0 L607.0,324.0 L629.6,336.0 L652.2,324.0 L674.8,336.0 L697.3,324.0 L719.9,336.0 L742.5,324.0 L765.1,336.0 L787.7,324.0 L810.2,336.0 L832.8,324.0 L855.4,336.0 L878.0,330.0 L884.0,330.0;
+              M810.0,330.0 L816.0,330.0 L818.6,336.0 L821.2,324.0 L823.8,336.0 L826.3,324.0 L828.9,336.0 L831.5,324.0 L834.1,336.0 L836.7,324.0 L839.2,336.0 L841.8,324.0 L844.4,336.0 L847.0,324.0 L849.6,336.0 L852.2,324.0 L854.8,336.0 L857.3,324.0 L859.9,336.0 L862.5,324.0 L865.1,336.0 L867.7,324.0 L870.2,336.0 L872.8,324.0 L875.4,336.0 L878.0,330.0 L884.0,330.0;
+              M330.0,330.0 L336.0,330.0 L358.6,336.0 L381.2,324.0 L403.8,336.0 L426.3,324.0 L448.9,336.0 L471.5,324.0 L494.1,336.0 L516.7,324.0 L539.2,336.0 L561.8,324.0 L584.4,336.0 L607.0,324.0 L629.6,336.0 L652.2,324.0 L674.8,336.0 L697.3,324.0 L719.9,336.0 L742.5,324.0 L765.1,336.0 L787.7,324.0 L810.2,336.0 L832.8,324.0 L855.4,336.0 L878.0,330.0 L884.0,330.0"/>
+    <animate attributeName="stroke-width" values="1.6;2.4;1.6" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+  </path>
 
   <line class="tend" x1="150" y1="330" x2="168" y2="330"/>
   <circle class="ins" cx="150" cy="330" r="4.5"/>
   <rect class="belly" x="168" y="310.4" width="144" height="39.2" rx="9">
-    <animate attributeName="width"  values="144;624;144"       dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-    <animate attributeName="height" values="39.2;18.8;39.2"    dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+    <animate attributeName="width"  values="144;624;144" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+    <animate attributeName="height" values="39.2;18.8;39.2" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
     <animate attributeName="y"      values="310.4;320.6;310.4" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
   </rect>
   <line class="tend" x1="312" y1="330" x2="330" y2="330">
@@ -141,12 +173,20 @@
   <circle class="ins" cx="330" cy="330" r="4.5">
     <animate attributeName="cx" values="330;810;330" dur="6s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.75;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
   </circle>
-  <path class="trav" d="M330 356 v12 M330 362 H810 M810 356 v12"/>
+  <path class="trav" d="M330 354 v12 M330 360 H810 M810 354 v12"/>
 
   <!-- eix -->
   <line x1="150" y1="392" x2="872" y2="392" stroke="#5c6670" stroke-width="1.5"/>
   <path d="M870 386 L884 392 L870 398 Z" fill="#5c6670"/>
   <text class="axn" x="150" y="414">MUSCLE LENGTH</text>
 
-  <text class="note" x="150" y="440">The four ranges are anchored to the two limits and individualised per participant, muscle and exercise.</text>
+  <!-- llegenda -->
+  <path class="elas" d="M150 443 L153 443 L156 447 L159 439 L162 447 L165 439 L168 447 L171 439 L174 447 L177 439 L180 447 L183 439 L186 443 L190 443"/>
+  <text class="leg" x="200" y="447">elastic resistance</text>
+
+  <path class="wall" d="M330 435 V451 M330 439 l8 -7 M330 447 l8 -7"/>
+  <text class="leg" x="346" y="447">fixed anchor</text>
+
+  <text class="note" x="150" y="480">MER, muscle excursion range: how far the distal attachment travels — the bar under each muscle.</text>
+  <text class="note" x="150" y="500">The four ranges are anchored to the two limits and individualised per participant, muscle and exercise.</text>
 </svg>
