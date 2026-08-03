@@ -235,13 +235,25 @@ Fet:
 - Publicació amb `quarto publish gh-pages`. La branca `gh-pages` conté només l'HTML;
   `main` conté el codi font. GitHub Pages serveix des de `gh-pages`, arrel.
 
+- Capa de disseny pròpia a `theme.scss`. Un sol fitxer, sense npm ni build.
+- Esquema d'EXCURSE a `images/excursion-range.svg`, generat per
+  `scripts/excursion-range.py`. No l'editis a mà.
+- Pipeline de publicacions: `scripts/publications.py` llegeix ORCID, enriqueix amb
+  OpenAlex i Crossref, aplica `exclusions.yml` i `extres.yml`, i escriu
+  `publications.yml`. 40 publicacions. Executa'l amb `python3 scripts/publications.py`.
+
 Pendent, en aquest ordre:
 
-1. Pipeline de publicacions des d'ORCID/OpenAlex (secció 6). `publications.qmd` és
-   ara una pàgina buida a propòsit. Primera decisió: script en R o en Python.
-2. Imatges: retrat a la portada i esquema d'EXCURSE (rang articular vs rang d'excursió).
+1. GitHub Action mensual que executi l'script i obri un *pull request* si hi ha canvis.
+2. Retrat d'en Rafel per a la portada. Mentrestant hi ha una foto d'estoc d'una aula.
 3. Primer post del blog, a partir de `blog/posts/_llavor-troponina.qmd`.
-4. Domini personalitzat (secció 10).
+4. Traducció al català sota `/ca/`, quan el text anglès estigui tancat.
+5. Domini personalitzat (secció 10).
+
+**Arreglos pendents al perfil d'ORCID d'en Rafel** (els cobreix `extres.yml` mentrestant):
+la meta-anàlisi contralateral hi consta cinc vegades; l'article d'IL-6 hi és sense DOI
+(10.4067/s0717-95022025000100304); hi falten el de bike-fitting (10.7759/cureus.101718)
+i el de water polo (10.1080/02640414.2024.2449314).
 
 No facis cap d'aquests passos sense demanar-ho: van d'una decisió en una.
 
