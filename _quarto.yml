@@ -37,7 +37,7 @@ website:
 
 format:
   html:
-    theme: litera
+    theme: [cosmo, theme.scss]
     toc: true
     toc-title: "En aquesta pàgina"
     anchor-sections: true

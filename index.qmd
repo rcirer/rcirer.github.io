@@ -1,30 +1,91 @@
 ---
-title: "Rafel Cirer-Sastre"
-subtitle: "Institut Nacional d'Educació Física de Catalunya (INEFC), Universitat de Lleida (UdL)"
+pagetitle: "Rafel Cirer-Sastre — Kinesiology, INEFC Lleida"
+description: "Associate Professor of Kinesiology at INEFC Lleida. Strength and muscle mechanics, field-test validation, cardiac biomarkers after exercise."
 toc: false
 ---
 
-I am an Associate Professor of Kinesiology at INEFC Lleida and, since 2022, I have
-coordinated the centre's research support.
+::: {.hero}
+# Rafel Cirer-Sastre {.hero-name}
 
-Many measurements strike me as more convincing than reliable. That is the thread through
-everything I work on: how we measure what exercise does to the body, and what we can claim
-from what we have measured.
+::: {.hero-role}
+Associate Professor of Kinesiology · INEFC Lleida, Universitat de Lleida
+:::
 
-I currently lead EXCURSE (2025–2028), a project examining how muscle excursion range during
-strength training shapes adaptation. It is funded by INEFC under reference 2025 PINEF 00018
-and co-led with Xavier Peirau Terès.
+::: {.hero-lede}
+Many measurements strike me as more convincing than reliable.
+:::
 
-My other work examines the validation of field tests for endurance performance, and cardiac
-biomarkers after exercise in children and adolescents. Applied biostatistics runs through
-all three lines: time-course modelling, Bayesian regression, systematic review and
-meta-analysis.
+[PhD opportunity](phd.qmd){.btn-main} [Research](research.qmd){.btn-plain} [Publications](publications.qmd){.btn-plain}
+:::
 
-I am recruiting doctoral candidates to work within EXCURSE from late 2026.
-[Read about the PhD opportunity](phd.qmd).
+![](images/lecture-hall.jpg){.banner fig-alt="A university lecture hall during a class."}
+
+That is the thread through everything I work on: how we measure what exercise does to the
+body, and what we can claim from what we have measured. Since 2022 I have also coordinated
+research support at the centre.
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-4}
+::: {.line-card}
+[Building now]{.line-tag}
+
+### Strength and muscle mechanics
+
+Whether describing exercise from the perspective of the muscle explains adaptation better
+than joint motion alone.
+:::
+:::
+
+::: {.g-col-12 .g-col-md-4}
+::: {.line-card}
+[Most applied]{.line-tag}
+
+### Field-test validation
+
+Where a test a coach can actually run stops being an adequate substitute for a laboratory
+protocol.
+:::
+:::
+
+::: {.g-col-12 .g-col-md-4}
+::: {.line-card}
+[Established]{.line-tag}
+
+### Cardiac biomarkers
+
+How troponin changes after exercise in children and adolescents, and how to read a value
+that would alarm a clinician.
+:::
+:::
+
+:::
+
+Applied biostatistics runs through all three: time-course modelling, Bayesian regression,
+systematic review and meta-analysis. [More about the research →](research.qmd)
+
+## The question behind EXCURSE
+
+![Strength training rarely loads a muscle across its whole length range. EXCURSE compares
+what happens when it is trained short, mid or long.](images/excursion-range.svg){.wide}
+
+I lead EXCURSE (2025–2028), funded by INEFC under reference 2025 PINEF 00018 and co-led
+with Xavier Peirau Terès.
+
+::: {.band}
+## Doctoral candidates
+
+I have room for two or three doctoral candidates within EXCURSE from late 2026. There is no
+predoctoral contract awarded — you would need to win a competitive scholarship — and the
+page says so plainly, along with everything else you need before deciding.
+
+[Read the conditions](phd.qmd){.btn-main}
+:::
 
 ## Profiles
 
+::: {.profiles}
 - [ORCID 0000-0001-6687-8201](https://orcid.org/0000-0001-6687-8201)
 - [Scopus 57194537687](https://www.scopus.com/authid/detail.uri?authorId=57194537687)
 - [Publons / Researcher ID G-4163-2015](https://www.webofscience.com/wos/author/record/G-4163-2015)
+:::

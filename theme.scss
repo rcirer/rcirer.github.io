@@ -1,0 +1,184 @@
+/*-- scss:defaults --*/
+
+// Paleta. Canviar aquests cinc valors recolora tot el lloc.
+$ink:        #15181b;   // text principal
+$ink-muted:  #5c6670;   // text secundari
+$rule:       #e2e6e8;   // línies i vores
+$surface:    #f6f7f6;   // fons de les bandes destacades
+$accent:     #0e6b5e;   // color de marca
+
+$body-color:            $ink;
+$link-color:            $accent;
+$link-hover-color:      darken($accent, 10%);
+$body-bg:               #ffffff;
+
+$font-size-root:        17px;
+$line-height-base:      1.65;
+$headings-font-weight:  650;
+$headings-line-height:  1.2;
+
+$h1-font-size:          2.4rem;
+$h2-font-size:          1.55rem;
+$h3-font-size:          1.15rem;
+
+$navbar-bg:             #ffffff;
+$border-radius:         6px;
+
+/*-- scss:rules --*/
+
+// --- Amplada de lectura -------------------------------------------------
+// Una línia de text massa llarga cansa. 68 caràcters és la mida còmoda.
+// El límit s'aplica al text corregut, no als blocs: les graelles, les figures
+// i les bandes han de poder ocupar tota l'amplada disponible.
+main.content > p,
+main.content > ul,
+main.content > ol,
+main.content > h2,
+main.content > h3,
+main.content > blockquote {
+  max-width: 68ch;
+}
+main.content > p, main.content > ul, main.content > ol { color: $ink; }
+
+// --- Ritme vertical -----------------------------------------------------
+h2 {
+  margin-top: 3rem;
+  padding-top: 0;
+  border-bottom: none;
+  letter-spacing: -0.01em;
+}
+h3 { margin-top: 2rem; }
+p  { margin-bottom: 1.15rem; }
+
+// --- Barra de navegació -------------------------------------------------
+.navbar {
+  border-bottom: 1px solid $rule;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+.navbar-brand {
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+.navbar .nav-link {
+  font-size: 0.95rem;
+  color: $ink-muted !important;
+  &:hover        { color: $accent !important; }
+  &.active       { color: $ink !important; font-weight: 600; }
+}
+
+// --- Portada: bloc d'entrada --------------------------------------------
+.hero {
+  margin: 1rem 0 3.5rem;
+
+  .hero-name {
+    font-size: clamp(2.6rem, 6vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: 0 0 0.6rem;
+  }
+  .hero-role {
+    font-size: 1.05rem;
+    color: $ink-muted;
+    margin: 0 0 1.8rem;
+  }
+  .hero-lede {
+    font-size: 1.35rem;
+    line-height: 1.45;
+    font-weight: 400;
+    max-width: 32ch;
+    border-left: 3px solid $accent;
+    padding-left: 1.1rem;
+    margin: 0 0 2rem;
+  }
+}
+
+// --- Botons -------------------------------------------------------------
+.btn-main, .btn-plain {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: $border-radius;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 0 0.5rem 0.5rem 0;
+  transition: all 0.15s ease;
+}
+.btn-main {
+  background: $accent;
+  color: #fff !important;
+  &:hover { background: darken($accent, 8%); }
+}
+.btn-plain {
+  border: 1px solid $rule;
+  color: $ink !important;
+  &:hover { border-color: $accent; color: $accent !important; }
+}
+
+// --- Targetes de les línies de recerca ----------------------------------
+.line-card {
+  border: 1px solid $rule;
+  border-radius: $border-radius;
+  padding: 1.4rem 1.4rem 1.2rem;
+  height: 100%;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+
+  .line-tag {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $accent;
+    margin-bottom: 0.6rem;
+  }
+  h3 { margin: 0 0 0.5rem; font-size: 1.08rem; }
+  p  { font-size: 0.95rem; color: $ink-muted; margin: 0; }
+
+  &:hover { border-color: $accent; transform: translateY(-2px); }
+}
+
+// --- Banda de fons ------------------------------------------------------
+.band {
+  background: $surface;
+  border-top: 1px solid $rule;
+  border-bottom: 1px solid $rule;
+  padding: 2.2rem 1.8rem;
+  border-radius: $border-radius;
+  margin: 3rem 0;
+
+  h2 { margin-top: 0; }
+}
+
+// --- Banda d'imatge -----------------------------------------------------
+.banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: $border-radius;
+  margin: 0 0 3rem;
+}
+
+// --- Figures ------------------------------------------------------------
+figure img { border-radius: $border-radius; }
+figcaption {
+  font-size: 0.88rem;
+  color: $ink-muted;
+  margin-top: 0.6rem;
+}
+
+// --- Llista de perfils --------------------------------------------------
+.profiles {
+  list-style: none;
+  padding: 0;
+  font-size: 0.95rem;
+  li { margin-bottom: 0.35rem; }
+}
+
+// --- Peu ----------------------------------------------------------------
+.nav-footer {
+  border-top: 1px solid $rule;
+  font-size: 0.9rem;
+  color: $ink-muted;
+}

@@ -22,3 +22,9 @@ __pycache__/
 .venv/
 
 **/*.quarto_ipynb
+
+# Comparativa temporal de temes
+_temes/
+
+# Traduccions aparcades fins que el text anglès estigui tancat
+_traduccions/
