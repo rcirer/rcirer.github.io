@@ -1,5 +1,7 @@
 ---
 title: "PhD opportunity: EXCURSE"
+pagetitle: "PhD opportunity in exercise science, Lleida | Rafel Cirer-Sastre"
+description-meta: "Two or three doctoral positions within EXCURSE from late 2026 at INEFC Lleida. Conditions, funding, supervision and how to apply, stated plainly."
 ---
 
 I do not expect you to arrive knowing how to do a PhD. A PhD is, precisely, the time we

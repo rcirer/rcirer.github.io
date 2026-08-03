@@ -131,6 +131,16 @@ p  { margin-bottom: 1.15rem; }
   padding: 1.4rem 1.4rem 1.2rem;
   height: 100%;
   transition: border-color 0.15s ease, transform 0.15s ease;
+  // Cal per a .stretched-link: fa que l'enllaç del títol cobreixi tota la
+  // targeta. Abans la targeta es movia en passar-hi el cursor però no era
+  // clicable, que és prometre una cosa i no complir-la.
+  position: relative;
+
+  h3 a {
+    color: $ink;
+    text-decoration: none;
+    &:hover { color: $accent; }
+  }
 
   .line-tag {
     display: block;
@@ -225,6 +235,23 @@ figcaption {
     width: 700px;
   }
 }
+
+// --- Focus de teclat -----------------------------------------------------
+// Qui navega amb tabulador ha de veure on és. :focus-visible només es
+// dispara amb teclat, així que el contorn no apareix en clicar amb ratolí.
+:focus-visible {
+  outline: 3px solid $accent;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+.line-card:has(:focus-visible) {
+  border-color: $accent;
+  outline: 3px solid $accent;
+  outline-offset: 2px;
+}
+// La targeta ja dibuixa el contorn: l'enllaç estirat de dins no l'ha de
+// repetir, perquè cobreix tota la superfície i faria un doble marc.
+.line-card .stretched-link:focus-visible { outline: none; }
 
 // --- Filtre d'anys com a histograma -------------------------------------
 // Quarto pinta cada any com <div class="category" data-category="BASE64">

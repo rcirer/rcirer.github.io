@@ -232,21 +232,66 @@ GRAFIES = {
 }
 
 
+# Noms que no són revistes: són bases de dades que un importador ha escrit
+# per error al camp de la revista d'ORCID. Cas real: el registre de PeerJ
+# importat per DataCite porta journal-title = "OpenAlex".
+NO_SON_REVISTES = {"openalex", "crossref", "datacite", "scopus", "pubmed",
+                   "web of science", "wos", "orcid", "europe pmc"}
+
+
 def tria_revista(orcid_val, api_val):
     """
-    ORCID mana, però Web of Science diposita els noms en MAJÚSCULES i això
-    fa lleig i incoherent (la mateixa revista surt de dues maneres). Quan
-    ORCID crida, provem amb el nom de l'API, que ve de l'editor.
+    Aquí mana l'API, al revés que amb l'any.
+
+    El camp journal-title d'ORCID és text lliure que hi escriuen els
+    importadors, i conté de tot: noms en MAJÚSCULES tal com els diposita
+    Web of Science (22 casos), i fins i tot el nom de la base de dades en
+    comptes del de la revista. L'any, en canvi, és un camp estructurat i
+    allà ORCID sí que és més fiable.
     """
-    if orcid_val and not orcid_val.isupper():
-        nom = orcid_val
-    elif api_val:
-        nom = api_val
-    elif orcid_val:
-        nom = titula(orcid_val)
-    else:
+    if orcid_val and orcid_val.strip().lower() in NO_SON_REVISTES:
+        orcid_val = None
+    nom = api_val or (titula(orcid_val) if orcid_val and orcid_val.isupper()
+                      else orcid_val)
+    if not nom:
         return None
     return GRAFIES.get(nom.lower().replace(" ", ""), nom)
+
+
+def valida(publicacions):
+    """
+    Comprova la sortida abans d'escriure-la. No atura el procés: avisa, que
+    és el que necessites per decidir si fusiones el pull request mensual.
+    """
+    problemes = []
+    vistos = {}
+    for p in publicacions:
+        etiqueta = (p.get("doi") or p.get("title") or "?")[:60]
+        if not p.get("title"):
+            problemes.append(f"sense títol: {etiqueta}")
+        rev = (p.get("journal") or "").strip()
+        if not rev:
+            problemes.append(f"sense revista: {etiqueta}")
+        elif rev.lower() in NO_SON_REVISTES:
+            problemes.append(f"revista sospitosa ({rev}): {etiqueta}")
+        any_ = p.get("year")
+        if not any_ or not (1990 <= int(any_) <= 2100):
+            problemes.append(f"any implausible ({any_}): {etiqueta}")
+        if not isinstance(p.get("citations"), int):
+            problemes.append(f"citacions no numèriques: {etiqueta}")
+        d = p.get("doi")
+        if d:
+            if d in vistos:
+                problemes.append(f"DOI duplicat: {d}")
+            vistos[d] = True
+
+    if problemes:
+        print("\nAVISOS DE VALIDACIÓ:", file=sys.stderr)
+        for x in problemes:
+            print(f"  ! {x}", file=sys.stderr)
+    else:
+        print("Validació: cap problema detectat.")
+    return problemes
 
 
 def escriu_histograma(publicacions):
@@ -417,6 +462,7 @@ def main():
         encoding="utf-8",
     )
 
+    valida(sortida)
     escriu_histograma(sortida)
 
     print(f"\nEscrit {SORTIDA.name}: {len(sortida)} publicacions")

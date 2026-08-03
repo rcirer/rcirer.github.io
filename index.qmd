@@ -1,6 +1,6 @@
 ---
-pagetitle: "Rafel Cirer-Sastre — Kinesiology, INEFC Lleida"
-description: "Associate Professor of Kinesiology at INEFC Lleida. Strength and muscle mechanics, field-test validation, cardiac biomarkers after exercise."
+pagetitle: "Exercise measurement, muscle mechanics and applied biostatistics"
+description-meta: "Associate Professor of Kinesiology at INEFC Lleida. Strength and muscle mechanics, field-test validation, cardiac biomarkers after exercise."
 toc: false
 ---
 
@@ -18,7 +18,7 @@ Many measurements strike me as more convincing than reliable.
 [PhD opportunity](phd.qmd){.btn-main} [Research](research.qmd){.btn-plain} [Publications](publications.qmd){.btn-plain}
 :::
 
-![](images/lecture-hall.jpg){.banner fig-alt="A university lecture hall during a class."}
+![](images/lecture-hall.jpg){.banner width="1600" height="640" fig-alt="A university lecture hall during a class."}
 
 That is the thread through everything I work on: how we measure what exercise does to the
 body, and what we can claim from what we have measured. Since 2022 I have also coordinated
@@ -30,7 +30,7 @@ research support at the centre.
 ::: {.line-card}
 [Building now]{.line-tag}
 
-### Strength and muscle mechanics
+### [Strength and muscle mechanics](research.qmd#strength-training-and-muscle-mechanics){.stretched-link}
 
 Whether describing exercise from the perspective of the muscle explains adaptation better
 than joint motion alone.
@@ -41,7 +41,7 @@ than joint motion alone.
 ::: {.line-card}
 [Most applied]{.line-tag}
 
-### Field-test validation
+### [Field-test validation](research.qmd#field-test-validation-and-endurance-performance){.stretched-link}
 
 Where a test a coach can actually run stops being an adequate substitute for a laboratory
 protocol.
@@ -52,7 +52,7 @@ protocol.
 ::: {.line-card}
 [Established]{.line-tag}
 
-### Cardiac biomarkers
+### [Cardiac biomarkers](research.qmd#cardiac-biomarkers-after-exercise){.stretched-link}
 
 How troponin changes after exercise in children and adolescents, and how to read a value
 that would alarm a clinician.

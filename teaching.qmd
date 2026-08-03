@@ -5,7 +5,8 @@ subtitle: "Materials i recursos oberts."
 # lang importa perquè els lectors de pantalla la pronunciïn en català.
 lang: ca
 toc-title: "En aquesta pàgina"
-description: "Materials docents oberts de cinesiologia, anatomia aplicada i metodologia de la investigació."
+description-meta: "Materials docents oberts de cinesiologia, anatomia aplicada i metodologia de la investigació."
+pagetitle: "Teaching resources in kinesiology and research methods | Rafel Cirer-Sastre"
 ---
 
 ::: {.callout-note appearance="simple"}

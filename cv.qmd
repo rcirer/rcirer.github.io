@@ -4,6 +4,8 @@ title: "CV and contact"
 # quedar amb una data falsa: si no l'has tocat, es veu.
 date: last-modified
 date-format: "MMMM YYYY"
+pagetitle: "Academic CV and contact"
+description-meta: "Academic CV of Rafel Cirer-Sastre: positions, education, funded projects, doctoral supervision, research groups and awards."
 ---
 
 ## Contact
@@ -27,7 +29,7 @@ I currently supervise four doctoral candidates.
 
 ## Education
 
-| | |
+| Year | Qualification and institution |
 |---|---|
 | 2020 | PhD in Physical Activity and Sport, Universitat de Lleida — Excellent, international mention |
 | 2018 | Postgraduate specialist in university teaching, UdL |

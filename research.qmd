@@ -1,5 +1,7 @@
 ---
 title: "Research"
+pagetitle: "Research in exercise measurement and muscle mechanics | Rafel Cirer-Sastre"
+description-meta: "Three research lines on how exercise responses are measured: strength and muscle mechanics (EXCURSE), field-test validation in endurance performance, and cardiac biomarkers after exercise."
 ---
 
 The question that ties my research together is how we measure what exercise does to the
