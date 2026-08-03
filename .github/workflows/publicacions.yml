@@ -1,0 +1,73 @@
+# Actualitza la llista de publicacions un cop al mes.
+#
+# Si detecta canvis, obre un PULL REQUEST. Mai no toca `main` directament:
+# així sempre pots veure què ha canviat abans que entri al web, i si una API
+# retorna una dada dolenta (ja ha passat) tens l'ocasió de parar-ho.
+#
+# Publicar el web segueix sent manual: `quarto publish gh-pages`.
+
+name: Publicacions
+
+on:
+  schedule:
+    # Dia 1 de cada mes a les 06:00 UTC. Els horaris de cron de GitHub són
+    # orientatius: si els servidors van carregats pot trigar una estona més.
+    - cron: "0 6 1 * *"
+  workflow_dispatch:        # botó per executar-la a mà quan vulguis
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  actualitza:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instal·la la dependència
+        run: pip install --quiet pyyaml
+
+      - name: Llegeix ORCID i regenera publications.yml
+        run: python3 scripts/publications.py
+
+      - name: Obre un pull request si hi ha canvis
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet publications.yml; then
+            echo "Cap canvi a les publicacions. No cal fer res."
+            exit 0
+          fi
+
+          abans=$(git show HEAD:publications.yml | grep -c '^- ' || echo 0)
+          ara=$(grep -c '^- ' publications.yml || echo 0)
+
+          branca="publicacions/$(date +%Y-%m)"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branca"
+          git add publications.yml
+          git commit -m "Actualitza les publicacions des d'ORCID ($(date +%Y-%m-%d))"
+          git push --force origin "$branca"
+
+          gh pr create \
+            --title "Publicacions: actualització de $(date +%B\ %Y)" \
+            --body "$(printf '%s\n' \
+              "Generat per \`scripts/publications.py\` a partir del perfil d'ORCID." \
+              "" \
+              "Entrades: **$abans → $ara**" \
+              "" \
+              "Abans de fusionar, mira la diferència. Les API externes de vegades" \
+              "retornen dades errònies: si veus un any, una revista o uns autors" \
+              "que no quadren, no fusionis i digues-ho." \
+              "" \
+              "Un cop fusionat, el web no canvia fins que executis:" \
+              "\`\`\`" \
+              "git pull && quarto render && quarto publish gh-pages" \
+              "\`\`\`")" \
+            --base main --head "$branca" || echo "Ja hi ha un PR obert per a aquesta branca."
