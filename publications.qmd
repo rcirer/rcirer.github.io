@@ -1,22 +1,27 @@
 ---
 title: "Publications"
+listing:
+  id: pubs
+  contents: publications.yml
+  type: table
+  fields: [year, title, journal, citations, oa]
+  field-display-names:
+    year: "Year"
+    title: "Title"
+    journal: "Journal"
+    citations: "Cited"
+    oa: ""
+  sort: "year desc"
+  categories: true
+  filter-ui: true
+  sort-ui: [year, citations, title]
+  page-size: 60
+toc: false
 ---
 
-::: {.callout-note}
-This page will be generated automatically from ORCID. Nothing here is maintained by hand.
+This list is generated from my [ORCID record](https://orcid.org/0000-0001-6687-8201) and
+enriched with OpenAlex, so it updates itself rather than being maintained by hand. Titles
+link to the published version.
+
+::: {#pubs}
 :::
-
-<!--
-PENDENT (CLAUDE.md §6). Aquesta pàgina s'ha d'alimentar de:
-  - Font de veritat: ORCID 0000-0001-6687-8201
-  - Lectura tècnica: OpenAlex, filtrant per ORCID, sense token
-  - extres.yml     -> el que les API no veuen
-  - exclusions.yml -> duplicats i falsos positius
-Recuperació sempre per ORCID, mai per nom.
-No escriguis aquí cap llista d'articles a mà.
--->
-
-40 indexed publications · 331 citations · h-index 10 *(as of January 2026)*.
-
-Meanwhile, the complete and up-to-date list is on
-[ORCID](https://orcid.org/0000-0001-6687-8201).

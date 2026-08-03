@@ -12,19 +12,39 @@
   open_access: true
   type: review
   source: extres
-  href: https://doi.org/10.7759/cureus.101718
+  path: https://doi.org/10.7759/cureus.101718
+  categories:
+  - '2026'
+  oa: Open access
 - doi: 10.1016/j.eclinm.2025.103208
   title: 'Prehospital application of remote ischaemic perconditioning in acute ischaemic stroke patients
     in Catalonia: the REMOTE-CAT clinical trial'
   year: 2025
-  journal: EClinicalMedicine
+  journal: eClinicalMedicine
   authors: Francisco Purroy, Glòria Arqué, Francesc Xavier Jiménez-Fàbrega, Teresa Subirats, José Ramon
     Ropero, Mikel Vicente‐Pascual, Pere Cardona, Manuel Gómez‐Choco et al.
   citations: 7
   open_access: true
   type: article
-  href: https://doi.org/10.1016/j.eclinm.2025.103208
   source: orcid
+  path: https://doi.org/10.1016/j.eclinm.2025.103208
+  categories:
+  - '2025'
+  oa: Open access
+- doi: 10.1016/j.jsams.2024.08.207
+  title: The kinetics of cardiac troponin T release during and after 1-and 6-h maximal cycling trials
+  year: 2025
+  journal: Journal of science and medicine in sport
+  authors: Alejandro Legaz‐Arrese, Sebastián Sitko, Rafel Cirer-Sastre, Carmen Mayolas-Pi, Romario Rivelino
+    Jiménez-Gaytán, Ricardo Navarro Orocio, Ricardo López García, Pedro Gualberto Morales Corral et al.
+  citations: 7
+  open_access: true
+  type: article
+  source: orcid
+  path: https://doi.org/10.1016/j.jsams.2024.08.207
+  categories:
+  - '2025'
+  oa: Open access
 - doi: 10.1177/17479541251354909
   title: 'Ultra-endurance performance: Are women closing the gap? A systematic review and meta-analysis'
   year: 2025
@@ -33,8 +53,11 @@
   citations: 2
   open_access: true
   type: review
-  href: https://doi.org/10.1177/17479541251354909
   source: orcid
+  path: https://doi.org/10.1177/17479541251354909
+  categories:
+  - '2025'
+  oa: Open access
 - doi: 10.3390/children12070811
   title: 'Understanding Health in Spanish Children: The Role of Demographics in Physical Activity and
     Nutrition Attitudes'
@@ -45,8 +68,11 @@
   citations: 0
   open_access: true
   type: article
-  href: https://doi.org/10.3390/children12070811
   source: orcid
+  path: https://doi.org/10.3390/children12070811
+  categories:
+  - '2025'
+  oa: Open access
 - doi: 10.4067/s0717-95022025000100304
   title: 'Impacto del Ejercicio Intenso en los Niveles de Interleucina-6 en Futbolistas Semi-Profesionales:
     Un Estudio Comparativo entre Adultos y Niños'
@@ -58,18 +84,10 @@
   open_access: true
   type: article
   source: extres
-  href: https://doi.org/10.4067/s0717-95022025000100304
-- doi: 10.1016/j.jsams.2024.08.207
-  title: The kinetics of cardiac troponin T release during and after 1-and 6-h maximal cycling trials
-  year: 2024
-  journal: Journal of science and medicine in sport
-  authors: Alejandro Legaz‐Arrese, Sebastián Sitko, Rafel Cirer-Sastre, Carmen Mayolas-Pi, Romario Rivelino
-    Jiménez-Gaytán, Ricardo Navarro Orocio, Ricardo López García, Pedro Gualberto Morales Corral et al.
-  citations: 7
-  open_access: true
-  type: article
-  href: https://doi.org/10.1016/j.jsams.2024.08.207
-  source: orcid
+  path: https://doi.org/10.4067/s0717-95022025000100304
+  categories:
+  - '2025'
+  oa: Open access
 - doi: 10.7759/cureus.59371
   title: Influence of Conventional Resistance Training Compared to Core Exercises on Road Cycling Power
     Output
@@ -79,8 +97,11 @@
   citations: 5
   open_access: true
   type: article
-  href: https://doi.org/10.7759/cureus.59371
   source: orcid
+  path: https://doi.org/10.7759/cureus.59371
+  categories:
+  - '2024'
+  oa: Open access
 - doi: 10.7759/cureus.65397
   title: 'Effects of Pull-Up Training on 50-Meter Freestyle Swimming Performance: A Preliminary Analysis'
   year: 2024
@@ -89,20 +110,26 @@
   citations: 1
   open_access: true
   type: article
-  href: https://doi.org/10.7759/cureus.65397
   source: orcid
+  path: https://doi.org/10.7759/cureus.65397
+  categories:
+  - '2024'
+  oa: Open access
 - doi: 10.7717/peerj.14508
   title: 'Effects of high-intensity interval exercise on cardiac troponin elevation when comparing with
     moderate-intensity continuous exercise: a systematic review and meta-analysis'
   year: 2023
-  journal: PeerJ
+  journal: OpenAlex
   authors: Shuoqi Li, Shazlin Shaharudin, Rafel Cirer-Sastre, Feifei Li, Faizal Abdul Manaf, Mohd Faiz
     Mohd Shukri
   citations: 25
   open_access: true
   type: review
-  href: https://doi.org/10.7717/peerj.14508
   source: orcid
+  path: https://doi.org/10.7717/peerj.14508
+  categories:
+  - '2023'
+  oa: Open access
 - doi: 10.3390/healthcare11162342
   title: 'Cardiac Troponin Release after Exercise in Healthy Young Athletes: A Systematic Review'
   year: 2023
@@ -112,8 +139,24 @@
   citations: 7
   open_access: true
   type: review
-  href: https://doi.org/10.3390/healthcare11162342
   source: orcid
+  path: https://doi.org/10.3390/healthcare11162342
+  categories:
+  - '2023'
+  oa: Open access
+- doi: 10.3390/app13010224
+  title: Anthropometric Characteristics of Road Cyclists of Different Performance Levels
+  year: 2023
+  journal: Applied Sciences
+  authors: Sebastián Sitko, Rafel Cirer-Sastre, Nuria Garatachea, Isaac López‐Laval
+  citations: 5
+  open_access: true
+  type: article
+  source: orcid
+  path: https://doi.org/10.3390/app13010224
+  categories:
+  - '2023'
+  oa: Open access
 - doi: 10.1055/a-2079-1363
   title: An Update Of The Allen & Coggan Equation To Predict 60-Min Power Output In Cyclists Of Different
     Performance Levels
@@ -123,18 +166,37 @@
   citations: 3
   open_access: false
   type: article
-  href: https://doi.org/10.1055/a-2079-1363
   source: orcid
+  path: https://doi.org/10.1055/a-2079-1363
+  categories:
+  - '2023'
+  oa: ''
 - doi: 10.20944/preprints202312.2177.v1
   title: Strength Training Versus Core Exercises for the Optimization of Road Cycling Performance
   year: 2023
-  journal: Preprints.org
+  journal: Preprints
   authors: Sebastián Sitko, Isaac López‐Laval, Rafel Cirer-Sastre
   citations: 1
   open_access: true
   type: preprint
-  href: https://doi.org/10.20944/preprints202312.2177.v1
   source: orcid
+  path: https://doi.org/10.20944/preprints202312.2177.v1
+  categories:
+  - '2023'
+  oa: Open access
+- doi: 10.1123/ijspp.2020-0923
+  title: Five-Minute Power-Based Test to Predict Maximal Oxygen Consumption in Road Cycling
+  year: 2022
+  journal: International Journal of Sports Physiology and Performance
+  authors: Sebastián Sitko, Rafel Cirer-Sastre, Francisco Corbi, Isaac López‐Laval
+  citations: 13
+  open_access: false
+  type: article
+  source: orcid
+  path: https://doi.org/10.1123/ijspp.2020-0923
+  categories:
+  - '2022'
+  oa: ''
 - doi: 10.1016/j.jsams.2022.06.007
   title: Time to exhaustion at estimated functional threshold power in road cyclists of different performance
     levels
@@ -144,8 +206,11 @@
   citations: 10
   open_access: true
   type: article
-  href: https://doi.org/10.1016/j.jsams.2022.06.007
   source: orcid
+  path: https://doi.org/10.1016/j.jsams.2022.06.007
+  categories:
+  - '2022'
+  oa: Open access
 - doi: 10.3390/life12050758
   title: The Effectiveness of Shoulder Mobility and Strength Programs in Competitive Water-Polo Players
   year: 2022
@@ -154,8 +219,11 @@
   citations: 7
   open_access: true
   type: article
-  href: https://doi.org/10.3390/life12050758
   source: orcid
+  path: https://doi.org/10.3390/life12050758
+  categories:
+  - '2022'
+  oa: Open access
 - doi: 10.1080/1354750x.2022.2080272
   title: A comparison of modelled serum cTnT and cTnI kinetics after 60 min swimming
   year: 2022
@@ -165,8 +233,11 @@
   citations: 6
   open_access: false
   type: article
-  href: https://doi.org/10.1080/1354750x.2022.2080272
   source: orcid
+  path: https://doi.org/10.1080/1354750x.2022.2080272
+  categories:
+  - '2022'
+  oa: ''
 - doi: 10.23736/s0393-3660.20.04425-3
   title: Concurrent validity and reliability of an accelerometer to assess punching velocity in boxers
   year: 2022
@@ -176,18 +247,11 @@
   citations: 6
   open_access: false
   type: article
-  href: https://doi.org/10.23736/s0393-3660.20.04425-3
   source: orcid
-- doi: 10.3390/app13010224
-  title: Anthropometric Characteristics of Road Cyclists of Different Performance Levels
-  year: 2022
-  journal: Applied Sciences
-  authors: Sebastián Sitko, Rafel Cirer-Sastre, Nuria Garatachea, Isaac López‐Laval
-  citations: 5
-  open_access: true
-  type: article
-  href: https://doi.org/10.3390/app13010224
-  source: orcid
+  path: https://doi.org/10.23736/s0393-3660.20.04425-3
+  categories:
+  - '2022'
+  oa: ''
 - doi: 10.23736/s0022-4707.21.12285-6
   title: Relationship between functional threshold power, ventilatory threshold and respiratory compensation
     point in road cycling
@@ -197,8 +261,11 @@
   citations: 5
   open_access: false
   type: article
-  href: https://doi.org/10.23736/s0022-4707.21.12285-6
   source: orcid
+  path: https://doi.org/10.23736/s0022-4707.21.12285-6
+  categories:
+  - '2022'
+  oa: ''
 - doi: 10.15366/rimcafd2022.87.014
   title: RELATIONSHIP BETWEEN METHODOLOGIES FOR LOAD CONTROL IN PROFESSIONAL BASKETBALL
   year: 2022
@@ -208,8 +275,11 @@
   citations: 3
   open_access: true
   type: article
-  href: https://doi.org/10.15366/rimcafd2022.87.014
   source: orcid
+  path: https://doi.org/10.15366/rimcafd2022.87.014
+  categories:
+  - '2022'
+  oa: Open access
 - doi: 10.1080/1612197x.2022.2058583
   title: Variables of influence on the fluctuation of the mood profile among professional basketball players
     during a competitive period
@@ -220,8 +290,11 @@
   citations: 1
   open_access: false
   type: article
-  href: https://doi.org/10.1080/1612197x.2022.2058583
   source: orcid
+  path: https://doi.org/10.1080/1612197x.2022.2058583
+  categories:
+  - '2022'
+  oa: ''
 - doi: 10.5114/biolsport.2022.107020
   title: Effects of isoinertial or machine-based strength training on performance in tennis players
   year: 2021
@@ -230,28 +303,39 @@
   citations: 22
   open_access: true
   type: article
-  href: https://doi.org/10.5114/biolsport.2022.107020
   source: orcid
-- doi: 10.1123/ijspp.2020-0923
-  title: Five-Minute Power-Based Test to Predict Maximal Oxygen Consumption in Road Cycling
+  path: https://doi.org/10.5114/biolsport.2022.107020
+  categories:
+  - '2021'
+  oa: Open access
+- doi: 10.1016/j.jsams.2020.06.019
+  title: Influence of maturational status in the exercise-induced release of cardiac troponin T in healthy
+    young swimmers
   year: 2021
-  journal: International Journal of Sports Physiology and Performance
-  authors: Sebastián Sitko, Rafel Cirer-Sastre, Francisco Corbi, Isaac López‐Laval
-  citations: 13
-  open_access: false
+  journal: Journal of science and medicine in sport
+  authors: Rafel Cirer-Sastre, Alejandro Legaz‐Arrese, Francisco Corbi, Isaac López‐Laval, Keith George,
+    Joaquín Reverter Masià
+  citations: 15
+  open_access: true
   type: article
-  href: https://doi.org/10.1123/ijspp.2020-0923
   source: orcid
+  path: https://doi.org/10.1016/j.jsams.2020.06.019
+  categories:
+  - '2021'
+  oa: Open access
 - doi: 10.1519/jsc.0000000000004070
   title: Functional Threshold Power as an Alternative to Lactate Thresholds in Road Cycling
   year: 2021
-  journal: The Journal of Strength and Conditioning Research
+  journal: Journal of Strength and Conditioning Research
   authors: Sebastián Sitko, Rafel Cirer-Sastre, Francisco Corbi, Isaac López‐Laval
   citations: 10
   open_access: false
   type: article
-  href: https://doi.org/10.1519/jsc.0000000000004070
   source: orcid
+  path: https://doi.org/10.1519/jsc.0000000000004070
+  categories:
+  - '2021'
+  oa: ''
 - doi: 10.3390/ijerph18031285
   title: Exercise-Induced Release of Cardiac Troponins in Adolescent vs. Adult Swimmers
   year: 2021
@@ -261,8 +345,11 @@
   citations: 8
   open_access: true
   type: article
-  href: https://doi.org/10.3390/ijerph18031285
   source: orcid
+  path: https://doi.org/10.3390/ijerph18031285
+  categories:
+  - '2021'
+  oa: Open access
 - doi: 10.3390/medicina57060606
   title: Characteristics of Pedaling Muscle Stiffness among Cyclists of Different Performance Levels
   year: 2021
@@ -271,8 +358,11 @@
   citations: 1
   open_access: true
   type: article
-  href: https://doi.org/10.3390/medicina57060606
   source: orcid
+  path: https://doi.org/10.3390/medicina57060606
+  categories:
+  - '2021'
+  oa: Open access
 - doi: 10.3389/fphys.2019.01626
   title: The Influence of Dental Occlusion on Dynamic Balance and Muscular Tone
   year: 2020
@@ -281,8 +371,24 @@
   citations: 73
   open_access: true
   type: article
-  href: https://doi.org/10.3389/fphys.2019.01626
   source: orcid
+  path: https://doi.org/10.3389/fphys.2019.01626
+  categories:
+  - '2020'
+  oa: Open access
+- doi: 10.1519/jsc.0000000000003362
+  title: Relationship Between Bench Press Strength and Punch Performance in Male Professional Boxers
+  year: 2020
+  journal: Journal of strength and conditioning research
+  authors: Isaac López‐Laval, Sebastián Sitko, Borja Muñiz-Pardos, Rafel Cirer-Sastre, Julio Calleja-González
+  citations: 36
+  open_access: false
+  type: article
+  source: orcid
+  path: https://doi.org/10.1519/jsc.0000000000003362
+  categories:
+  - '2020'
+  oa: ''
 - doi: 10.3390/su12125216
   title: 'Power Assessment in Road Cycling: A Narrative Review'
   year: 2020
@@ -291,8 +397,11 @@
   citations: 31
   open_access: true
   type: review
-  href: https://doi.org/10.3390/su12125216
   source: orcid
+  path: https://doi.org/10.3390/su12125216
+  categories:
+  - '2020'
+  oa: Open access
 - doi: 10.3390/ijerph17030956
   title: Cardiac Troponin T Release after Football 7 in Healthy Children and Adults
   year: 2020
@@ -302,8 +411,11 @@
   citations: 15
   open_access: true
   type: article
-  href: https://doi.org/10.3390/ijerph17030956
   source: orcid
+  path: https://doi.org/10.3390/ijerph17030956
+  categories:
+  - '2020'
+  oa: Open access
 - doi: 10.20960/nh.03103
   title: 'Effects of a low-carbohydrate diet on body composition and performance in road cycling: a randomized,
     controlled trial'
@@ -313,8 +425,11 @@
   citations: 4
   open_access: true
   type: article
-  href: https://doi.org/10.20960/nh.03103
   source: orcid
+  path: https://doi.org/10.20960/nh.03103
+  categories:
+  - '2020'
+  oa: Open access
 - doi: 10.5672/apunts.2014-0983.es.(2020/2).140.06
   title: Relationship Between Jump Capacity and Performance in BMX Cycling
   year: 2020
@@ -324,39 +439,53 @@
   citations: 4
   open_access: true
   type: article
-  href: https://doi.org/10.5672/apunts.2014-0983.es.(2020/2).140.06
   source: orcid
+  path: https://doi.org/10.5672/apunts.2014-0983.es.(2020/2).140.06
+  categories:
+  - '2020'
+  oa: Open access
 - doi: 10.23736/s0022-4707.19.10196-x
   title: Physiological demands and characteristics of the participants in a cycling sportive event
   year: 2020
-  journal: The Journal of Sports Medicine and Physical Fitness
+  journal: Journal of Sports Medicine and Physical Fitness
   authors: Sebastián Sitko, Isaac López‐Laval, Rafel Cirer-Sastre, Francisco Corbi, Julio Calleja-González
   citations: 2
   open_access: false
   type: article
-  href: https://doi.org/10.23736/s0022-4707.19.10196-x
   source: orcid
+  path: https://doi.org/10.23736/s0022-4707.19.10196-x
+  categories:
+  - '2020'
+  oa: ''
 - doi: 10.19193/0393-6384_2020_3_300
   title: EFFECTIVENESS OF A PHYSICAL ACTIVITY INTERVENTION PROGRAMME ON THE INTEGRAL HEALTH OF UNIVERSITY
     PROFESSORS
   year: 2020
-  journal: ACTA MEDICA MEDITERRANEA
+  journal: Acta Medica Mediterranea
   authors: null
   citations: 0
   open_access: false
   type: journal-article
-  href: https://doi.org/10.19193/0393-6384_2020_3_300
   source: orcid
-- doi: 10.1519/jsc.0000000000003362
-  title: Relationship Between Bench Press Strength and Punch Performance in Male Professional Boxers
+  path: https://doi.org/10.19193/0393-6384_2020_3_300
+  categories:
+  - '2020'
+  oa: ''
+- doi: 10.1123/pes.2018-0058
+  title: 'Cardiac Biomarker Release After Exercise in Healthy Children and Adolescents: A Systematic Review
+    and Meta-Analysis'
   year: 2019
-  journal: The Journal of Strength and Conditioning Research
-  authors: Isaac López‐Laval, Sebastián Sitko, Borja Muñiz-Pardos, Rafel Cirer-Sastre, Julio Calleja-González
-  citations: 36
-  open_access: false
-  type: article
-  href: https://doi.org/10.1519/jsc.0000000000003362
+  journal: Pediatric Exercise Science
+  authors: Rafel Cirer-Sastre, Alejandro Legaz‐Arrese, Francisco Corbi, Keith George, Jinlei Nie, Luis
+    Enrique Carranza García, Joaquín Reverter Masià
+  citations: 31
+  open_access: true
+  type: review
   source: orcid
+  path: https://doi.org/10.1123/pes.2018-0058
+  categories:
+  - '2019'
+  oa: Open access
 - doi: 10.3390/ijerph16234853
   title: Effect of Training Load on Post-Exercise Cardiac Troponin T Elevations in Young Soccer Players
   year: 2019
@@ -366,8 +495,11 @@
   citations: 17
   open_access: true
   type: article
-  href: https://doi.org/10.3390/ijerph16234853
   source: orcid
+  path: https://doi.org/10.3390/ijerph16234853
+  categories:
+  - '2019'
+  oa: Open access
 - doi: 10.20960/nh.02582
   title: 'Effects of high altitude mountaineering on body composition: a systematic review'
   year: 2019
@@ -376,8 +508,11 @@
   citations: 12
   open_access: true
   type: review
-  href: https://doi.org/10.20960/nh.02582
   source: orcid
+  path: https://doi.org/10.20960/nh.02582
+  categories:
+  - '2019'
+  oa: Open access
 - doi: 10.20960/nh.02762
   title: Effects of a low-carbohydrate diet on performance and body composition in trained cyclists
   year: 2019
@@ -386,8 +521,11 @@
   citations: 7
   open_access: true
   type: article
-  href: https://doi.org/10.20960/nh.02762
   source: orcid
+  path: https://doi.org/10.20960/nh.02762
+  categories:
+  - '2019'
+  oa: Open access
 - doi: 10.19193/0393-6384_2019_4_295
   title: 'Physical activity from cycling and effects on the Mediterranean diet. Project: Asisa'
   year: 2019
@@ -396,37 +534,20 @@
   citations: 0
   open_access: false
   type: journal-article
-  href: https://doi.org/10.19193/0393-6384_2019_4_295
   source: orcid
-- doi: 10.1123/pes.2018-0058
-  title: 'Cardiac Biomarker Release After Exercise in Healthy Children and Adolescents: A Systematic Review
-    and Meta-Analysis'
-  year: 2018
-  journal: Pediatric Exercise Science
-  authors: Rafel Cirer-Sastre, Alejandro Legaz‐Arrese, Francisco Corbi, Keith George, Jinlei Nie, Luis
-    Enrique Carranza García, Joaquín Reverter Masià
-  citations: 31
-  open_access: true
-  type: review
-  href: https://doi.org/10.1123/pes.2018-0058
-  source: orcid
+  path: https://doi.org/10.19193/0393-6384_2019_4_295
+  categories:
+  - '2019'
+  oa: ''
 - title: 'Contralateral effects after unilateral strength training: a meta-analysis comparing training
     loads'
   year: 2017
   journal: Journal of Sports Science and Medicine
   authors: Rafel Cirer-Sastre, José Vicente Beltrán-Garrido, Francisco Corbi
-  href: https://pubmed.ncbi.nlm.nih.gov/28630570/
   citations: 46
   doi: null
   source: extres
-- doi: 10.1016/j.jsams.2020.06.019
-  title: Influence of maturational status in the exercise-induced release of cardiac troponin T in healthy
-    young swimmers
-  year: 1972
-  journal: "\x98The \x9CClassical bulletin"
-  authors: Kathryn Thomas
-  citations: 0
-  open_access: false
-  type: article
-  href: https://doi.org/10.1016/j.jsams.2020.06.019
-  source: orcid
+  path: https://pubmed.ncbi.nlm.nih.gov/28630570/
+  categories:
+  - '2017'
+  oa: ''

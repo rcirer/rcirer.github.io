@@ -135,7 +135,21 @@ def enriqueix_openalex(dois, mida_lot=45):
                 continue
             loc = w.get("primary_location") or {}
             font = loc.get("source") or {}
+
+            # OpenAlex pot tenir DOS registres amb el mateix DOI, i un ser
+            # erroni. Cas real detectat: 10.1016/j.jsams.2020.06.019 retorna
+            # l'article bo i, a més, "Aristotle and Bertolt Brecht" (1972).
+            # Ens quedem el registre que el té a ell com a autor.
+            autories = w.get("authorships") or []
+            es_seu = any(
+                (((a.get("author") or {}).get("orcid")) or "").endswith(ORCID_ID)
+                for a in autories
+            )
+            if d in resultat and resultat[d].get("_seu") and not es_seu:
+                continue
+
             resultat[d] = {
+                "_seu": es_seu,
                 "titol": w.get("title") or w.get("display_name"),
                 "citacions": w.get("cited_by_count", 0),
                 "revista": font.get("display_name"),
@@ -194,6 +208,45 @@ def llegeix_yaml(nom):
     return contingut or []
 
 
+MENUDES = {"a", "an", "and", "for", "in", "of", "on", "the", "to", "y", "e",
+           "de", "del", "la", "el", "i", "per", "en"}
+
+
+def titula(nom):
+    """'INTERNATIONAL JOURNAL OF...' -> 'International Journal of...'"""
+    paraules = nom.split()
+    sortida = []
+    for i, p in enumerate(paraules):
+        b = p.lower()
+        sortida.append(b if (i and b in MENUDES) else b.capitalize())
+    return " ".join(sortida)
+
+
+# Revistes que les bases de dades escriuen amb la majúscula equivocada.
+# La clau és en minúscules i sense espais; el valor, la grafia correcta.
+# Afegeix-n'hi quan en detectis una: és més honest que intentar endevinar-ho.
+GRAFIES = {
+    "eclinicalmedicine": "eClinicalMedicine",
+}
+
+
+def tria_revista(orcid_val, api_val):
+    """
+    ORCID mana, però Web of Science diposita els noms en MAJÚSCULES i això
+    fa lleig i incoherent (la mateixa revista surt de dues maneres). Quan
+    ORCID crida, provem amb el nom de l'API, que ve de l'editor.
+    """
+    if orcid_val and not orcid_val.isupper():
+        nom = orcid_val
+    elif api_val:
+        nom = api_val
+    elif orcid_val:
+        nom = titula(orcid_val)
+    else:
+        return None
+    return GRAFIES.get(nom.lower().replace(" ", ""), nom)
+
+
 def formata_autors(noms, maxim=8):
     if not noms:
         return None
@@ -237,11 +290,20 @@ def main():
         e = oa.get(d, {})
         if not e:
             sense_dades.append(d)
+
+        # ORCID és la font de veritat també per a les dades bibliogràfiques:
+        # l'enriquiment només omple el que ORCID no té. A l'inrevés, un sol
+        # registre corrupte d'una base de dades externa et canvia l'any o la
+        # revista d'un article teu sense que te n'adonis.
+        if o["any"] and e.get("any") and abs(int(e["any"]) - int(o["any"])) > 1:
+            print(f"  avís: {d} — ORCID diu {o['any']} i l'enriquiment {e['any']}. "
+                  f"Fem cas d'ORCID.")
+
         sortida.append({
             "doi": d,
             "title": o["titol"],
-            "year": e.get("any") or o["any"],
-            "journal": e.get("revista") or o["revista"],
+            "year": o["any"] or e.get("any"),
+            "journal": tria_revista(o["revista"], e.get("revista")),
             "authors": formata_autors(e.get("autors")),
             "citations": e.get("citacions", 0),
             "open_access": e.get("obert", False),
@@ -301,6 +363,17 @@ def main():
         sortida.append(extra)
 
     sortida.sort(key=lambda x: (-(x.get("year") or 0), -(x.get("citations") or 0)))
+
+    # Camps que espera el llistat de Quarto:
+    #   path       -> on porta l'enllaç del títol
+    #   categories -> l'any, que és el que dona el filtre de la pàgina
+    #   oa         -> text curt, perquè una casella buida es llegeix millor
+    #                 que un "false" repetit quaranta vegades
+    for x in sortida:
+        x["path"] = x.pop("href", None) or x.get("path")
+        if x.get("year"):
+            x.setdefault("categories", [str(x["year"])])
+        x["oa"] = "Open access" if x.get("open_access") else ""
 
     SORTIDA.write_text(
         "# GENERAT AUTOMÀTICAMENT — no editis aquest fitxer a mà.\n"
