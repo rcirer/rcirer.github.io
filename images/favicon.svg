@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Rafel Cirer-Sastre">
+  <!-- Tres longituds sobre un mateix origen: la idea del rang d'excursió,
+       reduïda al mínim que encara es llegeix a 16 píxels. -->
+  <rect width="64" height="64" rx="12" fill="#0e6b5e"/>
+  <rect x="14" y="16" width="10" height="32" rx="5" fill="#ffffff" opacity="0.95"/>
+  <rect x="14" y="20" width="24" height="8"  rx="4" fill="#ffffff" opacity="0.55"/>
+  <rect x="14" y="32" width="36" height="8"  rx="4" fill="#ffffff" opacity="0.8"/>
+</svg>

@@ -8,8 +8,13 @@
 <title>Rafel Cirer-Sastre</title>
 <link>https://rcirer.github.io/blog/</link>
 <atom:link href="https://rcirer.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
-<description>Professor Titular de Cinesiologia a l&#39;INEFC Lleida. Biomarcadors cardíacs, valoració del rendiment i mecànica muscular.</description>
+<description>Associate Professor of Kinesiology at INEFC Lleida. Strength and muscle mechanics, field-test validation, and cardiac biomarkers after exercise.</description>
+<image>
+<url>https://rcirer.github.io/images/lecture-hall.jpg</url>
+<title>Rafel Cirer-Sastre</title>
+<link>https://rcirer.github.io/blog/</link>
+</image>
 <generator>quarto-1.9.37</generator>
-<lastBuildDate>Mon, 03 Aug 2026 13:05:07 GMT</lastBuildDate>
+<lastBuildDate>Mon, 03 Aug 2026 14:04:09 GMT</lastBuildDate>
 </channel>
 </rss>
