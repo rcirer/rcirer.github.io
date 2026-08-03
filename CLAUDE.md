@@ -209,6 +209,20 @@ Fets confirmats per en Rafel. Són la base de `phd.qmd`; no els suavitzis ni els
 Pendent: qui codirigeix les tesis. EXCURSE el co-lidera Xavier Peirau Terès, però no està
 confirmat que codirigeixi.
 
+## 9 ter. Decisions tancades
+
+Descartades per en Rafel el 3 d'agost de 2026, després d'una auditoria externa que les
+recomanava. **No les tornis a proposar** si no és ell qui les replanteja.
+
+- **Cap secció «Collaborate»** ni recorreguts de navegació per públic (estudiants /
+  col·laboradors). L'arquitectura es queda temàtica.
+- **El correu no es fa clicable.** Es queda desglossat (`rcirer *at* gencat *dot* cat`).
+  L'argument que l'ofuscació afegeix fricció és cert i ell l'ha sospesat: prefereix la
+  fricció abans que el correu brossa.
+- **Cap llista de «publicacions seleccionades»** ni categories temàtiques. Surten totes,
+  amb filtre per any i prou. Trair-ne unes quantes a mà xoca amb la secció 6.
+- **Cap CV en PDF**, ni curt ni llarg. La regla `*.pdf` del `.gitignore` es manté.
+
 ## 10. Decisions obertes
 
 Pendents. Recorda-les-hi quan siguin rellevants per a la tasca en curs.
