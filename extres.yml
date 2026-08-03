@@ -29,14 +29,23 @@
   citations: 46
 
 # --------------------------------------------------------------------------
-# TEMPORAL. Aquest article té DOI i les API el coneixen: només cal el DOI i
-# l'script omple títol, revista, autors i citacions tot sol.
+# PERMANENTS, no pendents d'arreglar.
 #
-# Hi és perquè la seva entrada d'ORCID no porta el DOI i per això no
-# s'enriqueix. Arregla-ho al perfil; quan ho facis, l'script t'avisarà que
-# ja arriba per la via bona i podràs esborrar aquest bloc.
+# Les entrades d'ORCID importades automàticament de Web of Science són
+# propietat d'aquella font i en Rafel no les pot editar. Si a WoS li falta
+# el DOI, a ORCID hi faltarà sempre. Per a aquests casos, aquest fitxer ÉS
+# la solució, no un pedaç provisional.
 #
-# (El de bike-fitting era aquí pel mateix motiu i ja s'ha pogut treure:
-#  el 3 d'agost de 2026 es va afegir a ORCID i el pipeline ho va detectar sol.)
+# Amb el DOI n'hi ha prou: l'script omple títol, revista, autors i
+# citacions des d'OpenAlex o Crossref.
 # --------------------------------------------------------------------------
+
+# L'entrada d'ORCID hi és, però ve de WoS i no porta el DOI.
 - doi: "10.4067/s0717-95022025000100304"    # IL-6 en futbolistes, Int J Morphol 2025
+
+# No és a ORCID en cap forma. És autor de correspondència.
+# L'any el fixem a mà: Crossref el data el gener de 2025 perquè és quan va
+# sortir el número imprès, però el volum 42(24) és del 2024, que és com
+# consta al CV.
+- doi: "10.1080/02640414.2024.2449314"      # water polo, J Sports Sci 2024
+  year: 2024

@@ -250,10 +250,15 @@ Pendent, en aquest ordre:
 4. Traducció al català sota `/ca/`, quan el text anglès estigui tancat.
 5. Domini personalitzat (secció 10).
 
-**Arreglos pendents al perfil d'ORCID d'en Rafel** (els cobreix `extres.yml` mentrestant):
-la meta-anàlisi contralateral hi consta cinc vegades; l'article d'IL-6 hi és sense DOI
-(10.4067/s0717-95022025000100304); hi falten el de bike-fitting (10.7759/cureus.101718)
-i el de water polo (10.1080/02640414.2024.2449314).
+**Sobre ORCID i `extres.yml`.** Les entrades d'ORCID importades automàticament de Web of
+Science pertanyen a aquella font i en Rafel **no les pot editar**. Si a WoS hi falta el
+DOI, a ORCID hi faltarà sempre. Per tant `extres.yml` no és una llista de coses pendents
+d'arreglar: per a aquests casos és la solució definitiva. No li proposis "arreglar-ho a
+l'origen" quan l'origen és WoS.
+
+Tres entrades permanents: la meta-anàlisi contralateral de 2017 (J Sports Sci Med no
+diposita DOI, i a ORCID hi consta cinc vegades sense poder-se fusionar), l'article d'IL-6
+i el de water polo.
 
 No facis cap d'aquests passos sense demanar-ho: van d'una decisió en una.
 

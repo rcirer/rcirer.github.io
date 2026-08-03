@@ -115,6 +115,20 @@
   categories:
   - '2024'
   oa: Open access
+- doi: 10.1080/02640414.2024.2449314
+  year: 2024
+  title: Association between anthropometric, biomechanical and strength parameters and throwing velocity
+    in elite water polo players
+  journal: Journal of Sports Sciences
+  authors: Isaac López‐Laval, Sebastián Sitko, Cantonero Jaime, Legaz Arrese Alejandro, Cirer-Sastre Rafel
+  citations: 1
+  open_access: false
+  type: article
+  source: extres
+  path: https://doi.org/10.1080/02640414.2024.2449314
+  categories:
+  - '2024'
+  oa: ''
 - doi: 10.7717/peerj.14508
   title: 'Effects of high-intensity interval exercise on cardiac troponin elevation when comparing with
     moderate-intensity continuous exercise: a systematic review and meta-analysis'
