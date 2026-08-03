@@ -1,0 +1,44 @@
+# Publicacions que han de sortir al web però que les API no veuen.
+#
+# Fes servir aquest fitxer només quan no es pugui arreglar a l'origen.
+# Si una publicació falta perquè no és al teu ORCID, la solució bona és
+# afegir-la a ORCID, no pegar-la aquí: així també la veuran l'AQU, el CV
+# normalitzat i qualsevol altre sistema que llegeixi el teu perfil.
+#
+# Format (tots els camps són opcionals menys title i year):
+#
+# - title: "Títol complet de l'article"
+#   year: 2024
+#   journal: "Nom de la revista"
+#   authors: "Cognom A, Cognom B, Cirer-Sastre R"
+#   doi: 10.xxxx/xxxxx        # genera l'enllaç tot sol
+#   href: https://...         # només si no té DOI
+#
+# Després d'editar: python3 scripts/publications.py
+
+# --------------------------------------------------------------------------
+# PERMANENT. J Sports Sci Med no diposita DOI, així que aquest article no el
+# pot trobar cap API. És el teu treball més citat com a primer autor i
+# l'antecedent de la línia de força: no pot faltar. S'enllaça per PubMed.
+# --------------------------------------------------------------------------
+- title: "Contralateral effects after unilateral strength training: a meta-analysis comparing training loads"
+  year: 2017
+  journal: "Journal of Sports Science and Medicine"
+  authors: "Rafel Cirer-Sastre, José Vicente Beltrán-Garrido, Francisco Corbi"
+  href: "https://pubmed.ncbi.nlm.nih.gov/28630570/"
+  citations: 46
+
+# --------------------------------------------------------------------------
+# TEMPORALS. Aquests dos articles tenen DOI i les API els coneixen: només cal
+# el DOI i l'script omple títol, revista, autors i citacions tot sol.
+#
+# Hi són perquè al teu ORCID hi falta alguna cosa:
+#   · L'IL-6 hi és, però sense el DOI, i per això no s'enriqueix.
+#   · El de bike-fitting directament no hi és.
+#
+# Arregla-ho al perfil d'ORCID. Quan ho facis, l'script t'avisarà que ja
+# arriben per la via bona i podràs esborrar aquests dos blocs.
+# --------------------------------------------------------------------------
+- doi: "10.4067/s0717-95022025000100304"    # IL-6 en futbolistes, Int J Morphol 2025
+
+- doi: "10.7759/cureus.101718"              # bike-fitting i dolor lumbar, Cureus 2026

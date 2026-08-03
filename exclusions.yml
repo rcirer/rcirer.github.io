@@ -1,0 +1,15 @@
+# Publicacions que NO han de sortir al web, encara que siguin al teu ORCID.
+#
+# Un DOI per línia. El comentari del costat és per a tu, no el llegeix ningú.
+# Després d'editar: python3 scripts/publications.py
+#
+# Casos típics: preprints que dupliquen l'article publicat, correccions,
+# cartes de resposta que es compten com a article independent, i registres
+# que una base de dades ha classificat malament.
+#
+# Ara mateix no cal excloure'n cap: la llista surt d'ORCID, i les entrades
+# problemàtiques que va detectar l'anàlisi (dues còpies del projecte docent
+# de la plaça i el preprint de l'article de Cureus) només eren a OpenAlex,
+# que aquí no decideix res.
+
+[]
