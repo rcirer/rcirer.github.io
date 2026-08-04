@@ -285,15 +285,24 @@ Fet:
   `scripts/excursion-range.py`. No l'editis a mà.
 - Pipeline de publicacions: `scripts/publications.py` llegeix ORCID, enriqueix amb
   OpenAlex i Crossref, aplica `exclusions.yml` i `extres.yml`, i escriu
-  `publications.yml`. 40 publicacions. Executa'l amb `python3 scripts/publications.py`.
+  `publications.yml` i `histograma.css`. 41 publicacions, 449 citacions. Executa'l amb
+  `python3 scripts/publications.py`.
+- GitHub Action mensual (`.github/workflows/publicacions.yml`): el dia 1 executa l'script i,
+  si hi ha canvis, obre un *pull request*. Mai commit directe. Provada i funcionant.
+- **Blog amagat del menú** fins que hi hagi un primer post: dues línies comentades al
+  `_quarto.yml`. La pàgina segueix servint-se a `/blog/`.
 
 Pendent, en aquest ordre:
 
-1. GitHub Action mensual que executi l'script i obri un *pull request* si hi ha canvis.
-2. Retrat d'en Rafel per a la portada. Mentrestant hi ha una foto d'estoc d'una aula.
-3. Primer post del blog, a partir de `blog/posts/_llavor-troponina.qmd`.
-4. Traducció al català sota `/ca/`, quan el text anglès estigui tancat.
-5. Domini personalitzat (secció 10).
+1. Retrat d'en Rafel per a la portada. Mentrestant hi ha una foto d'estoc d'una aula que
+   el retrata fent classe en una pàgina que ven recerca i doctorat.
+2. Infografies docents (secció 9 quater). Decisió que bloqueja la primera visualització
+   interactiva: **quin exercici es modela**. Recomanació: extensió de genoll assegut.
+3. Materials docents. `teaching.qmd` només publica el curs d'R (`rcirer/24-intro-R`);
+   no hi tornis a posar «pendent de publicar»: es va treure a propòsit.
+4. Primer post del blog, a partir de `blog/posts/_llavor-troponina.qmd`.
+5. Traducció al català sota `/ca/`, quan el text anglès estigui tancat.
+6. Domini personalitzat (secció 10) i analítica (secció 9 quater).
 
 **Sobre ORCID i `extres.yml`.** Les entrades d'ORCID importades automàticament de Web of
 Science pertanyen a aquella font i en Rafel **no les pot editar**. Si a WoS hi falta el
