@@ -1,6 +1,6 @@
 ---
 title: "Research"
-pagetitle: "Research in exercise measurement and muscle mechanics | Rafel Cirer-Sastre"
+pagetitle: "Research in exercise measurement and muscle mechanics"
 description-meta: "Three research lines on how exercise responses are measured: strength and muscle mechanics (EXCURSE), field-test validation in endurance performance, and cardiac biomarkers after exercise."
 ---
 
@@ -9,6 +9,8 @@ body and what we can claim from what we have measured. Three research lines foll
 They do not carry the same weight or belong to the same stage of my career.
 
 ## Strength training and muscle mechanics
+
+[Building now]{.section-tag}
 
 This is the active line I am building: how the body adapts to strength training, and whether
 describing exercise from the perspective of the muscle explains those adaptations better
@@ -34,6 +36,8 @@ opportunity](phd.qmd).
 
 ## Field-test validation and endurance performance
 
+[Most applied]{.section-tag}
+
 This is my most applied line: how we measure endurance performance outside the laboratory,
 and where a practical field test stops being an adequate substitute for a laboratory
 protocol.
@@ -52,6 +56,8 @@ should affect interpretation.
 *Main collaborators: Sebastian Sitko and Isaac López-Laval (Universidad de Zaragoza).*
 
 ## Cardiac biomarkers after exercise
+
+[Established]{.section-tag}
 
 This is my most established line, although it is now less central to my work: how the body
 responds acutely to exercise, particularly how cardiac troponin changes in children and
@@ -72,6 +78,8 @@ and how maturation, exercise load, and between-person variability shape the resp
 León).*
 
 ## The method underneath
+
+[Across all three]{.section-tag}
 
 Applied biostatistics is not a fourth research line. It is the perspective from which I
 approach the other three.

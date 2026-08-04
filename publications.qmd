@@ -20,7 +20,7 @@ toc: false
 # Amplades de les barres del filtre d'anys. El genera
 # scripts/publications.py; no l'editis a mà.
 css: histograma.css
-pagetitle: "Publications in exercise physiology and biostatistics | Rafel Cirer-Sastre"
+pagetitle: "Publications in exercise physiology and biostatistics"
 description-meta: "Complete list of peer-reviewed publications, generated from ORCID and enriched with OpenAlex. Filterable by year."
 ---
 
