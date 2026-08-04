@@ -48,15 +48,148 @@ main.content > p:has(> a > img) {
   max-width: none;
 }
 
+// --- Capçalera de pàgina -------------------------------------------------
+// Les pàgines interiors començaven amb el títol i queien directament al
+// text. Aquest bloc els dona una entrada: títol gran, subtítol suau,
+// metadades en línia i una regla que separa la capçalera del contingut.
+#title-block-header {
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $rule;
+
+  h1.title {
+    font-size: clamp(2rem, 4.2vw, 2.85rem);
+    letter-spacing: -0.028em;
+    line-height: 1.08;
+    margin: 0 0 0.55rem;
+  }
+  .subtitle {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: $ink-muted;
+    margin: 0;
+  }
+  .quarto-title-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.2rem;
+    margin-top: 1.2rem;
+  }
+  .quarto-title-meta-heading {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $ink-muted;
+  }
+  .quarto-title-meta-contents p {
+    margin: 0.15rem 0 0;
+    font-size: 0.95rem;
+  }
+}
+
 // --- Ritme vertical -----------------------------------------------------
 h2 {
-  margin-top: 3rem;
+  font-size: 1.32rem;
+  font-weight: 650;
+  margin-top: 3.4rem;
+  margin-bottom: 1rem;
   padding-top: 0;
   border-bottom: none;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
 }
 h3 { margin-top: 2rem; }
 p  { margin-bottom: 1.15rem; }
+
+// Marca d'accent sobre cada secció. És el que dona ritme a una pàgina
+// llarga de text sense haver-hi d'afegir res.
+main.content section > h2::before {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 3px;
+  border-radius: 2px;
+  background: $accent;
+  opacity: 0.85;
+  margin-bottom: 0.8rem;
+}
+.band h2::before, .facts h2::before { display: none; }
+
+// --- Enllaços dins el text -----------------------------------------------
+main.content a:not(.btn-main):not(.btn-plain):not(.stretched-link):not(.nav-link) {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: rgba(14, 107, 94, 0.38);
+  &:hover { text-decoration-color: $accent; }
+}
+
+// --- Taules ---------------------------------------------------------------
+// Les de Bootstrap porten vores a tot arreu i és el que més fa "plantilla
+// antiga". Aquí només hi ha una línia per fila i la capçalera en versaletes.
+main.content table, main.content .table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0 2rem;
+  font-size: 0.95rem;
+
+  th, td { border: none; }
+  th {
+    text-align: left;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $ink-muted;
+    padding: 0 1rem 0.55rem 0;
+    border-bottom: 1.5px solid $rule;
+  }
+  td {
+    padding: 0.7rem 1rem 0.7rem 0;
+    border-bottom: 1px solid rgba(226, 230, 232, 0.75);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  th:last-child, td:last-child { padding-right: 0; }
+  tbody tr:hover td { background: rgba(14, 107, 94, 0.028); }
+}
+
+// --- Índex lateral --------------------------------------------------------
+#toc-title {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $ink-muted;
+  margin-bottom: 0.7rem;
+}
+nav[role="doc-toc"] {
+  font-size: 0.88rem;
+  ul { border-left: none; }
+  li a {
+    display: block;
+    color: $ink-muted;
+    text-decoration: none;
+    border-left: 2px solid $rule;
+    padding: 0.24rem 0 0.24rem 0.85rem;
+    &:hover { color: $accent; border-left-color: $accent; }
+    &.active {
+      color: $ink;
+      font-weight: 600;
+      border-left-color: $accent;
+    }
+  }
+}
+
+// --- Avisos ---------------------------------------------------------------
+// Els callout de Quarto surten amb vora blava de documentació tècnica.
+.callout {
+  border: none !important;
+  border-left: 3px solid $accent !important;
+  border-radius: 0 $border-radius $border-radius 0 !important;
+  background: $surface;
+  .callout-body, .callout-body-container { font-size: 0.95rem; }
+  .callout-icon::before { display: none; }
+}
 
 // --- Barra de navegació -------------------------------------------------
 .navbar {
@@ -271,6 +404,35 @@ main.content > p:has(> .section-tag) {
 // La targeta ja dibuixa el contorn: l'enllaç estirat de dins no l'ha de
 // repetir, perquè cobreix tota la superfície i faria un doble marc.
 .line-card .stretched-link:focus-visible { outline: none; }
+
+// --- Controls del llistat de publicacions --------------------------------
+// El desplegable i la caixa de cerca són components de Bootstrap sense
+// tocar, i es notava. Aquí se'ls treu el relleu i se'ls posa la paleta.
+.quarto-listing {
+  .form-select, .form-control {
+    border-color: $rule;
+    font-size: 0.92rem;
+    padding: 0.5rem 0.75rem;
+    box-shadow: none;
+    &:focus {
+      border-color: $accent;
+      box-shadow: 0 0 0 3px rgba(14, 107, 94, 0.12);
+    }
+  }
+  .input-group-text {
+    background: transparent;
+    border-color: $rule;
+    color: $ink-muted;
+  }
+}
+.quarto-listing-category-title {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $ink-muted;
+  margin-bottom: 0.7rem;
+}
 
 // --- Filtre d'anys com a histograma -------------------------------------
 // Quarto pinta cada any com <div class="category" data-category="BASE64">
