@@ -199,7 +199,7 @@ Fets confirmats per en Rafel. Són la base de `phd.qmd`; no els suavitzis ni els
   recerca, però la beca l'ha de demanar i guanyar el candidat en convocatòria competitiva
   (AGAUR/FI, FPU, o equivalent del seu país). Dir-ho clar: és una plaça per la qual competir,
   no una plaça concedida.
-- Hi caben **2 o 3 doctorands**.
+- Hi caben **2 doctorands**.
 - Inici previst: **finals del 2026**.
 - Requisit: **màster oficial** (accés al programa de doctorat de la UdL).
 - **Presencialitat obligatòria** a la facultat de Lleida.
