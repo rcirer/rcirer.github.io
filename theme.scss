@@ -369,25 +369,6 @@ figcaption {
   }
 }
 
-// --- Etiqueta d'estat de secció -----------------------------------------
-// Diu d'un cop d'ull en quina etapa és cada línia de recerca. El text ja ho
-// explica, però enterrat dins el paràgraf; així es veu abans de llegir.
-.section-tag {
-  display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: $accent;
-  border: 1px solid rgba(14, 107, 94, 0.32);
-  border-radius: 999px;
-  padding: 0.16rem 0.66rem;
-}
-main.content > p:has(> .section-tag) {
-  margin-top: -0.5rem;
-  margin-bottom: 1.3rem;
-}
-
 // --- Focus de teclat -----------------------------------------------------
 // Qui navega amb tabulador ha de veure on és. :focus-visible només es
 // dispara amb teclat, així que el contorn no apareix en clicar amb ratolí.
