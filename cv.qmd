@@ -5,7 +5,7 @@ title: "CV and contact"
 date: last-modified
 date-format: "MMMM YYYY"
 pagetitle: "Academic CV and contact"
-description-meta: "Academic CV of Rafel Cirer-Sastre: positions, education, funded projects, doctoral supervision, research groups and awards."
+description-meta: "Academic CV of Rafel Cirer-Sastre: position, education, doctoral supervision and funded research at INEFC Lleida."
 ---
 
 ## Contact
@@ -18,12 +18,8 @@ Universitat de Lleida
 ## Current position
 
 Associate Professor of Kinesiology, INEFC Lleida (Universitat de Lleida), tenured in 2026
-and affiliated with the centre since 2016.
-
-Head of Research Support and Knowledge Transfer at INEFC Lleida since 2022, and member of
-the centre's Research Board.
-
-## Doctoral supervision
+and affiliated with the centre since 2016. Head of Research Support and Knowledge Transfer
+since 2022, and member of the centre's Research Board.
 
 I currently supervise four doctoral candidates.
 
@@ -32,60 +28,27 @@ I currently supervise four doctoral candidates.
 | Year | Qualification and institution |
 |---|---|
 | 2020 | PhD in Physical Activity and Sport, Universitat de Lleida — Excellent, international mention |
-| 2018 | Postgraduate specialist in university teaching, UdL |
 | 2015 | MSc in Physical Activity and Health, Universitat de Barcelona |
-| 2015 | Postgraduate certificate in exercise prescription for health, UdL |
 | 2014 | BSc in Physical Activity and Sport Sciences, UdL |
 
 **Doctoral thesis**: *Troponin, exercise and growth: exercise-induced release of cardiac
 troponin in healthy, trained, prepubertal and pubertal males*. Supervisors: Francisco Corbi
 Soler and Joaquín Reverter Masià.
 
-## Accreditations
+## Research
 
-Regional research assessment period (AQU, 2023) · Research accreditation (AQU, 2024) ·
-Accreditation as Lecturer (AQU, 2021).
+I lead **EXCURSE** — *Muscle Excursion Range in Strength Training: Implications for
+Performance and Injury Prevention* (INEFC, 2025–2028), co-led with Xavier Peirau Terès, and
+have taken part in funded projects on physical activity on prescription, school-based health
+assessment and injury prevention.
 
-## Research stays
+I belong to the Human Movement Research Group at INEFC/UdL and, since 2023, to the Clinical
+Neurosciences group at IRBLleida, where I am responsible for statistical analysis.
 
-- Universidad de Zaragoza, Faculty of Nursing and Physiotherapy (Huesca), 2021, 3 months.
-  Host: Isaac López-Laval.
-- Universidad Autónoma de Nuevo León, Faculty of Sport Organisation (Mexico), 2019,
-  3 months. Host: Luis Enrique Carranza García.
+## Recognition
 
-## Projects
-
-**As principal investigator**
-
-- **EXCURSE** — *Muscle Excursion Range in Strength Training: Implications for Performance
-  and Injury Prevention*. INEFC, 2025–2028. Co-led with Xavier Peirau Terès.
-
-**As participant (selection)**
-
-- *EUPAP — A European Model for Physical Activity on Prescription*. European Commission,
-  2019–2022.
-- *Assessment of health parameters and physical activity levels in primary and secondary
-  school*. 2017–2021.
-- *Prevention of anterior cruciate ligament injury in adolescent female handball players*.
-  Generalitat de Catalunya, 2018–2022.
-
-## Research groups
-
-- Human Movement Research Group (Consolidated Funded Group, 2021 SGR 01619), INEFC/UdL —
-  since 2014.
-- Grupo de Investigación Movimiento Humano, Universidad de Zaragoza — since 2019.
-- Clinical Neurosciences, IRBLleida — since 2023, responsible for statistical analysis.
-
-## Peer review
-
-Frontiers in Physiology · Pediatric Exercise Science · International Journal of Sports
-Medicine · Sports · Journal of Clinical Medicine · Applied Physiology, Nutrition and
-Metabolism.
-
-## Awards
-
-- Sport Award 2025 (ESCA project), Generalitat de Catalunya.
-- Sport Award 2022 (COR-School project), Fundació Catalana per a l'Esport.
+Sport Award 2025 (ESCA project) and Sport Award 2022 (COR-School project), Generalitat de
+Catalunya. Research accreditation and regional research assessment period, AQU Catalunya.
 
 ---
 
