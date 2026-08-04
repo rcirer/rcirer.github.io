@@ -4,28 +4,21 @@
     "href": "teaching.html",
     "title": "Docència",
     "section": "",
-    "text": "This page is in Catalan: the teaching material is used in Catalan-taught courses, and translating it would help nobody. The rest of the site is in English.\nAquí penjo el material docent que pot servir fora de l’aula: guions, apunts i codi. Està organitzat per assignatura, no per curs acadèmic."
+    "text": "This page is in Catalan: the teaching material is used in Catalan-taught courses, and translating it would help nobody. The rest of the site is in English."
   },
   {
-    "objectID": "teaching.html#grau-en-ciències-de-lactivitat-física-i-lesport-udl-inefc-lleida",
-    "href": "teaching.html#grau-en-ciències-de-lactivitat-física-i-lesport-udl-inefc-lleida",
+    "objectID": "teaching.html#assignatures",
+    "href": "teaching.html#assignatures",
     "title": "Docència",
-    "section": "Grau en Ciències de l’Activitat Física i l’Esport (UdL / INEFC Lleida)",
-    "text": "Grau en Ciències de l’Activitat Física i l’Esport (UdL / INEFC Lleida)\n\nCinesiologia i Tecnologia de l’Exercici Físic\nDes del 2017; corresponsable de l’assignatura des del 2024.\n(Materials pendents de publicar.)\n\n\nAnatomia Aplicada a l’Activitat Física i l’Esport\nDes del 2020.\n(Materials pendents de publicar.)\n\n\nMetodologia de la Investigació en Activitat Física i Salut\nDes del 2024.\n(Materials pendents de publicar.)"
+    "section": "Assignatures",
+    "text": "Assignatures\nGrau en Ciències de l’Activitat Física i l’Esport — UdL / INEFC Lleida\n\nCinesiologia i Tecnologia de l’Exercici Físic, des del 2017; corresponsable de l’assignatura des del 2024.\nAnatomia Aplicada a l’Activitat Física i l’Esport, des del 2020.\nMetodologia de la Investigació en Activitat Física i Salut, des del 2024.\n\nMàster en Activitat Física i Salut — Universitat de Barcelona\n\nMetodologia de la Investigació en Activitat Física i Salut, des del curs 2024-25."
   },
   {
-    "objectID": "teaching.html#màster-en-activitat-física-i-salut-ub",
-    "href": "teaching.html#màster-en-activitat-física-i-salut-ub",
+    "objectID": "teaching.html#materials-oberts",
+    "href": "teaching.html#materials-oberts",
     "title": "Docència",
-    "section": "Màster en Activitat Física i Salut (UB)",
-    "text": "Màster en Activitat Física i Salut (UB)\nMetodologia de la Investigació en Activitat Física i Salut, des del curs 2024-25.\n(Materials pendents de publicar.)"
-  },
-  {
-    "objectID": "teaching.html#formació-metodològica",
-    "href": "teaching.html#formació-metodològica",
-    "title": "Docència",
-    "section": "Formació metodològica",
-    "text": "Formació metodològica\nCursos que he impartit al programa de doctorat de l’INEFC i que poden interessar més enllà de l’aula:\n\nIniciació al tractament de dades amb R — materials del curs, disponibles a GitHub.\nIntroducció a la revisió sistemàtica i meta-anàlisi (pendent de publicar)\nMicrosoft Word per a la recerca (pendent de publicar)\n\n\n\n\n\n\n\n\nLlevat que s’indiqui el contrari, aquest material es publica amb llicència CC BY-NC-SA 4.0: el pots fer servir i adaptar citant-ne l’origen, sense ús comercial i compartint igual."
+    "section": "Materials oberts",
+    "text": "Materials oberts\n\nIniciació al tractament de dades amb R — materials del curs de doctorat de l’INEFC, disponibles a GitHub.\n\n\n\n\n\n\n\n\nLlevat que s’indiqui el contrari, aquest material es publica amb llicència CC BY-NC-SA 4.0: el pots fer servir i adaptar citant-ne l’origen, sense ús comercial i compartint igual."
   },
   {
     "objectID": "publications.html",
