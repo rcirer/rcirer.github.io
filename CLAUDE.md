@@ -223,6 +223,37 @@ recomanava. **No les tornis a proposar** si no és ell qui les replanteja.
   amb filtre per any i prou. Trair-ne unes quantes a mà xoca amb la secció 6.
 - **Cap CV en PDF**, ni curt ni llarg. La regla `*.pdf` del `.gitignore` es manté.
 
+## 9 quater. Infografies docents
+
+Projecte obert el 3 d'agost de 2026. Idea d'en Rafel: **diagrames i infografies docents,
+cadascun a la seva pàgina, a pantalla completa i sense menú**, oberts en finestra nova i
+llistats des de Docència. Serveixen per a les seves classes i com a recurs obert.
+
+Primera: el diagrama del rang d'excursió muscular (MER), que ja existeix a
+`images/excursion-range.svg`. Servirà per fixar el motlle.
+
+Temes previstos: cadenes cinètiques, rols musculars (agonista, antagonista, sinergista,
+estabilitzador).
+
+**Referència que el va inspirar**: <https://rpsychologist.com/cohend/>, de Kristoffer
+Magnusson. Visualització interactiva de la d de Cohen amb control lliscant, distribucions
+que es recalculen en directe, mode fosc i preferències desades al navegador. **És una
+aplicació de JavaScript**, no un SVG. Val la pena fixar-se també en com separa les
+llicències: codi amb MIT, visualització amb CC0, text amb CC BY 4.0.
+
+**Conseqüència que no s'ha de perdre de vista:** aquell nivell d'interactivitat entra en
+conflicte amb la secció 3 (res de dependències de JavaScript ni eines de build). Abans de
+construir res interactiu, cal decidir la via i justificar-la amb ell.
+
+**Decisió d'arquitectura ja presa**: aquestes pàgines **no seran pàgines del lloc Quarto**.
+Seran fitxers autònoms dins `diagrames/`, per no dependre de la plantilla del web ni haver
+d'amagar-li el menú amb CSS, cosa que es trencaria a la primera actualització de Quarto.
+
+**Analítica**: pendent. L'opció recomanada és GoatCounter (gratuït, sense galetes, sense
+retenir IP ni User-Agent, només agregats). No s'instal·la fins que en Rafel ho consulti amb
+el delegat de protecció de dades de la UdL. Per distingir canals, enllaços amb paràmetre
+(`?d=cinesiologia`) en comptes de dades demogràfiques.
+
 ## 10. Decisions obertes
 
 Pendents. Recorda-les-hi quan siguin rellevants per a la tasca en curs.
