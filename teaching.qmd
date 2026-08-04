@@ -5,7 +5,7 @@ subtitle: "Materials i recursos oberts."
 # lang importa perquè els lectors de pantalla la pronunciïn en català.
 lang: ca
 toc-title: "En aquesta pàgina"
-description-meta: "Materials docents oberts de cinesiologia, anatomia aplicada i metodologia de la investigació."
+description-meta: "Assignatures de cinesiologia, anatomia aplicada i metodologia de la investigació, i materials docents oberts."
 pagetitle: "Teaching resources in kinesiology and research methods"
 ---
 
@@ -14,44 +14,23 @@ This page is in Catalan: the teaching material is used in Catalan-taught courses
 translating it would help nobody. The rest of the site is in English.
 :::
 
-Aquí penjo el material docent que pot servir fora de l'aula: guions, apunts i codi.
-Està organitzat per assignatura, no per curs acadèmic.
+## Assignatures
 
-## Grau en Ciències de l'Activitat Física i l'Esport (UdL / INEFC Lleida)
+**Grau en Ciències de l'Activitat Física i l'Esport** — UdL / INEFC Lleida
 
-### Cinesiologia i Tecnologia de l'Exercici Físic
+- Cinesiologia i Tecnologia de l'Exercici Físic, des del 2017; corresponsable de
+  l'assignatura des del 2024.
+- Anatomia Aplicada a l'Activitat Física i l'Esport, des del 2020.
+- Metodologia de la Investigació en Activitat Física i Salut, des del 2024.
 
-Des del 2017; corresponsable de l'assignatura des del 2024.
+**Màster en Activitat Física i Salut** — Universitat de Barcelona
 
-*(Materials pendents de publicar.)*
+- Metodologia de la Investigació en Activitat Física i Salut, des del curs 2024-25.
 
-### Anatomia Aplicada a l'Activitat Física i l'Esport
-
-Des del 2020.
-
-*(Materials pendents de publicar.)*
-
-### Metodologia de la Investigació en Activitat Física i Salut
-
-Des del 2024.
-
-*(Materials pendents de publicar.)*
-
-## Màster en Activitat Física i Salut (UB)
-
-Metodologia de la Investigació en Activitat Física i Salut, des del curs 2024-25.
-
-*(Materials pendents de publicar.)*
-
-## Formació metodològica
-
-Cursos que he impartit al programa de doctorat de l'INEFC i que poden interessar més enllà
-de l'aula:
+## Materials oberts
 
 - **[Iniciació al tractament de dades amb R](https://github.com/rcirer/24-intro-R)** —
-  materials del curs, disponibles a GitHub.
-- Introducció a la revisió sistemàtica i meta-anàlisi *(pendent de publicar)*
-- Microsoft Word per a la recerca *(pendent de publicar)*
+  materials del curs de doctorat de l'INEFC, disponibles a GitHub.
 
 ---
 
