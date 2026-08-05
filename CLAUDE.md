@@ -295,8 +295,9 @@ Pendents. Recorda-les-hi quan siguin rellevants per a la tasca en curs.
   actiu (el `.com` no en tenia); migrar sense treure'l deixa el domini en SERVFAIL, que és
   una avaria molt pitjor que un NXDOMAIN i no es resol sola.
 
-  **AVÍS — el correu.** `contacte@rafelcirer.com` funciona amb **iCloud Custom Email
-  Domain**. Aquests registres han de sobreviure a qualsevol canvi de DNS:
+  **EL CORREU.** `contacte@rafelcirer.com` funciona amb **iCloud Custom Email Domain**.
+  Revisat i net el 5 d'agost de 2026. Aquests vuit registres han de sobreviure a qualsevol
+  canvi de DNS:
 
       MX    @                 10 mx01.mail.icloud.com
       MX    @                 10 mx02.mail.icloud.com
@@ -305,10 +306,29 @@ Pendents. Recorda-les-hi quan siguin rellevants per a la tasca en curs.
       TXT   @                 V9oMDKepNz_t92uyYLvpKOUCKIX2aPjrNWYuXdJt3uQ
       TXT   @                 DLd8OOfQfezyw8IqZgjdWfH5hSPxfa85rEQeT1Pls_U
       CNAME sig1._domainkey   sig1.dkim.rafelcirer.com.at.icloudmailadmin.com
+      TXT   _dmarc            v=DMARC1; p=none; rua=<Cloudflare>,<contacte@rafelcirer.com>
 
   El proxy de Cloudflare (núvol taronja) va **només a l'arrel i a `www`**. Si s'activa al
   `sig1._domainkey`, es trenca la signatura DKIM i el correu comença a caure a brossa
   sense cap avís.
+
+  Els dos TXT de cadena aleatòria **no s'han pogut identificar** (43 caràcters, sense
+  prefix). No els esborris: podrien ser una prova de propietat d'algun servei.
+
+  El DKIM és RSA de 2048 bits. L'SPF acaba en `~all` **a propòsit**: és el que documenta
+  Apple i el que no trenca el reenviament. Endurir-ho és feina del DMARC, no de l'SPF.
+
+  **PENDENT.** El DMARC és a `p=none`, que només observa. Quan hagi vist uns quantes
+  setmanes d'informes i tot el que hi surti sigui iCloud, pujar-lo a `p=quarantine` i
+  després a `p=reject`. Els informes es llegeixen a Cloudflare → Email → DMARC Management.
+
+  Es van esborrar deu registres orfes del servei de correu de cdmon (cinc SRV i quatre TXT
+  de SOGo, més l'A d'`autoconfig`). Si algun dia calguessin, cdmon els torna a crear en
+  activar el seu correu.
+
+  **Atenció a la confusió de panells:** cdmon és el REGISTRADOR (titularitat, renovació,
+  servidors de noms); Cloudflare és el DNS (registres). Editar registres a cdmon ja no té
+  cap efecte.
 - Si té o no perfil de Google Scholar (cal crear-lo si no).
 - Si val la pena moure el DNS a Cloudflare per resoldre la redirecció del segon domini.
 - Text definitiu de la fitxa de gencat i verificació que l'enllaç al domini hi és a les
