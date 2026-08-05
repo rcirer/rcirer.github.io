@@ -10,7 +10,7 @@ description-meta: "Academic CV of Rafel Cirer-Sastre: position, education, docto
 
 ## Contact
 
-rcirer *at* gencat *dot* cat
+contacte *at* rafelcirer *dot* com
 
 INEFC Lleida — Institut Nacional d'Educació Física de Catalunya
 Universitat de Lleida

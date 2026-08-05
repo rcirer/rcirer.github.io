@@ -170,7 +170,7 @@ No admeten excepció.
   git en conserva l'historial per sempre. `cv-extracte-web.md` sí que hi pot ser — és
   l'extracte ja depurat d'aquestes dades.
 - El repositori porta un `.gitignore` amb `*.pdf` des del primer commit.
-- **L'adreça de contacte s'escriu desglossada** (`rcirer *at* gencat *dot* cat`), mai com
+- **L'adreça de contacte s'escriu desglossada** (`contacte *at* rafelcirer *dot* com`), mai com
   a `mailto:` ni en text pla. És deliberat, per dificultar els recol·lectors de correu.
   No ho «arreglis» convertint-ho en un enllaç clicable.
 - El CV públic del web serà un document diferent, sense dades identificatives.
@@ -216,7 +216,7 @@ recomanava. **No les tornis a proposar** si no és ell qui les replanteja.
 
 - **Cap secció «Collaborate»** ni recorreguts de navegació per públic (estudiants /
   col·laboradors). L'arquitectura es queda temàtica.
-- **El correu no es fa clicable.** Es queda desglossat (`rcirer *at* gencat *dot* cat`).
+- **El correu no es fa clicable.** Es queda desglossat (`contacte *at* rafelcirer *dot* com`).
   L'argument que l'ofuscació afegeix fricció és cert i ell l'ha sospesat: prefereix la
   fricció abans que el correu brossa.
 - **Cap llista de «publicacions seleccionades»** ni categories temàtiques. Surten totes,

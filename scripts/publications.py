@@ -37,7 +37,7 @@ from pathlib import Path
 import yaml
 
 ORCID_ID = "0000-0001-6687-8201"
-MAILTO = "rcirer@gencat.cat"          # entra al "polite pool" d'OpenAlex i Crossref
+MAILTO = "contacte@rafelcirer.com"          # entra al "polite pool" d'OpenAlex i Crossref
 ARREL = Path(__file__).resolve().parent.parent
 SORTIDA = ARREL / "publications.yml"
 UA = f"rafelcirer-web/1.0 (mailto:{MAILTO})"
