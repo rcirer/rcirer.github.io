@@ -275,9 +275,24 @@ tendències, no com a recompte absolut. No les presentis mai com a xifres exacte
 
 Pendents. Recorda-les-hi quan siguin rellevants per a la tasca en curs.
 
-- Quin dels dos dominis serà el canònic: rafelcirer.com o rafelcirer.cat. GitHub Pages
-  només admet un domini personalitzat per repositori; el segon ha de redirigir des del
-  DNS o des del registrador.
+- **Domini canònic decidit: rafelcirer.com.** El `.cat` hi redirigirà. En curs: moure el
+  DNS del `.com` a Cloudflare i apuntar-lo a GitHub Pages. El fitxer `CNAME` ja és a les
+  fonts i es copia a `_site` com a recurs (sense això, cada `quarto publish` l'esborraria).
+
+  **AVÍS — el correu.** `contacte@rafelcirer.com` funciona amb **iCloud Custom Email
+  Domain**. Aquests registres han de sobreviure a qualsevol canvi de DNS:
+
+      MX    @                 10 mx01.mail.icloud.com
+      MX    @                 10 mx02.mail.icloud.com
+      TXT   @                 v=spf1 include:icloud.com ~all
+      TXT   @                 apple-domain=y6COPowoElebri4I
+      TXT   @                 V9oMDKepNz_t92uyYLvpKOUCKIX2aPjrNWYuXdJt3uQ
+      TXT   @                 DLd8OOfQfezyw8IqZgjdWfH5hSPxfa85rEQeT1Pls_U
+      CNAME sig1._domainkey   sig1.dkim.rafelcirer.com.at.icloudmailadmin.com
+
+  El proxy de Cloudflare (núvol taronja) va **només a l'arrel i a `www`**. Si s'activa al
+  `sig1._domainkey`, es trenca la signatura DKIM i el correu comença a caure a brossa
+  sense cap avís.
 - Si té o no perfil de Google Scholar (cal crear-lo si no).
 - Si val la pena moure el DNS a Cloudflare per resoldre la redirecció del segon domini.
 - Text definitiu de la fitxa de gencat i verificació que l'enllaç al domini hi és a les
