@@ -14,7 +14,7 @@ project:
 
 website:
   title: "Rafel Cirer-Sastre"
-  site-url: "https://rcirer.github.io"
+  site-url: "https://rafelcirer.com"
   description: "Associate Professor of Kinesiology at INEFC Lleida. Strength and muscle mechanics, field-test validation, and cardiac biomarkers after exercise."
   favicon: images/favicon.svg
   open-graph: true
