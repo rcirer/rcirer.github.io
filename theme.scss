@@ -484,4 +484,14 @@ figcaption {
   border-top: 1px solid $rule;
   font-size: 0.9rem;
   color: $ink-muted;
+  margin-top: 4rem;
+  padding: 1.8rem 0;
+
+  // La nota de privacitat ha de ser llegible però no competir amb res.
+  .footer-note {
+    display: inline-block;
+    margin-top: 0.35rem;
+    font-size: 0.8rem;
+    a { color: $ink-muted; text-decoration-color: rgba(92, 102, 112, 0.4); }
+  }
 }

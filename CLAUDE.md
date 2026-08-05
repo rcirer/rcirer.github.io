@@ -249,10 +249,27 @@ construir res interactiu, cal decidir la via i justificar-la amb ell.
 Seran fitxers autònoms dins `diagrames/`, per no dependre de la plantilla del web ni haver
 d'amagar-li el menú amb CSS, cosa que es trencaria a la primera actualització de Quarto.
 
-**Analítica**: pendent. L'opció recomanada és GoatCounter (gratuït, sense galetes, sense
-retenir IP ni User-Agent, només agregats). No s'instal·la fins que en Rafel ho consulti amb
-el delegat de protecció de dades de la UdL. Per distingir canals, enllaços amb paràmetre
-(`?d=cinesiologia`) en comptes de dades demogràfiques.
+**Analítica**: GoatCounter, instal·lat. Compte `rcirer`, tauler a
+`rcirer.goatcounter.com`. L'script va a `_quarto.yml` sota `include-in-header` i és **la
+única dependència de JavaScript de tercers del lloc**; al peu hi ha la nota de privacitat
+corresponent. Per treure-la, esborra totes dues coses.
+
+La web és **d'en Rafel, no de la UdL**: ell és el responsable del tractament. Com que no
+es tracten dades personals (ni galetes, ni IP, ni User-Agent), **no cal banner de
+consentiment**; n'hi ha prou amb la nota del peu.
+
+**Convenció d'enllaços per canal.** GoatCounter llegeix `campaign` o `utm_campaign` per al
+nom, i `source`, `src`, `ref` o `utm_source` per a l'origen. Cap altre paràmetre serveix.
+Fes servir la forma curta i no cal donar res d'alta:
+
+    /diagrames/mer.html?campaign=cinesiologia
+
+**Esdeveniments.** Per comptar descàrregues o clics, l'atribut `data-goatcounter-click="nom"`
+a l'element. No cal escriure gens de JavaScript.
+
+**Avís sobre les xifres:** compten de menys, sistemàticament i en proporció desconeguda,
+perquè els bloquejadors eliminen l'script. Serveixen per comparar entre pàgines i veure
+tendències, no com a recompte absolut. No les presentis mai com a xifres exactes.
 
 ## 10. Decisions obertes
 

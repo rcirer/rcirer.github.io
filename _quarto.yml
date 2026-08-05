@@ -39,7 +39,10 @@ website:
       - text: ORCID
         href: https://orcid.org/0000-0001-6687-8201
   page-footer:
-    center: "Rafel Cirer-Sastre · INEFC Lleida, Universitat de Lleida"
+    center: |
+      Rafel Cirer-Sastre · INEFC Lleida, Universitat de Lleida<br>
+      <span class="footer-note">No cookies. Anonymous, aggregate visit counts via
+      <a href="https://www.goatcounter.com/">GoatCounter</a>, which stores no IP addresses.</span>
 
 format:
   html:
@@ -49,6 +52,14 @@ format:
     # teaching.qmd, que sí que és en català, el sobreescriu al seu capçal.
     toc-title: "On this page"
     anchor-sections: true
+    # ÚNICA dependència de JavaScript de tercers del lloc (CLAUDE.md §3).
+    # Són ~3 KB, es carrega de manera asíncrona i, si el servei desaparegués,
+    # falla en silenci sense trencar res. Per treure l'analítica del lloc,
+    # esborra aquestes tres línies i la nota del peu.
+    include-in-header:
+      - text: |
+          <script data-goatcounter="https://rcirer.goatcounter.com/count"
+                  async src="https://gc.zgo.at/count.js"></script>
 
 # Idioma per defecte del lloc. Importa per als lectors de pantalla, que
 # apliquen les regles de pronunciació segons aquest atribut.
