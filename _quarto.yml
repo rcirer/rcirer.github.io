@@ -6,6 +6,11 @@ project:
   # documents interns i no han de sortir al web.
   render:
     - "**/*.qmd"
+  # El fitxer CNAME és el que diu a GitHub Pages quin és el domini propi.
+  # Ha d'anar a _site perquè `quarto publish gh-pages` reescriu la branca
+  # sencera: si no es copiés, cada publicació esborraria el domini.
+  resources:
+    - CNAME
 
 website:
   title: "Rafel Cirer-Sastre"
