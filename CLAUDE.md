@@ -275,9 +275,25 @@ tendències, no com a recompte absolut. No les presentis mai com a xifres exacte
 
 Pendents. Recorda-les-hi quan siguin rellevants per a la tasca en curs.
 
-- **Domini canònic decidit: rafelcirer.com.** El `.cat` hi redirigirà. En curs: moure el
-  DNS del `.com` a Cloudflare i apuntar-lo a GitHub Pages. El fitxer `CNAME` ja és a les
-  fonts i es copia a `_site` com a recurs (sense això, cada `quarto publish` l'esborraria).
+- **FET. Domini canònic: rafelcirer.com**, viu i servit per Cloudflare (proxy actiu a
+  l'arrel i a `www`, SSL en mode *Full (strict)*). El DNS del `.com` és a Cloudflare; el
+  registrador segueix sent cdmon. `rcirer.github.io`, `www` i `http://` redirigeixen tots
+  a `https://rafelcirer.com`. El fitxer `CNAME` és a les fonts i es copia a `_site` com a
+  recurs: sense això, cada `quarto publish` esborraria el domini.
+
+- **El `.cat` redirigeix, però NOMÉS PER HTTP.** Es fa amb «Redireccions web» de cdmon
+  (301 cap a `https://rafelcirer.com`, arrel i `www`). El seu servidor **no escolta al
+  port 443**: `https://rafelcirer.cat` dona error de connexió. En Rafel ho sap i ho ha
+  acceptat el 5 d'agost de 2026.
+
+  Conseqüència que cal recordar-li si algun dia vol difondre el `.cat`: **no l'escriguis
+  mai amb `https://`** en articles, diapositives ni a la fitxa de gencat. Escriu-lo pelat
+  (`rafelcirer.cat`) perquè el navegador provi HTTP primer.
+
+  Si algun dia vol HTTPS al `.cat`, l'única via és moure'l a Cloudflare, i **abans cal
+  desactivar el DNSSEC a cdmon i esperar que caigui el registre DS**. El `.cat` té DNSSEC
+  actiu (el `.com` no en tenia); migrar sense treure'l deixa el domini en SERVFAIL, que és
+  una avaria molt pitjor que un NXDOMAIN i no es resol sola.
 
   **AVÍS — el correu.** `contacte@rafelcirer.com` funciona amb **iCloud Custom Email
   Domain**. Aquests registres han de sobreviure a qualsevol canvi de DNS:
