@@ -6,15 +6,15 @@
       version="2.0">
 <channel>
 <title>Rafel Cirer-Sastre</title>
-<link>https://rcirer.github.io/blog/</link>
-<atom:link href="https://rcirer.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://rafelcirer.com/blog/</link>
+<atom:link href="https://rafelcirer.com/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Associate Professor of Kinesiology at INEFC Lleida. Strength and muscle mechanics, field-test validation, and cardiac biomarkers after exercise.</description>
 <image>
-<url>https://rcirer.github.io/images/lecture-hall.jpg</url>
+<url>https://rafelcirer.com/images/lecture-hall.jpg</url>
 <title>Rafel Cirer-Sastre</title>
-<link>https://rcirer.github.io/blog/</link>
+<link>https://rafelcirer.com/blog/</link>
 </image>
 <generator>quarto-1.9.37</generator>
-<lastBuildDate>Wed, 05 Aug 2026 08:37:54 GMT</lastBuildDate>
+<lastBuildDate>Wed, 05 Aug 2026 13:49:58 GMT</lastBuildDate>
 </channel>
 </rss>
