@@ -26,6 +26,18 @@
   --demanda:     #c2571a;  /* el que la resistència exigeix */
   --exigencia:   #6a4bbd;  /* el quocient entre les dues */
   --rang:        rgba(60, 60, 55, 0.07);
+  /* Figura anatòmica */
+  --pell:        #efdcca;
+  --pell-vora:   #d3b295;
+  /* Os i tendó es distingeixen per temperatura: l'os càlid, el tendó
+     fred. Amb dos cremes semblants no es podien separar. */
+  --os:          #f3e9d2;
+  --os-vora:     #99885d;
+  --muscul:      #ab3a34;
+  --muscul-clar: #cd6154;
+  --tendo:       #eff1ea;
+  --tendo-vora:  #8f978a;
+  --terra:       #a9a294;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -38,6 +50,15 @@
     --demanda:     #f08a45;
     --exigencia:   #a690f0;
     --rang:        rgba(255, 255, 250, 0.06);
+    --pell:        #453930;
+    --pell-vora:   #705b48;
+    --os:          #d3c69f;
+    --os-vora:     #8b7d54;
+    --muscul:      #c04d45;
+    --muscul-clar: #e07b6f;
+    --tendo:       #cdd3c8;
+    --tendo-vora:  #7c8479;
+    --terra:       #5a544c;
   }
 }
 
@@ -102,6 +123,39 @@ input[type="range"] { width: 100%; accent-color: var(--exigencia); margin: 0; }
   color: var(--fons);
   border-color: var(--text);
 }
+
+/* ---------- Figura anatòmica ---------- */
+.escena {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(190px, 1fr);
+  gap: 1.4rem 1.8rem;
+  align-items: start;
+  margin-bottom: 1.6rem;
+}
+@media (max-width: 720px) { .escena { grid-template-columns: 1fr; } }
+
+#figura { width: 100%; height: auto; display: block; touch-action: none; }
+#figura text { font-family: inherit; font-size: 11px; fill: var(--text-fluix); }
+#figura .anatomia { font-style: italic; }
+#figura .mecanica { fill: var(--demanda); font-weight: 650; }
+#figura .guia { stroke: var(--text-fluix); stroke-width: .8; fill: none; }
+/* Dins la lupa la silueta del membre només fa nosa: amaga-la i deixa
+   veure el mecanisme, que és el que s'hi va a mirar. */
+#figura .lupa-dins .pell { display: none; }
+
+.panell-angle {
+  background: var(--fons-panell);
+  border: 1px solid var(--vora);
+  border-radius: 8px;
+  padding: 1.1rem 1.2rem;
+}
+.fila { display: flex; justify-content: space-between; align-items: baseline; gap: .8rem; padding: .32rem 0; border-bottom: 1px solid var(--vora); }
+.fila:last-of-type { border-bottom: 0; }
+.fila .k { font-size: .84rem; color: var(--text-fluix); }
+.fila .v { font-variant-numeric: tabular-nums; font-weight: 650; white-space: nowrap; }
+/* Files amb etiqueta llarga: el valor va a sota, no al costat. */
+.fila.apilada { display: block; }
+.fila.apilada .v { display: block; margin-top: .1rem; }
 
 /* ---------- Gràfics ---------- */
 .grafic { width: 100%; height: auto; display: block; touch-action: none; }
@@ -192,6 +246,28 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
 
 </div>
 
+<div class="escena">
+
+  <svg id="figura" viewBox="0 0 560 372" role="img"
+       aria-label="Esquema anatòmic de l'extensió de genoll asseguda: fèmur, tíbia, quàdriceps, ròtula i tendó rotulià, amb el braç de moment de la resistència externa."></svg>
+
+  <div class="panell-angle">
+    <div class="control" style="margin-bottom:.9rem">
+      <label for="angle">Angle de la figura <span class="valor" id="val-angle">45°</span></label>
+      <input type="range" id="angle" min="0" max="90" step="0.5" value="45">
+      <div class="botons" style="margin-top:.6rem">
+        <button type="button" id="anima" aria-pressed="false">Anima el moviment</button>
+      </div>
+    </div>
+    <div class="fila"><span class="k">Braç de moment extern</span><span class="v" id="v-brac">—</span></div>
+    <div class="fila"><span class="k">Demanda externa</span><span class="v" id="v-demanda">—</span></div>
+    <div class="fila"><span class="k">Capacitat del quàdriceps</span><span class="v" id="v-capacitat">—</span></div>
+    <div class="fila"><span class="k">Exigència relativa</span><span class="v" id="v-exigencia">—</span></div>
+    <div class="fila apilada"><span class="k">Escurçament del quàdriceps des de 90° de flexió</span><span class="v" id="v-excursio">—</span></div>
+  </div>
+
+</div>
+
 <svg id="grafic-moments" class="grafic" viewBox="0 0 900 400" role="img"
      aria-label="Moment extensor màxim del quàdriceps i moment resistiu extern, en funció de l'angle de flexió del genoll."></svg>
 
@@ -233,11 +309,20 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
 </p>
 
 <p>
-  Amb pes, el moment extern val <code>m · g · L · cos φ</code>. És màxim amb el genoll
-  estès i <strong>val exactament zero</strong> amb la cama penjant a 90°. Per això
-  l'extensió de genoll asseguda costa a dalt: allà la demanda és màxima i la capacitat
-  del quàdriceps ja ha caigut. La goma encara ho accentua més, perquè la tensió creix
-  justament quan el braç de moment també és més gran.
+  Amb pes, el moment extern val <code>m · g · L · cos φ</code>, i el <code>cos φ</code>
+  és literalment la distància horitzontal que la figura dibuixa entre el genoll i la
+  línia d'acció de la càrrega. És màxim amb el genoll estès i <strong>val exactament
+  zero</strong> amb la cama penjant a 90°, quan la càrrega passa just per l'eix. Per
+  això l'extensió de genoll asseguda costa a dalt: allà la demanda és màxima i la
+  capacitat del quàdriceps ja ha caigut.
+</p>
+
+<p>
+  La goma es comporta diferent, i el motiu es veu a la figura: com que està ancorada
+  <em>darrere</em> del genoll, conserva braç de moment amb la cama penjant, just on el
+  pes no en té gens. El seu perfil té el pic cap als 15° de flexió i cau més suaument.
+  Aquesta és la raó de ser de la resistència variable: no fa l'exercici més dur, en
+  redistribueix la duresa.
 </p>
 
 <p>
@@ -248,6 +333,39 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
   rangs diferents</strong>: el mateix 70 % vol dir càrregues absolutes molt diferents
   segons quins angles s'hi incloguin.
 </p>
+
+<h2>Què és exacte a la figura i què és una simplificació</h2>
+
+<p>Exacte, i dibuixat a escala:</p>
+<ul>
+  <li>Les insercions: recte femoral des de l'espina ilíaca anteroinferior, vasts des de
+    la diàfisi femoral, tots dos al tendó del quàdriceps, ròtula i tendó rotulià fins a
+    la tuberositat tibial.</li>
+  <li>El <strong>braç de moment de la resistència externa</strong>, mesurat com la
+    distància perpendicular de l'eix del genoll a la línia d'acció. És la xifra que
+    apareix en centímetres i és la que entra al càlcul.</li>
+  <li>La <strong>ròtula com a politja</strong>: el tendó envolta la tròclea femoral, i
+    l'escurçament del quàdriceps és la longitud d'arc que hi recorre. D'aquí surten els
+    6,4 cm d'excursió entre 90° i 0°.</li>
+  <li>La longitud del tendó rotulià, que es manté constant: la ròtula segueix la tíbia.</li>
+</ul>
+
+<p>Simplificat, i cal saber-ho:</p>
+<ul>
+  <li>L'eix del genoll es dibuixa fix. En realitat els còndils roden i llisquen, i l'eix
+    instantani es desplaça durant el recorregut.</li>
+  <li>El braç de moment del quàdriceps es dibuixa constant (el radi de la tròclea, uns
+    4 cm). El real varia amb l'angle, amb un màxim cap als 20–30° de flexió.</li>
+  <li>Els vasts es dibuixen com un sol ventre. Són tres músculs amb orientacions de
+    fibra diferents.</li>
+  <li>El maluc es manté a 90° de flexió, que és el que fa el seient. Això vol dir que el
+    recte femoral ja treballa escurçat per l'extrem proximal abans de començar.</li>
+  <li>L'ancoratge de la goma és una tria, no una dada: 45 cm sota l'eix del genoll i 25 cm
+    darrere. <strong>Moure'l canvia el perfil</strong>, i molt. Si s'ancorés just a sota del
+    genoll, la goma perdria el braç de moment en flexió i passaria a ser una versió
+    exagerada del pes en comptes de complementar-lo. És exactament la mena de detall que
+    decideix si una goma serveix per a alguna cosa en un exercici concret.</li>
+</ul>
 
 <div class="avis">
   <strong>La corba de capacitat d'aquesta versió és esquemàtica.</strong> Té la forma
@@ -295,20 +413,28 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
 
 const L        = 0.40;   // m — eix del genoll fins al coixí del turmell
 const G        = 9.81;   // m/s²
-const H_ANCORA = 0.80;   // m — ancoratge de la goma, a terra sota el genoll
-const ELL0     = 0.40;   // m — longitud de la goma sense tensió
 const PHI_MIN  = 0;
 const PHI_MAX  = 90;
+
+// Geometria de l'ancoratge de la goma: a terra i DARRERE del genoll,
+// que és com s'ancora de debò. L'alçada és la de l'eix del genoll
+// assegut sobre el terra.
+const H_ANCORA = 0.45;   // m — per sota de l'eix del genoll
+const B_ANCORA = 0.25;   // m — per darrere de l'eix del genoll
+
+// Braç de moment del quàdriceps = radi de la tròclea femoral, sobre la
+// qual el tendó llisca com sobre una politja. Constant en aquest model.
+const R_TROCLEA = 0.041; // m
 
 // --- Capacitat del múscul -------------------------------------------
 // ATENCIÓ: forma esquemàtica, no dades. Pic al voltant dels 65° de
 // flexió, ~45 % del pic en extensió completa i ~80 % del pic a 90°.
 // Per substituir-la per una corba amb font, només cal tocar aquests
 // quatre números i la funció de sota.
-const TAU_PIC   = 250;   // N·m — moment extensor màxim
-const PHI_PIC   = 65;    // graus on cau el pic
-const CAIGUDA_0 = 0.55;  // fracció perduda a φ = 0°
-const CAIGUDA_90= 0.20;  // fracció perduda a φ = 90°
+const TAU_PIC    = 250;   // N·m — moment extensor màxim
+const PHI_PIC    = 65;    // graus on cau el pic
+const CAIGUDA_0  = 0.55;  // fracció perduda a φ = 0°
+const CAIGUDA_90 = 0.20;  // fracció perduda a φ = 90°
 
 function capacitat(phi) {
   if (phi <= PHI_PIC) {
@@ -319,33 +445,42 @@ function capacitat(phi) {
 
 // --- Perfils de resistència -----------------------------------------
 // Cada funció retorna el moment extern per unitat de càrrega. Les
-// unitats no importen: tot es normalitza més avall pel màxim aixecable
-// en rang complet, i el quocient és el que es dibuixa.
+// unitats no importen: tot es normalitza pel màxim aixecable en rang
+// complet, i el que es dibuixa és el quocient.
 
 const rad = g => g * Math.PI / 180;
 
-// Pes penjat del turmell (o màquina de braç recte, sense lleva).
-// El braç de moment és L·cos φ: màxim estès, zero a 90°.
-function perfilPes(phi) {
-  return G * L * Math.cos(rad(phi));
+// Posició del coixí respecte de l'eix del genoll, en metres, amb l'eix
+// x cap endavant i l'eix y cap amunt.
+function coixi(phi) {
+  return { x: L * Math.cos(rad(phi)), y: -L * Math.sin(rad(phi)) };
 }
 
-// Goma ancorada a terra, a H_ANCORA sota l'eix del genoll.
-// Turmell a (L·cos φ, −L·sin φ); ancoratge a (0, −H).
-// La longitud de la goma creix en estendre, i el braç de moment surt
-// del producte vectorial: L·H·cos φ / ℓ.
+// Pes penjat del coixí (o màquina de braç recte, sense lleva).
+// El braç de moment és la distància HORITZONTAL de l'eix del genoll a
+// la línia d'acció de la gravetat: L·cos φ. Zero a 90°.
+function bracPes(phi) { return L * Math.cos(rad(phi)); }
+function perfilPes(phi) { return G * bracPes(phi); }
+
+// Goma ancorada a terra, darrere del genoll.
 function longitudGoma(phi) {
-  const dx = L * Math.cos(rad(phi));
-  const dy = H_ANCORA - L * Math.sin(rad(phi));
-  return Math.sqrt(dx * dx + dy * dy);
+  const c = coixi(phi);
+  return Math.hypot(B_ANCORA + c.x, H_ANCORA + c.y);
 }
+// Braç de moment de la goma: distància perpendicular de l'eix del
+// genoll a la recta coixí–ancoratge. Surt del producte vectorial i, a
+// diferència del pes, NO s'anul·la a 90°, perquè l'ancoratge és darrere.
+function bracGoma(phi) {
+  return L * (H_ANCORA * Math.cos(rad(phi)) + B_ANCORA * Math.sin(rad(phi))) / longitudGoma(phi);
+}
+// Longitud sense tensió: una mica més curta que la que té a l'inici del
+// moviment, per deixar-hi una pretensió petita.
+const ELL0 = longitudGoma(90) * 0.94;
 function perfilGoma(phi) {
-  const ell = longitudGoma(phi);
-  const estirament = Math.max(0, ell - ELL0);
-  return estirament * L * H_ANCORA * Math.cos(rad(phi)) / ell;
+  return Math.max(0, longitudGoma(phi) - ELL0) * bracGoma(phi);
 }
 
-// Combinat: la pràctica habitual de sumar gomes a una càrrega. Es
+// Combinat: la pràctica habitual d'afegir gomes a una càrrega. Es
 // reparteix meitat i meitat del moment que cadascun dona a φ = 0°.
 const K_PES  = 0.5 / perfilPes(0);
 const K_GOMA = 0.5 / perfilGoma(0);
@@ -378,18 +513,14 @@ const estat = {
   a: 0,            // extrem inferior del rang, en graus de flexió
   b: 90,           // extrem superior
   carrega: 0.90,   // fracció del màxim en rang complet
-  hover: null      // angle assenyalat pel cursor, o null
+  angle: 45        // angle que mostra la figura i marca el cursor
 };
 
 /* ====================================================================
-   DIBUIX
+   UTILITATS SVG
    ==================================================================== */
 
 const NS = "http://www.w3.org/2000/svg";
-const svgMoments   = document.getElementById("grafic-moments");
-const svgExigencia = document.getElementById("grafic-exigencia");
-
-const M = { dalt: 26, dreta: 22, baix: 46, esq: 62 };
 
 function el(nom, atributs, text) {
   const n = document.createElementNS(NS, nom);
@@ -397,21 +528,303 @@ function el(nom, atributs, text) {
   if (text !== undefined) n.textContent = text;
   return n;
 }
+function camí(punts, color, gruix, extra) {
+  const d = punts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
+  return el("path", Object.assign({ d, fill: "none", stroke: color, "stroke-width": gruix, "stroke-linejoin": "round" }, extra || {}));
+}
+// Vectors 2D en coordenades de pantalla.
+const V = {
+  add: (a, b) => ({ x: a.x + b.x, y: a.y + b.y }),
+  sub: (a, b) => ({ x: a.x - b.x, y: a.y - b.y }),
+  mul: (a, k) => ({ x: a.x * k, y: a.y * k }),
+  len: a => Math.hypot(a.x, a.y),
+  unit: a => { const n = Math.hypot(a.x, a.y) || 1; return { x: a.x / n, y: a.y / n }; }
+};
 
-// Escala d'angle compartida pels dos gràfics: φ creix cap a la dreta.
+/* ====================================================================
+   FIGURA ANATÒMICA
+   ====================================================================
+
+   Vista lateral, mirant cap a la dreta. Tot està dibuixat a escala a
+   partir de PX per metre, o sigui que les distàncies que es mesuren
+   sobre la figura són les que entren al càlcul.
+   ==================================================================== */
+
+const figura = document.getElementById("figura");
+
+const PX      = 320;                       // píxels per metre
+const K       = { x: 200, y: 140 };        // eix del genoll
+const L_FEMUR = 0.42;                      // m
+const HIP     = { x: K.x - L_FEMUR * PX, y: K.y };
+const TERRA   = K.y + H_ANCORA * PX;
+const ANCORA  = { x: K.x - B_ANCORA * PX, y: TERRA };
+const R_POL   = R_TROCLEA * PX;            // radi de la tròclea, en píxels
+
+// Dibuixa un os o un segment de membre com un tub amb contorn: així no
+// es confonen entre ells quan tenen colors veïns.
+function tub(g, p1, p2, w, farciment, vora) {
+  const base = { x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y, "stroke-linecap": "round" };
+  g.appendChild(el("line", Object.assign({}, base, { stroke: vora, "stroke-width": w + 2.2 })));
+  g.appendChild(el("line", Object.assign({}, base, { stroke: farciment, "stroke-width": w })));
+}
+
+// Lupa del genoll. El mecanisme que importa —ròtula, tròclea, tendons—
+// ocupa 26 píxels a escala real, i a escala real no es pot llegir.
+const LUPA = { x: 455, y: 100, r: 74, s: 2.8 };
+
+function dibuixaFigura() {
+  const phi = estat.angle;
+  const r   = rad(phi);
+  figura.textContent = "";
+  const g = el("g", {});
+  figura.appendChild(g);
+
+  // Eixos locals de la tíbia: u al llarg de l'os, n cap anterior.
+  const u = { x: Math.cos(r), y: Math.sin(r) };
+  const n = { x: Math.sin(r), y: -Math.cos(r) };
+  const A = { x: K.x + L * PX * u.x, y: K.y + L * PX * u.y };   // coixí / turmell
+
+  // ---------- Terra i seient ----------
+  g.appendChild(el("line", { x1: 20, x2: 372, y1: TERRA, y2: TERRA, stroke: "var(--terra)", "stroke-width": 2 }));
+  g.appendChild(el("text", { x: 372, y: TERRA - 7, "text-anchor": "end" }, "terra"));
+  g.appendChild(el("rect", { x: 44, y: K.y + 21, width: 168, height: 9, rx: 3, fill: "var(--terra)", opacity: .5 }));
+  g.appendChild(el("rect", { x: 44, y: K.y - 78, width: 9,   height: 99, rx: 3, fill: "var(--terra)", opacity: .5 }));
+
+  // ---------- El cos ----------
+  // Tot el que és anatomia va en aquest grup, perquè la lupa el clona.
+  const cos = el("g", {});
+  g.appendChild(cos);
+
+  // Silueta del membre. Va en un grup a part perquè la lupa l'amagui.
+  const pell = el("g", { class: "pell" });
+  cos.appendChild(pell);
+  tub(pell, HIP, K, 40, "var(--pell)", "var(--pell-vora)");
+  tub(pell, K, A,   26, "var(--pell)", "var(--pell-vora)");
+  tub(pell, A, { x: A.x + n.x * 27 + u.x * 5, y: A.y + n.y * 27 + u.y * 5 }, 13, "var(--pell)", "var(--pell-vora)");
+  pell.appendChild(el("path", {
+    d: `M ${HIP.x - 18} ${HIP.y + 12} L ${HIP.x - 14} ${HIP.y - 86}
+        Q ${HIP.x + 3} ${HIP.y - 93} ${HIP.x + 18} ${HIP.y - 84} L ${HIP.x + 22} ${HIP.y + 10} Z`,
+    fill: "var(--pell)", stroke: "var(--pell-vora)", "stroke-width": 1.2, opacity: .8
+  }));
+
+  // Ossos: fèmur, tíbia, peroné, pelvis
+  tub(cos, HIP, K, 13, "var(--os)", "var(--os-vora)");
+  tub(cos, { x: K.x + u.x * 5, y: K.y + u.y * 5 }, A, 10, "var(--os)", "var(--os-vora)");
+  tub(cos, { x: K.x + u.x * 18 - n.x * 7, y: K.y + u.y * 18 - n.y * 7 },
+           { x: A.x - n.x * 6, y: A.y - n.y * 6 }, 4.5, "var(--os)", "var(--os-vora)");
+  cos.appendChild(el("ellipse", {
+    cx: HIP.x - 2, cy: HIP.y - 17, rx: 18, ry: 25,
+    fill: "var(--os)", stroke: "var(--os-vora)", "stroke-width": 1.3
+  }));
+
+  // ---------- Quàdriceps ----------
+  // Punt on el tendó toca la politja, sempre a l'anterior del genoll.
+  const TG = { x: K.x, y: K.y - R_POL };
+  // Ròtula: sobre la politja, arrossegada per la tíbia. La seva posició
+  // angular segueix la flexió, i per això l'arc que hi recorre el tendó
+  // val exactament R·φ, que és l'excursió del quàdriceps.
+  const P = { x: K.x + R_POL * Math.sin(r), y: K.y - R_POL * Math.cos(r) };
+  // Tuberositat tibial: 5 cm distal a la interlínia, 2,8 cm anterior.
+  const T = {
+    x: K.x + 0.050 * PX * u.x + 0.028 * PX * n.x,
+    y: K.y + 0.050 * PX * u.y + 0.028 * PX * n.y
+  };
+
+  // Unió miotendinosa. El ventre s'escurça exactament el que el tendó
+  // guanya d'arc sobre la politja: R·φ.
+  const O_VAST = { x: HIP.x + 47, y: HIP.y - 10 };
+  const dir    = V.unit(V.sub(TG, O_VAST));
+  const mLlarg = 78;                                  // longitud del ventre a 90°
+  const m      = mLlarg - R_POL * (rad(90) - r);      // ...i a l'angle actual
+  const MTJ    = V.add(O_VAST, V.mul(dir, m));
+  // Volum constant: el que s'escurça, s'engruixeix.
+  const gruix  = 13 * Math.sqrt(mLlarg / m);
+  const perp   = { x: -dir.y, y: dir.x };
+
+  const ventre = (o, mtj, w) => {
+    const c = V.mul(V.add(o, mtj), .5);
+    const q1 = V.add(c, V.mul(perp, -w * 2));
+    const q2 = V.add(c, V.mul(perp,  w * 2));
+    return `M ${o.x} ${o.y} Q ${q1.x} ${q1.y} ${mtj.x} ${mtj.y} Q ${q2.x} ${q2.y} ${o.x} ${o.y} Z`;
+  };
+  cos.appendChild(el("path", {
+    d: ventre(O_VAST, MTJ, gruix), fill: "var(--muscul)",
+    stroke: "var(--muscul)", "stroke-width": 1.2
+  }));
+
+  // Recte femoral: superficial, des de l'espina ilíaca anteroinferior.
+  const O_RF   = { x: HIP.x + 8, y: HIP.y - 30 };
+  const MTJ_RF = V.add(O_VAST, V.mul(dir, m * .93));
+  const ctrl   = { x: (O_RF.x + MTJ_RF.x) / 2, y: Math.min(O_RF.y, MTJ_RF.y) - 13 };
+  cos.appendChild(el("path", {
+    d: `M ${O_RF.x} ${O_RF.y} Q ${ctrl.x} ${ctrl.y} ${MTJ_RF.x} ${MTJ_RF.y}`,
+    fill: "none", stroke: "var(--muscul-clar)", "stroke-width": 11, "stroke-linecap": "round"
+  }));
+
+  // ---------- El mecanisme del genoll, a sobre de tot ----------
+  // Còndil femoral: alhora os i politja per on llisca el tendó.
+  cos.appendChild(el("circle", {
+    cx: K.x, cy: K.y, r: R_POL, fill: "var(--os)", stroke: "var(--os-vora)", "stroke-width": 1.3
+  }));
+  // Tendó del quàdriceps
+  tub(cos, MTJ, TG, 8, "var(--tendo)", "var(--tendo-vora)");
+  // Arc sobre la tròclea: AQUESTA és l'excursió del quàdriceps.
+  if (phi > 0.5) {
+    const arc = `M ${TG.x} ${TG.y} A ${R_POL} ${R_POL} 0 0 1 ${P.x} ${P.y}`;
+    cos.appendChild(el("path", { d: arc, fill: "none", stroke: "var(--tendo-vora)", "stroke-width": 9.2, "stroke-linecap": "round" }));
+    cos.appendChild(el("path", { d: arc, fill: "none", stroke: "var(--tendo)",      "stroke-width": 7,   "stroke-linecap": "round" }));
+  }
+  // Tendó rotulià. La longitud no canvia: la ròtula segueix la tíbia.
+  tub(cos, P, T, 6, "var(--tendo)", "var(--tendo-vora)");
+  // Ròtula
+  cos.appendChild(el("ellipse", {
+    cx: P.x, cy: P.y, rx: 6.5, ry: 7.5, fill: "var(--os)",
+    stroke: "var(--os-vora)", "stroke-width": 1.6,
+    transform: `rotate(${phi} ${P.x} ${P.y})`
+  }));
+  // Tuberositat tibial
+  cos.appendChild(el("circle", { cx: T.x, cy: T.y, r: 3.6, fill: "var(--os)", stroke: "var(--os-vora)", "stroke-width": 1.3 }));
+
+  // ---------- Coixí ----------
+  g.appendChild(el("circle", { cx: A.x, cy: A.y, r: 11, fill: "var(--terra)" }));
+  g.appendChild(el("circle", { cx: A.x, cy: A.y, r: 3.2, fill: "var(--fons)" }));
+
+  // ---------- Mecànica ----------
+  if (estat.resistencia !== "goma") dibuixaPes(g, A);
+  if (estat.resistencia !== "pes")  dibuixaGoma(g, A, phi);
+
+  // ---------- Etiquetes ----------
+  etiquetaAmbGuia(g, 138, 40,  "recte femoral",        V.add(O_RF, V.mul(V.sub(MTJ_RF, O_RF), .45)), "start");
+  etiquetaAmbGuia(g, 100, 214, "vasts",                V.add(O_VAST, V.mul(V.sub(MTJ, O_VAST), .5)), "start");
+  etiquetaAmbGuia(g, 246, 66,  "tendó del quàdriceps", V.mul(V.add(MTJ, TG), .5), "start");
+
+  // ---------- Lupa ----------
+  dibuixaLupa(g, cos, P, T);
+}
+
+function dibuixaLupa(g, cos, P, T) {
+  const C = LUPA;
+  const defs = el("defs", {});
+  const cp = el("clipPath", { id: "lupa-clip" });
+  cp.appendChild(el("circle", { cx: C.x, cy: C.y, r: C.r }));
+  defs.appendChild(cp);
+  g.appendChild(defs);
+
+  g.appendChild(el("circle", { cx: C.x, cy: C.y, r: C.r, fill: "var(--fons-panell)" }));
+  // El retall va al grup de fora i la transformació al de dins: si
+  // anessin al mateix element, el retall s'aplicaria ja escalat.
+  const capsa = el("g", { "clip-path": "url(#lupa-clip)" });
+  const dins = cos.cloneNode(true);
+  dins.setAttribute("class", "lupa-dins");
+  dins.setAttribute("transform", `translate(${C.x - C.s * K.x} ${C.y - C.s * K.y}) scale(${C.s})`);
+  capsa.appendChild(dins);
+  g.appendChild(capsa);
+  g.appendChild(el("circle", { cx: C.x, cy: C.y, r: C.r, fill: "none", stroke: "var(--vora)", "stroke-width": 1.6 }));
+
+  const aLupa = p => ({ x: C.x + C.s * (p.x - K.x), y: C.y + C.s * (p.y - K.y) });
+  // Etiquetes sota el cercle. A dins tapen justament el que s'amplia, i
+  // a l'esquerra xoquen amb la cama quan el genoll està estès.
+  g.appendChild(el("text", { x: C.x, y: C.y + C.r + 18, "text-anchor": "middle" }, "detall del genoll ×2,8"));
+  etiquetaAmbGuia(g, C.x, C.y + C.r + 40, "ròtula", aLupa(P), "middle");
+  etiquetaAmbGuia(g, C.x, C.y + C.r + 57, "tendó rotulià", aLupa(V.mul(V.add(P, T), .5)), "middle");
+  etiquetaAmbGuia(g, C.x, C.y + C.r + 74, "tròclea femoral", aLupa({ x: K.x - R_POL * .78, y: K.y + R_POL * .62 }), "middle");
+}
+
+// Línia d'acció de la gravetat i braç de moment horitzontal.
+function dibuixaPes(g, A) {
+  const yDim = TERRA + 42;
+  g.appendChild(el("line", { x1: A.x, y1: A.y, x2: A.x, y2: yDim, class: "guia", "stroke-dasharray": "3 3" }));
+  g.appendChild(el("line", { x1: K.x, y1: K.y, x2: K.x, y2: yDim, class: "guia", "stroke-dasharray": "3 3" }));
+  g.appendChild(el("line", {
+    x1: A.x, y1: A.y + 13, x2: A.x, y2: A.y + 46, stroke: "var(--demanda)", "stroke-width": 2.4
+  }));
+  g.appendChild(el("path", { d: `M ${A.x} ${A.y + 54} l -5.5 -10 l 11 0 Z`, fill: "var(--demanda)" }));
+
+  const b = bracPes(estat.angle);
+  g.appendChild(el("line", { x1: K.x, y1: yDim, x2: A.x, y2: yDim, stroke: "var(--demanda)", "stroke-width": 1.6 }));
+  if (A.x - K.x > 14) {
+    g.appendChild(el("path", { d: `M ${K.x} ${yDim} l 8 -4 l 0 8 Z`, fill: "var(--demanda)" }));
+    g.appendChild(el("path", { d: `M ${A.x} ${yDim} l -8 -4 l 0 8 Z`, fill: "var(--demanda)" }));
+  }
+  g.appendChild(el("text", {
+    x: (K.x + A.x) / 2, y: yDim + 17, "text-anchor": "middle", class: "mecanica"
+  }, "braç de moment " + (b * 100).toFixed(0) + " cm"));
+}
+
+// Goma, la seva línia d'acció i la perpendicular des de l'eix del genoll.
+function dibuixaGoma(g, A, phi) {
+  const d = V.unit(V.sub(ANCORA, A));
+  const lluny = V.add(A, V.mul(d, -70));
+  g.appendChild(el("line", { x1: A.x, y1: A.y, x2: lluny.x, y2: lluny.y, class: "guia", "stroke-dasharray": "3 3" }));
+
+  // Ondulació que s'aplana a mesura que la goma s'estira.
+  const ell = longitudGoma(phi);
+  const tens = Math.min(1, Math.max(0, (ell - ELL0) / (longitudGoma(0) - ELL0)));
+  const nd = { x: -d.y, y: d.x };
+  const nOnes = 9, amp = 4.5 * (1 - .75 * tens);
+  const pts = [];
+  for (let i = 0; i <= nOnes * 4; i++) {
+    const t = i / (nOnes * 4);
+    const base = V.add(A, V.mul(V.sub(ANCORA, A), t));
+    const s = (i === 0 || i === nOnes * 4) ? 0 : Math.sin(t * nOnes * 2 * Math.PI) * amp;
+    pts.push([base.x + nd.x * s, base.y + nd.y * s]);
+  }
+  g.appendChild(camí(pts, "var(--demanda)", 2.2, { "stroke-linecap": "round" }));
+  g.appendChild(el("circle", { cx: ANCORA.x, cy: ANCORA.y, r: 4.5, fill: "var(--demanda)" }));
+
+  // Peu de la perpendicular des de l'eix del genoll a la recta d'acció.
+  const w = V.sub(K, A);
+  const F = V.add(A, V.mul(d, w.x * d.x + w.y * d.y));
+  g.appendChild(el("line", {
+    x1: K.x, y1: K.y, x2: F.x, y2: F.y, stroke: "var(--demanda)", "stroke-width": 1.6, "stroke-dasharray": "4 3"
+  }));
+  const e1 = V.mul(d, 7), e2 = V.mul(V.unit(V.sub(K, F)), 7);
+  g.appendChild(el("path", {
+    d: `M ${F.x + e1.x} ${F.y + e1.y} L ${F.x + e1.x + e2.x} ${F.y + e1.y + e2.y} L ${F.x + e2.x} ${F.y + e2.y}`,
+    fill: "none", stroke: "var(--demanda)", "stroke-width": 1.2
+  }));
+  const mid = V.mul(V.add(K, F), .5);
+  g.appendChild(el("text", { x: mid.x + 9, y: mid.y - 6, class: "mecanica" },
+    "braç " + (bracGoma(phi) * 100).toFixed(0) + " cm"));
+}
+
+function etiquetaAmbGuia(g, x, y, text, cap, ancoratge, mida) {
+  const at = { x, y, "text-anchor": ancoratge, class: "anatomia" };
+  if (mida) at["font-size"] = mida;
+  g.appendChild(el("text", at, text));
+  // El connector surt pel costat del text que mira cap a l'estructura.
+  // Si surt sempre pel mateix, travessa el dibuix per anar a buscar-la.
+  const ample = text.length * (mida ? mida * .5 : 5.6);
+  const esq = ancoratge === "end" ? x - ample : ancoratge === "middle" ? x - ample / 2 : x;
+  const dre = ancoratge === "end" ? x : ancoratge === "middle" ? x + ample / 2 : x + ample;
+  const desde = {
+    x: cap.x > dre ? dre + 5 : (cap.x < esq ? esq - 5 : (esq + dre) / 2),
+    y: y - 3
+  };
+  g.appendChild(el("line", { x1: desde.x, y1: desde.y, x2: cap.x, y2: cap.y, class: "guia", opacity: .55 }));
+}
+
+/* ====================================================================
+   GRÀFICS
+   ==================================================================== */
+
+const svgMoments   = document.getElementById("grafic-moments");
+const svgExigencia = document.getElementById("grafic-exigencia");
+
+const M = { dalt: 26, dreta: 22, baix: 46, esq: 62 };
+
 function escalaX(amplada) {
   const x0 = M.esq, x1 = amplada - M.dreta;
   return phi => x0 + (phi - PHI_MIN) / (PHI_MAX - PHI_MIN) * (x1 - x0);
 }
 
 function mostra() {
-  const perfil   = PERFILS[estat.resistencia];
-  const [a, b]   = [Math.min(estat.a, estat.b), Math.max(estat.a, estat.b)];
+  const perfil     = PERFILS[estat.resistencia];
+  const [a, b]     = [Math.min(estat.a, estat.b), Math.max(estat.a, estat.b)];
   const maxComplet = factorMaxim(perfil, PHI_MIN, PHI_MAX);
   const maxRang    = factorMaxim(perfil, a, b);
   const factor     = estat.carrega * maxComplet;
 
-  // Mostreig comú
   const punts = [];
   for (let phi = PHI_MIN; phi <= PHI_MAX + 1e-9; phi += 0.5) {
     const cap = capacitat(phi);
@@ -419,9 +832,22 @@ function mostra() {
     punts.push({ phi, cap, dem, exi: dem / cap });
   }
 
+  dibuixaFigura();
   dibuixaMoments(punts, a, b);
   dibuixaExigencia(punts, a, b);
   actualitzaLectures(punts, a, b, maxRang, maxComplet);
+  actualitzaPanellAngle(factor, perfil);
+}
+
+// Retalla el dibuix al rectangle del panell. Sense això, una corba que
+// se surt per dalt es dibuixaria aixafada contra la vora i semblaria un
+// altiplà que no existeix.
+function retall(svg, id, W, Hh) {
+  const defs = el("defs", {});
+  const cp = el("clipPath", { id });
+  cp.appendChild(el("rect", { x: M.esq, y: M.dalt, width: W - M.dreta - M.esq, height: Hh - M.baix - M.dalt }));
+  defs.appendChild(cp);
+  svg.appendChild(defs);
 }
 
 function dibuixaMoments(punts, a, b) {
@@ -434,13 +860,11 @@ function dibuixaMoments(punts, a, b) {
   const g = el("g", {});
   svgMoments.appendChild(g);
 
-  // Franja del rang entrenat
   g.appendChild(el("rect", {
     x: x(a), y: M.dalt, width: Math.max(0, x(b) - x(a)), height: Hh - M.baix - M.dalt,
     fill: "var(--rang)"
   }));
 
-  // Reixa i eix vertical
   for (let v = 0; v <= 250; v += 50) {
     g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: y(v), y2: y(v), class: "reixa" }));
     g.appendChild(el("text", { x: M.esq - 10, y: y(v) + 4, "text-anchor": "end" }, v));
@@ -452,7 +876,6 @@ function dibuixaMoments(punts, a, b) {
 
   eixAngles(g, x, Hh, W);
 
-  // Corbes
   retall(svgMoments, "retall-moments", W, Hh);
   const corbes = el("g", { "clip-path": "url(#retall-moments)" });
   g.appendChild(corbes);
@@ -460,8 +883,7 @@ function dibuixaMoments(punts, a, b) {
   corbes.appendChild(camí(punts.map(p => [x(p.phi), y(Math.max(0, p.dem))]), "var(--demanda)", 2.5));
 
   etiqueta(g, x(6), y(capacitat(6)) - 12, "Capacitat", "var(--capacitat)", "start");
-  const demIni = punts[0].dem;
-  etiqueta(g, x(6), y(Math.max(0, demIni)) + 20, "Demanda", "var(--demanda)", "start");
+  etiqueta(g, x(6), y(Math.max(0, punts[0].dem)) + 20, "Demanda", "var(--demanda)", "start");
 
   cursor(g, x, M.dalt, Hh - M.baix);
 }
@@ -485,7 +907,6 @@ function dibuixaExigencia(punts, a, b) {
     g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: y(v), y2: y(v), class: "reixa" }));
     g.appendChild(el("text", { x: M.esq - 10, y: y(v) + 4, "text-anchor": "end" }, Math.round(v * 100) + " %"));
   }
-  // Línia del 100 %: per sobre, l'aixecament falla.
   g.appendChild(el("line", {
     x1: M.esq, x2: W - M.dreta, y1: y(1), y2: y(1),
     stroke: "var(--demanda)", "stroke-width": 1.5, "stroke-dasharray": "5 4"
@@ -520,51 +941,17 @@ function eixAngles(g, x, Hh, W) {
   g.appendChild(el("text", { x: W - M.dreta, y: yBase + 36, "text-anchor": "end" }, "flexió · múscul llarg · inici del moviment"));
 }
 
-// Retalla el dibuix al rectangle del panell. Sense això, una corba que
-// se surt per dalt es dibuixaria aixafada contra la vora i semblaria un
-// altiplà que no existeix.
-function retall(svg, id, W, Hh) {
-  const defs = el("defs", {});
-  const cp = el("clipPath", { id });
-  cp.appendChild(el("rect", { x: M.esq, y: M.dalt, width: W - M.dreta - M.esq, height: Hh - M.baix - M.dalt }));
-  defs.appendChild(cp);
-  svg.appendChild(defs);
-}
-
-function camí(punts, color, gruix) {
-  const d = punts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
-  return el("path", { d, fill: "none", stroke: color, "stroke-width": gruix, "stroke-linejoin": "round" });
-}
-
 function etiqueta(g, x, y, text, color, ancoratge) {
   g.appendChild(el("text", { x, y, fill: color, "font-weight": 650, "text-anchor": ancoratge }, text));
 }
 
+// Marca l'angle que mostra la figura, per lligar les dues coses.
 function cursor(g, x, yDalt, yBaix) {
-  if (estat.hover === null) return;
   g.appendChild(el("line", {
-    x1: x(estat.hover), x2: x(estat.hover), y1: yDalt, y2: yBaix,
+    x1: x(estat.angle), x2: x(estat.angle), y1: yDalt, y2: yBaix,
     stroke: "var(--text-fluix)", "stroke-width": 1, "stroke-dasharray": "3 3"
   }));
 }
-
-// Captura del cursor. S'instal·la UN cop sobre l'element <svg>, que no
-// es destrueix mai. Si els escoltadors anessin a dins del dibuix, cada
-// redibuix esborraria l'element que té el cursor a sobre i el
-// "pointerleave" no arribaria mai: la línia del cursor es quedaria
-// clavada en sortir del gràfic.
-function instalaCursor(svg, W) {
-  const angle = ev => {
-    const caixa = svg.getBoundingClientRect();
-    const px = (ev.clientX - caixa.left) / caixa.width * W;
-    const frac = (px - M.esq) / (W - M.dreta - M.esq);
-    return Math.max(PHI_MIN, Math.min(PHI_MAX, PHI_MIN + frac * (PHI_MAX - PHI_MIN)));
-  };
-  svg.addEventListener("pointermove", ev => { estat.hover = angle(ev); mostra(); });
-  svg.addEventListener("pointerleave", () => { estat.hover = null; mostra(); });
-}
-instalaCursor(svgMoments, 900);
-instalaCursor(svgExigencia, 900);
 
 /* ====================================================================
    LECTURES
@@ -575,34 +962,52 @@ function actualitzaLectures(punts, a, b, maxRang, maxComplet) {
   let pitjor = null;
   for (const p of dins) if (!pitjor || p.exi > pitjor.exi) pitjor = p;
 
-  document.getElementById("lec-encallada").textContent =
-    pitjor ? Math.round(pitjor.phi) + "°" : "—";
-  document.getElementById("lec-exigencia").textContent =
-    pitjor ? Math.round(pitjor.exi * 100) + " %" : "—";
+  document.getElementById("lec-encallada").textContent = pitjor ? Math.round(pitjor.phi) + "°" : "—";
+  document.getElementById("lec-exigencia").textContent = pitjor ? Math.round(pitjor.exi * 100) + " %" : "—";
 
   const relatiu = maxRang / maxComplet;
-  document.getElementById("lec-maxim").textContent =
-    isFinite(relatiu) ? Math.round(relatiu * 100) + " %" : "—";
+  document.getElementById("lec-maxim").textContent = isFinite(relatiu) ? Math.round(relatiu * 100) + " %" : "—";
 
   // El quilogram només té sentit amb pes: amb goma, la càrrega és
   // rigidesa, no massa, i posar-hi kg seria mentir.
   const nota = document.getElementById("lec-maxim-nota");
   if (estat.resistencia === "pes") {
-    const kg = maxRang;   // el factor ÉS la massa, perquè perfilPes ja porta g i L
-    nota.textContent = "Respecte del rang complet. Equival a " +
-      kg.toFixed(0) + " kg al turmell (no és el número de la placa).";
+    nota.textContent = "Respecte del rang complet. Equival a " + maxRang.toFixed(0) +
+      " kg al coixí (no és el número de la placa).";
   } else {
     nota.textContent = "Respecte del màxim en rang complet. Amb goma la càrrega és rigidesa, no massa.";
   }
+}
+
+function actualitzaPanellAngle(factor, perfil) {
+  const phi = estat.angle;
+  const cap = capacitat(phi);
+  const dem = factor * perfil(phi);
+
+  // Braç de moment que es mostra: el de la resistència seleccionada.
+  let brac;
+  if (estat.resistencia === "pes")       brac = bracPes(phi);
+  else if (estat.resistencia === "goma") brac = bracGoma(phi);
+  else                                   brac = null;
+
+  document.getElementById("v-brac").textContent      = brac === null ? "dos alhora" : (brac * 100).toFixed(0) + " cm";
+  document.getElementById("v-demanda").textContent   = Math.max(0, dem).toFixed(0) + " N·m";
+  document.getElementById("v-capacitat").textContent = cap.toFixed(0) + " N·m";
+  document.getElementById("v-exigencia").textContent = Math.round(Math.max(0, dem) / cap * 100) + " %";
+  // Excursió del quàdriceps: longitud d'arc recorreguda sobre la tròclea.
+  const exc = R_TROCLEA * (rad(90) - rad(phi)) * 100;
+  document.getElementById("v-excursio").textContent  =
+    exc.toFixed(1).replace(".", ",") + " cm de 6,4 cm";
 }
 
 /* ====================================================================
    CONTROLS
    ==================================================================== */
 
-const rangA = document.getElementById("rang-a");
-const rangB = document.getElementById("rang-b");
+const rangA   = document.getElementById("rang-a");
+const rangB   = document.getElementById("rang-b");
 const carrega = document.getElementById("carrega");
+const angle   = document.getElementById("angle");
 
 // El control d'inici es presenta invertit: el moviment comença amb el
 // genoll flexionat, i té més sentit que "inici" vulgui dir 90°.
@@ -613,14 +1018,16 @@ function llegeixControls() {
   estat.b = +rangA.value;
   estat.a = +rangB.value;
   estat.carrega = +carrega.value / 100;
+  estat.angle = +angle.value;
   document.getElementById("val-a").textContent = rangA.value + "°";
   document.getElementById("val-b").textContent = rangB.value + "°";
   document.getElementById("val-carrega").textContent = carrega.value + " %";
+  document.getElementById("val-angle").textContent = (+angle.value).toFixed(0) + "°";
   sincronitzaPresets();
   mostra();
 }
 
-[rangA, rangB, carrega].forEach(c => c.addEventListener("input", llegeixControls));
+[rangA, rangB, carrega, angle].forEach(c => c.addEventListener("input", () => { atura(); llegeixControls(); }));
 
 document.querySelectorAll("#botons-resistencia button").forEach(b => {
   b.addEventListener("click", () => {
@@ -646,6 +1053,53 @@ function sincronitzaPresets() {
     b.setAttribute("aria-pressed", String(coincideix));
   });
 }
+
+// Passar el cursor per un gràfic mou la figura al mateix angle.
+function segueixCursor(svg, W) {
+  const aAngle = ev => {
+    const caixa = svg.getBoundingClientRect();
+    const px = (ev.clientX - caixa.left) / caixa.width * W;
+    const frac = (px - M.esq) / (W - M.dreta - M.esq);
+    return Math.max(PHI_MIN, Math.min(PHI_MAX, PHI_MIN + frac * (PHI_MAX - PHI_MIN)));
+  };
+  svg.addEventListener("pointermove", ev => {
+    atura();
+    angle.value = aAngle(ev);
+    llegeixControls();
+  });
+}
+segueixCursor(svgMoments, 900);
+segueixCursor(svgExigencia, 900);
+
+/* ---------- Animació ---------- */
+// Va i torna entre 90° i 0°, com una repetició. 2,4 s per fase.
+const botoAnima = document.getElementById("anima");
+let anim = null, t0 = 0;
+
+function passa(t) {
+  if (!t0) t0 = t;
+  const cicle = ((t - t0) / 2400) % 2;
+  const f = cicle < 1 ? cicle : 2 - cicle;         // 0 → 1 → 0
+  angle.value = (90 * (1 - f)).toFixed(1);
+  llegeixControlsSenseAturar();
+  anim = requestAnimationFrame(passa);
+}
+function llegeixControlsSenseAturar() {
+  estat.angle = +angle.value;
+  document.getElementById("val-angle").textContent = (+angle.value).toFixed(0) + "°";
+  mostra();
+}
+function atura() {
+  if (!anim) return;
+  cancelAnimationFrame(anim);
+  anim = null; t0 = 0;
+  botoAnima.setAttribute("aria-pressed", "false");
+}
+botoAnima.addEventListener("click", () => {
+  if (anim) { atura(); return; }
+  botoAnima.setAttribute("aria-pressed", "true");
+  anim = requestAnimationFrame(passa);
+});
 
 llegeixControls();
 </script>
