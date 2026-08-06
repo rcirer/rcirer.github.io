@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rang d'excursió i perfil de força — extensió de genoll</title>
+<meta name="description" content="Visualització interactiva de la relació entre el rang d'excursió entrenat, el perfil de resistència externa i la capacitat del múscul en l'extensió de genoll assegut.">
+
+<!-- Analítica. És el mateix comptador que la resta del lloc (CLAUDE.md §9 quater).
+     Aquesta pàgina no passa per Quarto, per això l'script va escrit aquí a mà. -->
+<script data-goatcounter="https://rcirer.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
+
+<style>
+/* ------------------------------------------------------------------
+   Full autònom. No depèn de la plantilla del web ni de cap llibreria:
+   ni build, ni npm, ni CDN. Tot el que fa falta és en aquest fitxer.
+   ------------------------------------------------------------------ */
+:root {
+  --fons:        #ffffff;
+  --fons-panell: #f4f4f3;
+  --text:        #1c1c1a;
+  --text-fluix:  #6b6b66;
+  --vora:        #dcdcd6;
+  --capacitat:   #1a7a6c;  /* el que el múscul pot donar */
+  --demanda:     #c2571a;  /* el que la resistència exigeix */
+  --exigencia:   #6a4bbd;  /* el quocient entre les dues */
+  --rang:        rgba(60, 60, 55, 0.07);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fons:        #161614;
+    --fons-panell: #211f1d;
+    --text:        #eceae5;
+    --text-fluix:  #9a968e;
+    --vora:        #3a3733;
+    --capacitat:   #46c3ae;
+    --demanda:     #f08a45;
+    --exigencia:   #a690f0;
+    --rang:        rgba(255, 255, 250, 0.06);
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 2rem 1.25rem 4rem;
+  background: var(--fons);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+}
+
+main { max-width: 900px; margin: 0 auto; }
+
+h1 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .3rem; font-weight: 650; }
+h2 { font-size: 1.05rem; margin: 2.4rem 0 .6rem; font-weight: 650; }
+.subtitol { color: var(--text-fluix); margin: 0 0 2rem; max-width: 58ch; }
+
+/* ---------- Controls ---------- */
+.controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.4rem 2rem;
+  background: var(--fons-panell);
+  border: 1px solid var(--vora);
+  border-radius: 8px;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1.8rem;
+}
+.control > label,
+.control > .etiqueta {
+  display: block;
+  font-size: .8rem;
+  font-weight: 650;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--text-fluix);
+  margin-bottom: .5rem;
+}
+.valor { font-variant-numeric: tabular-nums; font-weight: 650; color: var(--text); text-transform: none; letter-spacing: 0; }
+
+input[type="range"] { width: 100%; accent-color: var(--exigencia); margin: 0; }
+
+.botons { display: flex; flex-wrap: wrap; gap: .4rem; }
+.botons button {
+  font: inherit;
+  font-size: .85rem;
+  padding: .35rem .7rem;
+  border: 1px solid var(--vora);
+  border-radius: 5px;
+  background: var(--fons);
+  color: var(--text);
+  cursor: pointer;
+}
+.botons button:hover { border-color: var(--text-fluix); }
+.botons button[aria-pressed="true"] {
+  background: var(--text);
+  color: var(--fons);
+  border-color: var(--text);
+}
+
+/* ---------- Gràfics ---------- */
+.grafic { width: 100%; height: auto; display: block; touch-action: none; }
+.grafic text { font-family: inherit; fill: var(--text-fluix); font-size: 12px; }
+.grafic .titol-eix { font-size: 12px; font-weight: 650; }
+.grafic .reixa { stroke: var(--vora); stroke-width: 1; }
+.grafic .eix { stroke: var(--text-fluix); stroke-width: 1; }
+
+/* ---------- Lectures ---------- */
+.lectures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem 1.6rem;
+  margin: 1.6rem 0 0;
+  padding: 1.1rem 1.4rem;
+  background: var(--fons-panell);
+  border: 1px solid var(--vora);
+  border-radius: 8px;
+}
+.lectura .clau {
+  font-size: .78rem; text-transform: uppercase; letter-spacing: .02em;
+  color: var(--text-fluix); font-weight: 650;
+}
+.lectura .xifra { font-size: 1.5rem; font-variant-numeric: tabular-nums; font-weight: 650; line-height: 1.2; }
+.lectura .nota { font-size: .82rem; color: var(--text-fluix); line-height: 1.4; }
+
+.llegenda { display: flex; flex-wrap: wrap; gap: 1.2rem; margin: .8rem 0 0; font-size: .87rem; }
+.llegenda span { display: inline-flex; align-items: center; gap: .45rem; }
+.llegenda i { width: 22px; height: 3px; border-radius: 2px; display: inline-block; }
+
+p, li { max-width: 68ch; }
+.peu { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--vora); font-size: .85rem; color: var(--text-fluix); }
+.peu a { color: inherit; }
+code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; border-radius: 3px; }
+.avis {
+  border-left: 3px solid var(--demanda);
+  padding: .1rem 0 .1rem 1rem;
+  margin: 1.2rem 0;
+  color: var(--text-fluix);
+  font-size: .92rem;
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<h1>Rang d'excursió i perfil de força</h1>
+<p class="subtitol">
+  Extensió de genoll asseguda. Limitar el rang no mou el pic de l'exercici: decideix
+  quines longituds musculars es carreguen. On cau el pic dins d'aquelles longituds ho
+  decideixen la geometria i el tipus de resistència. Són dues coses separades, i aquí
+  tenen dos controls separats.
+</p>
+
+<div class="controls">
+
+  <div class="control">
+    <span class="etiqueta">Tipus de resistència</span>
+    <div class="botons" id="botons-resistencia">
+      <button type="button" data-res="pes" aria-pressed="true">Pes</button>
+      <button type="button" data-res="goma" aria-pressed="false">Goma</button>
+      <button type="button" data-res="mixt" aria-pressed="false">Pes + goma</button>
+    </div>
+  </div>
+
+  <div class="control">
+    <span class="etiqueta">Rang entrenat</span>
+    <div class="botons" id="botons-rang">
+      <button type="button" data-a="0"  data-b="90" aria-pressed="true">Complet</button>
+      <button type="button" data-a="45" data-b="90" aria-pressed="false">Parcial inicial</button>
+      <button type="button" data-a="0"  data-b="45" aria-pressed="false">Parcial final</button>
+    </div>
+  </div>
+
+  <div class="control">
+    <label for="rang-a">Inici del rang <span class="valor" id="val-a">90°</span></label>
+    <input type="range" id="rang-a" min="0" max="90" step="1" value="90">
+    <label for="rang-b" style="margin-top:.7rem">Final del rang <span class="valor" id="val-b">0°</span></label>
+    <input type="range" id="rang-b" min="0" max="90" step="1" value="0">
+  </div>
+
+  <div class="control">
+    <label for="carrega">Càrrega <span class="valor" id="val-carrega">90 %</span></label>
+    <input type="range" id="carrega" min="10" max="200" step="1" value="90">
+    <div class="lectura"><span class="nota">Percentatge del màxim aixecable en rang complet amb aquesta mateixa resistència.</span></div>
+  </div>
+
+</div>
+
+<svg id="grafic-moments" class="grafic" viewBox="0 0 900 400" role="img"
+     aria-label="Moment extensor màxim del quàdriceps i moment resistiu extern, en funció de l'angle de flexió del genoll."></svg>
+
+<div class="llegenda">
+  <span><i style="background:var(--capacitat)"></i> Capacitat del múscul</span>
+  <span><i style="background:var(--demanda)"></i> Demanda de la resistència</span>
+  <span><i style="background:var(--exigencia)"></i> Exigència relativa (demanda ÷ capacitat)</span>
+</div>
+
+<svg id="grafic-exigencia" class="grafic" viewBox="0 0 900 250" role="img"
+     aria-label="Exigència relativa: quocient entre el moment resistiu extern i la capacitat del múscul, en percentatge."></svg>
+
+<div class="lectures">
+  <div class="lectura">
+    <div class="clau">Punt d'encallada</div>
+    <div class="xifra" id="lec-encallada">—</div>
+    <div class="nota">Angle on l'exigència relativa és màxima dins del rang entrenat.</div>
+  </div>
+  <div class="lectura">
+    <div class="clau">Exigència màxima</div>
+    <div class="xifra" id="lec-exigencia">—</div>
+    <div class="nota">Per sobre del 100 % l'aixecament falla en aquell angle.</div>
+  </div>
+  <div class="lectura">
+    <div class="clau">Màxim en aquest rang</div>
+    <div class="xifra" id="lec-maxim">—</div>
+    <div class="nota" id="lec-maxim-nota">Respecte del màxim en rang complet.</div>
+  </div>
+</div>
+
+<h2>Com llegir-ho</h2>
+
+<p>
+  Les tres corbes no són la mateixa cosa i el pic no cau al mateix lloc en cadascuna.
+  La <strong>demanda</strong> és el moment que la resistència externa imposa al genoll.
+  La <strong>capacitat</strong> és el moment que el quàdriceps pot generar en aquella
+  longitud. La <strong>exigència relativa</strong> és el quocient entre les dues, i és
+  l'única que diu on costa realment: el punt d'encallada.
+</p>
+
+<p>
+  Amb pes, el moment extern val <code>m · g · L · cos φ</code>. És màxim amb el genoll
+  estès i <strong>val exactament zero</strong> amb la cama penjant a 90°. Per això
+  l'extensió de genoll asseguda costa a dalt: allà la demanda és màxima i la capacitat
+  del quàdriceps ja ha caigut. La goma encara ho accentua més, perquè la tensió creix
+  justament quan el braç de moment també és més gran.
+</p>
+
+<p>
+  Prova de fixar la càrrega al 100 % i canviar de rang. El parcial que treballa amb el
+  múscul llarg deixa aixecar molt més, perquè n'exclou l'angle car; el parcial que
+  treballa amb el múscul curt no en deixa aixecar gens més, perquè el conserva. La
+  conseqüència pràctica és que <strong>un percentatge d'1RM no és comparable entre
+  rangs diferents</strong>: el mateix 70 % vol dir càrregues absolutes molt diferents
+  segons quins angles s'hi incloguin.
+</p>
+
+<div class="avis">
+  <strong>La corba de capacitat d'aquesta versió és esquemàtica.</strong> Té la forma
+  general que descriu la relació moment-angle del quàdriceps —pic cap als 65° de flexió,
+  caiguda pronunciada cap a l'extensió completa— però els valors no provenen d'una font
+  concreta. Serveix per raonar sobre la forma, no per treure'n números.
+</div>
+
+<div class="avis">
+  <strong>La resistència inercial no hi és, i no hi és a propòsit.</strong> Un pes o una
+  goma tenen un perfil que és funció de l'angle i es pot dibuixar en aquests eixos. Un
+  volant d'inèrcia depèn de l'acceleració, no de la posició: caldria un model del
+  moviment amb temps, i la càrrega màxima ni tan sols hi és definible de la mateixa
+  manera.
+</div>
+
+<div class="peu">
+  Rafel Cirer-Sastre · INEFC Lleida, Universitat de Lleida ·
+  <a href="https://rafelcirer.com">rafelcirer.com</a><br>
+  Material docent obert amb llicència
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca">CC BY-NC-SA 4.0</a>.<br>
+  Sense galetes. Recompte de visites anònim i agregat amb
+  <a href="https://www.goatcounter.com/">GoatCounter</a>, que no desa adreces IP.
+</div>
+
+</main>
+
+<script>
+"use strict";
+
+/* ====================================================================
+   MODEL
+   ====================================================================
+
+   Extensió de genoll asseguda. Eix del genoll a l'origen; la tíbia,
+   de longitud L, arriba al coixí del turmell.
+
+   φ = angle de FLEXIÓ del genoll, en graus.
+       φ =  0° → extensió completa, tíbia horitzontal, quàdriceps curt.
+       φ = 90° → posició inicial asseguda, tíbia vertical, quàdriceps llarg.
+
+   La fase concèntrica va de φ = 90° cap a φ = 0°, és a dir de dreta a
+   esquerra en tots els gràfics d'aquesta pàgina.
+   ==================================================================== */
+
+const L        = 0.40;   // m — eix del genoll fins al coixí del turmell
+const G        = 9.81;   // m/s²
+const H_ANCORA = 0.80;   // m — ancoratge de la goma, a terra sota el genoll
+const ELL0     = 0.40;   // m — longitud de la goma sense tensió
+const PHI_MIN  = 0;
+const PHI_MAX  = 90;
+
+// --- Capacitat del múscul -------------------------------------------
+// ATENCIÓ: forma esquemàtica, no dades. Pic al voltant dels 65° de
+// flexió, ~45 % del pic en extensió completa i ~80 % del pic a 90°.
+// Per substituir-la per una corba amb font, només cal tocar aquests
+// quatre números i la funció de sota.
+const TAU_PIC   = 250;   // N·m — moment extensor màxim
+const PHI_PIC   = 65;    // graus on cau el pic
+const CAIGUDA_0 = 0.55;  // fracció perduda a φ = 0°
+const CAIGUDA_90= 0.20;  // fracció perduda a φ = 90°
+
+function capacitat(phi) {
+  if (phi <= PHI_PIC) {
+    return TAU_PIC * (1 - CAIGUDA_0 * Math.pow((PHI_PIC - phi) / PHI_PIC, 1.6));
+  }
+  return TAU_PIC * (1 - CAIGUDA_90 * Math.pow((phi - PHI_PIC) / (PHI_MAX - PHI_PIC), 1.8));
+}
+
+// --- Perfils de resistència -----------------------------------------
+// Cada funció retorna el moment extern per unitat de càrrega. Les
+// unitats no importen: tot es normalitza més avall pel màxim aixecable
+// en rang complet, i el quocient és el que es dibuixa.
+
+const rad = g => g * Math.PI / 180;
+
+// Pes penjat del turmell (o màquina de braç recte, sense lleva).
+// El braç de moment és L·cos φ: màxim estès, zero a 90°.
+function perfilPes(phi) {
+  return G * L * Math.cos(rad(phi));
+}
+
+// Goma ancorada a terra, a H_ANCORA sota l'eix del genoll.
+// Turmell a (L·cos φ, −L·sin φ); ancoratge a (0, −H).
+// La longitud de la goma creix en estendre, i el braç de moment surt
+// del producte vectorial: L·H·cos φ / ℓ.
+function longitudGoma(phi) {
+  const dx = L * Math.cos(rad(phi));
+  const dy = H_ANCORA - L * Math.sin(rad(phi));
+  return Math.sqrt(dx * dx + dy * dy);
+}
+function perfilGoma(phi) {
+  const ell = longitudGoma(phi);
+  const estirament = Math.max(0, ell - ELL0);
+  return estirament * L * H_ANCORA * Math.cos(rad(phi)) / ell;
+}
+
+// Combinat: la pràctica habitual de sumar gomes a una càrrega. Es
+// reparteix meitat i meitat del moment que cadascun dona a φ = 0°.
+const K_PES  = 0.5 / perfilPes(0);
+const K_GOMA = 0.5 / perfilGoma(0);
+function perfilMixt(phi) {
+  return K_PES * perfilPes(phi) + K_GOMA * perfilGoma(phi);
+}
+
+const PERFILS = { pes: perfilPes, goma: perfilGoma, mixt: perfilMixt };
+
+// --- Càrrega màxima admissible en un rang ---------------------------
+// El factor més gran que es pot aplicar al perfil sense que la demanda
+// superi la capacitat en cap angle del rang. Amb pes, a φ = 90° el
+// perfil val 0 i el quocient és infinit: no mana mai, i està bé que
+// sigui així.
+function factorMaxim(perfil, a, b) {
+  let m = Infinity;
+  for (let phi = a; phi <= b + 1e-9; phi += 0.25) {
+    const d = perfil(phi);
+    if (d > 1e-9) m = Math.min(m, capacitat(phi) / d);
+  }
+  return m;
+}
+
+/* ====================================================================
+   ESTAT
+   ==================================================================== */
+
+const estat = {
+  resistencia: "pes",
+  a: 0,            // extrem inferior del rang, en graus de flexió
+  b: 90,           // extrem superior
+  carrega: 0.90,   // fracció del màxim en rang complet
+  hover: null      // angle assenyalat pel cursor, o null
+};
+
+/* ====================================================================
+   DIBUIX
+   ==================================================================== */
+
+const NS = "http://www.w3.org/2000/svg";
+const svgMoments   = document.getElementById("grafic-moments");
+const svgExigencia = document.getElementById("grafic-exigencia");
+
+const M = { dalt: 26, dreta: 22, baix: 46, esq: 62 };
+
+function el(nom, atributs, text) {
+  const n = document.createElementNS(NS, nom);
+  for (const k in atributs) n.setAttribute(k, atributs[k]);
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+
+// Escala d'angle compartida pels dos gràfics: φ creix cap a la dreta.
+function escalaX(amplada) {
+  const x0 = M.esq, x1 = amplada - M.dreta;
+  return phi => x0 + (phi - PHI_MIN) / (PHI_MAX - PHI_MIN) * (x1 - x0);
+}
+
+function mostra() {
+  const perfil   = PERFILS[estat.resistencia];
+  const [a, b]   = [Math.min(estat.a, estat.b), Math.max(estat.a, estat.b)];
+  const maxComplet = factorMaxim(perfil, PHI_MIN, PHI_MAX);
+  const maxRang    = factorMaxim(perfil, a, b);
+  const factor     = estat.carrega * maxComplet;
+
+  // Mostreig comú
+  const punts = [];
+  for (let phi = PHI_MIN; phi <= PHI_MAX + 1e-9; phi += 0.5) {
+    const cap = capacitat(phi);
+    const dem = factor * perfil(phi);
+    punts.push({ phi, cap, dem, exi: dem / cap });
+  }
+
+  dibuixaMoments(punts, a, b);
+  dibuixaExigencia(punts, a, b);
+  actualitzaLectures(punts, a, b, maxRang, maxComplet);
+}
+
+function dibuixaMoments(punts, a, b) {
+  const W = 900, Hh = 400;
+  const x = escalaX(W);
+  const yMax = TAU_PIC * 1.15;
+  const y = v => Hh - M.baix - v / yMax * (Hh - M.baix - M.dalt);
+
+  svgMoments.textContent = "";
+  const g = el("g", {});
+  svgMoments.appendChild(g);
+
+  // Franja del rang entrenat
+  g.appendChild(el("rect", {
+    x: x(a), y: M.dalt, width: Math.max(0, x(b) - x(a)), height: Hh - M.baix - M.dalt,
+    fill: "var(--rang)"
+  }));
+
+  // Reixa i eix vertical
+  for (let v = 0; v <= 250; v += 50) {
+    g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: y(v), y2: y(v), class: "reixa" }));
+    g.appendChild(el("text", { x: M.esq - 10, y: y(v) + 4, "text-anchor": "end" }, v));
+  }
+  g.appendChild(el("text", {
+    x: 16, y: (Hh - M.baix + M.dalt) / 2, class: "titol-eix",
+    transform: `rotate(-90 16 ${(Hh - M.baix + M.dalt) / 2})`, "text-anchor": "middle"
+  }, "Moment al genoll (N·m)"));
+
+  eixAngles(g, x, Hh, W);
+
+  // Corbes
+  retall(svgMoments, "retall-moments", W, Hh);
+  const corbes = el("g", { "clip-path": "url(#retall-moments)" });
+  g.appendChild(corbes);
+  corbes.appendChild(camí(punts.map(p => [x(p.phi), y(p.cap)]), "var(--capacitat)", 2.5));
+  corbes.appendChild(camí(punts.map(p => [x(p.phi), y(Math.max(0, p.dem))]), "var(--demanda)", 2.5));
+
+  etiqueta(g, x(6), y(capacitat(6)) - 12, "Capacitat", "var(--capacitat)", "start");
+  const demIni = punts[0].dem;
+  etiqueta(g, x(6), y(Math.max(0, demIni)) + 20, "Demanda", "var(--demanda)", "start");
+
+  cursor(g, x, M.dalt, Hh - M.baix);
+}
+
+function dibuixaExigencia(punts, a, b) {
+  const W = 900, Hh = 250;
+  const x = escalaX(W);
+  const yMax = 1.6;
+  const y = v => Hh - M.baix - v / yMax * (Hh - M.baix - M.dalt);
+
+  svgExigencia.textContent = "";
+  const g = el("g", {});
+  svgExigencia.appendChild(g);
+
+  g.appendChild(el("rect", {
+    x: x(a), y: M.dalt, width: Math.max(0, x(b) - x(a)), height: Hh - M.baix - M.dalt,
+    fill: "var(--rang)"
+  }));
+
+  for (let v = 0; v <= 1.5; v += 0.5) {
+    g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: y(v), y2: y(v), class: "reixa" }));
+    g.appendChild(el("text", { x: M.esq - 10, y: y(v) + 4, "text-anchor": "end" }, Math.round(v * 100) + " %"));
+  }
+  // Línia del 100 %: per sobre, l'aixecament falla.
+  g.appendChild(el("line", {
+    x1: M.esq, x2: W - M.dreta, y1: y(1), y2: y(1),
+    stroke: "var(--demanda)", "stroke-width": 1.5, "stroke-dasharray": "5 4"
+  }));
+  g.appendChild(el("text", {
+    x: W - M.dreta, y: y(1) - 7, "text-anchor": "end", fill: "var(--demanda)"
+  }, "límit: fallada"));
+
+  g.appendChild(el("text", {
+    x: 16, y: (Hh - M.baix + M.dalt) / 2, class: "titol-eix",
+    transform: `rotate(-90 16 ${(Hh - M.baix + M.dalt) / 2})`, "text-anchor": "middle"
+  }, "Exigència relativa"));
+
+  eixAngles(g, x, Hh, W);
+
+  retall(svgExigencia, "retall-exigencia", W, Hh);
+  const corba = el("g", { "clip-path": "url(#retall-exigencia)" });
+  g.appendChild(corba);
+  corba.appendChild(camí(punts.map(p => [x(p.phi), y(Math.max(0, p.exi))]), "var(--exigencia)", 2.5));
+
+  cursor(g, x, M.dalt, Hh - M.baix);
+}
+
+function eixAngles(g, x, Hh, W) {
+  const yBase = Hh - M.baix;
+  g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: yBase, y2: yBase, class: "eix" }));
+  for (let phi = 0; phi <= 90; phi += 15) {
+    g.appendChild(el("line", { x1: x(phi), x2: x(phi), y1: yBase, y2: yBase + 5, class: "eix" }));
+    g.appendChild(el("text", { x: x(phi), y: yBase + 19, "text-anchor": "middle" }, phi + "°"));
+  }
+  g.appendChild(el("text", { x: M.esq, y: yBase + 36, "text-anchor": "start" }, "extensió completa · múscul curt"));
+  g.appendChild(el("text", { x: W - M.dreta, y: yBase + 36, "text-anchor": "end" }, "flexió · múscul llarg · inici del moviment"));
+}
+
+// Retalla el dibuix al rectangle del panell. Sense això, una corba que
+// se surt per dalt es dibuixaria aixafada contra la vora i semblaria un
+// altiplà que no existeix.
+function retall(svg, id, W, Hh) {
+  const defs = el("defs", {});
+  const cp = el("clipPath", { id });
+  cp.appendChild(el("rect", { x: M.esq, y: M.dalt, width: W - M.dreta - M.esq, height: Hh - M.baix - M.dalt }));
+  defs.appendChild(cp);
+  svg.appendChild(defs);
+}
+
+function camí(punts, color, gruix) {
+  const d = punts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
+  return el("path", { d, fill: "none", stroke: color, "stroke-width": gruix, "stroke-linejoin": "round" });
+}
+
+function etiqueta(g, x, y, text, color, ancoratge) {
+  g.appendChild(el("text", { x, y, fill: color, "font-weight": 650, "text-anchor": ancoratge }, text));
+}
+
+function cursor(g, x, yDalt, yBaix) {
+  if (estat.hover === null) return;
+  g.appendChild(el("line", {
+    x1: x(estat.hover), x2: x(estat.hover), y1: yDalt, y2: yBaix,
+    stroke: "var(--text-fluix)", "stroke-width": 1, "stroke-dasharray": "3 3"
+  }));
+}
+
+// Captura del cursor. S'instal·la UN cop sobre l'element <svg>, que no
+// es destrueix mai. Si els escoltadors anessin a dins del dibuix, cada
+// redibuix esborraria l'element que té el cursor a sobre i el
+// "pointerleave" no arribaria mai: la línia del cursor es quedaria
+// clavada en sortir del gràfic.
+function instalaCursor(svg, W) {
+  const angle = ev => {
+    const caixa = svg.getBoundingClientRect();
+    const px = (ev.clientX - caixa.left) / caixa.width * W;
+    const frac = (px - M.esq) / (W - M.dreta - M.esq);
+    return Math.max(PHI_MIN, Math.min(PHI_MAX, PHI_MIN + frac * (PHI_MAX - PHI_MIN)));
+  };
+  svg.addEventListener("pointermove", ev => { estat.hover = angle(ev); mostra(); });
+  svg.addEventListener("pointerleave", () => { estat.hover = null; mostra(); });
+}
+instalaCursor(svgMoments, 900);
+instalaCursor(svgExigencia, 900);
+
+/* ====================================================================
+   LECTURES
+   ==================================================================== */
+
+function actualitzaLectures(punts, a, b, maxRang, maxComplet) {
+  const dins = punts.filter(p => p.phi >= a && p.phi <= b);
+  let pitjor = null;
+  for (const p of dins) if (!pitjor || p.exi > pitjor.exi) pitjor = p;
+
+  document.getElementById("lec-encallada").textContent =
+    pitjor ? Math.round(pitjor.phi) + "°" : "—";
+  document.getElementById("lec-exigencia").textContent =
+    pitjor ? Math.round(pitjor.exi * 100) + " %" : "—";
+
+  const relatiu = maxRang / maxComplet;
+  document.getElementById("lec-maxim").textContent =
+    isFinite(relatiu) ? Math.round(relatiu * 100) + " %" : "—";
+
+  // El quilogram només té sentit amb pes: amb goma, la càrrega és
+  // rigidesa, no massa, i posar-hi kg seria mentir.
+  const nota = document.getElementById("lec-maxim-nota");
+  if (estat.resistencia === "pes") {
+    const kg = maxRang;   // el factor ÉS la massa, perquè perfilPes ja porta g i L
+    nota.textContent = "Respecte del rang complet. Equival a " +
+      kg.toFixed(0) + " kg al turmell (no és el número de la placa).";
+  } else {
+    nota.textContent = "Respecte del màxim en rang complet. Amb goma la càrrega és rigidesa, no massa.";
+  }
+}
+
+/* ====================================================================
+   CONTROLS
+   ==================================================================== */
+
+const rangA = document.getElementById("rang-a");
+const rangB = document.getElementById("rang-b");
+const carrega = document.getElementById("carrega");
+
+// El control d'inici es presenta invertit: el moviment comença amb el
+// genoll flexionat, i té més sentit que "inici" vulgui dir 90°.
+rangA.value = estat.b;
+rangB.value = estat.a;
+
+function llegeixControls() {
+  estat.b = +rangA.value;
+  estat.a = +rangB.value;
+  estat.carrega = +carrega.value / 100;
+  document.getElementById("val-a").textContent = rangA.value + "°";
+  document.getElementById("val-b").textContent = rangB.value + "°";
+  document.getElementById("val-carrega").textContent = carrega.value + " %";
+  sincronitzaPresets();
+  mostra();
+}
+
+[rangA, rangB, carrega].forEach(c => c.addEventListener("input", llegeixControls));
+
+document.querySelectorAll("#botons-resistencia button").forEach(b => {
+  b.addEventListener("click", () => {
+    estat.resistencia = b.dataset.res;
+    document.querySelectorAll("#botons-resistencia button")
+      .forEach(o => o.setAttribute("aria-pressed", String(o === b)));
+    mostra();
+  });
+});
+
+document.querySelectorAll("#botons-rang button").forEach(b => {
+  b.addEventListener("click", () => {
+    rangB.value = b.dataset.a;
+    rangA.value = b.dataset.b;
+    llegeixControls();
+  });
+});
+
+function sincronitzaPresets() {
+  document.querySelectorAll("#botons-rang button").forEach(b => {
+    const coincideix = +b.dataset.a === Math.min(estat.a, estat.b) &&
+                       +b.dataset.b === Math.max(estat.a, estat.b);
+    b.setAttribute("aria-pressed", String(coincideix));
+  });
+}
+
+llegeixControls();
+</script>
+</body>
+</html>
