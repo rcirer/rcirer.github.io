@@ -306,9 +306,11 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
 
 <p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
   La corba és la mateixa per a tots dos músculs: és una propietat del sarcòmer, no del
-  múscul. El que canvia és <em>quin tros en recorre cadascun</em>. Les franjes de color
-  són el recorregut que fa l'exercici amb el rang que tens seleccionat; el punt, on ets
-  ara. Mou el control de maluc i mira com la franja lila llisca i la blava no es mou.
+  múscul. El que canvia és <em>quin tros en recorre cadascun</em>. De cada múscul hi ha
+  dues franjes: la prima és tot el que li permeten les articulacions, la gruixuda és el
+  que recorre l'exercici amb el rang seleccionat, i el punt és on ets ara. Les zones
+  grises no són rang que l'exercici es deixi: són longituds a les quals el genoll i el
+  maluc <strong>no poden arribar de cap manera</strong>.
 </p>
 
 <div class="botons" id="botons-escala" style="margin:2.2rem 0 .7rem">
@@ -381,9 +383,19 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
 <p>
   Que un múscul és feble als dos extrems del seu recorregut i fort al mig és cert
   <em>de la corba</em>. Però <strong>això no vol dir que un múscul concret recorri tota
-  la corba en un exercici concret</strong>, i en aquest cas no la recorre: en extensió de
-  genoll asseguda, tots dos músculs es queden a la branca ascendent de punta a punta. No
-  arriben a l'altiplà ni de bon tros a la branca descendent.
+  la corba</strong>, i el cas del quàdriceps és extrem: amb tot el que permeten les
+  articulacions —genoll de 0° a 140°, maluc de 15° d'extensió a 120° de flexió— els dos
+  músculs plegats només arriben de 1,97 a 2,76 µm. Són <strong>27 escassos per cent de
+  la corba</strong>. La resta no és rang que l'exercici es deixi: és rang al qual el cos
+  no pot arribar de cap manera.
+</p>
+
+<p>
+  I dins d'aquest 27 %, la força activa mai no baixa del 62 %. O sigui que
+  <strong>l'extrem «curt» on el múscul és molt poc capaç no existeix al genoll</strong>:
+  la posició més escurçada que el quàdriceps arriba a tenir encara li deixa gairebé dos
+  terços de la seva força. L'altre extrem tampoc: el màxim que s'assoleix, a 140° de
+  flexió, és justament l'entrada de l'altiplà.
 </p>
 
 <p>
@@ -577,8 +589,13 @@ const B_ANCORA = 0.25;   // m — per darrere de l'eix del genoll
 // qual el tendó llisca com sobre una politja. Constant en aquest model.
 const R_TROCLEA = 0.041; // m
 
-const ROM_GENOLL = 140;    // graus — recorregut anatòmic del genoll
-const R_MALUC    = 0.038;  // m — braç del recte femoral al maluc
+// Recorreguts anatòmics de les articulacions, que és el que decideix
+// quin tros de la corba força–longitud és accessible i quin no ho serà
+// mai, per molt que s'obri el rang de l'exercici.
+const ROM_GENOLL  = 140;    // graus — flexió màxima de genoll
+const MALUC_MAX   = 120;    // graus — flexió màxima de maluc
+const MALUC_MIN   = -15;    // graus — extensió màxima de maluc
+const R_MALUC     = 0.038;  // m — braç del recte femoral al maluc
 
 /* --- La corba força–longitud, de debò ---------------------------------
  *
@@ -645,6 +662,19 @@ const D_SL_RF_GEN = D_SL_MALUC * (R_TROCLEA / R_MALUC);  // µm per grau de flex
 function slRF(phi, maluc) {
   return SL_RF_0 + D_SL_RF_GEN * phi + D_SL_MALUC * (90 - maluc);
 }
+
+// Fins on pot arribar cada múscul amb TOT el que permeten les
+// articulacions, no només amb el que fa aquest exercici. És el que
+// separa "aquí no hi anem" de "aquí no s'hi pot anar".
+const ANAT_VAST = { a: slVast(0), b: slVast(ROM_GENOLL) };
+const ANAT_RF   = {
+  a: slRF(0, MALUC_MAX),            // genoll estès + maluc molt flexionat
+  b: slRF(ROM_GENOLL, MALUC_MIN)    // genoll flexionat + maluc estès
+};
+const ABAST = {
+  a: Math.min(ANAT_VAST.a, ANAT_RF.a),
+  b: Math.max(ANAT_VAST.b, ANAT_RF.b)
+};
 
 // Repartiment del moment segons secció transversal fisiològica: els
 // vasts hi posen la major part, el recte femoral menys d'una cinquena.
@@ -1284,11 +1314,27 @@ function dibuixaForcaLongitud(a, b) {
   const g = el("g", {});
   svgFL.appendChild(g);
 
+  // Tot el que queda fora de l'abast anatòmic. No és que l'exercici no
+  // hi vagi: és que el genoll i el maluc no hi arriben, obrint tant com
+  // es vulgui el rang. És la major part de la corba.
+  const foraDe = (x0, x1, etiqueta) => {
+    if (x1 - x0 < 2) return;
+    g.appendChild(el("rect", {
+      x: x0, y: M.dalt, width: x1 - x0, height: Hh - M.baix - M.dalt,
+      fill: "var(--text-fluix)", opacity: .09
+    }));
+    g.appendChild(el("text", {
+      x: (x0 + x1) / 2, y: M.dalt + 16, "text-anchor": "middle", "font-style": "italic"
+    }, etiqueta));
+  };
+  foraDe(M.esq, x(ABAST.a), "fora de l'abast articular");
+  foraDe(x(ABAST.b), W - M.dreta, "fora de l'abast articular");
+
   // Altiplà: una regió, no un punt. És la part que gairebé cap esquema
   // dibuixa bé.
   g.appendChild(el("rect", {
     x: x(SL_ALTIPLA_A), y: M.dalt, width: x(SL_ALTIPLA_B) - x(SL_ALTIPLA_A),
-    height: Hh - M.baix - M.dalt, fill: "var(--capacitat)", opacity: .13
+    height: Hh - M.baix - M.dalt, fill: "var(--capacitat)", opacity: .16
   }));
   g.appendChild(el("text", {
     x: (x(SL_ALTIPLA_A) + x(SL_ALTIPLA_B)) / 2, y: M.dalt - 8,
@@ -1317,19 +1363,26 @@ function dibuixaForcaLongitud(a, b) {
   for (let sl = SL0; sl <= SL1 + 1e-9; sl += 0.01) pts.push([x(sl), y(forcaLongitud(sl))]);
   g.appendChild(camí(pts, "var(--text)", 2.4));
 
-  // Franja de cada múscul: el tros de corba que l'exercici recorre.
-  franja(g, x, y, slVast(a), slVast(b), slVast(estat.angle), "var(--vast)", "Vasts", -1);
-  franja(g, x, y, slRF(a, estat.maluc), slRF(b, estat.maluc), slRF(estat.angle, estat.maluc),
-         "var(--rf)", "Recte femoral", 1);
+  // Per a cada múscul, dues franges: la prima és tot el que li permeten
+  // les articulacions; la gruixuda, el que recorre aquest exercici amb
+  // el rang seleccionat.
+  franja(g, x, y, ANAT_VAST, slVast(a), slVast(b), slVast(estat.angle), "var(--vast)", "Vasts", -1);
+  franja(g, x, y, ANAT_RF, slRF(a, estat.maluc), slRF(b, estat.maluc),
+         slRF(estat.angle, estat.maluc), "var(--rf)", "Recte femoral", 1);
 }
 
 // Marca sobre la corba el tram que recorre un múscul, i on és ara.
-function franja(g, x, y, slA, slB, slAra, color, nom, cap) {
+function franja(g, x, y, anat, slA, slB, slAra, color, nom, cap) {
+  const tram = (lo, hi, gruix, opac) => {
+    const pts = [];
+    for (let sl = lo; sl <= hi + 1e-9; sl += 0.005) pts.push([x(sl), y(forcaLongitud(sl))]);
+    if (pts.length < 2) pts.push([x(hi), y(forcaLongitud(hi))]);
+    g.appendChild(camí(pts, color, gruix, { "stroke-linecap": "round", opacity: opac }));
+  };
+  tram(anat.a, anat.b, 4, .42);
+
   const lo = Math.min(slA, slB), hi = Math.max(slA, slB);
-  const pts = [];
-  for (let sl = lo; sl <= hi + 1e-9; sl += 0.005) pts.push([x(sl), y(forcaLongitud(sl))]);
-  if (pts.length < 2) pts.push([x(hi), y(forcaLongitud(hi))]);
-  g.appendChild(camí(pts, color, 7, { "stroke-linecap": "round", opacity: .55 }));
+  tram(lo, hi, 7, .6);
 
   const fx = x(slAra), fy = y(forcaLongitud(slAra));
   g.appendChild(el("circle", { cx: fx, cy: fy, r: 6, fill: color, stroke: "var(--fons)", "stroke-width": 2 }));
