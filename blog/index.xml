@@ -10,11 +10,13 @@
 <atom:link href="https://rafelcirer.com/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Associate Professor of Kinesiology at INEFC Lleida. Strength and muscle mechanics, field-test validation, and cardiac biomarkers after exercise.</description>
 <image>
-<url>https://rafelcirer.com/images/lecture-hall.jpg</url>
+<url>https://rafelcirer.com/images/social-card.png</url>
 <title>Rafel Cirer-Sastre</title>
 <link>https://rafelcirer.com/blog/</link>
+<height>76</height>
+<width>144</width>
 </image>
 <generator>quarto-1.9.37</generator>
-<lastBuildDate>Thu, 06 Aug 2026 10:20:50 GMT</lastBuildDate>
+<lastBuildDate>Thu, 06 Aug 2026 11:17:03 GMT</lastBuildDate>
 </channel>
 </rss>
