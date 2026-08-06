@@ -198,6 +198,7 @@ input[type="range"] { width: 100%; accent-color: var(--exigencia); margin: 0; }
 .llegenda button:hover { border-color: var(--text-fluix); }
 /* Apagada: es veu que hi és, però es veu que no compta. */
 .llegenda button[aria-pressed="false"] { opacity: .45; text-decoration: line-through; }
+.llegenda button:disabled { opacity: .3; cursor: default; text-decoration: none; }
 .llegenda i { width: 24px; height: 0; border-top-width: 3px; border-top-style: solid; flex: none; }
 
 /* ---------- Barres de recorregut muscular ---------- */
@@ -298,6 +299,11 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
 
 </div>
 
+<div class="botons" id="botons-escala" style="margin-bottom:.7rem">
+  <button type="button" data-escala="nm"  aria-pressed="true">Moment al genoll (N·m)</button>
+  <button type="button" data-escala="pct" aria-pressed="false">Capacitat contràctil (% del màxim de cada múscul)</button>
+</div>
+
 <svg id="grafic-moments" class="grafic" viewBox="0 0 900 400" role="img"
      aria-label="Moment extensor màxim del quàdriceps i moment resistiu extern, en funció de l'angle de flexió del genoll."></svg>
 
@@ -307,10 +313,7 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
   <button type="button" data-linia="rf"      aria-pressed="true"><i style="border-top-color:var(--rf);border-top-style:dashed"></i> Recte femoral</button>
   <button type="button" data-linia="demanda" aria-pressed="true"><i style="border-top-color:var(--demanda)"></i> Demanda de la resistència</button>
 </div>
-<p style="font-size:.85rem;color:var(--text-fluix);margin:.6rem 0 0">
-  Clica qualsevol de les quatre per treure-la del gràfic. El gràfic de sota, l'exigència
-  relativa, sempre fa servir la capacitat total.
-</p>
+<p id="nota-llegenda" style="font-size:.85rem;color:var(--text-fluix);margin:.6rem 0 0"></p>
 
 <svg id="grafic-exigencia" class="grafic" viewBox="0 0 900 250" role="img"
      aria-label="Exigència relativa: quocient entre el moment resistiu extern i la capacitat del múscul, en percentatge."></svg>
@@ -366,6 +369,24 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
   que flexionis el genoll. Amb el respatller tombat a 45° ja hi passa, cap als 63° de
   genoll; estirat del tot, cap als 21°. La resistència externa no canvia gens en fer-ho:
   el que canvia és quin múscul està en condicions de contribuir-hi.
+</p>
+
+<p>
+  Al gràfic de moment, però, això gairebé no es veu, i val la pena entendre per què: el
+  recte femoral aporta com a molt uns 45 N·m sobre un eix que arriba a 280, i tot el seu
+  recorregut de capacitat són uns 25 N·m. La física hi és; l'escala se la menja. Per això
+  el gràfic té <strong>un segon botó d'escala</strong>, que divideix cada múscul pel seu
+  propi màxim. Allà es veu sencer: amb el maluc molt flexionat el recte femoral puja del
+  44 % al 96 % al llarg del recorregut, i amb el maluc estès <strong>passa per l'òptim
+  cap als 21° i baixa</strong> fins al 83 %. La corba dels vasts, mentrestant, no es mou
+  ni un píxel, perquè no creuen el maluc.
+</p>
+
+<p>
+  La conseqüència pràctica, que en una màquina d'extensió assegut no és òbvia: la posició
+  del respatller no fa l'exercici més fàcil ni més difícil de manera apreciable, però sí
+  que decideix <strong>en quina part del seu recorregut treballa el recte femoral</strong>.
+  Si el que es vol és carregar-lo a prop del seu òptim, assegut a 90° no s'aconsegueix mai.
 </p>
 
 <p>
@@ -616,6 +637,7 @@ const estat = {
   carrega: 0.90,   // fracció del màxim en rang complet
   angle: 45,       // angle que mostra la figura i marca el cursor
   maluc: 90,       // flexió de maluc: 90° = assegut, 0° = estirat
+  escala: "nm",    // "nm" = moment absolut | "pct" = % del màxim de cada múscul
   linies: { total: true, vast: true, rf: true, demanda: true }
 };
 
@@ -971,7 +993,12 @@ function retall(svg, id, W, Hh) {
 function dibuixaMoments(punts, a, b) {
   const W = 900, Hh = 400;
   const x = escalaX(W);
-  const yMax = M_ESCALA;
+  // En % cada múscul es divideix pel SEU propi màxim. És l'única manera
+  // de veure la relació longitud–tensió del recte femoral: en N·m aporta
+  // com a molt 45 sobre un eix de 280, i tot el seu recorregut queda
+  // aixafat contra la línia de baix.
+  const pct  = estat.escala === "pct";
+  const yMax = pct ? 108 : M_ESCALA;
   const y = v => Hh - M.baix - v / yMax * (Hh - M.baix - M.dalt);
 
   svgMoments.textContent = "";
@@ -983,14 +1010,25 @@ function dibuixaMoments(punts, a, b) {
     fill: "var(--rang)"
   }));
 
-  for (let v = 0; v <= 250; v += 50) {
+  const pas = pct ? 25 : 50, sostre = pct ? 100 : 250;
+  for (let v = 0; v <= sostre; v += pas) {
     g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: y(v), y2: y(v), class: "reixa" }));
-    g.appendChild(el("text", { x: M.esq - 10, y: y(v) + 4, "text-anchor": "end" }, v));
+    g.appendChild(el("text", { x: M.esq - 10, y: y(v) + 4, "text-anchor": "end" }, pct ? v + " %" : v));
+  }
+  if (pct) {
+    // El 100 % és el punt òptim del múscul: el mig del seu recorregut.
+    g.appendChild(el("line", {
+      x1: M.esq, x2: W - M.dreta, y1: y(100), y2: y(100),
+      stroke: "var(--text)", "stroke-width": 1.4, "stroke-dasharray": "5 4"
+    }));
+    g.appendChild(el("text", {
+      x: W - M.dreta, y: y(100) - 7, "text-anchor": "end", fill: "var(--text)"
+    }, "òptim del múscul"));
   }
   g.appendChild(el("text", {
     x: 16, y: (Hh - M.baix + M.dalt) / 2, class: "titol-eix",
     transform: `rotate(-90 16 ${(Hh - M.baix + M.dalt) / 2})`, "text-anchor": "middle"
-  }, "Moment al genoll (N·m)"));
+  }, pct ? "Capacitat contràctil (% del màxim del múscul)" : "Moment al genoll (N·m)"));
 
   eixAngles(g, x, Hh, W);
 
@@ -1001,18 +1039,22 @@ function dibuixaMoments(punts, a, b) {
   // Ordre de dibuix: primer les que poden quedar tapades. Cada corba
   // duu l'etiqueta a un angle i una alçada diferents; si totes anessin
   // al mateix lloc, la de vasts i la de demanda s'encavalcarien.
+  // campPct absent = la línia no té sentit en escala relativa. La
+  // demanda és externa, no té "màxim propi"; i el total és una suma de
+  // dos músculs amb màxims diferents.
   const linies = [
-    { id: "rf",      camp: p => p.rf,               color: "var(--rf)",        gruix: 2,   guions: "6 4", nom: "Recte femoral",  aOn: 10, dy: -11 },
-    { id: "vast",    camp: p => p.vast,             color: "var(--vast)",      gruix: 2,   guions: null,  nom: "Vasts",          aOn: 34, dy:  20 },
-    { id: "total",   camp: p => p.cap,              color: "var(--capacitat)", gruix: 2.8, guions: null,  nom: "Capacitat total", aOn: 10, dy: -12 },
-    { id: "demanda", camp: p => Math.max(0, p.dem), color: "var(--demanda)",   gruix: 2.5, guions: null,  nom: "Demanda",        aOn: 10, dy:  20 }
+    { id: "rf",      camp: p => p.rf,               campPct: p => p.rf   / M_RF_PIC   * 100, color: "var(--rf)",        gruix: 2,   guions: "6 4", nom: "Recte femoral",   aOn: 10, dy: -11 },
+    { id: "vast",    camp: p => p.vast,             campPct: p => p.vast / M_VAST_PIC * 100, color: "var(--vast)",      gruix: 2,   guions: null,  nom: "Vasts",           aOn: 34, dy:  20 },
+    { id: "total",   camp: p => p.cap,              campPct: null,                           color: "var(--capacitat)", gruix: 2.8, guions: null,  nom: "Capacitat total", aOn: 10, dy: -12 },
+    { id: "demanda", camp: p => Math.max(0, p.dem), campPct: null,                           color: "var(--demanda)",   gruix: 2.5, guions: null,  nom: "Demanda",         aOn: 10, dy:  20 }
   ];
   for (const li of linies) {
-    if (!estat.linies[li.id]) continue;
+    const camp = pct ? li.campPct : li.camp;
+    if (!camp || !estat.linies[li.id]) continue;
     const extra = li.guions ? { "stroke-dasharray": li.guions } : {};
-    corbes.appendChild(camí(punts.map(p => [x(p.phi), y(li.camp(p))]), li.color, li.gruix, extra));
+    corbes.appendChild(camí(punts.map(p => [x(p.phi), y(camp(p))]), li.color, li.gruix, extra));
     const p0 = punts[Math.round(li.aOn * 2)];
-    etiqueta(g, x(p0.phi) + 6, y(li.camp(p0)) + li.dy, li.nom, li.color, "start");
+    etiqueta(g, x(p0.phi) + 6, y(camp(p0)) + li.dy, li.nom, li.color, "start");
   }
 
   cursor(g, x, M.dalt, Hh - M.baix);
@@ -1213,6 +1255,35 @@ document.querySelectorAll("#llegenda button").forEach(b => {
     mostra();
   });
 });
+
+// Escala del gràfic de dalt.
+document.querySelectorAll("#botons-escala button").forEach(b => {
+  b.addEventListener("click", () => {
+    estat.escala = b.dataset.escala;
+    document.querySelectorAll("#botons-escala button")
+      .forEach(o => o.setAttribute("aria-pressed", String(o === b)));
+    sincronitzaLlegenda();
+    mostra();
+  });
+});
+
+// En escala relativa, dues de les quatre línies no tenen sentit: es
+// deshabiliten en comptes de desaparèixer sense explicació.
+function sincronitzaLlegenda() {
+  const pct = estat.escala === "pct";
+  document.querySelectorAll("#llegenda button").forEach(b => {
+    const nomes = b.dataset.linia === "total" || b.dataset.linia === "demanda";
+    b.disabled = pct && nomes;
+  });
+  document.getElementById("nota-llegenda").textContent = pct
+    ? "En escala relativa cada múscul es divideix pel seu propi màxim, i és quan es veu "
+    + "el que fa el maluc: mou-ne el control i mira com la corba del recte femoral passa "
+    + "de pujar a baixar mentre la dels vasts no es mou gens. La capacitat total i la "
+    + "demanda no hi surten: no tenen màxim propi amb què dividir-se."
+    : "Clica qualsevol de les quatre per treure-la del gràfic. El gràfic de sota, "
+    + "l'exigència relativa, sempre fa servir la capacitat total en N·m.";
+}
+sincronitzaLlegenda();
 
 document.querySelectorAll("#botons-resistencia button").forEach(b => {
   b.addEventListener("click", () => {
