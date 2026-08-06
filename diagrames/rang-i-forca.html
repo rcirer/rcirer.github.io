@@ -210,6 +210,16 @@ input[type="range"] { width: 100%; accent-color: var(--exigencia); margin: 0; }
 .mer svg text { font-family: inherit; font-size: 9px; fill: var(--text-fluix); }
 
 p, li { max-width: 68ch; }
+
+/* ---------- Referències ---------- */
+sup.ref { font-size: .68em; font-weight: 650; line-height: 0; white-space: nowrap; }
+sup.ref a { color: var(--exigencia); text-decoration: none; padding: 0 .08em; }
+sup.ref a:hover { text-decoration: underline; }
+ol.referencies { font-size: .87rem; color: var(--text-fluix); padding-left: 1.5rem; }
+ol.referencies li { margin-bottom: .55rem; max-width: 74ch; }
+ol.referencies a { color: inherit; }
+/* Perquè en clicar el marcador es vegi a quina entrada s'ha anat. */
+ol.referencies li:target { background: var(--fons-panell); box-shadow: 0 0 0 6px var(--fons-panell); border-radius: 2px; }
 .peu { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--vora); font-size: .85rem; color: var(--text-fluix); }
 .peu a { color: inherit; }
 code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; border-radius: 3px; }
@@ -220,6 +230,31 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
   color: var(--text-fluix);
   font-size: .92rem;
 }
+
+/* ---------- Convit a col·laborar ---------- */
+.collabora {
+  margin-top: 3rem;
+  padding: 1.4rem 1.6rem;
+  background: var(--fons-panell);
+  border: 1px solid var(--vora);
+  border-radius: 8px;
+}
+.collabora h2 { margin-top: 0; }
+.collabora p { margin: .6rem 0; }
+.boto-collabora {
+  display: inline-block;
+  margin: .7rem 0 .2rem;
+  padding: .6rem 1.1rem;
+  border-radius: 6px;
+  background: var(--text);
+  color: var(--fons);
+  font-weight: 650;
+  text-decoration: none;
+}
+.boto-collabora:hover { opacity: .85; }
+.collabora .alternativa { font-size: .87rem; color: var(--text-fluix); }
+/* L'adreça va desglossada a propòsit i no ha de ser mai un enllaç. */
+.correu { font-weight: 650; color: var(--text); white-space: nowrap; }
 </style>
 </head>
 
@@ -305,7 +340,8 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
      aria-label="Corba força–longitud del sarcòmer humà, amb la franja de longituds que recorre cada múscul en aquest exercici."></svg>
 
 <p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
-  La corba és la mateixa per a tots dos músculs: és una propietat del sarcòmer, no del
+  La corba<sup class="ref"><a href="#r1">1</a>,<a href="#r2">2</a></sup> és la mateixa per
+  a tots dos músculs: és una propietat del sarcòmer, no del
   múscul. El que canvia és <em>quin tros en recorre cadascun</em>. De cada múscul hi ha
   dues franjes: la prima és tot el que li permeten les articulacions, la gruixuda és el
   que recorre l'exercici amb el rang seleccionat, i el punt és on ets ara. Les zones
@@ -363,11 +399,14 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
 <h2>D'on surt la capacitat</h2>
 
 <p>
-  De la corba força–longitud del sarcòmer, no d'una forma triada a ull. La corba té
-  <strong>quatre trams i no és simètrica</strong>: branca ascendent de pendent 0,57 per
-  µm, un altiplà que va de 2,64 a 2,81 µm, i una branca descendent de pendent 0,70, més
-  dreta que l'ascendent. Allargar-se de més surt més car que escurçar-se. I l'altiplà
-  <em>és una regió</em>, no un punt òptim únic.
+  De la corba força–longitud del sarcòmer<sup class="ref"><a href="#r1">1</a></sup>, no
+  d'una forma triada a ull. La corba té <strong>quatre trams i no és simètrica</strong>:
+  branca ascendent de pendent 0,57 per µm, un altiplà que va de 2,64 a 2,81 µm, i una
+  branca descendent de pendent 0,70, més dreta que l'ascendent. Allargar-se de més surt
+  més car que escurçar-se. I l'altiplà <em>és una regió</em>, no un punt òptim únic:
+  aquests dos valors són la predicció del model de filaments lliscants per a l'ésser
+  humà, i Gollapudi i Lin<sup class="ref"><a href="#r2">2</a></sup> els van comprovar
+  experimentalment en fibres humanes de tipus I.
 </p>
 
 <p>
@@ -376,6 +415,17 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
   longitud només depèn del genoll. El recte femoral creua també el maluc: assegut, la
   flexió de maluc ja l'escurça abans de començar. Mou el control de maluc i mira com la
   franja lila llisca cap a la dreta i la blava no es mou gens.
+</p>
+
+<p>
+  Les longituds que fa servir el model són <strong>actives, no de repòs</strong>. La
+  distinció importa: en contracció màxima el tendó s'estira i les fibres s'escurcen, o
+  sigui que el múscul treballa més avall de la corba del que suggereix una mesura amb el
+  múscul relaxat. Els vasts estan ancorats a l'interval actiu d'1,97 a 2,48 µm entre 0° i
+  90° de genoll<sup class="ref"><a href="#r3">3</a></sup>; el pendent que se'n dedueix,
+  0,0057 µm per grau, coincideix amb els 0,0055 µm/° que Chen i col·laboradors van
+  mesurar per microendoscòpia al vast lateral<sup class="ref"><a href="#r4">4</a></sup>,
+  amb un mètode completament diferent.
 </p>
 
 <h2>Una cosa que la literatura desmenteix</h2>
@@ -443,7 +493,8 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
   La goma es comporta diferent, i el motiu es veu a la figura: com que està ancorada
   <em>darrere</em> del genoll, conserva braç de moment amb la cama penjant, just on el
   pes no en té gens. El seu perfil té el pic cap als 15° de flexió i cau més suaument.
-  Aquesta és la raó de ser de la resistència variable: no fa l'exercici més dur, en
+  Aquesta és la raó de ser de la resistència
+  variable<sup class="ref"><a href="#r5">5</a></sup>: no fa l'exercici més dur, en
   redistribueix la duresa.
 </p>
 
@@ -453,7 +504,18 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
   treballa amb el múscul curt no en deixa aixecar gens més, perquè el conserva. La
   conseqüència pràctica és que <strong>un percentatge d'1RM no és comparable entre
   rangs diferents</strong>: el mateix 70 % vol dir càrregues absolutes molt diferents
-  segons quins angles s'hi incloguin.
+  segons quins angles s'hi incloguin. És el mecanisme que hi ha darrere del resultat de
+  McMahon i col·laboradors<sup class="ref"><a href="#r7">7</a></sup>, on un rang parcial
+  a longituds llargues al 55 % d'1RM iguala el rang complet al 80 %.
+</p>
+
+<p>
+  Sobre què se'n treu, d'entrenar a longituds llargues, val la pena no exagerar. El rang
+  parcial inicial supera el final al gastrocnemi, i per marge ampli
+  (+15,2 % contra +3,4 %)<sup class="ref"><a href="#r6">6</a></sup>. Però amb anàlisi
+  bayesiana als flexors de colze les diferències són
+  trivials<sup class="ref"><a href="#r8">8</a></sup>. Les longituds llargues importen,
+  l'efecte és modest i depèn del múscul.
 </p>
 
 <h2>Què és exacte a la figura i què és una simplificació</h2>
@@ -492,31 +554,24 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
     decideix si una goma serveix per a alguna cosa en un exercici concret.</li>
 </ul>
 
-<h2>Fonts, i què és sòlid i què no</h2>
+<h2>Què és sòlid i què és contestat</h2>
 
-<p><strong>Sòlid, i publicat:</strong></p>
-<ul>
-  <li>La forma de la corba força–longitud
-    (<a href="https://doi.org/10.1113/jphysiol.1966.sp007909">Gordon, Huxley &amp; Julian,
-    1966</a>), i els seus paràmetres humans: altiplà 2,64–2,81 µm, pendent ascendent 0,57
-    per µm, descendent 0,70.</li>
-  <li>Les longituds de sarcòmer del vast lateral mesurades <em>in vivo</em> per
-    microendoscòpia
-    (<a href="https://doi.org/10.1002/jor.23387">Chen &amp; Delp</a>): canvien 0,0055 µm
-    per grau de genoll.</li>
-  <li>Que el recte femoral és un ~10 % més llarg en decúbit supí que assegut, i que
-    treballa a la branca ascendent.</li>
-</ul>
+<p><strong>Sòlid, i publicat:</strong> la forma de la corba força–longitud i els seus
+paràmetres humans<sup class="ref"><a href="#r1">1</a>,<a href="#r2">2</a></sup>; que les
+longituds de sarcòmer del vast lateral canvien uns 0,0055 µm per grau de
+genoll<sup class="ref"><a href="#r4">4</a></sup>; i que el recte femoral és un ~10 % més
+llarg en decúbit supí que assegut<sup class="ref"><a href="#r9">9</a></sup>.</p>
 
 <p><strong>Contestat, i cal saber-ho:</strong></p>
 <ul>
   <li><strong>On viu exactament el quàdriceps sobre la corba no està resolt.</strong>
-    Chen &amp; Delp mesuren 2,84 µm a 50° i 3,17 µm a 110° —és a dir, altiplà i després
-    branca descendent—; <a href="https://doi.org/10.14814/phy2.14771">Ando et al.
-    (2021)</a> mesuren 2,19–2,46 µm entre 0° i 90°, tota l'estona a la branca ascendent.
-    Són mètodes diferents i donen imatges oposades. Aquesta versió fa servir longituds
-    <em>actives</em>, que són més curtes que les de repòs perquè en contracció el tendó
-    s'estira i les fibres s'escurcen; això la col·loca del cantó d'Ando.</li>
+    Chen i col·laboradors<sup class="ref"><a href="#r4">4</a></sup> mesuren 2,84 µm a 50°
+    i 3,17 µm a 110° —altiplà i després branca descendent—; Ando i
+    col·laboradors<sup class="ref"><a href="#r3">3</a></sup> mesuren 2,19–2,46 µm entre 0°
+    i 90°, tota l'estona a la branca ascendent. Són mètodes diferents i donen imatges
+    oposades. Aquesta versió fa servir longituds actives, cosa que la col·loca del cantó
+    d'Ando. <strong>Amb les longituds de repòs de Chen el dibuix canvia de dalt a
+    baix</strong> i el múscul sí que passaria a la branca descendent.</li>
   <li>El punt de partida del recte femoral (2,10 µm) <strong>no el dona cap font</strong>:
     és una tria meva, ancorada al 10 % de diferència entre supí i assegut i repartida
     entre maluc i genoll per la relació de braços de moment.</li>
@@ -531,16 +586,93 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
   són: el braç de moment del quàdriceps, que aquí és constant i en realitat varia amb
   l'angle, i la coactivació dels isquiotibials. Hi ha a més un resultat contraintuïtiu
   publicat: la contracció màxima voluntària és un 10,6 % <em>més gran</em> assegut que
-  estirat, tot i que estirat el recte femoral està més a prop del seu òptim. S'atribueix a
-  activació nerviosa, que és una cosa que aquest model no conté.
+  estirat<sup class="ref"><a href="#r9">9</a></sup>, tot i que estirat el recte femoral
+  està més a prop del seu òptim. S'atribueix a activació nerviosa —l'EMG normalitzada del
+  recte femoral cau un 41 % en decúbit supí—, que és una cosa que aquest model no conté.
 </div>
 
 <div class="avis">
   <strong>La resistència inercial no hi és, i no hi és a propòsit.</strong> Un pes o una
   goma tenen un perfil que és funció de l'angle i es pot dibuixar en aquests eixos. Un
   volant d'inèrcia depèn de l'acceleració, no de la posició: caldria un model del
-  moviment amb temps, i la càrrega màxima ni tan sols hi és definible de la mateixa
-  manera.
+  moviment amb temps, i la càrrega no es quantifica de la mateixa
+  manera<sup class="ref"><a href="#r10">10</a></sup>.
+</div>
+
+<h2>Referències</h2>
+
+<ol class="referencies">
+  <li id="r1">Gordon AM, Huxley AF, Julian FJ. The variation in isometric tension with
+    sarcomere length in vertebrate muscle fibres. <em>J Physiol</em>. 1966;184(1):170–192.
+    <a href="https://doi.org/10.1113/jphysiol.1966.sp007909">doi:10.1113/jphysiol.1966.sp007909</a></li>
+
+  <li id="r2">Gollapudi SK, Lin DC. Experimental determination of sarcomere force–length
+    relationship in type-I human skeletal muscle fibers. <em>J Biomech</em>.
+    2009;42(13):2011–2016.
+    <a href="https://doi.org/10.1016/j.jbiomech.2009.06.013">doi:10.1016/j.jbiomech.2009.06.013</a></li>
+
+  <li id="r3">Ando R, Taniguchi K, Kikuchi S, et al. Sarcomere length of the vastus
+    intermedius with the knee joint angle change. <em>Physiol Rep</em>. 2021;9(5).
+    <a href="https://doi.org/10.14814/phy2.14771">doi:10.14814/phy2.14771</a></li>
+
+  <li id="r4">Chen X, Sanchez GN, Schnitzer MJ, Delp SL. Changes in sarcomere lengths of
+    the human vastus lateralis muscle with knee flexion measured using in vivo
+    microendoscopy. <em>J Biomech</em>. 2016;49(13):2989–2994.
+    <a href="https://doi.org/10.1016/j.jbiomech.2016.07.013">doi:10.1016/j.jbiomech.2016.07.013</a></li>
+
+  <li id="r5">Shi L, Cai Z, Chen S, et al. Acute effects of variable resistance training on
+    force, velocity, and power measures: a systematic review and meta-analysis.
+    <em>PeerJ</em>. 2022;10:e13870.
+    <a href="https://doi.org/10.7717/peerj.13870">doi:10.7717/peerj.13870</a></li>
+
+  <li id="r6">Kassiano W, Costa B, Kunevaliki G, et al. Greater gastrocnemius muscle
+    hypertrophy after partial range of motion training performed at long muscle lengths.
+    <em>J Strength Cond Res</em>. 2023;37(9):1746–1753.
+    <a href="https://doi.org/10.1519/JSC.0000000000004460">doi:10.1519/JSC.0000000000004460</a></li>
+
+  <li id="r7">McMahon G, Morse C, Burden A, et al. Moderate intensity resistance training
+    with partial range-of-motion at long muscle lengths elicits similar hypertrophy and
+    architectural adaptations as high intensity resistance training using full
+    range-of-motion. <em>J Strength Cond Res</em>. 2026.
+    <a href="https://doi.org/10.1519/JSC.0000000000005561">doi:10.1519/JSC.0000000000005561</a></li>
+
+  <li id="r8">Havers T, Wagner N, Held S, et al. Partial range, full gains? The effect of
+    8 weeks of partial range of motion training at long muscle lengths on elbow flexor
+    hypertrophy and strength in trained individuals. <em>Eur J Sport Sci</em>.
+    2025;25(12).
+    <a href="https://doi.org/10.1002/ejsc.70087">doi:10.1002/ejsc.70087</a></li>
+
+  <li id="r9">Maffiuletti NA, Lepers R. Quadriceps femoris torque and EMG activity in
+    seated versus supine position. <em>Med Sci Sports Exerc</em>. 2003;35(9):1511–1516.
+    <a href="https://doi.org/10.1249/01.MSS.0000084426.03247.93">doi:10.1249/01.MSS.0000084426.03247.93</a></li>
+
+  <li id="r10">Muñoz-López A, de Souza Fonseca F, Ramírez-Campillo R, et al. The use of
+    real-time monitoring during flywheel resistance training programmes: how can we
+    measure eccentric overload? A systematic review and meta-analysis.
+    <em>Biol Sport</em>. 2021;38(4):639–652.
+    <a href="https://doi.org/10.5114/biolsport.2021.101602">doi:10.5114/biolsport.2021.101602</a></li>
+</ol>
+
+<div class="collabora">
+  <h2>Hi has vist una errada? Tens una proposta?</h2>
+  <p>
+    Això és un model, i els models s'equivoquen. Si hi trobes un error —de càlcul,
+    d'anatomia, de font— o se t'acut com millorar-lo, digue-m'ho. Ho corregeixo i ho
+    documento, i si la correcció és teva ho diu.
+  </p>
+  <p>
+    <!-- Enllaç al repositori públic, no un mailto:. Les propostes queden a la
+         vista de tothom, que és la gràcia, i de passada no exposa cap adreça. -->
+    <a class="boto-collabora" target="_blank" rel="noopener"
+       data-goatcounter-click="proposta-rang-i-forca"
+       href="https://github.com/rcirer/rcirer.github.io/issues/new?title=Diagrama%20%22Rang%20d%27excursi%C3%B3%20i%20perfil%20de%20for%C3%A7a%22&amp;body=%23%23%20Qu%C3%A8%20hi%20has%20vist%0A%0A%0A%23%23%20On%2C%20exactament%0A%28secci%C3%B3%2C%20gr%C3%A0fic%20o%20xifra%29%0A%0A%0A%23%23%20Font%2C%20si%20en%20tens%0A">Escriu-me una correcció o una proposta</a>
+  </p>
+  <p class="alternativa">
+    Si no tens compte de GitHub, escriu-me a
+    <span class="correu">contacte *at* rafelcirer *dot* com</span> —
+    substitueix <em>at</em> per una arrova i <em>dot</em> per un punt. L'adreça va
+    desglossada a propòsit, per dificultar els recol·lectors de correu.
+  </p>
 </div>
 
 <div class="peu">

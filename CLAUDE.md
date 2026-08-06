@@ -271,6 +271,19 @@ a l'element. No cal escriure gens de JavaScript.
 perquè els bloquejadors eliminen l'script. Serveixen per comparar entre pàgines i veure
 tendències, no com a recompte absolut. No les presentis mai com a xifres exactes.
 
+**Convit a col·laborar: va a TOTES les infografies.** Decisió d'en Rafel del 6 d'agost de
+2026. Al peu de cada diagrama, un requadre que convida a enviar-hi correccions i propostes.
+**No pot ser un `mailto:`**: xoca amb la secció 8 i amb la decisió tancada de la 9 ter.
+La forma que fa servir `rang-i-forca.html`, i que s'ha de copiar a les altres:
+
+- Un botó que obre una *issue* nova al repositori públic, amb títol i cos preomplerts. Les
+  propostes queden a la vista de tothom, que és la gràcia, i no exposa cap adreça.
+- A sota, l'adreça desglossada com a alternativa per a qui no tingui compte de GitHub.
+- `data-goatcounter-click` al botó, amb un nom diferent per diagrama, per saber si s'usa.
+
+Les *issues* de `rcirer/rcirer.github.io` estan actives, comprovades el 6 d'agost de 2026.
+Si algun dia es desactivessin, el botó portaria a una pàgina morta.
+
 ## 9 quinquies. La visualització del rang i el perfil de força
 
 Idea d'en Rafel, del 4 d'agost de 2026: una visualització interactiva que **combini el rang
