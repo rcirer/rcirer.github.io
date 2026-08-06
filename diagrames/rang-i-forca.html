@@ -293,13 +293,25 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
     <div class="fila"><span class="k">Capacitat total</span><span class="v" id="v-capacitat">—</span></div>
     <div class="fila"><span class="k">Exigència relativa</span><span class="v" id="v-exigencia">—</span></div>
 
-    <div class="mer" id="mer-vast"></div>
-    <div class="mer" id="mer-rf"></div>
+    <div class="fila"><span class="k">Sarcòmer dels vasts</span><span class="v" id="v-sl-vast">—</span></div>
+    <div class="fila"><span class="k">Sarcòmer del recte femoral</span><span class="v" id="v-sl-rf">—</span></div>
   </div>
 
 </div>
 
-<div class="botons" id="botons-escala" style="margin-bottom:.7rem">
+<h2>La corba força–longitud, i on hi viu cada múscul</h2>
+
+<svg id="grafic-fl" class="grafic" viewBox="0 0 900 320" role="img"
+     aria-label="Corba força–longitud del sarcòmer humà, amb la franja de longituds que recorre cada múscul en aquest exercici."></svg>
+
+<p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
+  La corba és la mateixa per a tots dos músculs: és una propietat del sarcòmer, no del
+  múscul. El que canvia és <em>quin tros en recorre cadascun</em>. Les franjes de color
+  són el recorregut que fa l'exercici amb el rang que tens seleccionat; el punt, on ets
+  ara. Mou el control de maluc i mira com la franja lila llisca i la blava no es mou.
+</p>
+
+<div class="botons" id="botons-escala" style="margin:2.2rem 0 .7rem">
   <button type="button" data-escala="nm"  aria-pressed="true">Moment al genoll (N·m)</button>
   <button type="button" data-escala="pct" aria-pressed="false">Capacitat contràctil (% del màxim de cada múscul)</button>
 </div>
@@ -349,26 +361,43 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
 <h2>D'on surt la capacitat</h2>
 
 <p>
-  No està dibuixada a ull. Parteix d'un sol principi —<strong>un múscul és feble als dos
-  extrems del seu recorregut i fort al mig</strong>— i la geometria fa la resta: els
-  braços de moment diuen quanta longitud de múscul correspon a cada grau d'angle
-  articular, i per tant on cau cada angle dins del recorregut propi de cada múscul.
+  De la corba força–longitud del sarcòmer, no d'una forma triada a ull. La corba té
+  <strong>quatre trams i no és simètrica</strong>: branca ascendent de pendent 0,57 per
+  µm, un altiplà que va de 2,64 a 2,81 µm, i una branca descendent de pendent 0,70, més
+  dreta que l'ascendent. Allargar-se de més surt més car que escurçar-se. I l'altiplà
+  <em>és una regió</em>, no un punt òptim únic.
 </p>
 
 <p>
-  Per això hi ha <strong>dues corbes de múscul i no una</strong>. Els vasts són
-  monoarticulars: la seva longitud només depèn del genoll, tenen 10 cm de recorregut i
-  l'òptim els cau als 70° de flexió. El recte femoral creua també el maluc, té 19 cm de
-  recorregut, i assegut la flexió de maluc ja l'escurça abans de començar.
+  La corba és la mateixa per als dos músculs, perquè és una propietat del sarcòmer. El
+  que canvia és quin tros en recorre cadascun. Els vasts són monoarticulars i la seva
+  longitud només depèn del genoll. El recte femoral creua també el maluc: assegut, la
+  flexió de maluc ja l'escurça abans de començar. Mou el control de maluc i mira com la
+  franja lila llisca cap a la dreta i la blava no es mou gens.
+</p>
+
+<h2>Una cosa que la literatura desmenteix</h2>
+
+<p>
+  Que un múscul és feble als dos extrems del seu recorregut i fort al mig és cert
+  <em>de la corba</em>. Però <strong>això no vol dir que un múscul concret recorri tota
+  la corba en un exercici concret</strong>, i en aquest cas no la recorre: en extensió de
+  genoll asseguda, tots dos músculs es queden a la branca ascendent de punta a punta. No
+  arriben a l'altiplà ni de bon tros a la branca descendent.
 </p>
 
 <p>
-  Les barres del panell ho ensenyen millor que qualsevol frase: mou el control de maluc i
-  mira on es col·loca la barra del recte femoral. <strong>Assegut a 90°, el recte femoral
-  viu entre el 10 % i el 44 % del seu recorregut i no arriba mai al mig</strong>, per molt
-  que flexionis el genoll. Amb el respatller tombat a 45° ja hi passa, cap als 63° de
-  genoll; estirat del tot, cap als 21°. La resistència externa no canvia gens en fer-ho:
-  el que canvia és quin múscul està en condicions de contribuir-hi.
+  La conseqüència és que en aquest exercici <strong>no hi ha cap extrem «llarg» on el
+  múscul torni a ser feble</strong>. Com més flexió de genoll, més capaços són els dos.
+  El punt d'encallada surt a l'extensió completa per dues raons que hi van a favor
+  alhora: allà el múscul és al més escurçat que arriba a estar, i allà el braç de moment
+  extern és màxim.
+</p>
+
+<p>
+  Estirat, el recte femoral s'acosta a l'altiplà però tampoc l'arriba a passar. Per
+  posar-lo a la branca descendent caldria una altra cosa: extensió de maluc amb el genoll
+  molt flexionat, que és el que fa una femoral estirada, no una màquina d'extensió.
 </p>
 
 <p>
@@ -451,14 +480,47 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
     decideix si una goma serveix per a alguna cosa en un exercici concret.</li>
 </ul>
 
+<h2>Fonts, i què és sòlid i què no</h2>
+
+<p><strong>Sòlid, i publicat:</strong></p>
+<ul>
+  <li>La forma de la corba força–longitud
+    (<a href="https://doi.org/10.1113/jphysiol.1966.sp007909">Gordon, Huxley &amp; Julian,
+    1966</a>), i els seus paràmetres humans: altiplà 2,64–2,81 µm, pendent ascendent 0,57
+    per µm, descendent 0,70.</li>
+  <li>Les longituds de sarcòmer del vast lateral mesurades <em>in vivo</em> per
+    microendoscòpia
+    (<a href="https://doi.org/10.1002/jor.23387">Chen &amp; Delp</a>): canvien 0,0055 µm
+    per grau de genoll.</li>
+  <li>Que el recte femoral és un ~10 % més llarg en decúbit supí que assegut, i que
+    treballa a la branca ascendent.</li>
+</ul>
+
+<p><strong>Contestat, i cal saber-ho:</strong></p>
+<ul>
+  <li><strong>On viu exactament el quàdriceps sobre la corba no està resolt.</strong>
+    Chen &amp; Delp mesuren 2,84 µm a 50° i 3,17 µm a 110° —és a dir, altiplà i després
+    branca descendent—; <a href="https://doi.org/10.14814/phy2.14771">Ando et al.
+    (2021)</a> mesuren 2,19–2,46 µm entre 0° i 90°, tota l'estona a la branca ascendent.
+    Són mètodes diferents i donen imatges oposades. Aquesta versió fa servir longituds
+    <em>actives</em>, que són més curtes que les de repòs perquè en contracció el tendó
+    s'estira i les fibres s'escurcen; això la col·loca del cantó d'Ando.</li>
+  <li>El punt de partida del recte femoral (2,10 µm) <strong>no el dona cap font</strong>:
+    és una tria meva, ancorada al 10 % de diferència entre supí i assegut i repartida
+    entre maluc i genoll per la relació de braços de moment.</li>
+  <li>El repartiment del moment entre vasts i recte femoral (205 i 45 N·m) surt de la
+    secció transversal fisiològica, però és aproximat.</li>
+</ul>
+
 <div class="avis">
-  <strong>El que encara és una suposició.</strong> Que un múscul és feble als extrems del
-  seu recorregut i fort al mig és sòlid. La <em>forma exacta</em> d'aquesta caiguda no:
-  aquí és una paràbola invertida que als extrems deixa el 35 % del pic, i aquest 35 % és
-  una tria meva. També són tries el repartiment del moment entre vasts i recte femoral
-  (205 i 45 N·m, segons secció transversal), els braços de moment (4,1 cm al genoll,
-  3,8 cm al maluc, tots dos constants) i els recorreguts articulars que fixen els extrems.
-  Serveix per raonar sobre formes i comparacions, no per treure'n números absoluts.
+  <strong>Una discrepància que el model no tapa.</strong> Amb aquests números la capacitat
+  puja fins als 90° de flexió, mentre que el moment extensor mesurat en persones fa cim
+  cap als 60–70° i després baixa una mica. La diferència ve de dues coses que aquí no hi
+  són: el braç de moment del quàdriceps, que aquí és constant i en realitat varia amb
+  l'angle, i la coactivació dels isquiotibials. Hi ha a més un resultat contraintuïtiu
+  publicat: la contracció màxima voluntària és un 10,6 % <em>més gran</em> assegut que
+  estirat, tot i que estirat el recte femoral està més a prop del seu òptim. S'atribueix a
+  activació nerviosa, que és una cosa que aquest model no conté.
 </div>
 
 <div class="avis">
@@ -515,46 +577,73 @@ const B_ANCORA = 0.25;   // m — per darrere de l'eix del genoll
 // qual el tendó llisca com sobre una politja. Constant en aquest model.
 const R_TROCLEA = 0.041; // m
 
-// --- Capacitat, a partir del recorregut de cada múscul ---------------
-//
-// La capacitat NO es dibuixa com una corba d'angle de genoll triada a
-// ull. Es deriva: cada múscul és feble als extrems del seu propi
-// recorregut i fort al mig, i la geometria diu on cau, dins d'aquell
-// recorregut, cada angle articular.
-//
-// Per això calen dues corbes i no una. Els vasts són monoarticulars i
-// la seva longitud només depèn del genoll. El recte femoral creua
-// també el maluc: assegut, la flexió de maluc ja l'escurça abans de
-// començar, i per molt que es flexioni el genoll no arriba mai a la
-// seva longitud òptima.
+const ROM_GENOLL = 140;    // graus — recorregut anatòmic del genoll
+const R_MALUC    = 0.038;  // m — braç del recte femoral al maluc
 
-const ROM_GENOLL  = 140;    // graus — recorregut anatòmic del genoll
-const MALUC_MAX   = 120;    // graus — flexió màxima de maluc
-const MALUC_MIN   = -15;    // graus — extensió màxima de maluc
-const R_MALUC     = 0.038;  // m — braç del recte femoral al maluc
+/* --- La corba força–longitud, de debò ---------------------------------
+ *
+ * NO és una paràbola simètrica, i tenir-la com a paràbola era l'error
+ * gros de les versions anteriors. Té quatre trams i els dos costats
+ * tenen pendents diferents. Els paràmetres humans són els de Gollapudi
+ * & Lin (2009), que són els que fan servir Chen & Delp per interpretar
+ * les seves mesures de microendoscòpia:
+ *
+ *   · ALTIPLÀ entre 2,64 i 2,81 µm de longitud de sarcòmer. És una
+ *     REGIÓ, no un punt: hi ha una franja de longituds on el múscul
+ *     dona el màxim.
+ *   · branca ASCENDENT amb pendent 0,57 per µm.
+ *   · branca DESCENDENT amb pendent 0,70 per µm — més dreta que
+ *     l'ascendent: allargar-se de més costa més car que escurçar-se.
+ *   · sota d'1,7 µm la caiguda s'accelera i arriba a zero cap a 1,27 µm,
+ *     que és la longitud del filament d'actina.
+ */
+const SL_ALTIPLA_A  = 2.64;   // µm
+const SL_ALTIPLA_B  = 2.81;   // µm
+const PEND_ASC      = 0.57;   // per µm
+const PEND_DESC     = 0.70;   // per µm
+const SL_COLZE      = 1.70;   // µm — sota d'aquí la caiguda s'accelera
+const SL_ZERO_CURT  = 1.27;   // µm — força activa nul·la
+const SL_ZERO_LLARG = SL_ALTIPLA_B + 1 / PEND_DESC;             // 4,24 µm
+const F_COLZE       = 1 - PEND_ASC * (SL_ALTIPLA_A - SL_COLZE); // 0,46
 
-// Excursió total de cada múscul, en metres. És longitud de tendó que
-// llisca: braç de moment per recorregut angular.
-const EXC_VAST = R_TROCLEA * rad(ROM_GENOLL);
-const EXC_RF   = R_TROCLEA * rad(ROM_GENOLL) + R_MALUC * rad(MALUC_MAX - MALUC_MIN);
-
-// Posició dins del propi recorregut: 0 = escurçat del tot, 1 = allargat
-// del tot. És el que la barra del panell dibuixa.
-function lambdaVast(phi) {
-  return R_TROCLEA * rad(phi) / EXC_VAST;
+function forcaLongitud(sl) {
+  if (sl <= SL_ZERO_CURT || sl >= SL_ZERO_LLARG) return 0;
+  if (sl <  SL_COLZE)     return F_COLZE * (sl - SL_ZERO_CURT) / (SL_COLZE - SL_ZERO_CURT);
+  if (sl <  SL_ALTIPLA_A) return 1 - PEND_ASC * (SL_ALTIPLA_A - sl);
+  if (sl <= SL_ALTIPLA_B) return 1;
+  return 1 - PEND_DESC * (sl - SL_ALTIPLA_B);
 }
-function lambdaRF(phi, maluc) {
-  return (R_TROCLEA * rad(phi) + R_MALUC * rad(MALUC_MAX - maluc)) / EXC_RF;
-}
 
-// Relació força–longitud sobre el recorregut propi: paràbola invertida,
-// mínima als dos extrems i màxima al mig. F_MIN és el que queda als
-// extrems; posar-hi zero seria dir que un múscul no fa gens de força a
-// final de recorregut, i no és cert.
-const F_MIN = 0.35;
-function forcaRelativa(lam) {
-  const d = (Math.min(1, Math.max(0, lam)) - 0.5) / 0.5;
-  return F_MIN + (1 - F_MIN) * (1 - d * d);
+/* --- On viu cada múscul sobre aquesta corba ---------------------------
+ *
+ * Longituds de sarcòmer ACTIVES, no en repòs. La distinció importa i és
+ * la segona cosa que abans estava malament: en contracció màxima el
+ * tendó s'estira i les fibres s'escurcen, o sigui que el múscul treballa
+ * més avall de la corba del que suggereix una mesura en repòs.
+ *
+ * VASTS. Ando et al. (2021) donen un interval actiu d'1,97–2,48 µm per
+ * al vast intermedi entre 0° i 90° de genoll. El pendent que se'n dedueix
+ * (0,0057 µm per grau) coincideix amb el que Chen & Delp van mesurar per
+ * microendoscòpia al vast lateral (0,0055 µm/°) — mètodes independents,
+ * mateix pendent.
+ */
+const SL_VAST_0   = 1.97;     // µm, a 0° de genoll
+const D_SL_GENOLL = 0.00567;  // µm per grau de flexió de genoll
+
+function slVast(phi) { return SL_VAST_0 + D_SL_GENOLL * phi; }
+
+/* RECTE FEMORAL. No hi ha cap mesura directa de sarcòmer per angle de
+ * maluc. S'ancora amb el fet documentat que el recte femoral és un ~10 %
+ * més llarg en decúbit supí que assegut, i el repartiment entre maluc i
+ * genoll surt de la relació de braços de moment. El valor de partida
+ * SL_RF_0 és una TRIA meva: cap font el dona.
+ */
+const SL_RF_0     = 2.10;                                // µm, assegut i genoll estès
+const D_SL_MALUC  = 0.10 * SL_RF_0 / 90;                 // µm per grau d'extensió de maluc
+const D_SL_RF_GEN = D_SL_MALUC * (R_TROCLEA / R_MALUC);  // µm per grau de flexió de genoll
+
+function slRF(phi, maluc) {
+  return SL_RF_0 + D_SL_RF_GEN * phi + D_SL_MALUC * (90 - maluc);
 }
 
 // Repartiment del moment segons secció transversal fisiològica: els
@@ -563,8 +652,8 @@ const M_VAST_PIC = 205;   // N·m
 const M_RF_PIC   = 45;    // N·m
 const M_ESCALA   = 280;   // N·m — sostre de l'eix vertical del gràfic
 
-function capVast(phi)  { return M_VAST_PIC * forcaRelativa(lambdaVast(phi)); }
-function capRF(phi)    { return M_RF_PIC   * forcaRelativa(lambdaRF(phi, estat.maluc)); }
+function capVast(phi)   { return M_VAST_PIC * forcaLongitud(slVast(phi)); }
+function capRF(phi)     { return M_RF_PIC   * forcaLongitud(slRF(phi, estat.maluc)); }
 function capacitat(phi) { return capVast(phi) + capRF(phi); }
 
 // --- Perfils de resistència -----------------------------------------
@@ -1167,51 +1256,92 @@ function actualitzaPanellAngle(factor, perfil) {
   document.getElementById("v-capacitat").textContent = cap.toFixed(0) + " N·m";
   document.getElementById("v-exigencia").textContent = Math.round(Math.max(0, dem) / cap * 100) + " %";
 
+  const sv = slVast(phi), sr = slRF(phi, estat.maluc);
+  const mostraSL = (id, sl) => {
+    document.getElementById(id).textContent =
+      sl.toFixed(2).replace(".", ",") + " µm · " + Math.round(forcaLongitud(sl) * 100) + " %";
+  };
+  mostraSL("v-sl-vast", sv);
+  mostraSL("v-sl-rf", sr);
+
   const [a, b] = [Math.min(estat.a, estat.b), Math.max(estat.a, estat.b)];
-  barraMER(document.getElementById("mer-vast"), "Vasts", "var(--vast)",
-    lambdaVast(a), lambdaVast(b), lambdaVast(phi), EXC_VAST);
-  barraMER(document.getElementById("mer-rf"), "Recte femoral", "var(--rf)",
-    lambdaRF(a, estat.maluc), lambdaRF(b, estat.maluc), lambdaRF(phi, estat.maluc), EXC_RF);
+  dibuixaForcaLongitud(a, b);
 }
 
-// Barra del recorregut d'un múscul: tot el recorregut anatòmic de punta
-// a punta, la part que l'exercici arriba a recórrer, on és ara mateix, i
-// on li cau l'òptim. És la manera de veure d'un cop d'ull que assegut el
-// recte femoral no arriba mai al mig del seu recorregut.
-function barraMER(contenidor, nom, color, lamA, lamB, lamAra, excursio) {
-  const W = 220, YB = 15, HB = 10;
-  const px = l => 6 + Math.min(1, Math.max(0, l)) * (W - 12);
-  const lo = Math.min(lamA, lamB), hi = Math.max(lamA, lamB);
+/* La corba força–longitud amb la franja que recorre cada múscul. És el
+   gràfic que lliga tota la resta: la corba és una propietat del sarcòmer
+   i és la mateixa per als dos músculs; el que canvia és quin tros en
+   recorre cadascun, i això sí que depèn de l'exercici i de la postura. */
+const svgFL = document.getElementById("grafic-fl");
 
-  contenidor.textContent = "";
-  const cap = document.createElement("div");
-  cap.className = "cap";
-  cap.innerHTML = '<b></b><span></span>';
-  cap.querySelector("b").textContent = nom;
-  cap.querySelector("span").textContent =
-    Math.round(lo * 100) + "–" + Math.round(hi * 100) + " % · " +
-    (excursio * 100).toFixed(0) + " cm en total";
-  contenidor.appendChild(cap);
+function dibuixaForcaLongitud(a, b) {
+  const W = 900, Hh = 320;
+  const SL0 = 1.2, SL1 = 4.35;
+  const x = sl => M.esq + (sl - SL0) / (SL1 - SL0) * (W - M.dreta - M.esq);
+  const y = f  => Hh - M.baix - f * (Hh - M.baix - M.dalt) / 1.08;
 
-  const svg = document.createElementNS(NS, "svg");
-  svg.setAttribute("viewBox", `0 0 ${W} 40`);
-  contenidor.appendChild(svg);
+  svgFL.textContent = "";
+  const g = el("g", {});
+  svgFL.appendChild(g);
 
-  svg.appendChild(el("rect", { x: 6, y: YB, width: W - 12, height: HB, rx: 5, fill: "var(--vora)" }));
-  svg.appendChild(el("rect", {
-    x: px(lo), y: YB, width: Math.max(1.5, px(hi) - px(lo)), height: HB, rx: 5, fill: color, opacity: .5
+  // Altiplà: una regió, no un punt. És la part que gairebé cap esquema
+  // dibuixa bé.
+  g.appendChild(el("rect", {
+    x: x(SL_ALTIPLA_A), y: M.dalt, width: x(SL_ALTIPLA_B) - x(SL_ALTIPLA_A),
+    height: Hh - M.baix - M.dalt, fill: "var(--capacitat)", opacity: .13
   }));
-  // Òptim: al mig del recorregut, que és on el múscul és més capaç.
-  svg.appendChild(el("line", {
-    x1: px(.5), x2: px(.5), y1: YB - 4, y2: YB + HB + 4,
-    stroke: "var(--text)", "stroke-width": 1.4, "stroke-dasharray": "2 2"
-  }));
-  svg.appendChild(el("text", { x: px(.5), y: YB - 7, "text-anchor": "middle", fill: "var(--text)" }, "òptim"));
-  // Posició actual
-  svg.appendChild(el("circle", { cx: px(lamAra), cy: YB + HB / 2, r: 5, fill: color, stroke: "var(--fons-panell)", "stroke-width": 1.6 }));
+  g.appendChild(el("text", {
+    x: (x(SL_ALTIPLA_A) + x(SL_ALTIPLA_B)) / 2, y: M.dalt - 8,
+    "text-anchor": "middle", fill: "var(--capacitat)", "font-weight": 650
+  }, "altiplà"));
 
-  svg.appendChild(el("text", { x: 6, y: YB + HB + 13, "text-anchor": "start" }, "escurçat"));
-  svg.appendChild(el("text", { x: W - 6, y: YB + HB + 13, "text-anchor": "end" }, "allargat"));
+  for (let f = 0; f <= 1.001; f += 0.25) {
+    g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: y(f), y2: y(f), class: "reixa" }));
+    g.appendChild(el("text", { x: M.esq - 10, y: y(f) + 4, "text-anchor": "end" }, Math.round(f * 100) + " %"));
+  }
+  const yBase = Hh - M.baix;
+  g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: yBase, y2: yBase, class: "eix" }));
+  for (let sl = 1.5; sl <= 4.3; sl += 0.5) {
+    g.appendChild(el("line", { x1: x(sl), x2: x(sl), y1: yBase, y2: yBase + 5, class: "eix" }));
+    g.appendChild(el("text", { x: x(sl), y: yBase + 19, "text-anchor": "middle" }, sl.toFixed(1).replace(".", ",")));
+  }
+  g.appendChild(el("text", { x: (W + M.esq - M.dreta) / 2, y: yBase + 37, "text-anchor": "middle", class: "titol-eix" },
+    "Longitud del sarcòmer (µm)"));
+  g.appendChild(el("text", {
+    x: 16, y: (Hh - M.baix + M.dalt) / 2, class: "titol-eix",
+    transform: `rotate(-90 16 ${(Hh - M.baix + M.dalt) / 2})`, "text-anchor": "middle"
+  }, "Força activa"));
+
+  // La corba
+  const pts = [];
+  for (let sl = SL0; sl <= SL1 + 1e-9; sl += 0.01) pts.push([x(sl), y(forcaLongitud(sl))]);
+  g.appendChild(camí(pts, "var(--text)", 2.4));
+
+  // Franja de cada múscul: el tros de corba que l'exercici recorre.
+  franja(g, x, y, slVast(a), slVast(b), slVast(estat.angle), "var(--vast)", "Vasts", -1);
+  franja(g, x, y, slRF(a, estat.maluc), slRF(b, estat.maluc), slRF(estat.angle, estat.maluc),
+         "var(--rf)", "Recte femoral", 1);
+}
+
+// Marca sobre la corba el tram que recorre un múscul, i on és ara.
+function franja(g, x, y, slA, slB, slAra, color, nom, cap) {
+  const lo = Math.min(slA, slB), hi = Math.max(slA, slB);
+  const pts = [];
+  for (let sl = lo; sl <= hi + 1e-9; sl += 0.005) pts.push([x(sl), y(forcaLongitud(sl))]);
+  if (pts.length < 2) pts.push([x(hi), y(forcaLongitud(hi))]);
+  g.appendChild(camí(pts, color, 7, { "stroke-linecap": "round", opacity: .55 }));
+
+  const fx = x(slAra), fy = y(forcaLongitud(slAra));
+  g.appendChild(el("circle", { cx: fx, cy: fy, r: 6, fill: color, stroke: "var(--fons)", "stroke-width": 2 }));
+
+  // Les dues franges se solapen gairebé sempre. L'etiqueta va a un
+  // extrem diferent de cada franja perquè no es trepitgin.
+  const sl = cap < 0 ? lo : hi;
+  g.appendChild(el("text", {
+    x: x(sl) + (cap < 0 ? -10 : 12),
+    y: y(forcaLongitud(sl)) + (cap < 0 ? -10 : 22),
+    "text-anchor": cap < 0 ? "end" : "start", fill: color, "font-weight": 650
+  }, nom));
 }
 
 /* ====================================================================
