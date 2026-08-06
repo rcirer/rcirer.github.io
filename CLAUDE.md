@@ -402,6 +402,24 @@ Fet:
   `main` conté el codi font. GitHub Pages serveix des de `gh-pages`, arrel.
 
 - Capa de disseny pròpia a `theme.scss`. Un sol fitxer, sense npm ni build.
+- **Tipografia: Schibsted Grotesk**, triada el 6 d'agost de 2026 després de comparar vuit
+  lletres sobre el lloc renderitzat sencer. Les fonts són al repositori (`fonts/`) i les
+  serveix el propi domini: **mai Google Fonts**, que seria una petició del navegador del
+  lector a un tercer. Les baixa `scripts/fonts.py` (subconjunt llatí, woff2, variable);
+  són 96 KB i la cursiva només es descarrega a les pàgines que en tenen. `fonts/OFL.txt`
+  hi és perquè la llicència obliga a acompanyar la font del seu text; no l'esborris.
+
+  Dues coses apreses que costen de tornar a trobar:
+
+  - **La mida base és 16,3 px, no 17.** Aquesta lletra té l'altura d'ull més gran que la
+    Source Sans Pro anterior, i el que l'ull llegeix com a mida és l'altura de la x, no el
+    número. Mesurat, no estimat. Si algun dia canvies de lletra, torna a mesurar.
+  - **La llista de `$font-family-sans-serif` s'ha d'escriure sencera.** Si en poses un tros
+    en una altra variable i la fiques dins de la llista, Sass hi afegeix uns parèntesis que
+    invaliden la línia sencera i el lloc es veu en Times, sense cap error ni avís.
+
+  En Rafel vol **estètica moderna i elegant, no acadèmica clàssica**: va rebutjar de cop
+  quatre propostes amb serif. No li'n tornis a proposar per al text corregut.
 - Esquema d'EXCURSE a `images/excursion-range.svg`, generat per
   `scripts/excursion-range.py`. No l'editis a mà.
 - Pipeline de publicacions: `scripts/publications.py` llegeix ORCID, enriqueix amb

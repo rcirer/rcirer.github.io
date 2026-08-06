@@ -12,8 +12,26 @@ $link-color:            $accent;
 $link-hover-color:      darken($accent, 10%);
 $body-bg:               #ffffff;
 
-$font-size-root:        17px;
-$line-height-base:      1.65;
+// Tipografia. Schibsted Grotesk per a tot: text, títols i navegació.
+// Els fitxers són a fonts/ i els baixa scripts/fonts.py; el @font-face que
+// diu al navegador on trobar-los és a la secció de regles, més avall.
+// La llista de darrere és el pla B: si la font no carregués, el navegador
+// tira de la lletra del sistema en comptes de caure a Times New Roman.
+//
+// Compte si l'has de tocar: la llista s'ha d'escriure sencera aquí. Si en
+// guardes un tros en una altra variable i la fiques aquí dins, Sass entén
+// que hi vols una llista dins d'una llista i escriu uns parèntesis que fan
+// invàlida tota la línia. El navegador la descarta i el lloc es veu en
+// Times sense avisar de res.
+$font-family-sans-serif: "Schibsted Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-family-base:       $font-family-sans-serif;
+$headings-font-family:   $font-family-sans-serif;
+
+// 16.3px, no 17px. Aquesta lletra dibuixa la «x» més alta que la que hi
+// havia abans, i el que l'ull llegeix com a mida és l'altura de la x, no el
+// número. Mesurat: a 16.3px es veu igual de gran que l'anterior a 17px.
+$font-size-root:        16.3px;
+$line-height-base:      1.66;
 $headings-font-weight:  650;
 $headings-line-height:  1.2;
 
@@ -25,6 +43,58 @@ $navbar-bg:             #ffffff;
 $border-radius:         6px;
 
 /*-- scss:rules --*/
+
+// --- La lletra -----------------------------------------------------------
+// Les fonts viuen al repositori i les serveix el nostre propi domini. No es
+// demanen a Google: seria una petició del navegador del lector a un tercer
+// (un problema de dades i una dependència externa que un dia pot caure).
+//
+// Les rutes són relatives al full d'estils que compila Quarto, no a l'arrel
+// del lloc; Quarto ja s'encarrega de copiar-hi els fitxers al costat.
+//
+// Cada fitxer és VARIABLE: un sol fitxer conté tots els gruixos de 400 a
+// 700, i per això el `font-weight` és un rang i no un número.
+//
+// La cursiva és un fitxer a part i el navegador NOMÉS el baixa si a la
+// pàgina hi ha text en cursiva. A publications.qmd n'hi ha (els noms de
+// revista); a la portada, no. Cada pàgina es baixa el que necessita.
+//
+// `font-display: swap` vol dir: pinta el text de seguida amb la lletra del
+// sistema i canvia-la quan arribi la nostra. Es veu un petit salt, però és
+// millor que deixar la pàgina en blanc esperant una font.
+@font-face {
+  font-family: "Schibsted Grotesk";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("fonts/schibsted-grotesk.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Schibsted Grotesk";
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("fonts/schibsted-grotesk-italic.woff2") format("woff2");
+}
+
+// --- Sobre l'espai entre lletres dels títols ------------------------------
+// Canviar la lletra sol no fa que una pàgina sembli actual: la meitat de la
+// feina la fa el `letter-spacing` negatiu dels títols. Com més gran és un
+// títol, més sobra l'espai que el navegador deixa entre lletres, perquè
+// aquell espai està calculat per a text petit. Ajuntar-les una mica és el
+// que separa un titular de fer gran un paràgraf.
+//
+// Els valors no són aquí: cada un viu amb la resta de propietats del seu
+// element (.hero-name, h1.title, h2, .navbar-brand), més avall. Si els
+// haguessis de tocar, busca'ls allà.
+
+// Xifres d'amplada fixa. Per defecte, l'1 és més estret que el 8, i en una
+// columna d'anys o de recomptes això fa que els números ballin. Amb això
+// totes ocupen igual i queden alineades.
+table, .facts dd,
+.quarto-listing-category, .quarto-category-count {
+  font-variant-numeric: tabular-nums;
+}
 
 // --- Amplada de lectura -------------------------------------------------
 // Una línia de text massa llarga cansa. 68 caràcters és la mida còmoda.
@@ -59,7 +129,8 @@ main.content > p:has(> a > img) {
 
   h1.title {
     font-size: clamp(2rem, 4.2vw, 2.85rem);
-    letter-spacing: -0.028em;
+    font-weight: 600;
+    letter-spacing: -0.034em;
     line-height: 1.08;
     margin: 0 0 0.55rem;
   }
@@ -96,9 +167,9 @@ h2 {
   margin-bottom: 1rem;
   padding-top: 0;
   border-bottom: none;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.018em;
 }
-h3 { margin-top: 2rem; }
+h3 { margin-top: 2rem; letter-spacing: -0.018em; }
 p  { margin-bottom: 1.15rem; }
 
 // Marca d'accent sobre cada secció. És el que dona ritme a una pàgina
@@ -199,7 +270,7 @@ nav[role="doc-toc"] {
 }
 .navbar-brand {
   font-weight: 650;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.022em;
 }
 .navbar .nav-link {
   font-size: 0.95rem;
@@ -214,8 +285,10 @@ nav[role="doc-toc"] {
 
   .hero-name {
     font-size: clamp(2.6rem, 6vw, 4rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
+    // 600 i no 700: en aquesta lletra, i a aquesta mida, el gruix màxim
+    // engreixa el nom i el fa cridar. Un pas menys queda més segur de si.
+    font-weight: 600;
+    letter-spacing: -0.042em;
     line-height: 1.05;
     margin: 0 0 0.6rem;
   }
