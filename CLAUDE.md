@@ -271,6 +271,59 @@ a l'element. No cal escriure gens de JavaScript.
 perquè els bloquejadors eliminen l'script. Serveixen per comparar entre pàgines i veure
 tendències, no com a recompte absolut. No les presentis mai com a xifres exactes.
 
+## 9 quinquies. La visualització del rang i el perfil de força
+
+Idea d'en Rafel, del 4 d'agost de 2026: una visualització interactiva que **combini el rang
+d'excursió muscular amb el perfil de força d'un exercici**, per mostrar que limitant el rang
+encara es pot situar el pic a l'inici o al final del recorregut contràctil. Vol que l'usuari
+pugui **canviar el tipus de resistència** (inercial contra elàstica).
+
+Referència: <https://rpsychologist.com/cohend/> (secció 9 quater).
+
+### El que diu la literatura (cerques fetes amb scite el 4 d'agost de 2026)
+
+Entrenar a longituds musculars llargues tendeix a maximitzar la hipertròfia, i el rang
+parcial **inicial** supera el final (Kassiano et al., 2023, `10.1519/jsc.0000000000004415`).
+Al gastrocnemi: +15,2% amb rang parcial inicial contra +6,7% amb rang complet i +3,4% amb
+final (`10.1519/jsc.0000000000004460`).
+
+**No ho exageris.** Havers et al. (2025, `10.1002/ejsc.70087`) troben diferències trivials
+amb anàlisi bayesiana en flexors de colze; McMahon et al. (2026,
+`10.1519/jsc.0000000000005561`) troben que el rang parcial llarg al 55% d'1RM **iguala** el
+complet al 80%, no el supera. Lectura honesta: les longituds llargues importen, però
+l'efecte és modest i depèn del múscul.
+
+Molts exercicis multiarticulars tenen corba de força **ascendent**, i la resistència variable
+existeix per descarregar on el múscul és feble i sobrecarregar on és fort (Shi et al., 2022,
+`10.7717/peerj.13870`).
+
+### Tres problemes de disseny que cal resoldre abans de dibuixar res
+
+1. **El pic, de quina corba?** N'hi ha tres i el pic cau en llocs diferents: el moment
+   resistiu extern, la capacitat del múscul en aquella longitud, i **el quocient entre les
+   dues**. La tercera és la pedagògicament valuosa —explica el *sticking point*— i és la que
+   gairebé cap infografia dibuixa. Sigui quina sigui, s'ha de dir explícitament.
+
+2. **Limitar el rang no mou el pic: el trunca.** La selecció de rang decideix *quines
+   longituds* es carreguen; qui decideix *on cau el pic dins d'aquelles longituds* és el
+   perfil de resistència i la geometria. **Són dos controls separats** i la visualització els
+   ha de tenir separats. Això millora la idea original d'en Rafel en comptes d'invalidar-la.
+
+3. **La resistència inercial no es pot dibuixar com les altres.** Un pes lliure o una goma
+   tenen un perfil que és funció de l'angle. Un volant d'inèrcia depèn de l'acceleració, no
+   de la posició: en un volant l'1RM ni tan sols és mesurable (Muñoz-López et al., 2021,
+   `10.5114/biolsport.2021.101602`). O queda fora, o cal un model de moviment amb temps.
+
+### Pla acordat
+
+Versió 1 amb **pes lliure i goma elàstica**: dos controls (regió del rang, tipus de
+resistència) i les corbes superposades. Assolible amb JavaScript pla, sense build. El volant
+a la versió 2, si val la pena simular el moviment.
+
+**BLOQUEJAT** per una decisió d'en Rafel: **quin exercici es modela**. Recomanació donada:
+extensió de genoll assegut (geometria simple, braç de moment extern pel cosinus de l'angle,
+molta literatura, i és on treballa EXCURSE). Condiciona tots els números i les etiquetes.
+
 ## 10. Decisions obertes
 
 Pendents. Recorda-les-hi quan siguin rellevants per a la tasca en curs.
