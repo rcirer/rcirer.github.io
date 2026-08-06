@@ -344,9 +344,17 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
   a tots dos músculs: és una propietat del sarcòmer, no del
   múscul. El que canvia és <em>quin tros en recorre cadascun</em>. De cada múscul hi ha
   dues franjes: la prima és tot el que li permeten les articulacions, la gruixuda és el
-  que recorre l'exercici amb el rang seleccionat, i el punt és on ets ara. Les zones
-  grises no són rang que l'exercici es deixi: són longituds a les quals el genoll i el
-  maluc <strong>no poden arribar de cap manera</strong>.
+  que recorre l'exercici amb el rang seleccionat, i les marques verticals en són els
+  extrems. Les zones grises no són rang que l'exercici es deixi: són longituds a les
+  quals el genoll i el maluc <strong>no poden arribar de cap manera</strong>.
+</p>
+
+<p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
+  Les franjes van dibuixades una <strong>per sobre</strong> i l'altra <strong>per
+  sota</strong> de la corba a propòsit: el tram del recte femoral cau a dins del dels
+  vasts i superposades no es distingirien. El desplaçament és només visual — <em>l'alçada
+  bona és la de la corba</em>, i el punt de cada múscul sí que hi és a sobre, unit a la
+  seva franja per una ratlla.
 </p>
 
 <div class="botons" id="botons-escala" style="margin:2.2rem 0 .7rem">
@@ -1498,34 +1506,58 @@ function dibuixaForcaLongitud(a, b) {
   // Per a cada múscul, dues franges: la prima és tot el que li permeten
   // les articulacions; la gruixuda, el que recorre aquest exercici amb
   // el rang seleccionat.
-  franja(g, x, y, ANAT_VAST, slVast(a), slVast(b), slVast(estat.angle), "var(--vast)", "Vasts", -1);
+  //
+  // Van desplaçades cap amunt i cap avall de la corba perquè el tram del
+  // recte femoral cau A DINS del dels vasts: superposades sobre la corba
+  // no es distingeixen per molt que se'n canviï el color. Els guionets
+  // del recte femoral són els mateixos que té la seva línia al gràfic de
+  // moments, per no haver de recordar dos codis.
+  franja(g, x, y, ANAT_VAST, slVast(a), slVast(b), slVast(estat.angle),
+         "var(--vast)", "Vasts", -1, null);
   franja(g, x, y, ANAT_RF, slRF(a, estat.maluc), slRF(b, estat.maluc),
-         slRF(estat.angle, estat.maluc), "var(--rf)", "Recte femoral", 1);
+         slRF(estat.angle, estat.maluc), "var(--rf)", "Recte femoral", 1, "7 4");
 }
 
 // Marca sobre la corba el tram que recorre un múscul, i on és ara.
-function franja(g, x, y, anat, slA, slB, slAra, color, nom, cap) {
-  const tram = (lo, hi, gruix, opac) => {
+// dalt = -1 la posa per sobre de la corba, +1 per sota.
+function franja(g, x, y, anat, slA, slB, slAra, color, nom, dalt, guions) {
+  const dy = dalt * 9;
+  const traca = (lo, hi) => {
     const pts = [];
-    for (let sl = lo; sl <= hi + 1e-9; sl += 0.005) pts.push([x(sl), y(forcaLongitud(sl))]);
-    if (pts.length < 2) pts.push([x(hi), y(forcaLongitud(hi))]);
-    g.appendChild(camí(pts, color, gruix, { "stroke-linecap": "round", opacity: opac }));
+    for (let sl = lo; sl <= hi + 1e-9; sl += 0.005) pts.push([x(sl), y(forcaLongitud(sl)) + dy]);
+    if (pts.length < 2) pts.push([x(hi), y(forcaLongitud(hi)) + dy]);
+    return pts;
   };
-  tram(anat.a, anat.b, 4, .42);
+  const tram = (lo, hi, gruix, opac, guionets) => {
+    const extra = { "stroke-linecap": guionets ? "butt" : "round", opacity: opac };
+    if (guionets) extra["stroke-dasharray"] = guionets;
+    g.appendChild(camí(traca(lo, hi), color, gruix, extra));
+  };
+
+  tram(anat.a, anat.b, 3.5, .35, guions);
 
   const lo = Math.min(slA, slB), hi = Math.max(slA, slB);
-  tram(lo, hi, 7, .6);
+  tram(lo, hi, 8, .7, guions);
 
+  // Extrems del tram que recorre l'exercici, marcats amb un tall net
+  // perquè es pugui llegir on comença i on acaba.
+  for (const sl of [lo, hi]) {
+    const yy = y(forcaLongitud(sl)) + dy;
+    g.appendChild(el("line", {
+      x1: x(sl), x2: x(sl), y1: yy - 8, y2: yy + 8,
+      stroke: color, "stroke-width": 2
+    }));
+  }
+
+  // Posició actual, sobre la corba de debò, no sobre la franja desplaçada.
   const fx = x(slAra), fy = y(forcaLongitud(slAra));
-  g.appendChild(el("circle", { cx: fx, cy: fy, r: 6, fill: color, stroke: "var(--fons)", "stroke-width": 2 }));
+  g.appendChild(el("line", { x1: fx, y1: fy, x2: fx, y2: fy + dy, stroke: color, "stroke-width": 1.4 }));
+  g.appendChild(el("circle", { cx: fx, cy: fy, r: 5.5, fill: color, stroke: "var(--fons)", "stroke-width": 2 }));
 
-  // Les dues franges se solapen gairebé sempre. L'etiqueta va a un
-  // extrem diferent de cada franja perquè no es trepitgin.
-  const sl = cap < 0 ? lo : hi;
   g.appendChild(el("text", {
-    x: x(sl) + (cap < 0 ? -10 : 12),
-    y: y(forcaLongitud(sl)) + (cap < 0 ? -10 : 22),
-    "text-anchor": cap < 0 ? "end" : "start", fill: color, "font-weight": 650
+    x: x(dalt < 0 ? lo : hi) + (dalt < 0 ? -12 : 14),
+    y: y(forcaLongitud(dalt < 0 ? lo : hi)) + dy + (dalt < 0 ? -6 : 5),
+    "text-anchor": dalt < 0 ? "end" : "start", fill: color, "font-weight": 650
   }, nom));
 }
 
