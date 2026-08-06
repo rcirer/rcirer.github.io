@@ -1,6 +1,11 @@
 ---
 pagetitle: "Exercise measurement, muscle mechanics and applied biostatistics"
 description-meta: "Associate Professor of Kinesiology at INEFC Lleida. Strength and muscle mechanics, field-test validation, cardiac biomarkers after exercise."
+# Cal dir-ho aquí explícitament. Si una pàgina conté imatges, Quarto agafa la
+# primera del text com a imatge de previsualització i ignora la del
+# _quarto.yml: aquesta portada acabava anunciant-se amb l'esquema d'EXCURSE,
+# que és un SVG, i les xarxes no accepten SVG. La previsualització sortia buida.
+image: images/social-card.png
 toc: false
 ---
 
@@ -17,8 +22,6 @@ Many measurements strike me as more convincing than reliable.
 
 [PhD opportunity](phd.qmd){.btn-main} [Research](research.qmd){.btn-plain} [Publications](publications.qmd){.btn-plain}
 :::
-
-![](images/lecture-hall.jpg){.banner width="1600" height="640" fig-alt="A university lecture hall during a class."}
 
 That is the thread through everything I work on: how we measure what exercise does to the
 body, and what we can claim from what we have measured. Since 2022 I have also coordinated

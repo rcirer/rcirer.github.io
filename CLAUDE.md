@@ -420,6 +420,25 @@ Fet:
 
   En Rafel vol **estètica moderna i elegant, no acadèmica clàssica**: va rebutjar de cop
   quatre propostes amb serif. No li'n tornis a proposar per al text corregut.
+- **Mode fosc.** `theme.scss` porta tot el disseny i es compila dues vegades;
+  `theme-dark.scss` només hi substitueix els set colors de la paleta. Cap regla no
+  es duplica. Si t'hi trobes escrivint una regla al fitxer fosc, vol dir que a
+  `theme.scss` hi ha un color escrit a pèl que hauria de sortir de la paleta:
+  arregla-ho allà. Quarto posa sol l'interruptor a la barra i recorda l'elecció.
+
+  Trampa que va costar de trobar: **no facis servir selectors amb `$=`** (com
+  `img[src$=".svg"]`). Quarto llegeix el `$` com el començament d'una variable de
+  Sass i el render s'atura amb un error que no diu on és. Fes servir `*=`.
+
+- **Cap foto d'estoc.** La de l'aula (`images/lecture-hall.jpg`) es va treure de la
+  portada el 6 d'agost de 2026. Una foto d'estoc en una pàgina que ven recerca i
+  doctorat diu que no en tens; la pàgina queda millor sense res. Ara l'única imatge
+  de la portada és el seu propi esquema d'EXCURSE. El fitxer segueix al repositori
+  però **no s'usa enlloc**.
+- Imatge social a `images/social-card.png`, tipogràfica, feta per
+  `scripts/targeta-social.py`. L'script fa servir el Chrome del sistema **una sola
+  vegada, a mà**; el que es publica és el PNG. El lloc no depèn de res per servir-la,
+  igual que amb `excursion-range.py`. Torna-la a fabricar només si canvia el text.
 - Esquema d'EXCURSE a `images/excursion-range.svg`, generat per
   `scripts/excursion-range.py`. No l'editis a mà.
 - Pipeline de publicacions: `scripts/publications.py` llegeix ORCID, enriqueix amb
@@ -454,6 +473,13 @@ diposita DOI, i a ORCID hi consta cinc vegades sense poder-se fusionar), l'artic
 i el de water polo.
 
 No facis cap d'aquests passos sense demanar-ho: van d'una decisió en una.
+
+**Avís après per experiència: Quarto publica TOT el que hi ha dins la carpeta del
+projecte.** El `.gitignore` no el protegeix: és cosa de git i Quarto no el mira. El 6
+d'agost de 2026 es van publicar 1919 fitxers d'una carpeta de proves que era al
+`.gitignore` i que estava dins el projecte. Qualsevol carpeta temporal ha d'anar
+**fora** de `/Users/rcirer/Projects/rafelcirer`. Això afecta també `_traduccions/`,
+que encara no existeix: si es crea dins el projecte, es publicarà.
 
 **Avís après per experiència:** no facis `git add -A` sense mirar abans què s'hi afegeix.
 L'editor d'en Rafel pot re-desar fitxers que acabes de renombrar, i un `add -A` cec els

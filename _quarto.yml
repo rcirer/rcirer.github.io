@@ -18,7 +18,12 @@ website:
   description: "Associate Professor of Kinesiology at INEFC Lleida. Strength and muscle mechanics, field-test validation, and cardiac biomarkers after exercise."
   favicon: images/favicon.svg
   open-graph: true
-  image: images/lecture-hall.jpg
+  # La imatge que ensenyen LinkedIn, Bluesky o un xat quan algú comparteix un
+  # enllaç del lloc. Abans hi havia una foto d'estoc d'una aula. Ara és una
+  # targeta tipogràfica amb el nom, el càrrec i la frase del lloc, feta per
+  # `python3 scripts/targeta-social.py`. És una imatge com qualsevol altra:
+  # el lloc no necessita res per servir-la.
+  image: images/social-card.png
   navbar:
     # Lloc en anglès per defecte. Teaching és l'única pàgina en català,
     # perquè el seu públic són els estudiants d'aquí (CLAUDE.md §5).
@@ -51,7 +56,13 @@ website:
 
 format:
   html:
-    theme: [cosmo, theme.scss]
+    # Dues paletes. `theme.scss` porta tot el disseny i es compila dues
+    # vegades; `theme-dark.scss` només hi canvia els colors. Quarto posa sol
+    # l'interruptor de sol/lluna a la barra de dalt, i recorda l'elecció del
+    # lector. Per treure el mode fosc, deixa-hi només la línia `light`.
+    theme:
+      light: [cosmo, theme.scss]
+      dark: [cosmo, theme.scss, theme-dark.scss]
     toc: true
     # El lloc és en anglès: aquest text sortia en català a totes les pàgines.
     # teaching.qmd, que sí que és en català, el sobreescriu al seu capçal.

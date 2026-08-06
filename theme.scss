@@ -1,16 +1,24 @@
 /*-- scss:defaults --*/
 
-// Paleta. Canviar aquests cinc valors recolora tot el lloc.
-$ink:        #15181b;   // text principal
-$ink-muted:  #5c6670;   // text secundari
-$rule:       #e2e6e8;   // línies i vores
-$surface:    #f6f7f6;   // fons de les bandes destacades
-$accent:     #0e6b5e;   // color de marca
+// Paleta. Canviar aquests set valors recolora tot el lloc, i cap altre color
+// no s'escriu enlloc més: tota la resta del fitxer en surt.
+//
+// El `!default` de darrere vol dir «fes servir aquest valor si ningú no me
+// n'ha donat cap altre». És el que permet que theme-dark.scss substitueixi
+// la paleta sencera sense haver de duplicar ni una regla d'aquest fitxer:
+// Quarto compila el fitxer dues vegades, una amb cada paleta.
+$ink:        #15181b !default;   // text principal
+$ink-muted:  #5c6670 !default;   // text secundari
+$rule:       #e2e6e8 !default;   // línies i vores
+$surface:    #f6f7f6 !default;   // fons de les bandes destacades
+$accent:     #0e6b5e !default;   // color de marca
+$paper:      #ffffff !default;   // fons de la pàgina
+$on-accent:  #ffffff !default;   // text a sobre del color de marca
 
 $body-color:            $ink;
 $link-color:            $accent;
 $link-hover-color:      darken($accent, 10%);
-$body-bg:               #ffffff;
+$body-bg:               $paper;
 
 // Tipografia. Schibsted Grotesk per a tot: text, títols i navegació.
 // Els fitxers són a fonts/ i els baixa scripts/fonts.py; el @font-face que
@@ -39,7 +47,7 @@ $h1-font-size:          2.4rem;
 $h2-font-size:          1.55rem;
 $h3-font-size:          1.15rem;
 
-$navbar-bg:             #ffffff;
+$navbar-bg:             $paper;
 $border-radius:         6px;
 
 /*-- scss:rules --*/
@@ -96,6 +104,25 @@ table, .facts dd,
   font-variant-numeric: tabular-nums;
 }
 
+// --- Com es parteixen les línies ------------------------------------------
+// Un títol de dues línies acostuma a deixar una paraula sola a la segona, i
+// queda desmanegat. `balance` reparteix les paraules a parts iguals entre
+// les línies. Només actua en blocs curts, que és exactament on cal.
+//
+// `pretty` fa la versió suau per als paràgrafs: no els reparteix, però evita
+// que l'última línia quedi amb una sola paraula.
+//
+// Als navegadors que no ho entenen, la propietat s'ignora i tot queda com
+// abans. No cal cap alternativa ni cap comprovació.
+h1, h2, h3, h4,
+.hero-name, .hero-lede, .hero-role,
+.line-card h3, .facts dt {
+  text-wrap: balance;
+}
+main.content p, .line-card p, .facts dd, figcaption {
+  text-wrap: pretty;
+}
+
 // --- Amplada de lectura -------------------------------------------------
 // Una línia de text massa llarga cansa. 68 caràcters és la mida còmoda.
 // El límit s'aplica al text corregut, no als blocs: les graelles, les figures
@@ -122,6 +149,13 @@ main.content > p:has(> a > img) {
 // Les pàgines interiors començaven amb el títol i queien directament al
 // text. Aquest bloc els dona una entrada: títol gran, subtítol suau,
 // metadades en línia i una regla que separa la capçalera del contingut.
+// A la portada, Quarto escriu igualment aquesta capçalera però buida
+// (<header></header>), perquè el títol de la pàgina el porta el bloc .hero.
+// Buida i tot, pintava la seva ratlla i ocupava 73 px: una línia horitzontal
+// sense res a sobre, just a l'entrada del lloc. `:empty` vol dir exactament
+// «quan no hi ha res a dins», i llavors no es dibuixa.
+#title-block-header:empty { display: none; }
+
 #title-block-header {
   margin-bottom: 3rem;
   padding-bottom: 1.5rem;
@@ -157,6 +191,14 @@ main.content > p:has(> a > img) {
     margin: 0.15rem 0 0;
     font-size: 0.95rem;
   }
+
+  // En un mòbil, aquesta capçalera deixava 94 px de blanc entre el títol i
+  // el primer text: el 12 % de la primera pantalla sense res. En una
+  // pantalla d'ordinador aquell aire hi juga a favor; en una d'estreta, no.
+  @media (max-width: 576px) {
+    margin-bottom: 1.9rem;
+    padding-bottom: 1.1rem;
+  }
 }
 
 // --- Ritme vertical -----------------------------------------------------
@@ -190,7 +232,7 @@ main.content section > h2::before {
 main.content a:not(.btn-main):not(.btn-plain):not(.stretched-link):not(.nav-link) {
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
-  text-decoration-color: rgba(14, 107, 94, 0.38);
+  text-decoration-color: rgba($accent, 0.38);
   &:hover { text-decoration-color: $accent; }
 }
 
@@ -216,12 +258,12 @@ main.content table, main.content .table {
   }
   td {
     padding: 0.7rem 1rem 0.7rem 0;
-    border-bottom: 1px solid rgba(226, 230, 232, 0.75);
+    border-bottom: 1px solid rgba($rule, 0.75);
     vertical-align: top;
   }
   tr:last-child td { border-bottom: none; }
   th:last-child, td:last-child { padding-right: 0; }
-  tbody tr:hover td { background: rgba(14, 107, 94, 0.028); }
+  tbody tr:hover td { background: rgba($accent, 0.05); }
 }
 
 // --- Índex lateral --------------------------------------------------------
@@ -321,7 +363,7 @@ nav[role="doc-toc"] {
 }
 .btn-main {
   background: $accent;
-  color: #fff !important;
+  color: $on-accent !important;
   &:hover { background: darken($accent, 8%); }
 }
 .btn-plain {
@@ -380,7 +422,11 @@ nav[role="doc-toc"] {
     font-weight: 700;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: $accent;
+    // Gris i no verd: aquests rètols són noms de camp («places»,
+    // «starting»), no dades. El verd es reserva per al que vol dir alguna
+    // cosa —les etiquetes de les targetes de la portada, els enllaços—; si
+    // surt a tot arreu, deixa de destacar res.
+    color: $ink-muted;
     margin-bottom: 0.15rem;
   }
   dd {
@@ -470,7 +516,7 @@ figcaption {
     box-shadow: none;
     &:focus {
       border-color: $accent;
-      box-shadow: 0 0 0 3px rgba(14, 107, 94, 0.12);
+      box-shadow: 0 0 0 3px rgba($accent, 0.12);
     }
   }
   .input-group-text {
@@ -565,6 +611,6 @@ figcaption {
     display: inline-block;
     margin-top: 0.35rem;
     font-size: 0.8rem;
-    a { color: $ink-muted; text-decoration-color: rgba(92, 102, 112, 0.4); }
+    a { color: $ink-muted; text-decoration-color: rgba($ink-muted, 0.4); }
   }
 }

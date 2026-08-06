@@ -1,0 +1,58 @@
+/*-- scss:defaults --*/
+
+// Paleta fosca. Aquest fitxer NO repeteix cap regla de theme.scss: només
+// canvia els set colors. Quarto compila theme.scss dues vegades, una amb
+// cada paleta, i per això tot el disseny el segueix sol.
+//
+// Si algun dia hi vols tocar un espai, una mida o una vora, fes-ho a
+// theme.scss. Aquí només hi van colors. Si t'hi trobes escrivint una regla,
+// vol dir que a theme.scss hi ha un color escrit a pèl que hauria de sortir
+// d'aquestes variables: arregla-ho allà, no aquí.
+//
+// Els valors venen mesurats. El mínim de contrast que ha de complir un text
+// és 4,5:1 sobre el seu fons; el més just d'aquests és el text secundari
+// sobre les bandes, a 6,5:1.
+$paper:      #14171a;   // fons de la pàgina
+$ink:        #e7eaed;   // text principal        14,9:1
+$ink-muted:  #9aa5ae;   // text secundari         7,2:1
+$rule:       #3a424a;   // línies i vores
+$surface:    #1c2024;   // fons de les bandes
+$accent:     #56c4ad;   // color de marca         8,5:1
+$on-accent:  #0a2823;   // text sobre el botó     7,4:1
+
+// El verd de marca no pot ser el mateix que en clar. El #0e6b5e és fosc
+// perquè ha de contrastar amb blanc; sobre negre desapareixeria. Aquest és
+// el mateix color aclarit fins que torna a ser llegible.
+
+// En clar, un enllaç s'enfosqueix en passar-hi el cursor. En fosc això el
+// faria acostar-se al fons, o sigui que ha de fer el contrari.
+$link-hover-color: lighten($accent, 12%);
+
+/*-- scss:rules --*/
+
+// L'esquema d'EXCURSE porta els colors escrits a dins del fitxer SVG i està
+// dibuixat per anar sobre blanc. Un SVG inserit com a imatge és un document
+// a part: no li arriba el CSS d'aquesta pàgina, i per tant no es pot
+// recolorir des d'aquí.
+//
+// En comptes de barallar-s'hi, se li dona el blanc que necessita: en mode
+// fosc les figures van dins d'un full clar. És el que fan els llocs foscos
+// amb gràfics i diagrames, i té l'avantatge que funciona sempre, sigui quin
+// sigui el dibuix i encara que un dia el canviïs.
+// Nota: aquí hi ha d'anar `*=` («conté»), no `$=` («acaba en»). Quarto
+// llegeix el `$` del `$=` com el començament d'una variable de Sass, no
+// troba cap nom darrere i el render s'atura amb un error que no diu on és.
+figure:has(img[src*=".svg"]) img,
+main.content > p > img[src*=".svg"] {
+  background: #ffffff;
+  padding: 1.1rem;
+  border-radius: $border-radius;
+}
+
+// Els botons del navegador (el selector clar/fosc, la cerca) surten amb el
+// fons clar de Bootstrap i canten sobre el fons fosc.
+.navbar .quarto-color-scheme-toggle,
+.navbar #quarto-search {
+  color: $ink-muted;
+  &:hover { color: $accent; }
+}
