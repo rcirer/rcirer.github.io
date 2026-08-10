@@ -301,7 +301,20 @@ nav[role="doc-toc"] {
   border-radius: 0 $border-radius $border-radius 0 !important;
   background: $surface;
   .callout-body, .callout-body-container { font-size: 0.95rem; }
-  .callout-icon::before { display: none; }
+
+  // Fora la icona blava de Quarto: és d'un altre color i d'una altra
+  // família visual que la resta del lloc. La barra verda de l'esquerra ja
+  // diu que això és un avís.
+  //
+  // S'amaga el CONTENIDOR, no la icona. Amagant només la icona quedava la
+  // seva columna buida de 24 px i el text no arrencava on toca.
+  //
+  // La versió anterior (`.callout-icon::before { display: none }`) no feia
+  // res, i val la pena saber per què: Quarto ho fixa amb
+  // `.callout.callout-style-simple .callout-icon::before`, que porta una
+  // classe més. En CSS guanya la regla més específica, no la que va
+  // després. Comptar classes és l'única manera de saber qui guanyarà.
+  .callout-icon-container { display: none; }
 }
 
 // --- Barra de navegació -------------------------------------------------
