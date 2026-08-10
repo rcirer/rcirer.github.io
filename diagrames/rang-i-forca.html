@@ -357,6 +357,28 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
   seva franja per una ratlla.
 </p>
 
+<h2>On treballa cada múscul, segons qui ho hagi mesurat</h2>
+
+<svg id="grafic-rangs" class="grafic" viewBox="0 0 900 330" role="img"
+     aria-label="Rang de longituds de sarcòmer de cada porció del quàdriceps segons diferents estudis, sobre el mateix eix que la corba força–longitud."></svg>
+
+<p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
+  Mateix eix que el gràfic de dalt, o sigui que pots baixar la mirada en vertical des de
+  la corba fins a qualsevol barra. Les dues primeres són el que fa servir aquesta pàgina i
+  es mouen amb els controls; la resta són mesures publicades, cadascuna amb el seu mètode.
+</p>
+
+<div class="avis">
+  <strong>Aquest gràfic és, de fet, el més important de la pàgina.</strong> Tres estudis
+  mesuren el vast lateral als mateixos angles i donen respostes que no es toquen: branca
+  ascendent, altiplà o branca descendent segons a qui creguis. I el vast medial mesurat
+  intraoperatòriament<sup class="ref"><a href="#r11">11</a></sup> arriba a 4,1 µm a 90° de
+  flexió, que és a tocar del zero de força activa — els mateixos autors diuen que aquests
+  valors són «dramàticament més llargs» del que prediu el model biomecànic. Qualsevol
+  afirmació categòrica sobre on treballa el quàdriceps sobre la corba, la teva o la meva,
+  s'ha de mirar amb aquesta taula al davant.
+</div>
+
 <div class="botons" id="botons-escala" style="margin:2.2rem 0 .7rem">
   <button type="button" data-escala="nm"  aria-pressed="true">Moment al genoll (N·m)</button>
   <button type="button" data-escala="pct" aria-pressed="false">Capacitat contràctil (% del màxim de cada múscul)</button>
@@ -659,6 +681,11 @@ llarg en decúbit supí que assegut<sup class="ref"><a href="#r9">9</a></sup>.</
     measure eccentric overload? A systematic review and meta-analysis.
     <em>Biol Sport</em>. 2021;38(4):639–652.
     <a href="https://doi.org/10.5114/biolsport.2021.101602">doi:10.5114/biolsport.2021.101602</a></li>
+
+  <li id="r11">Son J, Indresano A, Sheppard K, Ward SR, Lieber RL. Intraoperative and
+    biomechanical studies of human vastus lateralis and vastus medialis sarcomere length
+    operating range. <em>J Biomech</em>. 2018;67:91–97.
+    <a href="https://doi.org/10.1016/j.jbiomech.2017.11.038">doi:10.1016/j.jbiomech.2017.11.038</a></li>
 </ol>
 
 <div class="collabora">
@@ -1436,18 +1463,110 @@ function actualitzaPanellAngle(factor, perfil) {
 
   const [a, b] = [Math.min(estat.a, estat.b), Math.max(estat.a, estat.b)];
   dibuixaForcaLongitud(a, b);
+  dibuixaRangs(a, b);
 }
 
 /* La corba força–longitud amb la franja que recorre cada múscul. És el
    gràfic que lliga tota la resta: la corba és una propietat del sarcòmer
    i és la mateixa per als dos músculs; el que canvia és quin tros en
    recorre cadascun, i això sí que depèn de l'exercici i de la postura. */
-const svgFL = document.getElementById("grafic-fl");
+const svgFL    = document.getElementById("grafic-fl");
+const svgRangs = document.getElementById("grafic-rangs");
+
+// Escala de longitud de sarcòmer compartida pels dos gràfics, perquè es
+// puguin llegir un damunt de l'altre.
+const SL_EIX_0 = 1.2, SL_EIX_1 = 4.35;
+const xSL = sl => M.esq + (sl - SL_EIX_0) / (SL_EIX_1 - SL_EIX_0) * (900 - M.dreta - M.esq);
+
+/* Rangs publicats. Cap d'aquests números és meu: surten de les fonts que
+   hi ha al peu. Les dues primeres files SÍ que són del model d'aquesta
+   pàgina i es recalculen amb els controls.
+
+   Estan aquí perquè les tres mesures del vast lateral no es toquen entre
+   elles, i amagar-ho triant-ne una seria justament el que un diagrama
+   docent no ha de fer. */
+const RANGS_PUBLICATS = [
+  { mus: "Vast intermedi", font: "Ando 2021 · en repòs",            a: 2.19, b: 2.46, ang: "0°–90°",   ref: 3,  color: "var(--vast)" },
+  { mus: "Vast lateral",   font: "Ando 2021 · en repòs",            a: 2.28, b: 2.30, ang: "0°–90°",   ref: 3,  color: "var(--vast)" },
+  { mus: "Vast lateral",   font: "Chen 2016 · microendoscòpia",     a: 2.84, b: 3.17, ang: "50°–110°", ref: 4,  color: "var(--vast)" },
+  { mus: "Vast lateral",   font: "Son 2018 · intraoperatori",       a: 3.20, b: 3.80, ang: "45°–90°",  ref: 11, color: "var(--vast)" },
+  { mus: "Vast medial",    font: "Son 2018 · intraoperatori",       a: 3.60, b: 4.10, ang: "45°–90°",  ref: 11, color: "var(--capacitat)" }
+];
+
+function dibuixaRangs(a, b) {
+  const W = 900, FILA = 32, Y0 = 44;
+  svgRangs.textContent = "";
+  const g = el("g", {});
+  svgRangs.appendChild(g);
+
+  const files = [
+    { mus: "Recte femoral", font: "model d'aquesta pàgina", color: "var(--rf)",  guions: "7 4",
+      a: slRF(a, estat.maluc), b: slRF(b, estat.maluc), ang: Math.round(a) + "°–" + Math.round(b) + "°", seu: true },
+    { mus: "Vasts", font: "model d'aquesta pàgina · actiu", color: "var(--vast)", guions: null,
+      a: slVast(a), b: slVast(b), ang: Math.round(a) + "°–" + Math.round(b) + "°", seu: true },
+    ...RANGS_PUBLICATS
+  ];
+
+  const yBase = Y0 + files.length * FILA;
+
+  // Altiplà i zero de força, com a referències verticals que travessen
+  // totes les files. Són el que permet llegir el gràfic d'un cop d'ull.
+  g.appendChild(el("rect", {
+    x: xSL(SL_ALTIPLA_A), y: M.dalt, width: xSL(SL_ALTIPLA_B) - xSL(SL_ALTIPLA_A),
+    height: yBase - M.dalt, fill: "var(--capacitat)", opacity: .16
+  }));
+  g.appendChild(el("text", {
+    x: (xSL(SL_ALTIPLA_A) + xSL(SL_ALTIPLA_B)) / 2, y: M.dalt + 10,
+    "text-anchor": "middle", fill: "var(--capacitat)", "font-weight": 650
+  }, "altiplà"));
+  g.appendChild(el("line", {
+    x1: xSL(SL_ZERO_LLARG), x2: xSL(SL_ZERO_LLARG), y1: M.dalt + 16, y2: yBase,
+    stroke: "var(--demanda)", "stroke-width": 1.4, "stroke-dasharray": "4 3"
+  }));
+  g.appendChild(el("text", {
+    x: xSL(SL_ZERO_LLARG) - 6, y: M.dalt + 10, "text-anchor": "end", fill: "var(--demanda)", "font-weight": 650
+  }, "força activa = 0"));
+
+  files.forEach((f, i) => {
+    const y = Y0 + i * FILA;
+    const x1 = xSL(Math.min(f.a, f.b)), x2 = xSL(Math.max(f.a, f.b));
+    const ample = Math.max(4, x2 - x1);
+
+    g.appendChild(el("text", { x: M.esq + 4, y: y - 9, "font-weight": 650, fill: "var(--text)" }, f.mus));
+    g.appendChild(el("text", { x: M.esq + 4 + f.mus.length * 7.2 + 8, y: y - 9 }, f.font));
+
+    const barra = { x: x1, y: y, width: ample, height: 10, rx: 5, fill: f.color, opacity: f.seu ? .85 : .5 };
+    g.appendChild(el("rect", barra));
+    if (f.guions) g.appendChild(el("rect", Object.assign({}, barra, {
+      fill: "none", stroke: "var(--fons)", "stroke-width": 3, "stroke-dasharray": f.guions
+    })));
+    for (const x of [x1, x2]) {
+      g.appendChild(el("line", { x1: x, x2: x, y1: y - 3, y2: y + 13, stroke: f.color, "stroke-width": 2 }));
+    }
+    // Anotació a la dreta de la barra, i a l'esquerra quan no hi cabria.
+    const txt = f.ang + "  ·  " + Math.min(f.a, f.b).toFixed(2).replace(".", ",") +
+                "–" + Math.max(f.a, f.b).toFixed(2).replace(".", ",") + " µm";
+    const cap = x2 + 10 + txt.length * 6 > W - M.dreta;
+    g.appendChild(el("text", {
+      x: cap ? x1 - 10 : x2 + 10, y: y + 9, "text-anchor": cap ? "end" : "start"
+    }, txt));
+  });
+
+  // Eix, el mateix que el del gràfic de la corba.
+  g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: yBase, y2: yBase, class: "eix" }));
+  for (let sl = 1.5; sl <= 4.3; sl += 0.5) {
+    g.appendChild(el("line", { x1: xSL(sl), x2: xSL(sl), y1: yBase, y2: yBase + 5, class: "eix" }));
+    g.appendChild(el("text", { x: xSL(sl), y: yBase + 19, "text-anchor": "middle" }, sl.toFixed(1).replace(".", ",")));
+  }
+  g.appendChild(el("text", {
+    x: (W + M.esq - M.dreta) / 2, y: yBase + 37, "text-anchor": "middle", class: "titol-eix"
+  }, "Longitud del sarcòmer (µm)"));
+}
 
 function dibuixaForcaLongitud(a, b) {
   const W = 900, Hh = 320;
-  const SL0 = 1.2, SL1 = 4.35;
-  const x = sl => M.esq + (sl - SL0) / (SL1 - SL0) * (W - M.dreta - M.esq);
+  const SL0 = SL_EIX_0, SL1 = SL_EIX_1;
+  const x = xSL;   // el mateix eix que el gràfic de rangs de sota
   const y = f  => Hh - M.baix - f * (Hh - M.baix - M.dalt) / 1.08;
 
   svgFL.textContent = "";
