@@ -452,15 +452,16 @@ Fet:
 
 Pendent, en aquest ordre:
 
-1. Retrat d'en Rafel per a la portada. Mentrestant hi ha una foto d'estoc d'una aula que
-   el retrata fent classe en una pàgina que ven recerca i doctorat.
+1. Retrat d'en Rafel per a la portada. Ara mateix la portada no duu cap fotografia: la
+   d'estoc es va treure el 6 d'agost de 2026 i no s'hi va posar res a canvi. Quan tingui
+   retrat, cal replantejar la portada sencera, no encaixar-l'hi on era la foto.
 2. Infografies docents (secció 9 quater). Decisió que bloqueja la primera visualització
    interactiva: **quin exercici es modela**. Recomanació: extensió de genoll assegut.
 3. Materials docents. `teaching.qmd` només publica el curs d'R (`rcirer/24-intro-R`);
    no hi tornis a posar «pendent de publicar»: es va treure a propòsit.
 4. Primer post del blog, a partir de `blog/posts/_llavor-troponina.qmd`.
-5. Traducció al català sota `/ca/`, quan el text anglès estigui tancat.
-6. Domini personalitzat (secció 10) i analítica (secció 9 quater).
+5. Traducció al català sota `/ca/`, quan el text anglès estigui tancat. Compte: la
+   carpeta de treball ha d'anar FORA del projecte (vegeu l'avís sobre Quarto, més avall).
 
 **Sobre ORCID i `extres.yml`.** Les entrades d'ORCID importades automàticament de Web of
 Science pertanyen a aquella font i en Rafel **no les pot editar**. Si a WoS hi falta el
