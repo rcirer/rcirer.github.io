@@ -70,7 +70,7 @@
 
 body {
   margin: 0;
-  padding: 2rem 1.25rem 4rem;
+  padding: 1rem 1.25rem 4rem;
   background: var(--fons);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
@@ -79,22 +79,22 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-main { max-width: 900px; margin: 0 auto; }
+main { max-width: 1180px; margin: 0 auto; }
 
-h1 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .3rem; font-weight: 650; }
+h1 { font-size: 1.28rem; line-height: 1.2; margin: 0 0 .1rem; font-weight: 650; }
 h2 { font-size: 1.05rem; margin: 2.4rem 0 .6rem; font-weight: 650; }
-.subtitol { color: var(--text-fluix); margin: 0 0 2rem; max-width: 58ch; }
+.subtitol { color: var(--text-fluix); margin: 0 0 .7rem; font-size: .88rem; }
 
 /* ---------- Controls ---------- */
 .controls {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1.4rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(172px, 1fr));
+  gap: .7rem 1.5rem;
   background: var(--fons-panell);
   border: 1px solid var(--vora);
   border-radius: 8px;
-  padding: 1.2rem 1.4rem;
-  margin-bottom: 1.8rem;
+  padding: .75rem 1rem;
+  margin-bottom: .9rem;
 }
 .control > label,
 .control > .etiqueta {
@@ -104,7 +104,7 @@ h2 { font-size: 1.05rem; margin: 2.4rem 0 .6rem; font-weight: 650; }
   letter-spacing: .02em;
   text-transform: uppercase;
   color: var(--text-fluix);
-  margin-bottom: .5rem;
+  margin-bottom: .35rem;
 }
 .valor { font-variant-numeric: tabular-nums; font-weight: 650; color: var(--text); text-transform: none; letter-spacing: 0; }
 
@@ -128,15 +128,45 @@ input[type="range"] { width: 100%; accent-color: var(--exigencia); margin: 0; }
   border-color: var(--text);
 }
 
-/* ---------- Figura anatòmica ---------- */
+/* ---------- Bloc interactiu ----------
+   Dimensionat perquè càpiga en una pantalla i es pugui projectar sense
+   fer scroll. Tot el text explicatiu queda per sota. */
+.app { margin-bottom: 2.4rem; }
+
 .escena {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(190px, 1fr);
-  gap: 1.4rem 1.8rem;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+  gap: .9rem 1.3rem;
   align-items: start;
-  margin-bottom: 1.6rem;
 }
-@media (max-width: 720px) { .escena { grid-template-columns: 1fr; } }
+@media (max-width: 820px) { .escena { grid-template-columns: 1fr; } }
+
+/* Un gràfic a la vegada, triat amb pestanyes: tots cinc a la mateixa
+   pantalla no caben llegibles, i apilats obliguen a fer scroll. */
+.pestanyes { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .45rem; }
+.pestanyes button {
+  font: inherit; font-size: .8rem; padding: .25rem .55rem;
+  border: 1px solid var(--vora); border-radius: 5px;
+  background: var(--fons); color: var(--text); cursor: pointer;
+}
+.pestanyes button:hover { border-color: var(--text-fluix); }
+.pestanyes button[aria-pressed="true"] {
+  background: var(--text); color: var(--fons); border-color: var(--text);
+}
+.panell[hidden] { display: none; }
+
+/* Tira de lectures, dins la columna dreta: allà hi sobra alçada, i a
+   sota en robava. */
+.tires {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: .35rem .8rem; margin-top: .65rem; padding: .5rem .75rem;
+  background: var(--fons-panell); border: 1px solid var(--vora); border-radius: 8px;
+}
+.tira { display: flex; flex-direction: column; gap: .05rem; }
+.tira .k { font-size: .7rem; text-transform: uppercase; letter-spacing: .01em; color: var(--text-fluix); font-weight: 650; line-height: 1.25; }
+.tira .v { font-size: .98rem; font-variant-numeric: tabular-nums; font-weight: 650; line-height: 1.15; }
+.tira.destaca .v { color: var(--exigencia); }
+.peu-control { display: block; font-size: .7rem; color: var(--text-fluix); line-height: 1.25; margin-top: .2rem; }
 
 #figura { width: 100%; height: auto; display: block; touch-action: none; }
 #figura text { font-family: inherit; font-size: 11px; fill: var(--text-fluix); }
@@ -187,11 +217,13 @@ input[type="range"] { width: 100%; accent-color: var(--exigencia); margin: 0; }
 .lectura .nota { font-size: .82rem; color: var(--text-fluix); line-height: 1.4; }
 
 /* ---------- Llegenda que encén i apaga les línies ---------- */
-.llegenda { display: flex; flex-wrap: wrap; gap: .5rem; margin: .7rem 0 0; }
+.barra-moments { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; margin-bottom: .45rem; }
+.barra-moments .botons button { font-size: .78rem; padding: .22rem .5rem; }
+.llegenda { display: flex; flex-wrap: wrap; gap: .3rem; margin: 0; }
 .llegenda button {
-  font: inherit; font-size: .85rem;
-  display: inline-flex; align-items: center; gap: .5rem;
-  padding: .3rem .7rem;
+  font: inherit; font-size: .78rem;
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .22rem .5rem;
   border: 1px solid var(--vora); border-radius: 5px;
   background: var(--fons); color: var(--text); cursor: pointer;
 }
@@ -199,7 +231,7 @@ input[type="range"] { width: 100%; accent-color: var(--exigencia); margin: 0; }
 /* Apagada: es veu que hi és, però es veu que no compta. */
 .llegenda button[aria-pressed="false"] { opacity: .45; text-decoration: line-through; }
 .llegenda button:disabled { opacity: .3; cursor: default; text-decoration: none; }
-.llegenda i { width: 24px; height: 0; border-top-width: 3px; border-top-style: solid; flex: none; }
+.llegenda i { width: 17px; height: 0; border-top-width: 3px; border-top-style: solid; flex: none; }
 
 /* ---------- Barres de recorregut muscular ---------- */
 .mer { margin-top: .5rem; }
@@ -262,169 +294,165 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
 <main>
 
 <h1>Excursion range and force profile</h1>
-<p class="subtitol">
-  Seated knee extension. Restricting the range does not move the peak of the exercise: it
-  decides which muscle lengths get loaded. Where the peak falls within those lengths is
-  decided by geometry and by the type of resistance. Two separate things, and here they
-  have two separate controls.
-</p>
+<p class="subtitol">Seated knee extension · interactive model</p>
 
-<div class="controls">
+<div class="app">
 
-  <div class="control">
-    <span class="etiqueta">Type of resistance</span>
-    <div class="botons" id="botons-resistencia">
-      <button type="button" data-res="pes" aria-pressed="true">Weight</button>
-      <button type="button" data-res="goma" aria-pressed="false">Band</button>
-      <button type="button" data-res="mixt" aria-pressed="false">Weight + band</button>
-    </div>
-  </div>
+  <div class="controls">
 
-  <div class="control">
-    <span class="etiqueta">Trained range</span>
-    <div class="botons" id="botons-rang">
-      <button type="button" data-a="0"  data-b="90" aria-pressed="true">Full</button>
-      <button type="button" data-a="45" data-b="90" aria-pressed="false">Long-length partial</button>
-      <button type="button" data-a="0"  data-b="45" aria-pressed="false">Short-length partial</button>
-    </div>
-  </div>
-
-  <div class="control">
-    <label for="rang-a">Range starts at <span class="valor" id="val-a">90°</span></label>
-    <input type="range" id="rang-a" min="0" max="90" step="1" value="90">
-    <label for="rang-b" style="margin-top:.7rem">Range ends at <span class="valor" id="val-b">0°</span></label>
-    <input type="range" id="rang-b" min="0" max="90" step="1" value="0">
-  </div>
-
-  <div class="control">
-    <label for="carrega">Load <span class="valor" id="val-carrega">90 %</span></label>
-    <input type="range" id="carrega" min="10" max="200" step="1" value="90">
-    <div class="lectura"><span class="nota">Percentage of the maximum liftable over the full range with this same resistance.</span></div>
-  </div>
-
-  <div class="control">
-    <label for="maluc">Hip flexion <span class="valor" id="val-maluc">90°</span></label>
-    <input type="range" id="maluc" min="0" max="110" step="1" value="90">
-    <div class="lectura"><span class="nota" id="nota-maluc">Backrest tilt. It only affects rectus femoris: it does not change the external resistance at all.</span></div>
-  </div>
-
-</div>
-
-<div class="escena">
-
-  <svg id="figura" viewBox="-26 0 586 372" role="img"
-       aria-label="Anatomical diagram of seated knee extension: femur, tibia, quadriceps, patella and patellar tendon, with the moment arm of the external resistance."></svg>
-
-  <div class="panell-angle">
-    <div class="control" style="margin-bottom:.9rem">
-      <label for="angle">Angle shown <span class="valor" id="val-angle">45°</span></label>
-      <input type="range" id="angle" min="0" max="90" step="0.5" value="45">
-      <div class="botons" style="margin-top:.6rem">
-        <button type="button" id="anima" aria-pressed="false">Animate the movement</button>
+    <div class="control">
+      <span class="etiqueta">Resistance</span>
+      <div class="botons" id="botons-resistencia">
+        <button type="button" data-res="pes" aria-pressed="true">Weight</button>
+        <button type="button" data-res="goma" aria-pressed="false">Band</button>
       </div>
     </div>
-    <div class="fila"><span class="k">External moment arm</span><span class="v" id="v-brac">—</span></div>
-    <div class="fila"><span class="k">External demand</span><span class="v" id="v-demanda">—</span></div>
-    <div class="fila"><span class="k">Total capacity</span><span class="v" id="v-capacitat">—</span></div>
-    <div class="fila"><span class="k">Relative demand</span><span class="v" id="v-exigencia">—</span></div>
 
-    <div class="fila"><span class="k">Vasti sarcomere</span><span class="v" id="v-sl-vast">—</span></div>
-    <div class="fila"><span class="k">Rectus femoris sarcomere</span><span class="v" id="v-sl-rf">—</span></div>
+    <div class="control">
+      <label for="rang-a">Range <span class="valor"><span id="val-a">90°</span> → <span id="val-b">0°</span></span></label>
+      <input type="range" id="rang-a" min="0" max="90" step="1" value="90">
+      <input type="range" id="rang-b" min="0" max="90" step="1" value="0" style="margin-top:.35rem">
+    </div>
+
+    <div class="control">
+      <label for="carrega">Load <span class="valor" id="val-carrega">90 %</span></label>
+      <input type="range" id="carrega" min="10" max="200" step="1" value="90">
+    </div>
+
+    <div class="control">
+      <label for="maluc">Hip flexion <span class="valor" id="val-maluc">90°</span></label>
+      <input type="range" id="maluc" min="0" max="110" step="1" value="90">
+    </div>
+
+    <div class="control">
+      <label for="angle">Angle shown <span class="valor" id="val-angle">45°</span></label>
+      <input type="range" id="angle" min="0" max="90" step="0.5" value="45">
+      <div class="botons" style="margin-top:.4rem">
+        <button type="button" id="anima" aria-pressed="false">Animate</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="escena">
+
+    <svg id="figura" viewBox="-26 0 586 372" role="img"
+         aria-label="Anatomical diagram of seated knee extension: femur, tibia, quadriceps, patella and patellar tendon, with the moment arm of the external resistance."></svg>
+
+    <div class="quadre">
+      <!-- Un gràfic a la vegada. Tots cinc a la mateixa pantalla no caben
+           llegibles, i apilats obliguen a fer scroll, que és justament el
+           que no es pot fer projectant. -->
+      <div class="pestanyes" id="pestanyes">
+        <button type="button" data-tab="fl"        aria-pressed="true">Force–length</button>
+        <button type="button" data-tab="rangs"     aria-pressed="false">Operating ranges</button>
+        <button type="button" data-tab="moments"   aria-pressed="false">Knee moment</button>
+        <button type="button" data-tab="exigencia" aria-pressed="false">Relative demand</button>
+        <button type="button" data-tab="emg"       aria-pressed="false">EMG</button>
+      </div>
+
+      <div class="panell" data-panell="fl">
+        <svg id="grafic-fl" class="grafic" viewBox="0 0 900 320" role="img"
+             aria-label="Human sarcomere force–length curve, with the band of lengths each muscle travels through in this exercise."></svg>
+      </div>
+
+      <div class="panell" data-panell="rangs" hidden>
+        <svg id="grafic-rangs" class="grafic" viewBox="0 0 900 330" role="img"
+             aria-label="Sarcomere length range of each quadriceps head according to different studies, on the same axis as the force–length curve."></svg>
+      </div>
+
+      <div class="panell" data-panell="moments" hidden>
+        <!-- Escala i llegenda en una sola barra: apilades eren dues
+             fileres i la pestanya se sortia de pantalla. -->
+        <div class="barra-moments">
+          <div class="botons" id="botons-escala">
+            <button type="button" data-escala="nm"  aria-pressed="true">N·m</button>
+            <button type="button" data-escala="pct" aria-pressed="false">% of own max</button>
+          </div>
+          <div class="llegenda" id="llegenda">
+            <button type="button" data-linia="total"   aria-pressed="true"><i style="border-top-color:var(--capacitat)"></i> Total</button>
+            <button type="button" data-linia="vast"    aria-pressed="true"><i style="border-top-color:var(--vast)"></i> Vasti</button>
+            <button type="button" data-linia="rf"      aria-pressed="true"><i style="border-top-color:var(--rf);border-top-style:dashed"></i> Rect. fem.</button>
+            <button type="button" data-linia="demanda" aria-pressed="true"><i style="border-top-color:var(--demanda)"></i> Demand</button>
+          </div>
+        </div>
+        <svg id="grafic-moments" class="grafic" viewBox="0 0 900 310" role="img"
+             aria-label="Maximum quadriceps extensor moment and external resistive moment as a function of knee flexion angle."></svg>
+      </div>
+
+      <div class="panell" data-panell="exigencia" hidden>
+        <svg id="grafic-exigencia" class="grafic" viewBox="0 0 900 250" role="img"
+             aria-label="Relative demand: ratio of external resistive moment to muscle capacity, as a percentage."></svg>
+      </div>
+
+      <div class="panell" data-panell="emg" hidden>
+        <svg id="grafic-emg" class="grafic" viewBox="0 0 900 340" role="img"
+             aria-label="Simulated electromyography record for rectus femoris, vastus lateralis and vastus medialis across the movement."></svg>
+      </div>
+
+      <div class="tires">
+    <div class="tira"><span class="k">Moment arm</span><span class="v" id="v-brac">—</span></div>
+    <div class="tira"><span class="k">Demand</span><span class="v" id="v-demanda">—</span></div>
+    <div class="tira"><span class="k">Capacity</span><span class="v" id="v-capacitat">—</span></div>
+    <div class="tira"><span class="k">Rel. demand</span><span class="v" id="v-exigencia">—</span></div>
+    <div class="tira"><span class="k">Vasti SL</span><span class="v" id="v-sl-vast">—</span></div>
+    <div class="tira"><span class="k">Rect. fem. SL</span><span class="v" id="v-sl-rf">—</span></div>
+    <div class="tira destaca"><span class="k">Sticking point</span><span class="v" id="lec-encallada">—</span></div>
+    <div class="tira destaca"><span class="k">Peak demand</span><span class="v" id="lec-exigencia">—</span></div>
+      <div class="tira destaca"><span class="k">Max in range</span><span class="v" id="lec-maxim">—</span>
+        <span class="peu-control" id="lec-maxim-nota"></span></div>
+      </div>
+
+    </div>
+
   </div>
 
 </div>
 
-<h2>The force–length curve, and where each muscle lives on it</h2>
+<h2>What each chart shows</h2>
 
-<svg id="grafic-fl" class="grafic" viewBox="0 0 900 320" role="img"
-     aria-label="Human sarcomere force–length curve, with the band of lengths each muscle travels through in this exercise."></svg>
-
-<p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
-  The curve<sup class="ref"><a href="#r1">1</a>,<a href="#r2">2</a></sup> is the same for
-  both muscles: it is a property of the sarcomere, not of the muscle. What differs is
-  <em>which stretch of it each one travels</em>. Every muscle has two bands: the thin one
-  is everything the joints allow, the thick one is what the exercise covers with the
-  selected range, and the vertical marks are its ends. The grey zones are not range the
-  exercise leaves out: they are lengths the knee and hip
-  <strong>cannot reach by any means</strong>.
+<p>
+  Restricting the range decides <em>which muscle lengths get loaded</em>; where the peak
+  falls within them is decided by geometry and by the type of resistance. Two separate
+  things, two separate controls. <strong>Load</strong> is a percentage of the full-range
+  maximum with the selected resistance; <strong>hip flexion</strong> is the backrest tilt,
+  and it affects rectus femoris only.
 </p>
 
-<p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
-  The bands are drawn one <strong>above</strong> and the other <strong>below</strong> the
-  curve on purpose: the rectus femoris stretch falls inside the vasti one, and overlaid
-  they would be indistinguishable. The offset is purely visual — <em>the correct height is
-  the curve's</em>, and each muscle's dot does sit on it, joined to its band by a line.
+<p>
+  <strong>Force–length.</strong> The curve<sup class="ref"><a href="#r1">1</a>,<a href="#r2">2</a></sup>
+  is a property of the sarcomere, the same for both muscles; what differs is which stretch
+  of it each one travels. Each muscle has two bands: thin for everything the joints allow,
+  thick for what the exercise covers. They are drawn one above and one below the curve
+  because the rectus femoris stretch falls inside the vasti one — the offset is visual
+  only, the correct height is the curve's. The grey zones are lengths the knee and hip
+  <strong>cannot reach at all</strong>.
 </p>
 
-<h2>Where each muscle works, depending on who measured it</h2>
-
-<svg id="grafic-rangs" class="grafic" viewBox="0 0 900 330" role="img"
-     aria-label="Sarcomere length range of each quadriceps head according to different studies, on the same axis as the force–length curve."></svg>
-
-<p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
-  Same axis as the chart above, so you can drop your eye vertically from the curve down to
-  any bar. The first two are what this page uses and they move with the controls; the rest
-  are published measurements, each with its method.
+<p>
+  <strong>Operating ranges.</strong> Same axis, so you can drop your eye from the curve to
+  any bar. Every study measured at two knee angles; from that slope all bars are recomputed
+  for the range you select, which makes them comparable. The solid part is what was
+  measured, the pale part is extrapolation.
 </p>
 
 <div class="avis">
-  <strong>This chart is, in fact, the most important one on the page.</strong> Three
-  studies measure vastus lateralis at the same angles and return answers that do not
-  overlap: ascending limb, optimal range or descending limb depending on whom you believe.
-  And vastus medialis measured
-  intraoperatively<sup class="ref"><a href="#r11">11</a></sup> reaches 4.1 µm at 90° of
-  flexion, which is next to zero active force — the authors themselves call these values
+  <strong>That second chart is the most important one here.</strong> Three studies measure
+  vastus lateralis at the same angles and return answers that do not overlap: ascending
+  limb, optimal range or descending limb depending on whom you believe. And vastus medialis
+  measured intraoperatively<sup class="ref"><a href="#r11">11</a></sup> reaches 4.1 µm at
+  90° of flexion, next to zero active force — the authors themselves call these values
   "dramatically longer" than the biomechanical model predicts. Any categorical claim about
-  where the quadriceps works on the curve, yours or mine, has to be made with this table in
+  where the quadriceps works on the curve, yours or mine, has to be made with that chart in
   view.
-</div>
-
-<div class="botons" id="botons-escala" style="margin:2.2rem 0 .7rem">
-  <button type="button" data-escala="nm"  aria-pressed="true">Knee moment (N·m)</button>
-  <button type="button" data-escala="pct" aria-pressed="false">Contractile capacity (% of each muscle's own maximum)</button>
-</div>
-
-<svg id="grafic-moments" class="grafic" viewBox="0 0 900 400" role="img"
-     aria-label="Maximum quadriceps extensor moment and external resistive moment as a function of knee flexion angle."></svg>
-
-<div class="llegenda" id="llegenda">
-  <button type="button" data-linia="total"   aria-pressed="true"><i style="border-top-color:var(--capacitat)"></i> Total capacity</button>
-  <button type="button" data-linia="vast"    aria-pressed="true"><i style="border-top-color:var(--vast)"></i> Vasti</button>
-  <button type="button" data-linia="rf"      aria-pressed="true"><i style="border-top-color:var(--rf);border-top-style:dashed"></i> Rectus femoris</button>
-  <button type="button" data-linia="demanda" aria-pressed="true"><i style="border-top-color:var(--demanda)"></i> Demand from the resistance</button>
-</div>
-<p id="nota-llegenda" style="font-size:.85rem;color:var(--text-fluix);margin:.6rem 0 0"></p>
-
-<svg id="grafic-exigencia" class="grafic" viewBox="0 0 900 250" role="img"
-     aria-label="Relative demand: ratio of external resistive moment to muscle capacity, as a percentage."></svg>
-
-<div class="lectures">
-  <div class="lectura">
-    <div class="clau">Sticking point</div>
-    <div class="xifra" id="lec-encallada">—</div>
-    <div class="nota">Angle where relative demand peaks within the trained range.</div>
-  </div>
-  <div class="lectura">
-    <div class="clau">Peak relative demand</div>
-    <div class="xifra" id="lec-exigencia">—</div>
-    <div class="nota">Above 100 % the lift fails at that angle.</div>
-  </div>
-  <div class="lectura">
-    <div class="clau">Maximum in this range</div>
-    <div class="xifra" id="lec-maxim">—</div>
-    <div class="nota" id="lec-maxim-nota">Relative to the maximum over the full range.</div>
-  </div>
 </div>
 
 <h2>What it would look like on an electromyograph</h2>
 
-<svg id="grafic-emg" class="grafic" viewBox="0 0 900 340" role="img"
-     aria-label="Simulated electromyography record for rectus femoris, vastus lateralis and vastus medialis across the movement."></svg>
-
 <p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
-  Three channels on the same angle axis as the charts above. The signal only exists inside
-  the trained range. The pale line is the envelope: what an electromyograph gives you after
-  rectifying and smoothing.
+  Three channels on the same angle axis. The signal only exists inside the trained range.
+  The pale line is the envelope: what an electromyograph gives you after rectifying and
+  smoothing.
 </p>
 
 <div class="avis">
@@ -853,15 +881,9 @@ function perfilGoma(phi) {
   return Math.max(0, longitudGoma(phi) - ELL0) * bracGoma(phi);
 }
 
-// Combinat: la pràctica habitual d'afegir gomes a una càrrega. Es
-// reparteix meitat i meitat del moment que cadascun dona a φ = 0°.
-const K_PES  = 0.5 / perfilPes(0);
-const K_GOMA = 0.5 / perfilGoma(0);
-function perfilMixt(phi) {
-  return K_PES * perfilPes(phi) + K_GOMA * perfilGoma(phi);
-}
-
-const PERFILS = { pes: perfilPes, goma: perfilGoma, mixt: perfilMixt };
+// Només pes i goma. La combinació dels dos existeix, però gairebé no es
+// fa servir i costava un tercer botó a canvi de poc.
+const PERFILS = { pes: perfilPes, goma: perfilGoma };
 
 // --- Càrrega màxima admissible en un rang ---------------------------
 // El factor més gran que es pot aplicar al perfil sense que la demanda
@@ -1243,7 +1265,7 @@ function retall(svg, id, W, Hh) {
 }
 
 function dibuixaMoments(punts, a, b) {
-  const W = 900, Hh = 400;
+  const W = 900, Hh = 310;
   const x = escalaX(W);
   // En % cada múscul es divideix pel SEU propi màxim. És l'única manera
   // de veure la relació longitud–tensió del recte femoral: en N·m aporta
@@ -1496,10 +1518,9 @@ function actualitzaLectures(punts, a, b, maxRang, maxComplet) {
   // rigidesa, no massa, i posar-hi kg seria mentir.
   const nota = document.getElementById("lec-maxim-nota");
   if (estat.resistencia === "pes") {
-    nota.textContent = "Relative to the full range. Equivalent to " + maxRang.toFixed(0) +
-      " kg at the pad (not the number on the stack).";
+    nota.textContent = "= " + maxRang.toFixed(0) + " kg at the pad";
   } else {
-    nota.textContent = "Relative to the full-range maximum. With a band, load is stiffness, not mass.";
+    nota.textContent = "band: stiffness, not mass";
   }
 }
 
@@ -1509,12 +1530,9 @@ function actualitzaPanellAngle(factor, perfil) {
   const dem = factor * perfil(phi);
 
   // Braç de moment que es mostra: el de la resistència seleccionada.
-  let brac;
-  if (estat.resistencia === "pes")       brac = bracPes(phi);
-  else if (estat.resistencia === "goma") brac = bracGoma(phi);
-  else                                   brac = null;
+  const brac = estat.resistencia === "pes" ? bracPes(phi) : bracGoma(phi);
 
-  document.getElementById("v-brac").textContent      = brac === null ? "two at once" : (brac * 100).toFixed(0) + " cm";
+  document.getElementById("v-brac").textContent      = (brac * 100).toFixed(0) + " cm";
   document.getElementById("v-demanda").textContent   = Math.max(0, dem).toFixed(0) + " N·m";
   document.getElementById("v-capacitat").textContent = cap.toFixed(0) + " N·m";
   document.getElementById("v-exigencia").textContent = Math.round(Math.max(0, dem) / cap * 100) + " %";
@@ -1522,7 +1540,7 @@ function actualitzaPanellAngle(factor, perfil) {
   const sv = slVast(phi), sr = slRF(phi, estat.maluc);
   const mostraSL = (id, sl) => {
     document.getElementById(id).textContent =
-      sl.toFixed(2) + " µm · " + Math.round(forcaLongitud(sl) * 100) + " %";
+      sl.toFixed(2) + " µm · " + Math.round(forcaLongitud(sl) * 100) + "%";
   };
   mostraSL("v-sl-vast", sv);
   mostraSL("v-sl-rf", sr);
@@ -1795,7 +1813,6 @@ function llegeixControls() {
   document.getElementById("val-carrega").textContent = carrega.value + " %";
   document.getElementById("val-angle").textContent = (+angle.value).toFixed(0) + "°";
   document.getElementById("val-maluc").textContent = maluc.value + "°";
-  sincronitzaPresets();
   mostra();
 }
 
@@ -1830,13 +1847,6 @@ function sincronitzaLlegenda() {
     const nomes = b.dataset.linia === "total" || b.dataset.linia === "demanda";
     b.disabled = pct && nomes;
   });
-  document.getElementById("nota-llegenda").textContent = pct
-    ? "On the relative scale each muscle is divided by its own maximum, and that is when "
-    + "the hip becomes visible: move its control and watch the rectus femoris curve go "
-    + "from rising to falling while the vasti one does not move at all. Total capacity "
-    + "and demand are absent: they have no maximum of their own to divide by."
-    : "Click any of the four to take it off the chart. The chart below, relative demand, "
-    + "always uses total capacity in N·m.";
 }
 sincronitzaLlegenda();
 
@@ -1849,21 +1859,16 @@ document.querySelectorAll("#botons-resistencia button").forEach(b => {
   });
 });
 
-document.querySelectorAll("#botons-rang button").forEach(b => {
+// Pestanyes: es continuen dibuixant tots els gràfics, que és barat, però
+// els amagats no ocupen alçada.
+document.querySelectorAll("#pestanyes button").forEach(b => {
   b.addEventListener("click", () => {
-    rangB.value = b.dataset.a;
-    rangA.value = b.dataset.b;
-    llegeixControls();
+    document.querySelectorAll("#pestanyes button")
+      .forEach(o => o.setAttribute("aria-pressed", String(o === b)));
+    document.querySelectorAll(".panell")
+      .forEach(p => p.hidden = p.dataset.panell !== b.dataset.tab);
   });
 });
-
-function sincronitzaPresets() {
-  document.querySelectorAll("#botons-rang button").forEach(b => {
-    const coincideix = +b.dataset.a === Math.min(estat.a, estat.b) &&
-                       +b.dataset.b === Math.max(estat.a, estat.b);
-    b.setAttribute("aria-pressed", String(coincideix));
-  });
-}
 
 // Passar el cursor per un gràfic mou la figura al mateix angle.
 function segueixCursor(svg, W) {
