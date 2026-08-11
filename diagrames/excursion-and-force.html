@@ -423,282 +423,163 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
 
 <p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
   Three channels on the same angle axis as the charts above. The signal only exists inside
-  the trained range, because outside it the muscle is not contracting. The pale line on
-  each channel is the envelope, which is what an electromyograph gives you after
+  the trained range. The pale line is the envelope: what an electromyograph gives you after
   rectifying and smoothing.
 </p>
 
 <div class="avis">
   <strong>This is a simulation, not a recording.</strong> The fine trace is generated
-  noise, not a signal measured in anyone. What <em>is</em> grounded is the
-  <em>amplitude</em>: how it splits between the three muscles and how it responds to the
-  hip comes from the literature. Use it to see the pattern; do not take numbers from it.
+  noise. What is grounded is the amplitude — how it splits between muscles and how it
+  responds to the hip. Use it to see the pattern; do not take numbers from it.
 </div>
 
 <p>
-  And the pattern is slightly uncomfortable, because <strong>EMG does not follow the
-  force–length story</strong>. Kukić and
-  colleagues<sup class="ref"><a href="#r12">12</a></sup> measured vastus lateralis and
-  vastus medialis during maximal contraction at six knee angles and normalised EMG
-  <strong>did not change significantly</strong>, even though moment did change and peaked.
-  So activation is not a readout of capacity: here amplitude varies because the
-  <em>relative effort</em> the load demands varies with angle, not because the muscle
-  "activates more" at a particular length.
+  The pattern is uncomfortable, because <strong>EMG does not follow the force–length
+  story</strong>. Kukić and colleagues<sup class="ref"><a href="#r12">12</a></sup> measured
+  vastus lateralis and vastus medialis at six knee angles during maximal contraction and
+  normalised EMG did not change significantly, even though moment did. Activation is not a
+  readout of capacity: amplitude here varies with the <em>relative effort</em> the load
+  demands, not with muscle length.
 </p>
 
 <p>
-  What does differ markedly between muscles is <strong>rectus femoris</strong>. At maximal
-  contraction it produces lower-amplitude signals than the vasti, and above all: lying
-  supine, its normalised EMG drops by <strong>41 %</strong>, against 20 % for the
-  vasti<sup class="ref"><a href="#r9">9</a></sup>. Move the hip control and you will see
-  it. It is the same asymmetry that showed up on the force–length curve, measured by a
-  completely different route.
+  The three channels look alike because that is what the data says. The published
+  difference between rectus femoris and the vasti is one of amplitude and, above all, of
+  hip sensitivity: supine, its normalised EMG drops 41 % against 20 % for the
+  vasti<sup class="ref"><a href="#r9">9</a></sup>. <strong>The lever is the hip, not the
+  knee.</strong> The only report of a distinct angle pattern
+  (Duffell<sup class="ref"><a href="#r14">14</a></sup>) appears at 30°/s only and is absent
+  isometrically, so it is not in the model. The head that genuinely does have its own
+  pattern is vastus intermedius<sup class="ref"><a href="#r13">13</a></sup> — and it is
+  too deep to record from the surface.
 </p>
 
-<p>
-  Vastus intermedius is absent because it cannot be recorded with surface electrodes: it
-  is deep. With intramuscular electrodes, Akima and
-  colleagues<sup class="ref"><a href="#r13">13</a></sup> find that it does change with
-  angle — larger amplitude in flexion, decreasing towards extension — and it is precisely
-  the head this page takes its sarcomere lengths from.
-</p>
-
-<div class="avis">
-  <strong>Why the three channels look so alike.</strong> Because that is what the data
-  says, and it is worth saying so rather than drawing a difference that has not been
-  demonstrated. Looking for a distinct shape for rectus femoris, what you find is this: the
-  published difference from the vasti is mostly one of <em>amplitude</em> and above all of
-  <em>hip sensitivity</em>, not of pattern across the knee's range. The only report of a
-  distinct pattern is Duffell and
-  colleagues'<sup class="ref"><a href="#r14">14</a></sup> — rectus femoris more active than
-  vastus lateralis and vastus medialis obliquus in the final degrees of extension — and it
-  is fragile: it appears only at 30°/s, disappears at higher velocities and is absent
-  isometrically. I have not put it into the model. The head that does have a clearly
-  distinct angle pattern is vastus intermedius, and it is the one you cannot record from
-  outside.
-</div>
+<h2>How to read the charts</h2>
 
 <p>
-  What the model does do: each channel is divided by <strong>its own muscle's relative
-  capacity</strong> at that angle, because the further a muscle is from its optimum, the
-  more activation it needs to contribute its share. That gives rectus femoris a shape of
-  its own, because it is biarticular and its length curve is not the vasti's. The effect is
-  real but modest. <strong>If you want to see rectus femoris genuinely behave differently,
-  the lever is the hip, not the knee.</strong>
-</p>
-
-<h2>How to read it</h2>
-
-<p>
-  The curves are not the same thing and the peak does not fall in the same place on each.
   <strong>Demand</strong> is the moment the external resistance imposes on the knee.
   <strong>Capacity</strong> is the moment the quadriceps can generate at that length.
-  <strong>Relative demand</strong> is the ratio between the two, and it is the only one
-  that says where it actually gets hard: the sticking point.
+  <strong>Relative demand</strong> is the ratio, and it is the only one that says where it
+  actually gets hard: the sticking point.
+</p>
+
+<p>
+  With a weight the external moment is <code>m · g · L · cos φ</code> — literally the
+  horizontal distance the figure draws — so it is largest with the knee extended and
+  <strong>exactly zero</strong> at 90°, when the load passes through the axis. The band is
+  anchored behind the knee, so it keeps a moment arm where the weight has none: it does not
+  make the exercise harder, it <strong>redistributes where the hardness sits</strong>, which
+  is the point of variable resistance<sup class="ref"><a href="#r5">5</a></sup>.
+</p>
+
+<p>
+  Set the load to 100 % and switch ranges. The long-length partial lets you lift far more,
+  because it excludes the expensive angle; the short-length one lets you lift no more,
+  because it keeps it. So <strong>a percentage of 1RM is not comparable across
+  ranges</strong> — the mechanism behind McMahon's result, where a long-length partial at
+  55 % of 1RM matches the full range at 80 %<sup class="ref"><a href="#r7">7</a></sup>.
+  Worth not overstating it, though: +15.2 % against +3.4 % at the
+  gastrocnemius<sup class="ref"><a href="#r6">6</a></sup>, but trivial differences at the
+  elbow flexors under Bayesian analysis<sup class="ref"><a href="#r8">8</a></sup>.
 </p>
 
 <h2>Where capacity comes from</h2>
 
 <p>
   From the sarcomere force–length curve<sup class="ref"><a href="#r1">1</a></sup>, not from
-  a shape picked by eye. The curve has <strong>four segments and is not symmetrical</strong>:
-  an ascending limb with a slope of 0.57 per µm, an optimal range running from 2.64 to
-  2.81 µm, and a descending limb with a slope of 0.70, steeper than the ascending one.
-  Over-lengthening costs more than shortening. And the optimum <em>is a region</em>, not a
-  single point: those two values are the sliding-filament model's prediction for humans,
-  and Gollapudi and Lin<sup class="ref"><a href="#r2">2</a></sup> tested them
-  experimentally in human type-I fibres.
+  a shape picked by eye. Four segments, not symmetrical: ascending limb of slope 0.57 per
+  µm, optimal range from 2.64 to 2.81 µm, descending limb of slope 0.70. Over-lengthening
+  costs more than shortening, and the optimum is a <em>region</em>, not a point — the
+  sliding-filament prediction, tested experimentally in human type-I
+  fibres<sup class="ref"><a href="#r2">2</a></sup>.
 </p>
 
 <p>
-  The curve is the same for both muscles, because it is a property of the sarcomere. What
-  differs is which stretch of it each one travels. The vasti are monoarticular and their
-  length depends only on the knee. Rectus femoris also crosses the hip: seated, hip flexion
-  has already shortened it before you start. Move the hip control and watch the purple band
-  slide right while the blue one does not move at all.
-</p>
-
-<p>
-  The lengths the model uses are <strong>active, not resting</strong>. The distinction
-  matters: during maximal contraction the tendon stretches and the fibres shorten, so the
-  muscle works lower down the curve than a measurement on a relaxed muscle suggests. The
-  vasti are anchored to the active interval of 1.97 to 2.48 µm between 0° and 90° of
-  knee<sup class="ref"><a href="#r3">3</a></sup>; the slope that follows, 0.0057 µm per
-  degree, matches the 0.0055 µm/° Chen and colleagues measured by microendoscopy on vastus
-  lateralis<sup class="ref"><a href="#r4">4</a></sup>, with a completely different method.
+  The lengths are <strong>active, not resting</strong>: during maximal contraction the
+  tendon stretches and the fibres shorten, so the muscle sits lower on the curve than a
+  relaxed measurement suggests. The vasti are anchored to 1.97–2.48 µm between 0° and 90°
+  of knee<sup class="ref"><a href="#r3">3</a></sup>; the resulting 0.0057 µm per degree
+  matches the 0.0055 µm/° measured by microendoscopy with a completely different
+  method<sup class="ref"><a href="#r4">4</a></sup>.
 </p>
 
 <h2>Something the literature contradicts</h2>
 
 <p>
   That a muscle is weak at both ends of its range and strong in the middle is true
-  <em>of the curve</em>. But <strong>that does not mean a given muscle travels the whole
-  curve</strong>, and the quadriceps is an extreme case: with everything the joints allow
-  — knee from 0° to 140°, hip from 15° of extension to 120° of flexion — the two muscles
-  together only reach from 1.97 to 2.76 µm. That is <strong>barely 27 per cent of the
-  curve</strong>. The rest is not range the exercise leaves out: it is range the body
-  cannot reach by any means.
+  <em>of the curve</em> — but a given muscle does not travel the whole curve. With
+  everything the joints allow (knee 0–140°, hip from 15° of extension to 120° of flexion)
+  the two muscles together only reach 1.97 to 2.76 µm: <strong>barely 27 % of the
+  curve</strong>. And within that 27 %, active force never drops below 62 %.
 </p>
 
 <p>
-  And within that 27 %, active force never drops below 62 %. So <strong>the "short" end
-  where a muscle is very weak does not exist at the knee</strong>: the most shortened
-  position the quadriceps ever reaches still leaves it almost two thirds of its force. Nor
-  does the other end: the maximum reached, at 140° of flexion, is exactly the entrance to
-  the optimal range.
+  So <strong>neither extreme exists at the knee</strong>. The most shortened position the
+  quadriceps ever reaches still leaves it two thirds of its force, and the longest it
+  reaches is merely the entrance to the optimal range. There is no long end where the
+  muscle becomes weak again: the more knee flexion, the more capable both are. The sticking
+  point lands at full extension because two things pull the same way — shortest muscle,
+  largest external moment arm.
 </p>
 
 <p>
-  The consequence is that in this exercise <strong>there is no "long" end where the muscle
-  becomes weak again</strong>. The more knee flexion, the more capable both are. The
-  sticking point comes out at full extension for two reasons that pull the same way: there
-  the muscle is at the shortest it ever gets, and there the external moment arm is largest.
+  Hip position does not make the exercise appreciably easier or harder, but it decides
+  <strong>which part of its range rectus femoris works in</strong>. Seated at 90° it never
+  gets near its optimum; supine it approaches but still does not pass through. On the
+  moment chart this is nearly invisible — rectus femoris contributes at most 45 N·m on an
+  axis running to 280 — which is what the second scale button is for.
 </p>
 
-<p>
-  Lying supine, rectus femoris approaches the optimal range but still does not pass through
-  it. Putting it on the descending limb would take something else: hip extension with the
-  knee deeply flexed, which is what a stretched hamstring position does, not a knee
-  extension machine.
-</p>
+<h2>What is exact, what is simplified, what is contested</h2>
 
-<p>
-  On the moment chart, though, almost none of this is visible, and it is worth
-  understanding why: rectus femoris contributes at most about 45 N·m on an axis that runs
-  to 280, and its whole capacity range is about 25 N·m. The physics is there; the scale
-  eats it. That is why the chart has <strong>a second scale button</strong>, which divides
-  each muscle by its own maximum. There you see it whole: with the hip strongly flexed,
-  rectus femoris climbs from 44 % to 96 % across the range, and with the hip extended it
-  <strong>passes through its optimum around 21° and comes back down</strong> to 83 %. The
-  vasti curve, meanwhile, does not move a pixel, because they do not cross the hip.
-</p>
+<p><strong>Exact and drawn to scale:</strong> the attachments; the external moment arm,
+measured as the perpendicular distance from the knee axis to the line of action, which is
+the figure that enters the calculation; the patella as a pulley, from which the 6.4 cm of
+excursion between 90° and 0° follows; and the constant patellar tendon length.</p>
 
-<p>
-  The practical consequence, which is not obvious on a seated extension machine: the
-  backrest position does not make the exercise appreciably easier or harder, but it does
-  decide <strong>which part of its range rectus femoris works in</strong>. If the goal is
-  to load it near its optimum, seated at 90° never achieves that.
-</p>
-
-<p>
-  With a weight, the external moment is <code>m · g · L · cos φ</code>, and
-  <code>cos φ</code> is literally the horizontal distance the figure draws between the knee
-  and the load's line of action. It is largest with the knee extended and it is
-  <strong>exactly zero</strong> with the shank hanging at 90°, when the load passes right
-  through the axis. That is why seated knee extension is hard at the top: there demand is
-  maximal and quadriceps capacity has already fallen.
-</p>
-
-<p>
-  The band behaves differently, and the figure shows why: because it is anchored
-  <em>behind</em> the knee, it keeps a moment arm with the shank hanging, exactly where the
-  weight has none. Its profile peaks around 15° of flexion and falls more gently. This is
-  the whole point of variable
-  resistance<sup class="ref"><a href="#r5">5</a></sup>: it does not make the exercise
-  harder, it redistributes where the hardness sits.
-</p>
-
-<p>
-  Try setting the load to 100 % and switching ranges. The partial that works at long muscle
-  lengths lets you lift far more, because it excludes the expensive angle; the partial that
-  works at short lengths lets you lift no more at all, because it keeps it. The practical
-  consequence is that <strong>a percentage of 1RM is not comparable across different
-  ranges</strong>: the same 70 % means very different absolute loads depending on which
-  angles are included. This is the mechanism behind the result of McMahon and
-  colleagues<sup class="ref"><a href="#r7">7</a></sup>, where a long-length partial at 55 %
-  of 1RM matches the full range at 80 %.
-</p>
-
-<p>
-  On what training at long lengths actually buys you, it is worth not overstating things.
-  The long-length partial beats the short-length one at the gastrocnemius, and by a wide
-  margin (+15.2 % against +3.4 %)<sup class="ref"><a href="#r6">6</a></sup>. But with
-  Bayesian analysis at the elbow flexors the differences are
-  trivial<sup class="ref"><a href="#r8">8</a></sup>. Long lengths matter, the effect is
-  modest, and it depends on the muscle.
-</p>
-
-<h2>What is exact in the figure and what is simplified</h2>
-
-<p>Exact, and drawn to scale:</p>
+<p><strong>Simplified:</strong></p>
 <ul>
-  <li>The attachments: rectus femoris from the anterior inferior iliac spine, the vasti
-    from the femoral shaft, both into the quadriceps tendon, patella and patellar tendon
-    down to the tibial tuberosity.</li>
-  <li>The <strong>moment arm of the external resistance</strong>, measured as the
-    perpendicular distance from the knee axis to the line of action. It is the figure shown
-    in centimetres and it is the one that enters the calculation.</li>
-  <li>The <strong>patella as a pulley</strong>: the tendon wraps the femoral trochlea, and
-    the shortening of the quadriceps is the arc length it travels over it. That is where
-    the 6.4 cm of excursion between 90° and 0° comes from.</li>
-  <li>The length of the patellar tendon, which stays constant: the patella follows the
-    tibia.</li>
+  <li>The knee axis is fixed; really the condyles roll and glide.</li>
+  <li>The quadriceps moment arm is constant (4 cm); really it peaks around 20–30°.</li>
+  <li>The vasti are one belly; really three muscles, and vastus lateralis and medialis
+    share a curve here because no source separates them by a method compatible with the
+    rest of the model.</li>
+  <li>The hip control moves the backrest, trunk, pelvis and rectus femoris origin, but
+    <strong>not the external resistance</strong> — correctly, since the thigh stays on the
+    seat. Below about 60° of hip flexion you are lying down, not on a machine.</li>
+  <li>The band anchor (45 cm below the knee axis, 25 cm behind) is a choice.
+    <strong>Moving it changes the profile a lot</strong>: anchored directly below the knee,
+    the band becomes an exaggerated weight instead of a complement.</li>
 </ul>
 
-<p>Simplified, and worth knowing:</p>
+<p><strong>Contested:</strong></p>
 <ul>
-  <li>The knee axis is drawn fixed. In reality the condyles roll and glide, and the
-    instantaneous axis shifts during the movement.</li>
-  <li>The quadriceps moment arm is drawn constant (the trochlear radius, about 4 cm). The
-    real one varies with angle, peaking around 20–30° of flexion.</li>
-  <li>The vasti are drawn as a single belly. They are three muscles with different fibre
-    orientations.</li>
-  <li>The hip control moves the backrest, the trunk, the pelvis and the origin of rectus
-    femoris. <strong>It does not touch the external resistance</strong>, and it is correct
-    that it does not: the thigh stays resting on the seat and the shank still rotates in
-    the same plane relative to gravity. That said, below about 60° of hip flexion you are
-    no longer on a normal knee extension machine, you are lying down.</li>
-  <li>The band anchor is a choice, not a datum: 45 cm below the knee axis and 25 cm behind.
-    <strong>Moving it changes the profile</strong>, and by a lot. Anchored directly below
-    the knee, the band would lose its moment arm in flexion and become an exaggerated
-    version of the weight instead of complementing it. It is exactly the kind of detail
-    that decides whether a band is any use in a given exercise.</li>
-</ul>
-
-<h2>What is solid and what is contested</h2>
-
-<p><strong>Solid, and published:</strong> the shape of the force–length curve and its human
-parameters<sup class="ref"><a href="#r1">1</a>,<a href="#r2">2</a></sup>; that vastus
-lateralis sarcomere lengths change by about 0.0055 µm per degree of
-knee<sup class="ref"><a href="#r4">4</a></sup>; and that rectus femoris is about 10 % longer
-supine than seated<sup class="ref"><a href="#r9">9</a></sup>.</p>
-
-<p><strong>Contested, and worth knowing:</strong></p>
-<ul>
-  <li><strong>Where exactly the quadriceps lives on the curve is unresolved.</strong>
-    Chen and colleagues<sup class="ref"><a href="#r4">4</a></sup> measure 2.84 µm at 50°
-    and 3.17 µm at 110° — optimal range and then descending limb; Ando and
-    colleagues<sup class="ref"><a href="#r3">3</a></sup> measure 2.19–2.46 µm between 0°
-    and 90°, on the ascending limb throughout. Different methods, opposite pictures. This
-    version uses active lengths, which puts it on Ando's side. <strong>With Chen's resting
-    lengths the picture changes completely</strong> and the muscle would indeed move onto
-    the descending limb.</li>
-  <li>The starting point for rectus femoris (2.10 µm) <strong>comes from no source</strong>:
-    it is a choice of mine, anchored to the 10 % difference between supine and seated and
-    split between hip and knee by the ratio of moment arms.</li>
-  <li>The split of moment between the vasti and rectus femoris (205 and 45 N·m) comes from
-    physiological cross-sectional area, but it is approximate.</li>
+  <li><strong>Where the quadriceps sits on the curve is unresolved.</strong> Chen measures
+    2.84 µm at 50° and 3.17 µm at 110°<sup class="ref"><a href="#r4">4</a></sup>; Ando
+    measures 2.19–2.46 µm between 0° and 90°<sup class="ref"><a href="#r3">3</a></sup>.
+    Opposite pictures. This version uses active lengths, which puts it on Ando's side;
+    <strong>with Chen's resting lengths the whole picture changes</strong>.</li>
+  <li>The rectus femoris starting point (2.10 µm) <strong>comes from no source</strong>:
+    it is my choice, anchored to the 10 % supine-versus-seated
+    difference<sup class="ref"><a href="#r9">9</a></sup>.</li>
+  <li>The 205 / 45 N·m split between the vasti and rectus femoris is approximate.</li>
 </ul>
 
 <div class="avis">
-  <strong>A discrepancy the model does not paper over.</strong> With these numbers capacity
-  rises all the way to 90° of flexion, whereas extensor moment measured in people peaks
-  around 60–70° and then falls slightly. The difference comes from two things absent here:
-  the quadriceps moment arm, constant in this model and in reality varying with angle, and
-  hamstring co-activation. There is also a counter-intuitive published result: maximal
-  voluntary contraction is 10.6 % <em>greater</em> seated than
-  supine<sup class="ref"><a href="#r9">9</a></sup>, even though supine puts rectus femoris
-  closer to its optimum. It is attributed to neural activation — normalised rectus femoris
-  EMG drops by 41 % supine — which is something this model does not contain.
+  <strong>A discrepancy the model does not paper over.</strong> Capacity here rises to 90°
+  of flexion, whereas measured extensor moment peaks around 60–70°. Missing: the varying
+  quadriceps moment arm and hamstring co-activation. And a counter-intuitive published
+  result — maximal voluntary contraction is 10.6 % <em>greater</em> seated than
+  supine<sup class="ref"><a href="#r9">9</a></sup>, despite supine putting rectus femoris
+  closer to its optimum. Attributed to neural drive, which this model does not contain.
 </div>
 
 <div class="avis">
-  <strong>Inertial resistance is absent, and deliberately so.</strong> A weight or a band
-  has a profile that is a function of angle and can be drawn on these axes. A flywheel
-  depends on acceleration, not position: it would need a model of the movement in time, and
-  load is not quantified the same way<sup class="ref"><a href="#r10">10</a></sup>.
+  <strong>Inertial resistance is absent, deliberately.</strong> A weight or a band has a
+  profile that is a function of angle. A flywheel depends on acceleration, so it would need
+  a model of the movement in time, and load is not quantified the same
+  way<sup class="ref"><a href="#r10">10</a></sup>.
 </div>
-
 <h2>References</h2>
 
 <ol class="referencies">
@@ -776,9 +657,8 @@ supine than seated<sup class="ref"><a href="#r9">9</a></sup>.</p>
 <div class="collabora">
   <h2>Spotted an error? Have a suggestion?</h2>
   <p>
-    This is a model, and models get things wrong. If you find an error — in the maths, the
-    anatomy, the sources — or you can see how to improve it, tell me. I will fix it and
-    document it, and if the correction is yours it will say so.
+    This is a model, and models get things wrong. Found an error, or see how to improve
+    it? Tell me. I fix it, document it, and credit you.
   </p>
   <p>
     <!-- Enllaç al repositori públic, no un mailto:. Les propostes queden a la
@@ -788,10 +668,10 @@ supine than seated<sup class="ref"><a href="#r9">9</a></sup>.</p>
        href="https://github.com/rcirer/rcirer.github.io/issues/new?title=Diagram%3A%20excursion%20range%20and%20force%20profile&amp;body=%23%23%20What%20did%20you%20find%0A%0A%0A%23%23%20Where%2C%20exactly%0A%28section%2C%20chart%20or%20figure%29%0A%0A%0A%23%23%20Source%2C%20if%20you%20have%20one%0A">Send me a correction or a suggestion</a>
   </p>
   <p class="alternativa">
-    If you do not have a GitHub account, write to me at
-    <span class="correu">contacte *at* rafelcirer *dot* com</span> —
-    replace <em>at</em> with an at sign and <em>dot</em> with a full stop. The address is
-    written out like that on purpose, to make life harder for address harvesters.
+    No GitHub account? Write to
+    <span class="correu">contacte *at* rafelcirer *dot* com</span> — replace <em>at</em>
+    with an at sign and <em>dot</em> with a full stop. Spelled out on purpose, to make life
+    harder for address harvesters.
   </p>
 </div>
 
