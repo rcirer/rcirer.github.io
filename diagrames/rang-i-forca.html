@@ -416,6 +416,52 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
   </div>
 </div>
 
+<h2>Com es veuria a l'electromiògraf</h2>
+
+<svg id="grafic-emg" class="grafic" viewBox="0 0 900 340" role="img"
+     aria-label="Registre d'electromiografia simulat per al recte femoral, el vast lateral i el vast medial al llarg del recorregut."></svg>
+
+<p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
+  Tres canals sobre el mateix eix d'angle que els gràfics d'abans. El senyal només hi és
+  dins del rang entrenat, perquè fora d'aquell rang el múscul no s'està contraient. La
+  línia clara de cada canal és l'envolupant, que és el que un electromiògraf et donaria
+  després de rectificar i suavitzar.
+</p>
+
+<div class="avis">
+  <strong>Això és una simulació, no un registre.</strong> El traç fi és soroll generat, no
+  cap senyal mesurat en ningú. El que sí que està fonamentat és <em>l'amplitud</em>: el
+  repartiment entre els tres músculs i com respon al maluc surt de la literatura. Serveix
+  per veure el patró; no en treguis cap xifra.
+</div>
+
+<p>
+  I el patró incomoda una mica, perquè <strong>l'EMG no segueix la història de la corba
+  força–longitud</strong>. Kukić i col·laboradors<sup class="ref"><a href="#r12">12</a></sup>
+  van mesurar el vast lateral i el vast medial en contracció màxima a sis angles de genoll
+  i l'EMG normalitzada <strong>no va canviar significativament</strong>, tot i que el
+  moment sí que canviava i feia cim. O sigui que l'activació no és una lectura de la
+  capacitat: aquí l'amplitud varia perquè varia <em>l'esforç relatiu</em> que demana la
+  càrrega a cada angle, no perquè el múscul «s'activi més» a una longitud concreta.
+</p>
+
+<p>
+  El que sí que canvia molt entre músculs és el <strong>recte femoral</strong>. En
+  contracció màxima dona senyals de menys amplitud que els vasts, i sobretot: en decúbit
+  supí la seva EMG normalitzada cau un <strong>41 %</strong>, contra un 20 % als
+  vasts<sup class="ref"><a href="#r9">9</a></sup>. Mou el control de maluc i ho veuràs. És
+  la mateixa asimetria que ja apareixia a la corba força–longitud, però mesurada per una
+  via completament diferent.
+</p>
+
+<p>
+  El vast intermedi no hi surt perquè no es pot registrar amb elèctrodes de superfície:
+  és profund. Amb elèctrodes intramusculars, Akima i
+  col·laboradors<sup class="ref"><a href="#r13">13</a></sup> troben que sí que canvia amb
+  l'angle —més amplitud en flexió, decreixent cap a l'extensió—, i és precisament el vast
+  del qual el model d'aquesta pàgina pren les longituds de sarcòmer.
+</p>
+
 <h2>Com llegir-ho</h2>
 
 <p>
@@ -686,6 +732,16 @@ llarg en decúbit supí que assegut<sup class="ref"><a href="#r9">9</a></sup>.</
     biomechanical studies of human vastus lateralis and vastus medialis sarcomere length
     operating range. <em>J Biomech</em>. 2018;67:91–97.
     <a href="https://doi.org/10.1016/j.jbiomech.2017.11.038">doi:10.1016/j.jbiomech.2017.11.038</a></li>
+
+  <li id="r12">Kukić F, Mrdaković V, Stanković A, Ilić D. Effects of knee extension joint
+    angle on quadriceps femoris muscle activation and exerted torque in maximal voluntary
+    isometric contraction. <em>Biology (Basel)</em>. 2022;11(10):1490.
+    <a href="https://doi.org/10.3390/biology11101490">doi:10.3390/biology11101490</a></li>
+
+  <li id="r13">Akima H, Maeda K, Shima N. Neuromuscular activation of the quadriceps
+    femoris, including the vastus intermedius, during isokinetic knee extensions.
+    <em>Sci Rep</em>. 2023;13(1).
+    <a href="https://doi.org/10.1038/s41598-023-34532-x">doi:10.1038/s41598-023-34532-x</a></li>
 </ol>
 
 <div class="collabora">
@@ -1261,6 +1317,7 @@ function mostra() {
   dibuixaFigura();
   dibuixaMoments(punts, a, b);
   dibuixaExigencia(punts, a, b);
+  dibuixaEMG(a, b, factor, perfil);
   actualitzaLectures(punts, a, b, maxRang, maxComplet);
   actualitzaPanellAngle(factor, perfil);
 }
@@ -1388,6 +1445,90 @@ function dibuixaExigencia(punts, a, b) {
   cursor(g, x, M.dalt, Hh - M.baix);
 }
 
+/* ====================================================================
+   EMG SIMULAT
+   ====================================================================
+
+   El traç és soroll, no cap mesura. El que està fonamentat és l'amplitud:
+
+   · Kukić et al. (2022) troben que l'EMG normalitzada del vast lateral i
+     del medial NO canvia significativament amb l'angle de genoll en
+     contracció màxima (VL 62–72 %, VM 68–82 % al llarg de sis angles),
+     tot i que el moment sí que canvia. Per això l'envolupant d'aquí no
+     segueix la corba força–longitud: segueix l'ESFORÇ RELATIU que la
+     càrrega demana a cada angle, que és el que fa variar l'activació en
+     una sèrie submàxima.
+   · El recte femoral dona menys amplitud que els vasts en contracció
+     màxima.
+   · Maffiuletti i Lepers (2003): en decúbit supí l'EMG normalitzada cau
+     un 41 % al recte femoral i un 20 % als vasts.
+   ==================================================================== */
+
+const svgEMG = document.getElementById("grafic-emg");
+
+const CANALS = [
+  { nom: "Recte femoral", color: "var(--rf)",        base: 0.55, caiguda: 0.41 },
+  { nom: "Vast lateral",  color: "var(--vast)",      base: 0.69, caiguda: 0.20 },
+  { nom: "Vast medial",   color: "var(--capacitat)", base: 0.75, caiguda: 0.20 }
+];
+
+// Soroll determinista: si fos Math.random(), el traç ballaria a cada
+// redibuix i semblaria que passa alguna cosa quan no en passa cap.
+function soroll(i, llavor) {
+  const s = Math.sin((i * 12.9898 + llavor * 78.233)) * 43758.5453;
+  return (s - Math.floor(s)) * 2 - 1;
+}
+
+function dibuixaEMG(a, b, factor, perfil) {
+  // ALT triat perquè la base dels canals caigui exactament on eixAngles
+  // dibuixa l'eix: Y0 + 3·ALT = Hh − M.baix.
+  const W = 900, Hh = 340, Y0 = 30, ALT = (Hh - M.baix - Y0) / 3;
+  const x = escalaX(W);
+  svgEMG.textContent = "";
+  const g = el("g", {});
+  svgEMG.appendChild(g);
+
+  const yBase = Y0 + CANALS.length * ALT;
+  g.appendChild(el("rect", {
+    x: x(a), y: Y0 - 12, width: Math.max(0, x(b) - x(a)), height: yBase - Y0 + 12, fill: "var(--rang)"
+  }));
+
+  // Factor del maluc: 1 assegut a 90°, i la caiguda publicada a 0°.
+  const fMaluc = c => 1 - c.caiguda * (1 - Math.min(90, estat.maluc) / 90);
+
+  CANALS.forEach((c, k) => {
+    const eix = Y0 + k * ALT + ALT / 2;
+    const amp = ALT * 0.42;
+
+    g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: eix, y2: eix, class: "reixa" }));
+    g.appendChild(el("text", { x: M.esq + 4, y: eix - ALT / 2 + 14, "font-weight": 650, fill: c.color }, c.nom));
+
+    // Envolupant: base del múscul × factor del maluc × esforç relatiu.
+    const env = phi => (phi < a || phi > b) ? 0
+      : c.base * fMaluc(c) * Math.min(1, Math.max(0, factor * perfil(phi) / capacitat(phi)));
+
+    // Mostreig propi i fi. Amb el dels altres gràfics (0,5°) el traç
+    // sortia massa gruixut i no semblava un registre.
+    const N = 620, cru = [], sup = [], inf = [];
+    for (let i = 0; i <= N; i++) {
+      const phi = PHI_MIN + (PHI_MAX - PHI_MIN) * i / N;
+      const e = env(phi);
+      // Dues octaves de soroll: el senyal cru d'EMG té aquest aspecte de
+      // patró d'interferència, no de sinusoide.
+      const n = soroll(i, k + 1) * 0.75 + soroll(i * 3.7, k + 11) * 0.35;
+      cru.push([x(phi), eix - n * e * amp]);
+      sup.push([x(phi), eix - e * amp * 1.05]);
+      inf.push([x(phi), eix + e * amp * 1.05]);
+    }
+    g.appendChild(camí(cru, c.color, 0.8, { opacity: .85 }));
+    g.appendChild(camí(sup, c.color, 1.6, { opacity: .45 }));
+    g.appendChild(camí(inf, c.color, 1.6, { opacity: .45 }));
+  });
+
+  eixAngles(g, x, Hh, W);
+  cursor(g, x, Y0 - 12, yBase);
+}
+
 function eixAngles(g, x, Hh, W) {
   const yBase = Hh - M.baix;
   g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: yBase, y2: yBase, class: "eix" }));
@@ -1479,19 +1620,24 @@ const SL_EIX_0 = 1.2, SL_EIX_1 = 4.35;
 const xSL = sl => M.esq + (sl - SL_EIX_0) / (SL_EIX_1 - SL_EIX_0) * (900 - M.dreta - M.esq);
 
 /* Rangs publicats. Cap d'aquests números és meu: surten de les fonts que
-   hi ha al peu. Les dues primeres files SÍ que són del model d'aquesta
-   pàgina i es recalculen amb els controls.
+   hi ha al peu. Cada estudi va mesurar a DOS angles de genoll; d'aquí en
+   surt un pendent, i amb el pendent es pot dir què li tocaria a qualsevol
+   altre angle. Això és el que fa que el gràfic sigui dinàmic: totes les
+   barres es recalculen per al rang que hi hagi seleccionat, i per tant
+   totes queden comparables entre elles i amb el model.
 
-   Estan aquí perquè les tres mesures del vast lateral no es toquen entre
-   elles, i amagar-ho triant-ne una seria justament el que un diagrama
-   docent no ha de fer. */
+   Fora dels angles que l'estudi va mesurar, això és EXTRAPOLACIÓ, i el
+   gràfic ho marca: només el tram mesurat va ple. */
 const RANGS_PUBLICATS = [
-  { mus: "Vast intermedi", font: "Ando 2021 · en repòs",            a: 2.19, b: 2.46, ang: "0°–90°",   ref: 3,  color: "var(--vast)" },
-  { mus: "Vast lateral",   font: "Ando 2021 · en repòs",            a: 2.28, b: 2.30, ang: "0°–90°",   ref: 3,  color: "var(--vast)" },
-  { mus: "Vast lateral",   font: "Chen 2016 · microendoscòpia",     a: 2.84, b: 3.17, ang: "50°–110°", ref: 4,  color: "var(--vast)" },
-  { mus: "Vast lateral",   font: "Son 2018 · intraoperatori",       a: 3.20, b: 3.80, ang: "45°–90°",  ref: 11, color: "var(--vast)" },
-  { mus: "Vast medial",    font: "Son 2018 · intraoperatori",       a: 3.60, b: 4.10, ang: "45°–90°",  ref: 11, color: "var(--capacitat)" }
+  { mus: "Vast intermedi", font: "Ando 2021 · en repòs",        sa: 2.19, sb: 2.46, aa:  0, ab:  90, color: "var(--vast)" },
+  { mus: "Vast lateral",   font: "Ando 2021 · en repòs",        sa: 2.28, sb: 2.30, aa:  0, ab:  90, color: "var(--vast)" },
+  { mus: "Vast lateral",   font: "Chen 2016 · microendoscòpia", sa: 2.84, sb: 3.17, aa: 50, ab: 110, color: "var(--vast)" },
+  { mus: "Vast lateral",   font: "Son 2018 · intraoperatori",   sa: 3.20, sb: 3.80, aa: 45, ab:  90, color: "var(--vast)" },
+  { mus: "Vast medial",    font: "Son 2018 · intraoperatori",   sa: 3.60, sb: 4.10, aa: 45, ab:  90, color: "var(--capacitat)" }
 ];
+// Longitud de sarcòmer que un estudi prediu a qualsevol angle, a partir
+// dels dos punts que va mesurar.
+const slFont = (f, phi) => f.sa + (f.sb - f.sa) / (f.ab - f.aa) * (phi - f.aa);
 
 function dibuixaRangs(a, b) {
   const W = 900, FILA = 32, Y0 = 44;
@@ -1499,12 +1645,22 @@ function dibuixaRangs(a, b) {
   const g = el("g", {});
   svgRangs.appendChild(g);
 
+  // Totes les files es calculen per al MATEIX rang d'angles, el que hi
+  // hagi seleccionat. Així les fonts són comparables entre elles i amb el
+  // model, cosa que amb els angles originals de cada estudi no ho eren.
+  const ang = Math.round(a) + "°–" + Math.round(b) + "°";
   const files = [
-    { mus: "Recte femoral", font: "model d'aquesta pàgina", color: "var(--rf)",  guions: "7 4",
-      a: slRF(a, estat.maluc), b: slRF(b, estat.maluc), ang: Math.round(a) + "°–" + Math.round(b) + "°", seu: true },
-    { mus: "Vasts", font: "model d'aquesta pàgina · actiu", color: "var(--vast)", guions: null,
-      a: slVast(a), b: slVast(b), ang: Math.round(a) + "°–" + Math.round(b) + "°", seu: true },
-    ...RANGS_PUBLICATS
+    { mus: "Recte femoral", font: "model d'aquesta pàgina", color: "var(--rf)", guions: "7 4",
+      a: slRF(a, estat.maluc), b: slRF(b, estat.maluc), ang, seu: true },
+    { mus: "Vasts", font: "model d'aquesta pàgina · actiu", color: "var(--vast)",
+      a: slVast(a), b: slVast(b), ang, seu: true },
+    ...RANGS_PUBLICATS.map(f => ({
+      mus: f.mus, font: f.font, color: f.color, ang,
+      a: slFont(f, a), b: slFont(f, b),
+      // Tram que l'estudi va mesurar de debò; la resta és extrapolació.
+      mesurat: [Math.max(Math.min(a, b), Math.min(f.aa, f.ab)),
+                Math.min(Math.max(a, b), Math.max(f.aa, f.ab))].map(p => slFont(f, p))
+    }))
   ];
 
   const yBase = Y0 + files.length * FILA;
@@ -1535,8 +1691,16 @@ function dibuixaRangs(a, b) {
     g.appendChild(el("text", { x: M.esq + 4, y: y - 9, "font-weight": 650, fill: "var(--text)" }, f.mus));
     g.appendChild(el("text", { x: M.esq + 4 + f.mus.length * 7.2 + 8, y: y - 9 }, f.font));
 
-    const barra = { x: x1, y: y, width: ample, height: 10, rx: 5, fill: f.color, opacity: f.seu ? .85 : .5 };
+    // Barra sencera fluixa; a sobre, ple, només el tram que l'estudi va
+    // mesurar. Si no es marqués, l'extrapolació passaria per mesura.
+    const barra = { x: x1, y: y, width: ample, height: 10, rx: 5, fill: f.color, opacity: f.seu ? .85 : .28 };
     g.appendChild(el("rect", barra));
+    if (f.mesurat) {
+      const m1 = xSL(Math.min(...f.mesurat)), m2 = xSL(Math.max(...f.mesurat));
+      if (m2 - m1 > 0.5) g.appendChild(el("rect", {
+        x: m1, y: y, width: m2 - m1, height: 10, rx: 5, fill: f.color, opacity: .75
+      }));
+    }
     if (f.guions) g.appendChild(el("rect", Object.assign({}, barra, {
       fill: "none", stroke: "var(--fons)", "stroke-width": 3, "stroke-dasharray": f.guions
     })));
