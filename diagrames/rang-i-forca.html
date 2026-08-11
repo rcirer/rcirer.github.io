@@ -462,6 +462,29 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
   del qual el model d'aquesta pàgina pren les longituds de sarcòmer.
 </p>
 
+<div class="avis">
+  <strong>Per què els tres canals s'assemblen tant.</strong> Perquè és el que diuen les
+  dades, i val la pena dir-ho en comptes de dibuixar una diferència que no està
+  demostrada. Buscant una forma pròpia per al recte femoral, el que es troba és això: la
+  diferència publicada amb els vasts és sobretot <em>d'amplitud</em> i sobretot de
+  <em>sensibilitat al maluc</em>, no de patró al llarg del recorregut del genoll. L'única
+  troballa d'un patró diferent és de Duffell i
+  col·laboradors<sup class="ref"><a href="#r14">14</a></sup> —el recte femoral més actiu
+  que el vast lateral i el vast medial oblic als últims graus d'extensió—, i és fràgil:
+  només apareix a 30°/s, desapareix a velocitats més altes i no surt en isomètric. No l'he
+  posada al model. El múscul que sí que té un patró d'angle clarament propi és el vast
+  intermedi, i és el que no es pot registrar des de fora.
+</div>
+
+<p>
+  Del que el model sí que fa: cada canal es divideix per la <strong>capacitat relativa del
+  seu propi múscul</strong> a cada angle, perquè com més lluny del seu òptim està un
+  múscul, més activació li cal per aportar la seva part. Això dona al recte femoral una
+  forma pròpia, perquè és biarticular i la seva corba de longitud no és la dels vasts.
+  L'efecte és real però modest. <strong>Si vols veure el recte femoral comportar-se
+  diferent de debò, la palanca és el maluc, no el genoll.</strong>
+</p>
+
 <h2>Com llegir-ho</h2>
 
 <p>
@@ -742,6 +765,11 @@ llarg en decúbit supí que assegut<sup class="ref"><a href="#r9">9</a></sup>.</
     femoris, including the vastus intermedius, during isokinetic knee extensions.
     <em>Sci Rep</em>. 2023;13(1).
     <a href="https://doi.org/10.1038/s41598-023-34532-x">doi:10.1038/s41598-023-34532-x</a></li>
+
+  <li id="r14">Duffell LD, Dharni H, Strutton PH, McGregor AH. Electromyographic activity
+    of the quadriceps components during the final degrees of knee extension.
+    <em>J Back Musculoskelet Rehabil</em>. 2011;24(4):215–223.
+    <a href="https://doi.org/10.3233/BMR-2011-0298">doi:10.3233/BMR-2011-0298</a></li>
 </ol>
 
 <div class="collabora">
@@ -1466,10 +1494,21 @@ function dibuixaExigencia(punts, a, b) {
 
 const svgEMG = document.getElementById("grafic-emg");
 
+// capRel = capacitat relativa del múscul a aquell angle, del model de
+// longitud de sarcòmer. Entra dividint: com més lluny del seu òptim està
+// un múscul, més activació li cal per aportar la seva part. És el que fa
+// que el recte femoral, biarticular, tingui una forma diferent dels
+// vasts i no només una mida diferent.
 const CANALS = [
-  { nom: "Recte femoral", color: "var(--rf)",        base: 0.55, caiguda: 0.41 },
-  { nom: "Vast lateral",  color: "var(--vast)",      base: 0.69, caiguda: 0.20 },
-  { nom: "Vast medial",   color: "var(--capacitat)", base: 0.75, caiguda: 0.20 }
+  { nom: "Recte femoral", color: "var(--rf)",        base: 0.45, caiguda: 0.41,
+    capRel: phi => forcaLongitud(slRF(phi, estat.maluc)) },
+  { nom: "Vast lateral",  color: "var(--vast)",      base: 0.50, caiguda: 0.20,
+    capRel: phi => forcaLongitud(slVast(phi)) },
+  // El vast medial comparteix corba amb el lateral: cap font que separi
+  // VL de VM ho fa amb un mètode compatible amb la resta del model. Aquí
+  // només se'n diferencia l'amplitud.
+  { nom: "Vast medial",   color: "var(--capacitat)", base: 0.54, caiguda: 0.20,
+    capRel: phi => forcaLongitud(slVast(phi)) }
 ];
 
 // Soroll determinista: si fos Math.random(), el traç ballaria a cada
@@ -1503,9 +1542,14 @@ function dibuixaEMG(a, b, factor, perfil) {
     g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: eix, y2: eix, class: "reixa" }));
     g.appendChild(el("text", { x: M.esq + 4, y: eix - ALT / 2 + 14, "font-weight": 650, fill: c.color }, c.nom));
 
-    // Envolupant: base del múscul × factor del maluc × esforç relatiu.
-    const env = phi => (phi < a || phi > b) ? 0
-      : c.base * fMaluc(c) * Math.min(1, Math.max(0, factor * perfil(phi) / capacitat(phi)));
+    // Envolupant = amplitud base del múscul × factor del maluc ×
+    // esforç que la càrrega demana al quàdriceps sencer ÷ capacitat
+    // relativa d'aquest múscul en aquell angle.
+    const env = phi => {
+      if (phi < a || phi > b) return 0;
+      const esforc = factor * perfil(phi) / capacitat(phi);
+      return Math.min(1, Math.max(0, c.base * fMaluc(c) * esforc / c.capRel(phi)));
+    };
 
     // Mostreig propi i fi. Amb el dels altres gràfics (0,5°) el traç
     // sortia massa gruixut i no semblava un registre.
