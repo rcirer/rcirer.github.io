@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rang d'excursió i perfil de força — extensió de genoll</title>
+<title>Excursion range and force profile — knee extension</title>
 <meta name="description" content="Visualització interactiva de la relació entre el rang d'excursió entrenat, el perfil de resistència externa i la capacitat del múscul en l'extensió de genoll assegut.">
 
 <!-- Analítica. És el mateix comptador que la resta del lloc (CLAUDE.md §9 quater).
@@ -261,51 +261,51 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
 <body>
 <main>
 
-<h1>Rang d'excursió i perfil de força</h1>
+<h1>Excursion range and force profile</h1>
 <p class="subtitol">
-  Extensió de genoll asseguda. Limitar el rang no mou el pic de l'exercici: decideix
-  quines longituds musculars es carreguen. On cau el pic dins d'aquelles longituds ho
-  decideixen la geometria i el tipus de resistència. Són dues coses separades, i aquí
-  tenen dos controls separats.
+  Seated knee extension. Restricting the range does not move the peak of the exercise: it
+  decides which muscle lengths get loaded. Where the peak falls within those lengths is
+  decided by geometry and by the type of resistance. Two separate things, and here they
+  have two separate controls.
 </p>
 
 <div class="controls">
 
   <div class="control">
-    <span class="etiqueta">Tipus de resistència</span>
+    <span class="etiqueta">Type of resistance</span>
     <div class="botons" id="botons-resistencia">
-      <button type="button" data-res="pes" aria-pressed="true">Pes</button>
-      <button type="button" data-res="goma" aria-pressed="false">Goma</button>
-      <button type="button" data-res="mixt" aria-pressed="false">Pes + goma</button>
+      <button type="button" data-res="pes" aria-pressed="true">Weight</button>
+      <button type="button" data-res="goma" aria-pressed="false">Band</button>
+      <button type="button" data-res="mixt" aria-pressed="false">Weight + band</button>
     </div>
   </div>
 
   <div class="control">
-    <span class="etiqueta">Rang entrenat</span>
+    <span class="etiqueta">Trained range</span>
     <div class="botons" id="botons-rang">
-      <button type="button" data-a="0"  data-b="90" aria-pressed="true">Complet</button>
-      <button type="button" data-a="45" data-b="90" aria-pressed="false">Parcial inicial</button>
-      <button type="button" data-a="0"  data-b="45" aria-pressed="false">Parcial final</button>
+      <button type="button" data-a="0"  data-b="90" aria-pressed="true">Full</button>
+      <button type="button" data-a="45" data-b="90" aria-pressed="false">Long-length partial</button>
+      <button type="button" data-a="0"  data-b="45" aria-pressed="false">Short-length partial</button>
     </div>
   </div>
 
   <div class="control">
-    <label for="rang-a">Inici del rang <span class="valor" id="val-a">90°</span></label>
+    <label for="rang-a">Range starts at <span class="valor" id="val-a">90°</span></label>
     <input type="range" id="rang-a" min="0" max="90" step="1" value="90">
-    <label for="rang-b" style="margin-top:.7rem">Final del rang <span class="valor" id="val-b">0°</span></label>
+    <label for="rang-b" style="margin-top:.7rem">Range ends at <span class="valor" id="val-b">0°</span></label>
     <input type="range" id="rang-b" min="0" max="90" step="1" value="0">
   </div>
 
   <div class="control">
-    <label for="carrega">Càrrega <span class="valor" id="val-carrega">90 %</span></label>
+    <label for="carrega">Load <span class="valor" id="val-carrega">90 %</span></label>
     <input type="range" id="carrega" min="10" max="200" step="1" value="90">
-    <div class="lectura"><span class="nota">Percentatge del màxim aixecable en rang complet amb aquesta mateixa resistència.</span></div>
+    <div class="lectura"><span class="nota">Percentage of the maximum liftable over the full range with this same resistance.</span></div>
   </div>
 
   <div class="control">
-    <label for="maluc">Flexió de maluc <span class="valor" id="val-maluc">90°</span></label>
+    <label for="maluc">Hip flexion <span class="valor" id="val-maluc">90°</span></label>
     <input type="range" id="maluc" min="0" max="110" step="1" value="90">
-    <div class="lectura"><span class="nota" id="nota-maluc">Inclinació del respatller. Només afecta el recte femoral: no canvia gens la resistència externa.</span></div>
+    <div class="lectura"><span class="nota" id="nota-maluc">Backrest tilt. It only affects rectus femoris: it does not change the external resistance at all.</span></div>
   </div>
 
 </div>
@@ -313,392 +313,393 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
 <div class="escena">
 
   <svg id="figura" viewBox="-26 0 586 372" role="img"
-       aria-label="Esquema anatòmic de l'extensió de genoll asseguda: fèmur, tíbia, quàdriceps, ròtula i tendó rotulià, amb el braç de moment de la resistència externa."></svg>
+       aria-label="Anatomical diagram of seated knee extension: femur, tibia, quadriceps, patella and patellar tendon, with the moment arm of the external resistance."></svg>
 
   <div class="panell-angle">
     <div class="control" style="margin-bottom:.9rem">
-      <label for="angle">Angle de la figura <span class="valor" id="val-angle">45°</span></label>
+      <label for="angle">Angle shown <span class="valor" id="val-angle">45°</span></label>
       <input type="range" id="angle" min="0" max="90" step="0.5" value="45">
       <div class="botons" style="margin-top:.6rem">
-        <button type="button" id="anima" aria-pressed="false">Anima el moviment</button>
+        <button type="button" id="anima" aria-pressed="false">Animate the movement</button>
       </div>
     </div>
-    <div class="fila"><span class="k">Braç de moment extern</span><span class="v" id="v-brac">—</span></div>
-    <div class="fila"><span class="k">Demanda externa</span><span class="v" id="v-demanda">—</span></div>
-    <div class="fila"><span class="k">Capacitat total</span><span class="v" id="v-capacitat">—</span></div>
-    <div class="fila"><span class="k">Exigència relativa</span><span class="v" id="v-exigencia">—</span></div>
+    <div class="fila"><span class="k">External moment arm</span><span class="v" id="v-brac">—</span></div>
+    <div class="fila"><span class="k">External demand</span><span class="v" id="v-demanda">—</span></div>
+    <div class="fila"><span class="k">Total capacity</span><span class="v" id="v-capacitat">—</span></div>
+    <div class="fila"><span class="k">Relative demand</span><span class="v" id="v-exigencia">—</span></div>
 
-    <div class="fila"><span class="k">Sarcòmer dels vasts</span><span class="v" id="v-sl-vast">—</span></div>
-    <div class="fila"><span class="k">Sarcòmer del recte femoral</span><span class="v" id="v-sl-rf">—</span></div>
+    <div class="fila"><span class="k">Vasti sarcomere</span><span class="v" id="v-sl-vast">—</span></div>
+    <div class="fila"><span class="k">Rectus femoris sarcomere</span><span class="v" id="v-sl-rf">—</span></div>
   </div>
 
 </div>
 
-<h2>La corba força–longitud, i on hi viu cada múscul</h2>
+<h2>The force–length curve, and where each muscle lives on it</h2>
 
 <svg id="grafic-fl" class="grafic" viewBox="0 0 900 320" role="img"
-     aria-label="Corba força–longitud del sarcòmer humà, amb la franja de longituds que recorre cada múscul en aquest exercici."></svg>
+     aria-label="Human sarcomere force–length curve, with the band of lengths each muscle travels through in this exercise."></svg>
 
 <p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
-  La corba<sup class="ref"><a href="#r1">1</a>,<a href="#r2">2</a></sup> és la mateixa per
-  a tots dos músculs: és una propietat del sarcòmer, no del
-  múscul. El que canvia és <em>quin tros en recorre cadascun</em>. De cada múscul hi ha
-  dues franjes: la prima és tot el que li permeten les articulacions, la gruixuda és el
-  que recorre l'exercici amb el rang seleccionat, i les marques verticals en són els
-  extrems. Les zones grises no són rang que l'exercici es deixi: són longituds a les
-  quals el genoll i el maluc <strong>no poden arribar de cap manera</strong>.
+  The curve<sup class="ref"><a href="#r1">1</a>,<a href="#r2">2</a></sup> is the same for
+  both muscles: it is a property of the sarcomere, not of the muscle. What differs is
+  <em>which stretch of it each one travels</em>. Every muscle has two bands: the thin one
+  is everything the joints allow, the thick one is what the exercise covers with the
+  selected range, and the vertical marks are its ends. The grey zones are not range the
+  exercise leaves out: they are lengths the knee and hip
+  <strong>cannot reach by any means</strong>.
 </p>
 
 <p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
-  Les franjes van dibuixades una <strong>per sobre</strong> i l'altra <strong>per
-  sota</strong> de la corba a propòsit: el tram del recte femoral cau a dins del dels
-  vasts i superposades no es distingirien. El desplaçament és només visual — <em>l'alçada
-  bona és la de la corba</em>, i el punt de cada múscul sí que hi és a sobre, unit a la
-  seva franja per una ratlla.
+  The bands are drawn one <strong>above</strong> and the other <strong>below</strong> the
+  curve on purpose: the rectus femoris stretch falls inside the vasti one, and overlaid
+  they would be indistinguishable. The offset is purely visual — <em>the correct height is
+  the curve's</em>, and each muscle's dot does sit on it, joined to its band by a line.
 </p>
 
-<h2>On treballa cada múscul, segons qui ho hagi mesurat</h2>
+<h2>Where each muscle works, depending on who measured it</h2>
 
 <svg id="grafic-rangs" class="grafic" viewBox="0 0 900 330" role="img"
-     aria-label="Rang de longituds de sarcòmer de cada porció del quàdriceps segons diferents estudis, sobre el mateix eix que la corba força–longitud."></svg>
+     aria-label="Sarcomere length range of each quadriceps head according to different studies, on the same axis as the force–length curve."></svg>
 
 <p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
-  Mateix eix que el gràfic de dalt, o sigui que pots baixar la mirada en vertical des de
-  la corba fins a qualsevol barra. Les dues primeres són el que fa servir aquesta pàgina i
-  es mouen amb els controls; la resta són mesures publicades, cadascuna amb el seu mètode.
+  Same axis as the chart above, so you can drop your eye vertically from the curve down to
+  any bar. The first two are what this page uses and they move with the controls; the rest
+  are published measurements, each with its method.
 </p>
 
 <div class="avis">
-  <strong>Aquest gràfic és, de fet, el més important de la pàgina.</strong> Tres estudis
-  mesuren el vast lateral als mateixos angles i donen respostes que no es toquen: branca
-  ascendent, altiplà o branca descendent segons a qui creguis. I el vast medial mesurat
-  intraoperatòriament<sup class="ref"><a href="#r11">11</a></sup> arriba a 4,1 µm a 90° de
-  flexió, que és a tocar del zero de força activa — els mateixos autors diuen que aquests
-  valors són «dramàticament més llargs» del que prediu el model biomecànic. Qualsevol
-  afirmació categòrica sobre on treballa el quàdriceps sobre la corba, la teva o la meva,
-  s'ha de mirar amb aquesta taula al davant.
+  <strong>This chart is, in fact, the most important one on the page.</strong> Three
+  studies measure vastus lateralis at the same angles and return answers that do not
+  overlap: ascending limb, optimal range or descending limb depending on whom you believe.
+  And vastus medialis measured
+  intraoperatively<sup class="ref"><a href="#r11">11</a></sup> reaches 4.1 µm at 90° of
+  flexion, which is next to zero active force — the authors themselves call these values
+  "dramatically longer" than the biomechanical model predicts. Any categorical claim about
+  where the quadriceps works on the curve, yours or mine, has to be made with this table in
+  view.
 </div>
 
 <div class="botons" id="botons-escala" style="margin:2.2rem 0 .7rem">
-  <button type="button" data-escala="nm"  aria-pressed="true">Moment al genoll (N·m)</button>
-  <button type="button" data-escala="pct" aria-pressed="false">Capacitat contràctil (% del màxim de cada múscul)</button>
+  <button type="button" data-escala="nm"  aria-pressed="true">Knee moment (N·m)</button>
+  <button type="button" data-escala="pct" aria-pressed="false">Contractile capacity (% of each muscle's own maximum)</button>
 </div>
 
 <svg id="grafic-moments" class="grafic" viewBox="0 0 900 400" role="img"
-     aria-label="Moment extensor màxim del quàdriceps i moment resistiu extern, en funció de l'angle de flexió del genoll."></svg>
+     aria-label="Maximum quadriceps extensor moment and external resistive moment as a function of knee flexion angle."></svg>
 
 <div class="llegenda" id="llegenda">
-  <button type="button" data-linia="total"   aria-pressed="true"><i style="border-top-color:var(--capacitat)"></i> Capacitat total</button>
-  <button type="button" data-linia="vast"    aria-pressed="true"><i style="border-top-color:var(--vast)"></i> Vasts</button>
-  <button type="button" data-linia="rf"      aria-pressed="true"><i style="border-top-color:var(--rf);border-top-style:dashed"></i> Recte femoral</button>
-  <button type="button" data-linia="demanda" aria-pressed="true"><i style="border-top-color:var(--demanda)"></i> Demanda de la resistència</button>
+  <button type="button" data-linia="total"   aria-pressed="true"><i style="border-top-color:var(--capacitat)"></i> Total capacity</button>
+  <button type="button" data-linia="vast"    aria-pressed="true"><i style="border-top-color:var(--vast)"></i> Vasti</button>
+  <button type="button" data-linia="rf"      aria-pressed="true"><i style="border-top-color:var(--rf);border-top-style:dashed"></i> Rectus femoris</button>
+  <button type="button" data-linia="demanda" aria-pressed="true"><i style="border-top-color:var(--demanda)"></i> Demand from the resistance</button>
 </div>
 <p id="nota-llegenda" style="font-size:.85rem;color:var(--text-fluix);margin:.6rem 0 0"></p>
 
 <svg id="grafic-exigencia" class="grafic" viewBox="0 0 900 250" role="img"
-     aria-label="Exigència relativa: quocient entre el moment resistiu extern i la capacitat del múscul, en percentatge."></svg>
+     aria-label="Relative demand: ratio of external resistive moment to muscle capacity, as a percentage."></svg>
 
 <div class="lectures">
   <div class="lectura">
-    <div class="clau">Punt d'encallada</div>
+    <div class="clau">Sticking point</div>
     <div class="xifra" id="lec-encallada">—</div>
-    <div class="nota">Angle on l'exigència relativa és màxima dins del rang entrenat.</div>
+    <div class="nota">Angle where relative demand peaks within the trained range.</div>
   </div>
   <div class="lectura">
-    <div class="clau">Exigència màxima</div>
+    <div class="clau">Peak relative demand</div>
     <div class="xifra" id="lec-exigencia">—</div>
-    <div class="nota">Per sobre del 100 % l'aixecament falla en aquell angle.</div>
+    <div class="nota">Above 100 % the lift fails at that angle.</div>
   </div>
   <div class="lectura">
-    <div class="clau">Màxim en aquest rang</div>
+    <div class="clau">Maximum in this range</div>
     <div class="xifra" id="lec-maxim">—</div>
-    <div class="nota" id="lec-maxim-nota">Respecte del màxim en rang complet.</div>
+    <div class="nota" id="lec-maxim-nota">Relative to the maximum over the full range.</div>
   </div>
 </div>
 
-<h2>Com es veuria a l'electromiògraf</h2>
+<h2>What it would look like on an electromyograph</h2>
 
 <svg id="grafic-emg" class="grafic" viewBox="0 0 900 340" role="img"
-     aria-label="Registre d'electromiografia simulat per al recte femoral, el vast lateral i el vast medial al llarg del recorregut."></svg>
+     aria-label="Simulated electromyography record for rectus femoris, vastus lateralis and vastus medialis across the movement."></svg>
 
 <p style="font-size:.85rem;color:var(--text-fluix);margin:.5rem 0 0">
-  Tres canals sobre el mateix eix d'angle que els gràfics d'abans. El senyal només hi és
-  dins del rang entrenat, perquè fora d'aquell rang el múscul no s'està contraient. La
-  línia clara de cada canal és l'envolupant, que és el que un electromiògraf et donaria
-  després de rectificar i suavitzar.
+  Three channels on the same angle axis as the charts above. The signal only exists inside
+  the trained range, because outside it the muscle is not contracting. The pale line on
+  each channel is the envelope, which is what an electromyograph gives you after
+  rectifying and smoothing.
 </p>
 
 <div class="avis">
-  <strong>Això és una simulació, no un registre.</strong> El traç fi és soroll generat, no
-  cap senyal mesurat en ningú. El que sí que està fonamentat és <em>l'amplitud</em>: el
-  repartiment entre els tres músculs i com respon al maluc surt de la literatura. Serveix
-  per veure el patró; no en treguis cap xifra.
+  <strong>This is a simulation, not a recording.</strong> The fine trace is generated
+  noise, not a signal measured in anyone. What <em>is</em> grounded is the
+  <em>amplitude</em>: how it splits between the three muscles and how it responds to the
+  hip comes from the literature. Use it to see the pattern; do not take numbers from it.
 </div>
 
 <p>
-  I el patró incomoda una mica, perquè <strong>l'EMG no segueix la història de la corba
-  força–longitud</strong>. Kukić i col·laboradors<sup class="ref"><a href="#r12">12</a></sup>
-  van mesurar el vast lateral i el vast medial en contracció màxima a sis angles de genoll
-  i l'EMG normalitzada <strong>no va canviar significativament</strong>, tot i que el
-  moment sí que canviava i feia cim. O sigui que l'activació no és una lectura de la
-  capacitat: aquí l'amplitud varia perquè varia <em>l'esforç relatiu</em> que demana la
-  càrrega a cada angle, no perquè el múscul «s'activi més» a una longitud concreta.
+  And the pattern is slightly uncomfortable, because <strong>EMG does not follow the
+  force–length story</strong>. Kukić and
+  colleagues<sup class="ref"><a href="#r12">12</a></sup> measured vastus lateralis and
+  vastus medialis during maximal contraction at six knee angles and normalised EMG
+  <strong>did not change significantly</strong>, even though moment did change and peaked.
+  So activation is not a readout of capacity: here amplitude varies because the
+  <em>relative effort</em> the load demands varies with angle, not because the muscle
+  "activates more" at a particular length.
 </p>
 
 <p>
-  El que sí que canvia molt entre músculs és el <strong>recte femoral</strong>. En
-  contracció màxima dona senyals de menys amplitud que els vasts, i sobretot: en decúbit
-  supí la seva EMG normalitzada cau un <strong>41 %</strong>, contra un 20 % als
-  vasts<sup class="ref"><a href="#r9">9</a></sup>. Mou el control de maluc i ho veuràs. És
-  la mateixa asimetria que ja apareixia a la corba força–longitud, però mesurada per una
-  via completament diferent.
+  What does differ markedly between muscles is <strong>rectus femoris</strong>. At maximal
+  contraction it produces lower-amplitude signals than the vasti, and above all: lying
+  supine, its normalised EMG drops by <strong>41 %</strong>, against 20 % for the
+  vasti<sup class="ref"><a href="#r9">9</a></sup>. Move the hip control and you will see
+  it. It is the same asymmetry that showed up on the force–length curve, measured by a
+  completely different route.
 </p>
 
 <p>
-  El vast intermedi no hi surt perquè no es pot registrar amb elèctrodes de superfície:
-  és profund. Amb elèctrodes intramusculars, Akima i
-  col·laboradors<sup class="ref"><a href="#r13">13</a></sup> troben que sí que canvia amb
-  l'angle —més amplitud en flexió, decreixent cap a l'extensió—, i és precisament el vast
-  del qual el model d'aquesta pàgina pren les longituds de sarcòmer.
+  Vastus intermedius is absent because it cannot be recorded with surface electrodes: it
+  is deep. With intramuscular electrodes, Akima and
+  colleagues<sup class="ref"><a href="#r13">13</a></sup> find that it does change with
+  angle — larger amplitude in flexion, decreasing towards extension — and it is precisely
+  the head this page takes its sarcomere lengths from.
 </p>
 
 <div class="avis">
-  <strong>Per què els tres canals s'assemblen tant.</strong> Perquè és el que diuen les
-  dades, i val la pena dir-ho en comptes de dibuixar una diferència que no està
-  demostrada. Buscant una forma pròpia per al recte femoral, el que es troba és això: la
-  diferència publicada amb els vasts és sobretot <em>d'amplitud</em> i sobretot de
-  <em>sensibilitat al maluc</em>, no de patró al llarg del recorregut del genoll. L'única
-  troballa d'un patró diferent és de Duffell i
-  col·laboradors<sup class="ref"><a href="#r14">14</a></sup> —el recte femoral més actiu
-  que el vast lateral i el vast medial oblic als últims graus d'extensió—, i és fràgil:
-  només apareix a 30°/s, desapareix a velocitats més altes i no surt en isomètric. No l'he
-  posada al model. El múscul que sí que té un patró d'angle clarament propi és el vast
-  intermedi, i és el que no es pot registrar des de fora.
+  <strong>Why the three channels look so alike.</strong> Because that is what the data
+  says, and it is worth saying so rather than drawing a difference that has not been
+  demonstrated. Looking for a distinct shape for rectus femoris, what you find is this: the
+  published difference from the vasti is mostly one of <em>amplitude</em> and above all of
+  <em>hip sensitivity</em>, not of pattern across the knee's range. The only report of a
+  distinct pattern is Duffell and
+  colleagues'<sup class="ref"><a href="#r14">14</a></sup> — rectus femoris more active than
+  vastus lateralis and vastus medialis obliquus in the final degrees of extension — and it
+  is fragile: it appears only at 30°/s, disappears at higher velocities and is absent
+  isometrically. I have not put it into the model. The head that does have a clearly
+  distinct angle pattern is vastus intermedius, and it is the one you cannot record from
+  outside.
 </div>
 
 <p>
-  Del que el model sí que fa: cada canal es divideix per la <strong>capacitat relativa del
-  seu propi múscul</strong> a cada angle, perquè com més lluny del seu òptim està un
-  múscul, més activació li cal per aportar la seva part. Això dona al recte femoral una
-  forma pròpia, perquè és biarticular i la seva corba de longitud no és la dels vasts.
-  L'efecte és real però modest. <strong>Si vols veure el recte femoral comportar-se
-  diferent de debò, la palanca és el maluc, no el genoll.</strong>
+  What the model does do: each channel is divided by <strong>its own muscle's relative
+  capacity</strong> at that angle, because the further a muscle is from its optimum, the
+  more activation it needs to contribute its share. That gives rectus femoris a shape of
+  its own, because it is biarticular and its length curve is not the vasti's. The effect is
+  real but modest. <strong>If you want to see rectus femoris genuinely behave differently,
+  the lever is the hip, not the knee.</strong>
 </p>
 
-<h2>Com llegir-ho</h2>
+<h2>How to read it</h2>
 
 <p>
-  Les corbes no són la mateixa cosa i el pic no cau al mateix lloc en cadascuna.
-  La <strong>demanda</strong> és el moment que la resistència externa imposa al genoll.
-  La <strong>capacitat</strong> és el moment que el quàdriceps pot generar en aquella
-  longitud. La <strong>exigència relativa</strong> és el quocient entre les dues, i és
-  l'única que diu on costa realment: el punt d'encallada.
+  The curves are not the same thing and the peak does not fall in the same place on each.
+  <strong>Demand</strong> is the moment the external resistance imposes on the knee.
+  <strong>Capacity</strong> is the moment the quadriceps can generate at that length.
+  <strong>Relative demand</strong> is the ratio between the two, and it is the only one
+  that says where it actually gets hard: the sticking point.
 </p>
 
-<h2>D'on surt la capacitat</h2>
+<h2>Where capacity comes from</h2>
 
 <p>
-  De la corba força–longitud del sarcòmer<sup class="ref"><a href="#r1">1</a></sup>, no
-  d'una forma triada a ull. La corba té <strong>quatre trams i no és simètrica</strong>:
-  branca ascendent de pendent 0,57 per µm, un altiplà que va de 2,64 a 2,81 µm, i una
-  branca descendent de pendent 0,70, més dreta que l'ascendent. Allargar-se de més surt
-  més car que escurçar-se. I l'altiplà <em>és una regió</em>, no un punt òptim únic:
-  aquests dos valors són la predicció del model de filaments lliscants per a l'ésser
-  humà, i Gollapudi i Lin<sup class="ref"><a href="#r2">2</a></sup> els van comprovar
-  experimentalment en fibres humanes de tipus I.
-</p>
-
-<p>
-  La corba és la mateixa per als dos músculs, perquè és una propietat del sarcòmer. El
-  que canvia és quin tros en recorre cadascun. Els vasts són monoarticulars i la seva
-  longitud només depèn del genoll. El recte femoral creua també el maluc: assegut, la
-  flexió de maluc ja l'escurça abans de començar. Mou el control de maluc i mira com la
-  franja lila llisca cap a la dreta i la blava no es mou gens.
+  From the sarcomere force–length curve<sup class="ref"><a href="#r1">1</a></sup>, not from
+  a shape picked by eye. The curve has <strong>four segments and is not symmetrical</strong>:
+  an ascending limb with a slope of 0.57 per µm, an optimal range running from 2.64 to
+  2.81 µm, and a descending limb with a slope of 0.70, steeper than the ascending one.
+  Over-lengthening costs more than shortening. And the optimum <em>is a region</em>, not a
+  single point: those two values are the sliding-filament model's prediction for humans,
+  and Gollapudi and Lin<sup class="ref"><a href="#r2">2</a></sup> tested them
+  experimentally in human type-I fibres.
 </p>
 
 <p>
-  Les longituds que fa servir el model són <strong>actives, no de repòs</strong>. La
-  distinció importa: en contracció màxima el tendó s'estira i les fibres s'escurcen, o
-  sigui que el múscul treballa més avall de la corba del que suggereix una mesura amb el
-  múscul relaxat. Els vasts estan ancorats a l'interval actiu d'1,97 a 2,48 µm entre 0° i
-  90° de genoll<sup class="ref"><a href="#r3">3</a></sup>; el pendent que se'n dedueix,
-  0,0057 µm per grau, coincideix amb els 0,0055 µm/° que Chen i col·laboradors van
-  mesurar per microendoscòpia al vast lateral<sup class="ref"><a href="#r4">4</a></sup>,
-  amb un mètode completament diferent.
-</p>
-
-<h2>Una cosa que la literatura desmenteix</h2>
-
-<p>
-  Que un múscul és feble als dos extrems del seu recorregut i fort al mig és cert
-  <em>de la corba</em>. Però <strong>això no vol dir que un múscul concret recorri tota
-  la corba</strong>, i el cas del quàdriceps és extrem: amb tot el que permeten les
-  articulacions —genoll de 0° a 140°, maluc de 15° d'extensió a 120° de flexió— els dos
-  músculs plegats només arriben de 1,97 a 2,76 µm. Són <strong>27 escassos per cent de
-  la corba</strong>. La resta no és rang que l'exercici es deixi: és rang al qual el cos
-  no pot arribar de cap manera.
+  The curve is the same for both muscles, because it is a property of the sarcomere. What
+  differs is which stretch of it each one travels. The vasti are monoarticular and their
+  length depends only on the knee. Rectus femoris also crosses the hip: seated, hip flexion
+  has already shortened it before you start. Move the hip control and watch the purple band
+  slide right while the blue one does not move at all.
 </p>
 
 <p>
-  I dins d'aquest 27 %, la força activa mai no baixa del 62 %. O sigui que
-  <strong>l'extrem «curt» on el múscul és molt poc capaç no existeix al genoll</strong>:
-  la posició més escurçada que el quàdriceps arriba a tenir encara li deixa gairebé dos
-  terços de la seva força. L'altre extrem tampoc: el màxim que s'assoleix, a 140° de
-  flexió, és justament l'entrada de l'altiplà.
+  The lengths the model uses are <strong>active, not resting</strong>. The distinction
+  matters: during maximal contraction the tendon stretches and the fibres shorten, so the
+  muscle works lower down the curve than a measurement on a relaxed muscle suggests. The
+  vasti are anchored to the active interval of 1.97 to 2.48 µm between 0° and 90° of
+  knee<sup class="ref"><a href="#r3">3</a></sup>; the slope that follows, 0.0057 µm per
+  degree, matches the 0.0055 µm/° Chen and colleagues measured by microendoscopy on vastus
+  lateralis<sup class="ref"><a href="#r4">4</a></sup>, with a completely different method.
+</p>
+
+<h2>Something the literature contradicts</h2>
+
+<p>
+  That a muscle is weak at both ends of its range and strong in the middle is true
+  <em>of the curve</em>. But <strong>that does not mean a given muscle travels the whole
+  curve</strong>, and the quadriceps is an extreme case: with everything the joints allow
+  — knee from 0° to 140°, hip from 15° of extension to 120° of flexion — the two muscles
+  together only reach from 1.97 to 2.76 µm. That is <strong>barely 27 per cent of the
+  curve</strong>. The rest is not range the exercise leaves out: it is range the body
+  cannot reach by any means.
 </p>
 
 <p>
-  La conseqüència és que en aquest exercici <strong>no hi ha cap extrem «llarg» on el
-  múscul torni a ser feble</strong>. Com més flexió de genoll, més capaços són els dos.
-  El punt d'encallada surt a l'extensió completa per dues raons que hi van a favor
-  alhora: allà el múscul és al més escurçat que arriba a estar, i allà el braç de moment
-  extern és màxim.
+  And within that 27 %, active force never drops below 62 %. So <strong>the "short" end
+  where a muscle is very weak does not exist at the knee</strong>: the most shortened
+  position the quadriceps ever reaches still leaves it almost two thirds of its force. Nor
+  does the other end: the maximum reached, at 140° of flexion, is exactly the entrance to
+  the optimal range.
 </p>
 
 <p>
-  Estirat, el recte femoral s'acosta a l'altiplà però tampoc l'arriba a passar. Per
-  posar-lo a la branca descendent caldria una altra cosa: extensió de maluc amb el genoll
-  molt flexionat, que és el que fa una femoral estirada, no una màquina d'extensió.
+  The consequence is that in this exercise <strong>there is no "long" end where the muscle
+  becomes weak again</strong>. The more knee flexion, the more capable both are. The
+  sticking point comes out at full extension for two reasons that pull the same way: there
+  the muscle is at the shortest it ever gets, and there the external moment arm is largest.
 </p>
 
 <p>
-  Al gràfic de moment, però, això gairebé no es veu, i val la pena entendre per què: el
-  recte femoral aporta com a molt uns 45 N·m sobre un eix que arriba a 280, i tot el seu
-  recorregut de capacitat són uns 25 N·m. La física hi és; l'escala se la menja. Per això
-  el gràfic té <strong>un segon botó d'escala</strong>, que divideix cada múscul pel seu
-  propi màxim. Allà es veu sencer: amb el maluc molt flexionat el recte femoral puja del
-  44 % al 96 % al llarg del recorregut, i amb el maluc estès <strong>passa per l'òptim
-  cap als 21° i baixa</strong> fins al 83 %. La corba dels vasts, mentrestant, no es mou
-  ni un píxel, perquè no creuen el maluc.
+  Lying supine, rectus femoris approaches the optimal range but still does not pass through
+  it. Putting it on the descending limb would take something else: hip extension with the
+  knee deeply flexed, which is what a stretched hamstring position does, not a knee
+  extension machine.
 </p>
 
 <p>
-  La conseqüència pràctica, que en una màquina d'extensió assegut no és òbvia: la posició
-  del respatller no fa l'exercici més fàcil ni més difícil de manera apreciable, però sí
-  que decideix <strong>en quina part del seu recorregut treballa el recte femoral</strong>.
-  Si el que es vol és carregar-lo a prop del seu òptim, assegut a 90° no s'aconsegueix mai.
+  On the moment chart, though, almost none of this is visible, and it is worth
+  understanding why: rectus femoris contributes at most about 45 N·m on an axis that runs
+  to 280, and its whole capacity range is about 25 N·m. The physics is there; the scale
+  eats it. That is why the chart has <strong>a second scale button</strong>, which divides
+  each muscle by its own maximum. There you see it whole: with the hip strongly flexed,
+  rectus femoris climbs from 44 % to 96 % across the range, and with the hip extended it
+  <strong>passes through its optimum around 21° and comes back down</strong> to 83 %. The
+  vasti curve, meanwhile, does not move a pixel, because they do not cross the hip.
 </p>
 
 <p>
-  Amb pes, el moment extern val <code>m · g · L · cos φ</code>, i el <code>cos φ</code>
-  és literalment la distància horitzontal que la figura dibuixa entre el genoll i la
-  línia d'acció de la càrrega. És màxim amb el genoll estès i <strong>val exactament
-  zero</strong> amb la cama penjant a 90°, quan la càrrega passa just per l'eix. Per
-  això l'extensió de genoll asseguda costa a dalt: allà la demanda és màxima i la
-  capacitat del quàdriceps ja ha caigut.
+  The practical consequence, which is not obvious on a seated extension machine: the
+  backrest position does not make the exercise appreciably easier or harder, but it does
+  decide <strong>which part of its range rectus femoris works in</strong>. If the goal is
+  to load it near its optimum, seated at 90° never achieves that.
 </p>
 
 <p>
-  La goma es comporta diferent, i el motiu es veu a la figura: com que està ancorada
-  <em>darrere</em> del genoll, conserva braç de moment amb la cama penjant, just on el
-  pes no en té gens. El seu perfil té el pic cap als 15° de flexió i cau més suaument.
-  Aquesta és la raó de ser de la resistència
-  variable<sup class="ref"><a href="#r5">5</a></sup>: no fa l'exercici més dur, en
-  redistribueix la duresa.
+  With a weight, the external moment is <code>m · g · L · cos φ</code>, and
+  <code>cos φ</code> is literally the horizontal distance the figure draws between the knee
+  and the load's line of action. It is largest with the knee extended and it is
+  <strong>exactly zero</strong> with the shank hanging at 90°, when the load passes right
+  through the axis. That is why seated knee extension is hard at the top: there demand is
+  maximal and quadriceps capacity has already fallen.
 </p>
 
 <p>
-  Prova de fixar la càrrega al 100 % i canviar de rang. El parcial que treballa amb el
-  múscul llarg deixa aixecar molt més, perquè n'exclou l'angle car; el parcial que
-  treballa amb el múscul curt no en deixa aixecar gens més, perquè el conserva. La
-  conseqüència pràctica és que <strong>un percentatge d'1RM no és comparable entre
-  rangs diferents</strong>: el mateix 70 % vol dir càrregues absolutes molt diferents
-  segons quins angles s'hi incloguin. És el mecanisme que hi ha darrere del resultat de
-  McMahon i col·laboradors<sup class="ref"><a href="#r7">7</a></sup>, on un rang parcial
-  a longituds llargues al 55 % d'1RM iguala el rang complet al 80 %.
+  The band behaves differently, and the figure shows why: because it is anchored
+  <em>behind</em> the knee, it keeps a moment arm with the shank hanging, exactly where the
+  weight has none. Its profile peaks around 15° of flexion and falls more gently. This is
+  the whole point of variable
+  resistance<sup class="ref"><a href="#r5">5</a></sup>: it does not make the exercise
+  harder, it redistributes where the hardness sits.
 </p>
 
 <p>
-  Sobre què se'n treu, d'entrenar a longituds llargues, val la pena no exagerar. El rang
-  parcial inicial supera el final al gastrocnemi, i per marge ampli
-  (+15,2 % contra +3,4 %)<sup class="ref"><a href="#r6">6</a></sup>. Però amb anàlisi
-  bayesiana als flexors de colze les diferències són
-  trivials<sup class="ref"><a href="#r8">8</a></sup>. Les longituds llargues importen,
-  l'efecte és modest i depèn del múscul.
+  Try setting the load to 100 % and switching ranges. The partial that works at long muscle
+  lengths lets you lift far more, because it excludes the expensive angle; the partial that
+  works at short lengths lets you lift no more at all, because it keeps it. The practical
+  consequence is that <strong>a percentage of 1RM is not comparable across different
+  ranges</strong>: the same 70 % means very different absolute loads depending on which
+  angles are included. This is the mechanism behind the result of McMahon and
+  colleagues<sup class="ref"><a href="#r7">7</a></sup>, where a long-length partial at 55 %
+  of 1RM matches the full range at 80 %.
 </p>
 
-<h2>Què és exacte a la figura i què és una simplificació</h2>
+<p>
+  On what training at long lengths actually buys you, it is worth not overstating things.
+  The long-length partial beats the short-length one at the gastrocnemius, and by a wide
+  margin (+15.2 % against +3.4 %)<sup class="ref"><a href="#r6">6</a></sup>. But with
+  Bayesian analysis at the elbow flexors the differences are
+  trivial<sup class="ref"><a href="#r8">8</a></sup>. Long lengths matter, the effect is
+  modest, and it depends on the muscle.
+</p>
 
-<p>Exacte, i dibuixat a escala:</p>
+<h2>What is exact in the figure and what is simplified</h2>
+
+<p>Exact, and drawn to scale:</p>
 <ul>
-  <li>Les insercions: recte femoral des de l'espina ilíaca anteroinferior, vasts des de
-    la diàfisi femoral, tots dos al tendó del quàdriceps, ròtula i tendó rotulià fins a
-    la tuberositat tibial.</li>
-  <li>El <strong>braç de moment de la resistència externa</strong>, mesurat com la
-    distància perpendicular de l'eix del genoll a la línia d'acció. És la xifra que
-    apareix en centímetres i és la que entra al càlcul.</li>
-  <li>La <strong>ròtula com a politja</strong>: el tendó envolta la tròclea femoral, i
-    l'escurçament del quàdriceps és la longitud d'arc que hi recorre. D'aquí surten els
-    6,4 cm d'excursió entre 90° i 0°.</li>
-  <li>La longitud del tendó rotulià, que es manté constant: la ròtula segueix la tíbia.</li>
+  <li>The attachments: rectus femoris from the anterior inferior iliac spine, the vasti
+    from the femoral shaft, both into the quadriceps tendon, patella and patellar tendon
+    down to the tibial tuberosity.</li>
+  <li>The <strong>moment arm of the external resistance</strong>, measured as the
+    perpendicular distance from the knee axis to the line of action. It is the figure shown
+    in centimetres and it is the one that enters the calculation.</li>
+  <li>The <strong>patella as a pulley</strong>: the tendon wraps the femoral trochlea, and
+    the shortening of the quadriceps is the arc length it travels over it. That is where
+    the 6.4 cm of excursion between 90° and 0° comes from.</li>
+  <li>The length of the patellar tendon, which stays constant: the patella follows the
+    tibia.</li>
 </ul>
 
-<p>Simplificat, i cal saber-ho:</p>
+<p>Simplified, and worth knowing:</p>
 <ul>
-  <li>L'eix del genoll es dibuixa fix. En realitat els còndils roden i llisquen, i l'eix
-    instantani es desplaça durant el recorregut.</li>
-  <li>El braç de moment del quàdriceps es dibuixa constant (el radi de la tròclea, uns
-    4 cm). El real varia amb l'angle, amb un màxim cap als 20–30° de flexió.</li>
-  <li>Els vasts es dibuixen com un sol ventre. Són tres músculs amb orientacions de
-    fibra diferents.</li>
-  <li>El control de maluc mou el respatller, el tronc, la pelvis i l'origen del recte
-    femoral. <strong>No toca la resistència externa</strong>, i és correcte que no la
-    toqui: la cuixa segueix repenjada al seient i la cama segueix girant en el mateix pla
-    respecte de la gravetat. Ara bé, per sota d'uns 60° de flexió de maluc ja no estàs en
-    una màquina d'extensió de genoll normal, sinó estirat.</li>
-  <li>L'ancoratge de la goma és una tria, no una dada: 45 cm sota l'eix del genoll i 25 cm
-    darrere. <strong>Moure'l canvia el perfil</strong>, i molt. Si s'ancorés just a sota del
-    genoll, la goma perdria el braç de moment en flexió i passaria a ser una versió
-    exagerada del pes en comptes de complementar-lo. És exactament la mena de detall que
-    decideix si una goma serveix per a alguna cosa en un exercici concret.</li>
+  <li>The knee axis is drawn fixed. In reality the condyles roll and glide, and the
+    instantaneous axis shifts during the movement.</li>
+  <li>The quadriceps moment arm is drawn constant (the trochlear radius, about 4 cm). The
+    real one varies with angle, peaking around 20–30° of flexion.</li>
+  <li>The vasti are drawn as a single belly. They are three muscles with different fibre
+    orientations.</li>
+  <li>The hip control moves the backrest, the trunk, the pelvis and the origin of rectus
+    femoris. <strong>It does not touch the external resistance</strong>, and it is correct
+    that it does not: the thigh stays resting on the seat and the shank still rotates in
+    the same plane relative to gravity. That said, below about 60° of hip flexion you are
+    no longer on a normal knee extension machine, you are lying down.</li>
+  <li>The band anchor is a choice, not a datum: 45 cm below the knee axis and 25 cm behind.
+    <strong>Moving it changes the profile</strong>, and by a lot. Anchored directly below
+    the knee, the band would lose its moment arm in flexion and become an exaggerated
+    version of the weight instead of complementing it. It is exactly the kind of detail
+    that decides whether a band is any use in a given exercise.</li>
 </ul>
 
-<h2>Què és sòlid i què és contestat</h2>
+<h2>What is solid and what is contested</h2>
 
-<p><strong>Sòlid, i publicat:</strong> la forma de la corba força–longitud i els seus
-paràmetres humans<sup class="ref"><a href="#r1">1</a>,<a href="#r2">2</a></sup>; que les
-longituds de sarcòmer del vast lateral canvien uns 0,0055 µm per grau de
-genoll<sup class="ref"><a href="#r4">4</a></sup>; i que el recte femoral és un ~10 % més
-llarg en decúbit supí que assegut<sup class="ref"><a href="#r9">9</a></sup>.</p>
+<p><strong>Solid, and published:</strong> the shape of the force–length curve and its human
+parameters<sup class="ref"><a href="#r1">1</a>,<a href="#r2">2</a></sup>; that vastus
+lateralis sarcomere lengths change by about 0.0055 µm per degree of
+knee<sup class="ref"><a href="#r4">4</a></sup>; and that rectus femoris is about 10 % longer
+supine than seated<sup class="ref"><a href="#r9">9</a></sup>.</p>
 
-<p><strong>Contestat, i cal saber-ho:</strong></p>
+<p><strong>Contested, and worth knowing:</strong></p>
 <ul>
-  <li><strong>On viu exactament el quàdriceps sobre la corba no està resolt.</strong>
-    Chen i col·laboradors<sup class="ref"><a href="#r4">4</a></sup> mesuren 2,84 µm a 50°
-    i 3,17 µm a 110° —altiplà i després branca descendent—; Ando i
-    col·laboradors<sup class="ref"><a href="#r3">3</a></sup> mesuren 2,19–2,46 µm entre 0°
-    i 90°, tota l'estona a la branca ascendent. Són mètodes diferents i donen imatges
-    oposades. Aquesta versió fa servir longituds actives, cosa que la col·loca del cantó
-    d'Ando. <strong>Amb les longituds de repòs de Chen el dibuix canvia de dalt a
-    baix</strong> i el múscul sí que passaria a la branca descendent.</li>
-  <li>El punt de partida del recte femoral (2,10 µm) <strong>no el dona cap font</strong>:
-    és una tria meva, ancorada al 10 % de diferència entre supí i assegut i repartida
-    entre maluc i genoll per la relació de braços de moment.</li>
-  <li>El repartiment del moment entre vasts i recte femoral (205 i 45 N·m) surt de la
-    secció transversal fisiològica, però és aproximat.</li>
+  <li><strong>Where exactly the quadriceps lives on the curve is unresolved.</strong>
+    Chen and colleagues<sup class="ref"><a href="#r4">4</a></sup> measure 2.84 µm at 50°
+    and 3.17 µm at 110° — optimal range and then descending limb; Ando and
+    colleagues<sup class="ref"><a href="#r3">3</a></sup> measure 2.19–2.46 µm between 0°
+    and 90°, on the ascending limb throughout. Different methods, opposite pictures. This
+    version uses active lengths, which puts it on Ando's side. <strong>With Chen's resting
+    lengths the picture changes completely</strong> and the muscle would indeed move onto
+    the descending limb.</li>
+  <li>The starting point for rectus femoris (2.10 µm) <strong>comes from no source</strong>:
+    it is a choice of mine, anchored to the 10 % difference between supine and seated and
+    split between hip and knee by the ratio of moment arms.</li>
+  <li>The split of moment between the vasti and rectus femoris (205 and 45 N·m) comes from
+    physiological cross-sectional area, but it is approximate.</li>
 </ul>
 
 <div class="avis">
-  <strong>Una discrepància que el model no tapa.</strong> Amb aquests números la capacitat
-  puja fins als 90° de flexió, mentre que el moment extensor mesurat en persones fa cim
-  cap als 60–70° i després baixa una mica. La diferència ve de dues coses que aquí no hi
-  són: el braç de moment del quàdriceps, que aquí és constant i en realitat varia amb
-  l'angle, i la coactivació dels isquiotibials. Hi ha a més un resultat contraintuïtiu
-  publicat: la contracció màxima voluntària és un 10,6 % <em>més gran</em> assegut que
-  estirat<sup class="ref"><a href="#r9">9</a></sup>, tot i que estirat el recte femoral
-  està més a prop del seu òptim. S'atribueix a activació nerviosa —l'EMG normalitzada del
-  recte femoral cau un 41 % en decúbit supí—, que és una cosa que aquest model no conté.
+  <strong>A discrepancy the model does not paper over.</strong> With these numbers capacity
+  rises all the way to 90° of flexion, whereas extensor moment measured in people peaks
+  around 60–70° and then falls slightly. The difference comes from two things absent here:
+  the quadriceps moment arm, constant in this model and in reality varying with angle, and
+  hamstring co-activation. There is also a counter-intuitive published result: maximal
+  voluntary contraction is 10.6 % <em>greater</em> seated than
+  supine<sup class="ref"><a href="#r9">9</a></sup>, even though supine puts rectus femoris
+  closer to its optimum. It is attributed to neural activation — normalised rectus femoris
+  EMG drops by 41 % supine — which is something this model does not contain.
 </div>
 
 <div class="avis">
-  <strong>La resistència inercial no hi és, i no hi és a propòsit.</strong> Un pes o una
-  goma tenen un perfil que és funció de l'angle i es pot dibuixar en aquests eixos. Un
-  volant d'inèrcia depèn de l'acceleració, no de la posició: caldria un model del
-  moviment amb temps, i la càrrega no es quantifica de la mateixa
-  manera<sup class="ref"><a href="#r10">10</a></sup>.
+  <strong>Inertial resistance is absent, and deliberately so.</strong> A weight or a band
+  has a profile that is a function of angle and can be drawn on these axes. A flywheel
+  depends on acceleration, not position: it would need a model of the movement in time, and
+  load is not quantified the same way<sup class="ref"><a href="#r10">10</a></sup>.
 </div>
 
-<h2>Referències</h2>
+<h2>References</h2>
 
 <ol class="referencies">
   <li id="r1">Gordon AM, Huxley AF, Julian FJ. The variation in isometric tension with
@@ -773,34 +774,34 @@ llarg en decúbit supí que assegut<sup class="ref"><a href="#r9">9</a></sup>.</
 </ol>
 
 <div class="collabora">
-  <h2>Hi has vist una errada? Tens una proposta?</h2>
+  <h2>Spotted an error? Have a suggestion?</h2>
   <p>
-    Això és un model, i els models s'equivoquen. Si hi trobes un error —de càlcul,
-    d'anatomia, de font— o se t'acut com millorar-lo, digue-m'ho. Ho corregeixo i ho
-    documento, i si la correcció és teva ho diu.
+    This is a model, and models get things wrong. If you find an error — in the maths, the
+    anatomy, the sources — or you can see how to improve it, tell me. I will fix it and
+    document it, and if the correction is yours it will say so.
   </p>
   <p>
     <!-- Enllaç al repositori públic, no un mailto:. Les propostes queden a la
          vista de tothom, que és la gràcia, i de passada no exposa cap adreça. -->
     <a class="boto-collabora" target="_blank" rel="noopener"
-       data-goatcounter-click="proposta-rang-i-forca"
-       href="https://github.com/rcirer/rcirer.github.io/issues/new?title=Diagrama%20%22Rang%20d%27excursi%C3%B3%20i%20perfil%20de%20for%C3%A7a%22&amp;body=%23%23%20Qu%C3%A8%20hi%20has%20vist%0A%0A%0A%23%23%20On%2C%20exactament%0A%28secci%C3%B3%2C%20gr%C3%A0fic%20o%20xifra%29%0A%0A%0A%23%23%20Font%2C%20si%20en%20tens%0A">Escriu-me una correcció o una proposta</a>
+       data-goatcounter-click="feedback-excursion-and-force"
+       href="https://github.com/rcirer/rcirer.github.io/issues/new?title=Diagram%3A%20excursion%20range%20and%20force%20profile&amp;body=%23%23%20What%20did%20you%20find%0A%0A%0A%23%23%20Where%2C%20exactly%0A%28section%2C%20chart%20or%20figure%29%0A%0A%0A%23%23%20Source%2C%20if%20you%20have%20one%0A">Send me a correction or a suggestion</a>
   </p>
   <p class="alternativa">
-    Si no tens compte de GitHub, escriu-me a
+    If you do not have a GitHub account, write to me at
     <span class="correu">contacte *at* rafelcirer *dot* com</span> —
-    substitueix <em>at</em> per una arrova i <em>dot</em> per un punt. L'adreça va
-    desglossada a propòsit, per dificultar els recol·lectors de correu.
+    replace <em>at</em> with an at sign and <em>dot</em> with a full stop. The address is
+    written out like that on purpose, to make life harder for address harvesters.
   </p>
 </div>
 
 <div class="peu">
   Rafel Cirer-Sastre · INEFC Lleida, Universitat de Lleida ·
   <a href="https://rafelcirer.com">rafelcirer.com</a><br>
-  Material docent obert amb llicència
-  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca">CC BY-NC-SA 4.0</a>.<br>
-  Sense galetes. Recompte de visites anònim i agregat amb
-  <a href="https://www.goatcounter.com/">GoatCounter</a>, que no desa adreces IP.
+  Open teaching material under a
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> licence.<br>
+  No cookies. Anonymous, aggregated visit counting with
+  <a href="https://www.goatcounter.com/">GoatCounter</a>, which does not store IP addresses.
 </div>
 
 </main>
@@ -1087,7 +1088,7 @@ function dibuixaFigura() {
 
   // ---------- Terra i seient ----------
   g.appendChild(el("line", { x1: 20, x2: 372, y1: TERRA, y2: TERRA, stroke: "var(--terra)", "stroke-width": 2 }));
-  g.appendChild(el("text", { x: 372, y: TERRA - 7, "text-anchor": "end" }, "terra"));
+  g.appendChild(el("text", { x: 372, y: TERRA - 7, "text-anchor": "end" }, "floor"));
   g.appendChild(el("rect", { x: 44, y: K.y + 21, width: 168, height: 9, rx: 3, fill: "var(--terra)", opacity: .5 }));
   // Respatller: gira amb el maluc, perquè és el que el fa girar.
   const HB = { x: HIP.x - 14, y: K.y + 25 };
@@ -1203,9 +1204,9 @@ function dibuixaFigura() {
   if (estat.resistencia !== "pes")  dibuixaGoma(g, A, phi);
 
   // ---------- Etiquetes ----------
-  etiquetaAmbGuia(g, 138, 40,  "recte femoral",        V.add(O_RF, V.mul(V.sub(MTJ_RF, O_RF), .45)), "start");
-  etiquetaAmbGuia(g, 100, 214, "vasts",                V.add(O_VAST, V.mul(V.sub(MTJ, O_VAST), .5)), "start");
-  etiquetaAmbGuia(g, 246, 66,  "tendó del quàdriceps", V.mul(V.add(MTJ, TG), .5), "start");
+  etiquetaAmbGuia(g, 138, 40,  "rectus femoris",        V.add(O_RF, V.mul(V.sub(MTJ_RF, O_RF), .45)), "start");
+  etiquetaAmbGuia(g, 100, 214, "vasti",                V.add(O_VAST, V.mul(V.sub(MTJ, O_VAST), .5)), "start");
+  etiquetaAmbGuia(g, 246, 66,  "quadriceps tendon", V.mul(V.add(MTJ, TG), .5), "start");
 
   // ---------- Lupa ----------
   dibuixaLupa(g, cos, P, T);
@@ -1233,10 +1234,10 @@ function dibuixaLupa(g, cos, P, T) {
   const aLupa = p => ({ x: C.x + C.s * (p.x - K.x), y: C.y + C.s * (p.y - K.y) });
   // Etiquetes sota el cercle. A dins tapen justament el que s'amplia, i
   // a l'esquerra xoquen amb la cama quan el genoll està estès.
-  g.appendChild(el("text", { x: C.x, y: C.y + C.r + 18, "text-anchor": "middle" }, "detall del genoll ×2,8"));
-  etiquetaAmbGuia(g, C.x, C.y + C.r + 40, "ròtula", aLupa(P), "middle");
-  etiquetaAmbGuia(g, C.x, C.y + C.r + 57, "tendó rotulià", aLupa(V.mul(V.add(P, T), .5)), "middle");
-  etiquetaAmbGuia(g, C.x, C.y + C.r + 74, "tròclea femoral", aLupa({ x: K.x - R_POL * .78, y: K.y + R_POL * .62 }), "middle");
+  g.appendChild(el("text", { x: C.x, y: C.y + C.r + 18, "text-anchor": "middle" }, "knee detail ×2.8"));
+  etiquetaAmbGuia(g, C.x, C.y + C.r + 40, "patella", aLupa(P), "middle");
+  etiquetaAmbGuia(g, C.x, C.y + C.r + 57, "patellar tendon", aLupa(V.mul(V.add(P, T), .5)), "middle");
+  etiquetaAmbGuia(g, C.x, C.y + C.r + 74, "femoral trochlea", aLupa({ x: K.x - R_POL * .78, y: K.y + R_POL * .62 }), "middle");
 }
 
 // Línia d'acció de la gravetat i braç de moment horitzontal.
@@ -1257,7 +1258,7 @@ function dibuixaPes(g, A) {
   }
   g.appendChild(el("text", {
     x: (K.x + A.x) / 2, y: yDim + 17, "text-anchor": "middle", class: "mecanica"
-  }, "braç de moment " + (b * 100).toFixed(0) + " cm"));
+  }, "moment arm " + (b * 100).toFixed(0) + " cm"));
 }
 
 // Goma, la seva línia d'acció i la perpendicular des de l'eix del genoll.
@@ -1294,7 +1295,7 @@ function dibuixaGoma(g, A, phi) {
   }));
   const mid = V.mul(V.add(K, F), .5);
   g.appendChild(el("text", { x: mid.x + 9, y: mid.y - 6, class: "mecanica" },
-    "braç " + (bracGoma(phi) * 100).toFixed(0) + " cm"));
+    "arm " + (bracGoma(phi) * 100).toFixed(0) + " cm"));
 }
 
 function etiquetaAmbGuia(g, x, y, text, cap, ancoratge, mida) {
@@ -1394,12 +1395,12 @@ function dibuixaMoments(punts, a, b) {
     }));
     g.appendChild(el("text", {
       x: W - M.dreta, y: y(100) - 7, "text-anchor": "end", fill: "var(--text)"
-    }, "òptim del múscul"));
+    }, "muscle optimum"));
   }
   g.appendChild(el("text", {
     x: 16, y: (Hh - M.baix + M.dalt) / 2, class: "titol-eix",
     transform: `rotate(-90 16 ${(Hh - M.baix + M.dalt) / 2})`, "text-anchor": "middle"
-  }, pct ? "Capacitat contràctil (% del màxim del múscul)" : "Moment al genoll (N·m)"));
+  }, pct ? "Contractile capacity (% of muscle maximum)" : "Knee moment (N·m)"));
 
   eixAngles(g, x, Hh, W);
 
@@ -1414,10 +1415,10 @@ function dibuixaMoments(punts, a, b) {
   // demanda és externa, no té "màxim propi"; i el total és una suma de
   // dos músculs amb màxims diferents.
   const linies = [
-    { id: "rf",      camp: p => p.rf,               campPct: p => p.rf   / M_RF_PIC   * 100, color: "var(--rf)",        gruix: 2,   guions: "6 4", nom: "Recte femoral",   aOn: 10, dy: -11 },
-    { id: "vast",    camp: p => p.vast,             campPct: p => p.vast / M_VAST_PIC * 100, color: "var(--vast)",      gruix: 2,   guions: null,  nom: "Vasts",           aOn: 34, dy:  20 },
-    { id: "total",   camp: p => p.cap,              campPct: null,                           color: "var(--capacitat)", gruix: 2.8, guions: null,  nom: "Capacitat total", aOn: 10, dy: -12 },
-    { id: "demanda", camp: p => Math.max(0, p.dem), campPct: null,                           color: "var(--demanda)",   gruix: 2.5, guions: null,  nom: "Demanda",         aOn: 10, dy:  20 }
+    { id: "rf",      camp: p => p.rf,               campPct: p => p.rf   / M_RF_PIC   * 100, color: "var(--rf)",        gruix: 2,   guions: "6 4", nom: "Rectus femoris",   aOn: 10, dy: -11 },
+    { id: "vast",    camp: p => p.vast,             campPct: p => p.vast / M_VAST_PIC * 100, color: "var(--vast)",      gruix: 2,   guions: null,  nom: "Vasti",           aOn: 34, dy:  20 },
+    { id: "total",   camp: p => p.cap,              campPct: null,                           color: "var(--capacitat)", gruix: 2.8, guions: null,  nom: "Total capacity", aOn: 10, dy: -12 },
+    { id: "demanda", camp: p => Math.max(0, p.dem), campPct: null,                           color: "var(--demanda)",   gruix: 2.5, guions: null,  nom: "Demand",         aOn: 10, dy:  20 }
   ];
   for (const li of linies) {
     const camp = pct ? li.campPct : li.camp;
@@ -1456,12 +1457,12 @@ function dibuixaExigencia(punts, a, b) {
   }));
   g.appendChild(el("text", {
     x: W - M.dreta, y: y(1) - 7, "text-anchor": "end", fill: "var(--demanda)"
-  }, "límit: fallada"));
+  }, "limit: failure"));
 
   g.appendChild(el("text", {
     x: 16, y: (Hh - M.baix + M.dalt) / 2, class: "titol-eix",
     transform: `rotate(-90 16 ${(Hh - M.baix + M.dalt) / 2})`, "text-anchor": "middle"
-  }, "Exigència relativa"));
+  }, "Relative demand"));
 
   eixAngles(g, x, Hh, W);
 
@@ -1500,14 +1501,14 @@ const svgEMG = document.getElementById("grafic-emg");
 // que el recte femoral, biarticular, tingui una forma diferent dels
 // vasts i no només una mida diferent.
 const CANALS = [
-  { nom: "Recte femoral", color: "var(--rf)",        base: 0.45, caiguda: 0.41,
+  { nom: "Rectus femoris", color: "var(--rf)",        base: 0.45, caiguda: 0.41,
     capRel: phi => forcaLongitud(slRF(phi, estat.maluc)) },
-  { nom: "Vast lateral",  color: "var(--vast)",      base: 0.50, caiguda: 0.20,
+  { nom: "Vastus lateralis",  color: "var(--vast)",      base: 0.50, caiguda: 0.20,
     capRel: phi => forcaLongitud(slVast(phi)) },
   // El vast medial comparteix corba amb el lateral: cap font que separi
   // VL de VM ho fa amb un mètode compatible amb la resta del model. Aquí
   // només se'n diferencia l'amplitud.
-  { nom: "Vast medial",   color: "var(--capacitat)", base: 0.54, caiguda: 0.20,
+  { nom: "Vastus medialis",   color: "var(--capacitat)", base: 0.54, caiguda: 0.20,
     capRel: phi => forcaLongitud(slVast(phi)) }
 ];
 
@@ -1580,8 +1581,8 @@ function eixAngles(g, x, Hh, W) {
     g.appendChild(el("line", { x1: x(phi), x2: x(phi), y1: yBase, y2: yBase + 5, class: "eix" }));
     g.appendChild(el("text", { x: x(phi), y: yBase + 19, "text-anchor": "middle" }, phi + "°"));
   }
-  g.appendChild(el("text", { x: M.esq, y: yBase + 36, "text-anchor": "start" }, "extensió completa · múscul curt"));
-  g.appendChild(el("text", { x: W - M.dreta, y: yBase + 36, "text-anchor": "end" }, "flexió · múscul llarg · inici del moviment"));
+  g.appendChild(el("text", { x: M.esq, y: yBase + 36, "text-anchor": "start" }, "full extension · muscle short"));
+  g.appendChild(el("text", { x: W - M.dreta, y: yBase + 36, "text-anchor": "end" }, "flexion · muscle long · start of movement"));
 }
 
 function etiqueta(g, x, y, text, color, ancoratge) {
@@ -1615,10 +1616,10 @@ function actualitzaLectures(punts, a, b, maxRang, maxComplet) {
   // rigidesa, no massa, i posar-hi kg seria mentir.
   const nota = document.getElementById("lec-maxim-nota");
   if (estat.resistencia === "pes") {
-    nota.textContent = "Respecte del rang complet. Equival a " + maxRang.toFixed(0) +
-      " kg al coixí (no és el número de la placa).";
+    nota.textContent = "Relative to the full range. Equivalent to " + maxRang.toFixed(0) +
+      " kg at the pad (not the number on the stack).";
   } else {
-    nota.textContent = "Respecte del màxim en rang complet. Amb goma la càrrega és rigidesa, no massa.";
+    nota.textContent = "Relative to the full-range maximum. With a band, load is stiffness, not mass.";
   }
 }
 
@@ -1633,7 +1634,7 @@ function actualitzaPanellAngle(factor, perfil) {
   else if (estat.resistencia === "goma") brac = bracGoma(phi);
   else                                   brac = null;
 
-  document.getElementById("v-brac").textContent      = brac === null ? "dos alhora" : (brac * 100).toFixed(0) + " cm";
+  document.getElementById("v-brac").textContent      = brac === null ? "two at once" : (brac * 100).toFixed(0) + " cm";
   document.getElementById("v-demanda").textContent   = Math.max(0, dem).toFixed(0) + " N·m";
   document.getElementById("v-capacitat").textContent = cap.toFixed(0) + " N·m";
   document.getElementById("v-exigencia").textContent = Math.round(Math.max(0, dem) / cap * 100) + " %";
@@ -1641,7 +1642,7 @@ function actualitzaPanellAngle(factor, perfil) {
   const sv = slVast(phi), sr = slRF(phi, estat.maluc);
   const mostraSL = (id, sl) => {
     document.getElementById(id).textContent =
-      sl.toFixed(2).replace(".", ",") + " µm · " + Math.round(forcaLongitud(sl) * 100) + " %";
+      sl.toFixed(2) + " µm · " + Math.round(forcaLongitud(sl) * 100) + " %";
   };
   mostraSL("v-sl-vast", sv);
   mostraSL("v-sl-rf", sr);
@@ -1673,11 +1674,11 @@ const xSL = sl => M.esq + (sl - SL_EIX_0) / (SL_EIX_1 - SL_EIX_0) * (900 - M.dre
    Fora dels angles que l'estudi va mesurar, això és EXTRAPOLACIÓ, i el
    gràfic ho marca: només el tram mesurat va ple. */
 const RANGS_PUBLICATS = [
-  { mus: "Vast intermedi", font: "Ando 2021 · en repòs",        sa: 2.19, sb: 2.46, aa:  0, ab:  90, color: "var(--vast)" },
-  { mus: "Vast lateral",   font: "Ando 2021 · en repòs",        sa: 2.28, sb: 2.30, aa:  0, ab:  90, color: "var(--vast)" },
-  { mus: "Vast lateral",   font: "Chen 2016 · microendoscòpia", sa: 2.84, sb: 3.17, aa: 50, ab: 110, color: "var(--vast)" },
-  { mus: "Vast lateral",   font: "Son 2018 · intraoperatori",   sa: 3.20, sb: 3.80, aa: 45, ab:  90, color: "var(--vast)" },
-  { mus: "Vast medial",    font: "Son 2018 · intraoperatori",   sa: 3.60, sb: 4.10, aa: 45, ab:  90, color: "var(--capacitat)" }
+  { mus: "Vastus intermedius", font: "Ando 2021 · resting",        sa: 2.19, sb: 2.46, aa:  0, ab:  90, color: "var(--vast)" },
+  { mus: "Vastus lateralis",  font: "Ando 2021 · resting",        sa: 2.28, sb: 2.30, aa:  0, ab:  90, color: "var(--vast)" },
+  { mus: "Vastus lateralis",  font: "Chen 2016 · microendoscopy", sa: 2.84, sb: 3.17, aa: 50, ab: 110, color: "var(--vast)" },
+  { mus: "Vastus lateralis",  font: "Son 2018 · intraoperative",   sa: 3.20, sb: 3.80, aa: 45, ab:  90, color: "var(--vast)" },
+  { mus: "Vastus medialis",   font: "Son 2018 · intraoperative",   sa: 3.60, sb: 4.10, aa: 45, ab:  90, color: "var(--capacitat)" }
 ];
 // Longitud de sarcòmer que un estudi prediu a qualsevol angle, a partir
 // dels dos punts que va mesurar.
@@ -1694,9 +1695,9 @@ function dibuixaRangs(a, b) {
   // model, cosa que amb els angles originals de cada estudi no ho eren.
   const ang = Math.round(a) + "°–" + Math.round(b) + "°";
   const files = [
-    { mus: "Recte femoral", font: "model d'aquesta pàgina", color: "var(--rf)", guions: "7 4",
+    { mus: "Rectus femoris", font: "this page's model", color: "var(--rf)", guions: "7 4",
       a: slRF(a, estat.maluc), b: slRF(b, estat.maluc), ang, seu: true },
-    { mus: "Vasts", font: "model d'aquesta pàgina · actiu", color: "var(--vast)",
+    { mus: "Vasti", font: "this page's model · active", color: "var(--vast)",
       a: slVast(a), b: slVast(b), ang, seu: true },
     ...RANGS_PUBLICATS.map(f => ({
       mus: f.mus, font: f.font, color: f.color, ang,
@@ -1718,14 +1719,14 @@ function dibuixaRangs(a, b) {
   g.appendChild(el("text", {
     x: (xSL(SL_ALTIPLA_A) + xSL(SL_ALTIPLA_B)) / 2, y: M.dalt + 10,
     "text-anchor": "middle", fill: "var(--capacitat)", "font-weight": 650
-  }, "altiplà"));
+  }, "optimal range"));
   g.appendChild(el("line", {
     x1: xSL(SL_ZERO_LLARG), x2: xSL(SL_ZERO_LLARG), y1: M.dalt + 16, y2: yBase,
     stroke: "var(--demanda)", "stroke-width": 1.4, "stroke-dasharray": "4 3"
   }));
   g.appendChild(el("text", {
     x: xSL(SL_ZERO_LLARG) - 6, y: M.dalt + 10, "text-anchor": "end", fill: "var(--demanda)", "font-weight": 650
-  }, "força activa = 0"));
+  }, "active force = 0"));
 
   files.forEach((f, i) => {
     const y = Y0 + i * FILA;
@@ -1752,8 +1753,8 @@ function dibuixaRangs(a, b) {
       g.appendChild(el("line", { x1: x, x2: x, y1: y - 3, y2: y + 13, stroke: f.color, "stroke-width": 2 }));
     }
     // Anotació a la dreta de la barra, i a l'esquerra quan no hi cabria.
-    const txt = f.ang + "  ·  " + Math.min(f.a, f.b).toFixed(2).replace(".", ",") +
-                "–" + Math.max(f.a, f.b).toFixed(2).replace(".", ",") + " µm";
+    const txt = f.ang + "  ·  " + Math.min(f.a, f.b).toFixed(2) +
+                "–" + Math.max(f.a, f.b).toFixed(2) + " µm";
     const cap = x2 + 10 + txt.length * 6 > W - M.dreta;
     g.appendChild(el("text", {
       x: cap ? x1 - 10 : x2 + 10, y: y + 9, "text-anchor": cap ? "end" : "start"
@@ -1764,11 +1765,11 @@ function dibuixaRangs(a, b) {
   g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: yBase, y2: yBase, class: "eix" }));
   for (let sl = 1.5; sl <= 4.3; sl += 0.5) {
     g.appendChild(el("line", { x1: xSL(sl), x2: xSL(sl), y1: yBase, y2: yBase + 5, class: "eix" }));
-    g.appendChild(el("text", { x: xSL(sl), y: yBase + 19, "text-anchor": "middle" }, sl.toFixed(1).replace(".", ",")));
+    g.appendChild(el("text", { x: xSL(sl), y: yBase + 19, "text-anchor": "middle" }, sl.toFixed(1)));
   }
   g.appendChild(el("text", {
     x: (W + M.esq - M.dreta) / 2, y: yBase + 37, "text-anchor": "middle", class: "titol-eix"
-  }, "Longitud del sarcòmer (µm)"));
+  }, "Sarcomere length (µm)"));
 }
 
 function dibuixaForcaLongitud(a, b) {
@@ -1794,8 +1795,8 @@ function dibuixaForcaLongitud(a, b) {
       x: (x0 + x1) / 2, y: M.dalt + 16, "text-anchor": "middle", "font-style": "italic"
     }, etiqueta));
   };
-  foraDe(M.esq, x(ABAST.a), "fora de l'abast articular");
-  foraDe(x(ABAST.b), W - M.dreta, "fora de l'abast articular");
+  foraDe(M.esq, x(ABAST.a), "outside joint reach");
+  foraDe(x(ABAST.b), W - M.dreta, "outside joint reach");
 
   // Altiplà: una regió, no un punt. És la part que gairebé cap esquema
   // dibuixa bé.
@@ -1806,7 +1807,7 @@ function dibuixaForcaLongitud(a, b) {
   g.appendChild(el("text", {
     x: (x(SL_ALTIPLA_A) + x(SL_ALTIPLA_B)) / 2, y: M.dalt - 8,
     "text-anchor": "middle", fill: "var(--capacitat)", "font-weight": 650
-  }, "altiplà"));
+  }, "optimal range"));
 
   for (let f = 0; f <= 1.001; f += 0.25) {
     g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: y(f), y2: y(f), class: "reixa" }));
@@ -1816,14 +1817,14 @@ function dibuixaForcaLongitud(a, b) {
   g.appendChild(el("line", { x1: M.esq, x2: W - M.dreta, y1: yBase, y2: yBase, class: "eix" }));
   for (let sl = 1.5; sl <= 4.3; sl += 0.5) {
     g.appendChild(el("line", { x1: x(sl), x2: x(sl), y1: yBase, y2: yBase + 5, class: "eix" }));
-    g.appendChild(el("text", { x: x(sl), y: yBase + 19, "text-anchor": "middle" }, sl.toFixed(1).replace(".", ",")));
+    g.appendChild(el("text", { x: x(sl), y: yBase + 19, "text-anchor": "middle" }, sl.toFixed(1)));
   }
   g.appendChild(el("text", { x: (W + M.esq - M.dreta) / 2, y: yBase + 37, "text-anchor": "middle", class: "titol-eix" },
-    "Longitud del sarcòmer (µm)"));
+    "Sarcomere length (µm)"));
   g.appendChild(el("text", {
     x: 16, y: (Hh - M.baix + M.dalt) / 2, class: "titol-eix",
     transform: `rotate(-90 16 ${(Hh - M.baix + M.dalt) / 2})`, "text-anchor": "middle"
-  }, "Força activa"));
+  }, "Active force"));
 
   // La corba
   const pts = [];
@@ -1840,9 +1841,9 @@ function dibuixaForcaLongitud(a, b) {
   // del recte femoral són els mateixos que té la seva línia al gràfic de
   // moments, per no haver de recordar dos codis.
   franja(g, x, y, ANAT_VAST, slVast(a), slVast(b), slVast(estat.angle),
-         "var(--vast)", "Vasts", -1, null);
+         "var(--vast)", "Vasti", -1, null);
   franja(g, x, y, ANAT_RF, slRF(a, estat.maluc), slRF(b, estat.maluc),
-         slRF(estat.angle, estat.maluc), "var(--rf)", "Recte femoral", 1, "7 4");
+         slRF(estat.angle, estat.maluc), "var(--rf)", "Rectus femoris", 1, "7 4");
 }
 
 // Marca sobre la corba el tram que recorre un múscul, i on és ara.
@@ -1950,12 +1951,12 @@ function sincronitzaLlegenda() {
     b.disabled = pct && nomes;
   });
   document.getElementById("nota-llegenda").textContent = pct
-    ? "En escala relativa cada múscul es divideix pel seu propi màxim, i és quan es veu "
-    + "el que fa el maluc: mou-ne el control i mira com la corba del recte femoral passa "
-    + "de pujar a baixar mentre la dels vasts no es mou gens. La capacitat total i la "
-    + "demanda no hi surten: no tenen màxim propi amb què dividir-se."
-    : "Clica qualsevol de les quatre per treure-la del gràfic. El gràfic de sota, "
-    + "l'exigència relativa, sempre fa servir la capacitat total en N·m.";
+    ? "On the relative scale each muscle is divided by its own maximum, and that is when "
+    + "the hip becomes visible: move its control and watch the rectus femoris curve go "
+    + "from rising to falling while the vasti one does not move at all. Total capacity "
+    + "and demand are absent: they have no maximum of their own to divide by."
+    : "Click any of the four to take it off the chart. The chart below, relative demand, "
+    + "always uses total capacity in N·m.";
 }
 sincronitzaLlegenda();
 

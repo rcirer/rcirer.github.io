@@ -235,6 +235,20 @@ Primera: el diagrama del rang d'excursió muscular (MER), que ja existeix a
 Temes previstos: cadenes cinètiques, rols musculars (agonista, antagonista, sinergista,
 estabilitzador).
 
+**LES INFOGRAFIES VAN EN ANGLÈS.** Decisió d'en Rafel del 6 d'agost de 2026. NO són
+l'excepció catalana de la secció 5: encara que es llistin des de Docència, el públic d'una
+visualització científica amb referències és internacional, com el de rpsychologist.com.
+No hi ha versió catalana i no se n'ha de fer cap: duplicar-la vol dir mantenir-la dues
+vegades.
+
+**Els comentaris del codi, en canvi, es queden en català**, perquè són per a ell, que és
+qui ha de mantenir el fitxer, no per al públic. Aquesta barreja és deliberada.
+
+Conseqüència: **els noms de fitxer també van en anglès**, com les pàgines del lloc
+(secció 5). `excursion-and-force.html`, no `rang-i-forca.html`. La carpeta segueix sent
+`diagrames/`. Un cop publicat un diagrama, el nom ja no es pot tocar sense trencar
+enllaços externs.
+
 **Referència que el va inspirar**: <https://rpsychologist.com/cohend/>, de Kristoffer
 Magnusson. Visualització interactiva de la d de Cohen amb control lliscant, distribucions
 que es recalculen en directe, mode fosc i preferències desades al navegador. **És una
@@ -274,7 +288,7 @@ tendències, no com a recompte absolut. No les presentis mai com a xifres exacte
 **Convit a col·laborar: va a TOTES les infografies.** Decisió d'en Rafel del 6 d'agost de
 2026. Al peu de cada diagrama, un requadre que convida a enviar-hi correccions i propostes.
 **No pot ser un `mailto:`**: xoca amb la secció 8 i amb la decisió tancada de la 9 ter.
-La forma que fa servir `rang-i-forca.html`, i que s'ha de copiar a les altres:
+La forma que fa servir `excursion-and-force.html`, i que s'ha de copiar a les altres:
 
 - Un botó que obre una *issue* nova al repositori públic, amb títol i cos preomplerts. Les
   propostes queden a la vista de tothom, que és la gràcia, i no exposa cap adreça.
