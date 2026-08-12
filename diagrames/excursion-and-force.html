@@ -1592,14 +1592,15 @@ function dibuixaRangs(a, b) {
   // hagi seleccionat. Així les fonts són comparables entre elles i amb el
   // model, cosa que amb els angles originals de cada estudi no ho eren.
   const ang = Math.round(a) + "°–" + Math.round(b) + "°";
+  const dins = Math.min(Math.max(estat.angle, Math.min(a, b)), Math.max(a, b));
   const files = [
     { mus: "Rectus femoris", font: "this page's model", color: "var(--rf)", guions: "7 4",
-      a: slRF(a, estat.maluc), b: slRF(b, estat.maluc), ang, seu: true },
+      a: slRF(a, estat.maluc), b: slRF(b, estat.maluc), ara: slRF(dins, estat.maluc), ang, seu: true },
     { mus: "Vasti", font: "this page's model · active", color: "var(--vast)",
-      a: slVast(a), b: slVast(b), ang, seu: true },
+      a: slVast(a), b: slVast(b), ara: slVast(dins), ang, seu: true },
     ...RANGS_PUBLICATS.map(f => ({
       mus: f.mus, font: f.font, color: f.color, ang,
-      a: slFont(f, a), b: slFont(f, b),
+      a: slFont(f, a), b: slFont(f, b), ara: slFont(f, dins),
       // Tram que l'estudi va mesurar de debò; la resta és extrapolació.
       mesurat: [Math.max(Math.min(a, b), Math.min(f.aa, f.ab)),
                 Math.min(Math.max(a, b), Math.max(f.aa, f.ab))].map(p => slFont(f, p))
@@ -1650,6 +1651,15 @@ function dibuixaRangs(a, b) {
     for (const x of [x1, x2]) {
       g.appendChild(el("line", { x1: x, x2: x, y1: y - 3, y2: y + 13, stroke: f.color, "stroke-width": 2 }));
     }
+    // Posició a l'angle que marquen els controls. És el que fa que el
+    // gràfic es mogui com els altres quan es passa el recorregut.
+    if (f.ara != null) {
+      g.appendChild(el("circle", {
+        cx: xSL(f.ara), cy: y + 5, r: 5.5,
+        fill: f.color, stroke: "var(--fons)", "stroke-width": 2
+      }));
+    }
+
     // Anotació a la dreta de la barra, i a l'esquerra quan no hi cabria.
     const txt = f.ang + "  ·  " + Math.min(f.a, f.b).toFixed(2) +
                 "–" + Math.max(f.a, f.b).toFixed(2) + " µm";
