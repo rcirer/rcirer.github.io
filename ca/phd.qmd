@@ -1,0 +1,112 @@
+---
+title: "Doctorat a l'EXCURSE"
+pagetitle: "Doctorat en ciències de l'activitat física, Lleida"
+description-meta: "Dues places de doctorat dins l'EXCURSE a partir de finals del 2026, a l'INEFC Lleida. Condicions, finançament, direcció i primer pas, dits clarament."
+lang: ca
+toc-title: "En aquesta pàgina"
+---
+
+<!-- Traduït de phd.qmd, commit fa9cb59. Si l'original ha canviat des d'aquest
+     commit, cal revisar. El comentari va aquí i no a la primera línia perquè
+     Quarto només reconeix el capçal YAML si comença a la línia 1 del fitxer. -->
+
+No espero que arribis sabent fer un doctorat. El doctorat és, justament, el temps que
+dedicarem a aprendre'n.
+
+Tinc lloc per a dos doctorands dins l'EXCURSE — *Muscle Excursion Range in Strength
+Training: Implications for Performance and Injury Prevention* (2025–2028).
+
+::: {.facts}
+Places
+:   Dues
+
+Inici
+:   Finals del 2026
+
+Finançament
+:   Cap contracte predoctoral atorgat. Has de guanyar un ajut en convocatòria competitiva.
+
+Lloc
+:   Lleida, presencial. No a distància.
+
+Docència
+:   Sí, hi ha docència associada.
+
+Requisit d'accés
+:   Un màster oficial
+
+Primer pas
+:   Escriu-me — contacte *at* rafelcirer *dot* com
+:::
+
+La resta de la pàgina explica cadascun d'aquests punts, i com dirigeixo.
+
+## Finançament i condicions
+
+Això no és una plaça predoctoral finançada. L'EXCURSE té finançament de despeses de
+recerca, però no hi ha cap contracte predoctoral atorgat. Has de demanar i guanyar un ajut
+predoctoral en convocatòria competitiva: AGAUR/FI, FPU o l'equivalent del teu país. Et puc
+ajudar a preparar la sol·licitud, però no en puc garantir el resultat. Que tingui capacitat
+per dirigir dues tesis no vol dir que els ajuts s'acabin concedint.
+
+La feina és presencial a la facultat de Lleida, no a distància. Duu docència associada.
+
+Per accedir-hi cal un màster oficial, d'acord amb els requisits del [programa de doctorat en
+Activitat Física i Esport de la
+UdL](https://www.doctorat.udl.cat/ca/programes/activitat-fisica-i-esport/).
+
+## La recerca
+
+L'EXCURSE estudia com les longituds musculars que es fan servir durant l'entrenament de
+força condicionen l'adaptació posterior. Hi comparem l'entrenament en diferents regions de
+l'excursió muscular i n'estudiem els canvis en arquitectura muscular, força, activació
+neuromuscular i propietats mecàniques.
+
+Una tesi pot abordar com difereixen les adaptacions segons la regió d'excursió muscular, com
+varien les respostes entre persones, o com evolucionen al llarg del temps. També puc
+considerar propostes sobre validació de tests de camp o sobre modelatge de respostes
+fisiològiques a l'exercici, si hi ha una pregunta clara i un bon encaix metodològic.
+
+## Com treballarem
+
+Ens veurem cada setmana. No és per retre comptes del que has fet, sinó per tenir un espai
+regular on pensar en veu alta, revisar decisions i acordar el pas següent.
+
+Tindràs llibertat per planificar la teva feina i explorar les teves idees. Jo faré
+preguntes, ajudaré a identificar problemes i orientaré mentre construeixes el teu criteri.
+No t'escriuré els articles ni et resoldré les anàlisis, però tampoc no donaré per fet que ja
+saps fer-los.
+
+L'objectiu és que, al final, puguis formular una pregunta, dissenyar un estudi, analitzar-ne
+les dades, escriure el treball i defensar les teves decisions sense dependre de mi.
+
+## Com fem recerca
+
+La feina és a la cruïlla entre fisiologia de l'exercici, mesura i modelatge. Llegirem,
+escriurem, programarem i prepararem les publicacions gairebé sempre en anglès. Les reunions
+poden ser en català o en castellà.
+
+Ara fem servir R per a l'anàlisi de dades perquè és l'eina que ens va millor, no perquè
+sigui una identitat ni una doctrina. Les eines poden canviar quan una altra opció millori la
+feina de veritat.
+
+La intel·ligència artificial formarà part del flux de treball per programar, explorar idees
+i revisar textos. No substituirà el criteri. Distingirem entre el que es pot delegar, el que
+s'ha de comprovar i el que no es pot acceptar sense entendre'l.
+
+## Què busco
+
+No et calen publicacions prèvies ni formació estadística avançada. Sí que et calen
+curiositat, constància i voluntat de fer-te autònom.
+
+Busco algú disposat a escriure des del primer dia, a treballar amb dades abans de
+sentir-s'hi del tot segur i a preguntar per què una anàlisi funciona o falla, i no només si
+dona un resultat estadísticament significatiu. Valoro més la capacitat d'aprendre que el que
+ja se sap.
+
+## Com començar
+
+Parla amb mi abans de començar cap tràmit formal. Escriu-me breument sobre la teva formació,
+les preguntes que t'interessen i la convocatòria d'ajuts a la qual et podries presentar.
+
+contacte *at* rafelcirer *dot* com

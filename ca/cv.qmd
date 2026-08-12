@@ -1,0 +1,68 @@
+---
+title: "CV i contacte"
+# Quarto hi posa la data de l'últim canvi del fitxer. Així la pàgina no pot
+# quedar amb una data falsa: si no l'has tocat, es veu.
+date: last-modified
+date-format: "MMMM YYYY"
+pagetitle: "CV acadèmic i contacte"
+description-meta: "CV acadèmic de Rafel Cirer-Sastre: càrrec, formació, direcció de tesis i recerca finançada a l'INEFC Lleida."
+lang: ca
+toc-title: "En aquesta pàgina"
+# El _quarto.yml etiqueta aquesta data com a "Last updated" per a tot el lloc,
+# que és en anglès. Aquí es torna a dir en català.
+language:
+  title-block-published: "Última actualització"
+---
+
+<!-- Traduït de cv.qmd, commit f7bfb5d. Si l'original ha canviat des d'aquest
+     commit, cal revisar. El comentari va aquí i no a la primera línia perquè
+     Quarto només reconeix el capçal YAML si comença a la línia 1 del fitxer. -->
+
+## Contacte
+
+contacte *at* rafelcirer *dot* com
+
+INEFC Lleida — Institut Nacional d'Educació Física de Catalunya \
+Universitat de Lleida
+
+## Càrrec actual
+
+Professor Titular de Cinesiologia a l'INEFC Lleida (Universitat de Lleida). Plaça obtinguda
+el 2026; vinculat al centre des del 2016. Cap de Projecte de Suport a la Recerca i
+Transferència del Coneixement des del 2022 i membre de la Junta de Recerca del centre.
+
+Actualment dirigeixo quatre tesis doctorals.
+
+## Formació
+
+| Any | Titulació i institució |
+|---|---|
+| 2020 | Doctorat en Activitat Física i Esport, Universitat de Lleida — Excel·lent, menció internacional |
+| 2018 | Postgrau d'especialista en docència universitària, UdL |
+| 2015 | Màster en Activitat Física i Salut, Universitat de Barcelona |
+| 2015 | Postgrau d'expert universitari en prescripció d'exercici físic per a la salut, UdL |
+| 2014 | Grau en Ciències de l'Activitat Física i l'Esport, UdL |
+
+**Tesi doctoral**: *Troponin, exercise and growth: exercise-induced release of cardiac
+troponin in healthy, trained, prepubertal and pubertal males*. Directors: Francisco Corbi
+Soler i Joaquín Reverter Masià.
+
+## Recerca
+
+Dirigeixo l'**EXCURSE** — *Muscle Excursion Range in Strength Training: Implications for
+Performance and Injury Prevention* (INEFC, 2025–2028), codirigit amb Xavier Peirau Terès, i
+he participat en projectes finançats sobre prescripció d'exercici físic, avaluació de la
+salut a l'escola i prevenció de lesions.
+
+Formo part del Grup de Recerca Moviment Humà de l'INEFC/UdL i, des del 2023, del grup
+Clinical Neurosciences de l'IRBLleida, on soc responsable de l'anàlisi estadística.
+
+## Reconeixements
+
+Guardó de l'Esport 2025 (projecte ESCA) i Guardó d'Esport 2022 (projecte COR-School),
+Generalitat de Catalunya. Acreditació de Recerca i tram de recerca autonòmic, AQU Catalunya.
+
+---
+
+Identificadors: [ORCID 0000-0001-6687-8201](https://orcid.org/0000-0001-6687-8201) ·
+Scopus 57194537687 · Researcher ID G-4163-2015

@@ -1,0 +1,102 @@
+---
+pagetitle: "Mesura de l'exercici, mecànica muscular i bioestadística aplicada"
+description-meta: "Professor Titular de Cinesiologia a l'INEFC Lleida. Força i mecànica muscular, validació de tests de camp i biomarcadors cardíacs després de l'exercici."
+# Cal dir-ho aquí explícitament. Si una pàgina conté imatges, Quarto agafa la
+# primera del text com a imatge de previsualització i ignora la del
+# _quarto.yml: aquesta portada acabava anunciant-se amb l'esquema d'EXCURSE,
+# que és un SVG, i les xarxes no accepten SVG. La previsualització sortia buida.
+image: ../images/social-card.png
+lang: ca
+toc: false
+---
+
+<!-- Traduït d'index.qmd, commit 4249614. Si l'original ha canviat des d'aquest
+     commit, cal revisar. El comentari va aquí i no a la primera línia perquè
+     Quarto només reconeix el capçal YAML si comença a la línia 1 del fitxer. -->
+
+::: {.hero}
+# Rafel Cirer-Sastre {.hero-name}
+
+::: {.hero-role}
+Professor Titular de Cinesiologia · INEFC Lleida, Universitat de Lleida
+:::
+
+::: {.hero-lede}
+Moltes mesures em semblen més convincents que no pas fiables.
+:::
+
+[Doctorat](phd.qmd){.btn-main} [Recerca](research.qmd){.btn-plain} [Publicacions](publications.qmd){.btn-plain}
+:::
+
+Aquest és el fil de tot el que faig: com mesurem el que l'exercici fa al cos i què en podem
+concloure de veritat. Des del 2022 també coordino el suport a la recerca del centre.
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-4}
+::: {.line-card}
+[En construcció]{.line-tag}
+
+### [Força i mecànica muscular](research.qmd#strength-training-and-muscle-mechanics){.stretched-link}
+
+Si descriure l'exercici des del múscul explica l'adaptació millor que no pas el moviment
+articular sol.
+:::
+:::
+
+::: {.g-col-12 .g-col-md-4}
+::: {.line-card}
+[La més aplicada]{.line-tag}
+
+### [Validació de tests de camp](research.qmd#field-test-validation-and-endurance-performance){.stretched-link}
+
+On un test que un entrenador pot fer de debò deixa de ser un substitut adequat d'un
+protocol de laboratori.
+:::
+:::
+
+::: {.g-col-12 .g-col-md-4}
+::: {.line-card}
+[Consolidada]{.line-tag}
+
+### [Biomarcadors cardíacs](research.qmd#cardiac-biomarkers-after-exercise){.stretched-link}
+
+Com canvia la troponina després de l'exercici en infants i adolescents, i com s'ha de
+llegir un valor que alarmaria un clínic.
+:::
+:::
+
+:::
+
+La bioestadística aplicada travessa les tres línies: modelatge del curs temporal, regressió
+bayesiana, revisió sistemàtica i meta-anàlisi. [Més sobre la recerca →](research.qmd)
+
+## La pregunta de l'EXCURSE
+
+![Un angle articular no diu a quina longitud ha treballat el múscul. L'EXCURSE compara
+quatre rangs d'excursió muscular, cadascun definit respecte dels límits d'escurçament i
+allargament voluntaris.](../images/excursion-range.svg){.wide}
+
+Dirigeixo l'EXCURSE (2025–2028), finançat per l'INEFC amb la referència 2025 PINEF 00018 i
+codirigit amb Xavier Peirau Terès.
+
+::: {.band}
+## Doctorands
+
+Tinc lloc per a dos doctorands dins l'EXCURSE a partir de finals del 2026. No hi ha cap
+contracte predoctoral atorgat: l'ajut l'has de demanar i guanyar en convocatòria
+competitiva. La pàgina ho diu clar, amb tota la resta del que cal saber abans de decidir.
+
+[Llegeix les condicions](phd.qmd){.btn-main}
+:::
+
+## Contacte i perfils
+
+Escriu-me sobre l'EXCURSE, un projecte de doctorat o una col·laboració:
+**contacte *at* rafelcirer *dot* com**
+
+::: {.profiles}
+- [ORCID 0000-0001-6687-8201](https://orcid.org/0000-0001-6687-8201)
+- [Scopus 57194537687](https://www.scopus.com/authid/detail.uri?authorId=57194537687)
+- [Publons / Researcher ID G-4163-2015](https://www.webofscience.com/wos/author/record/G-4163-2015)
+:::

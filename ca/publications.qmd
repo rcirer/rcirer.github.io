@@ -1,0 +1,40 @@
+---
+title: "Publicacions"
+listing:
+  id: pubs
+  # La llista viu a l'arrel del projecte i la genera scripts/publications.py.
+  # Aquesta pàgina llegeix el mateix fitxer que publications.qmd: no se'n fa
+  # cap còpia, perquè seria una segona llista per mantenir.
+  contents: ../publications.yml
+  type: table
+  fields: [year, title, journal, citations, oa]
+  field-display-names:
+    year: "Any"
+    title: "Títol"
+    journal: "Revista"
+    citations: "Citat"
+    oa: "Accés"
+  sort: "year desc"
+  categories: true
+  filter-ui: true
+  sort-ui: [year, citations, title]
+  page-size: 60
+toc: false
+# Amplades de les barres del filtre d'anys. El genera
+# scripts/publications.py; no l'editis a mà.
+css: ../histograma.css
+pagetitle: "Publicacions en fisiologia de l'exercici i bioestadística"
+description-meta: "Llista completa de publicacions revisades per parells, generada des d'ORCID i enriquida amb OpenAlex. Es pot filtrar per any."
+lang: ca
+---
+
+<!-- Traduït de publications.qmd, commit bdd1739. Si l'original ha canviat des
+     d'aquest commit, cal revisar. El comentari va aquí i no a la primera línia
+     perquè Quarto només reconeix el capçal YAML si comença a la línia 1. -->
+
+Aquesta llista es genera des del meu [registre d'ORCID](https://orcid.org/0000-0001-6687-8201)
+i s'enriqueix amb OpenAlex, de manera que s'actualitza sola en comptes de mantenir-se a mà.
+Els títols porten a la versió publicada.
+
+::: {#pubs}
+:::

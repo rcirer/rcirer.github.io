@@ -1,0 +1,96 @@
+---
+title: "Recerca"
+pagetitle: "Recerca en mesura de l'exercici i mecànica muscular"
+description-meta: "Tres línies de recerca sobre com es mesuren les respostes a l'exercici: força i mecànica muscular (EXCURSE), validació de tests de camp en resistència i biomarcadors cardíacs després de l'exercici."
+lang: ca
+toc-title: "En aquesta pàgina"
+---
+
+<!-- Traduït de research.qmd, commit 0d2c444. Si l'original ha canviat des d'aquest
+     commit, cal revisar. El comentari va aquí i no a la primera línia perquè Quarto
+     només reconeix el capçal YAML si comença a la línia 1 del fitxer.
+
+     Els identificadors de les capçaleres es fixen a mà, i en anglès, perquè
+     coincideixin amb els de research.qmd: així ca/index.qmd hi pot enllaçar amb
+     les mateixes àncores i no queden accents dins d'una URL. -->
+
+La pregunta que lliga la meva recerca és com mesurem el que l'exercici fa al cos i què en
+podem concloure de veritat. D'aquí en surten tres línies. No pesen igual ni són del mateix
+moment de la meva carrera.
+
+## Entrenament de força i mecànica muscular {#strength-training-and-muscle-mechanics}
+
+És la línia que estic construint ara: com s'adapta el cos a l'entrenament de força, i si
+descriure l'exercici des del múscul explica aquestes adaptacions millor que no pas el
+moviment articular sol.
+
+Dirigeixo l'EXCURSE — *Muscle Excursion Range in Strength Training: Implications for
+Performance and Injury Prevention* (2025–2028), finançat per l'INEFC amb la referència
+2025 PINEF 00018 i codirigit amb Xavier Peirau Terès. Hi comparem l'entrenament en
+diferents regions de l'excursió muscular i n'estudiem els canvis en arquitectura muscular,
+força, activació neuromuscular i propietats mecàniques.
+
+Les preguntes obertes són si les adaptacions difereixen segons la regió d'excursió muscular
+que s'entrena, i quant varien les respostes entre persones i al llarg del temps.
+
+L'antecedent d'aquesta línia és una [meta-anàlisi dels efectes contralaterals de
+l'entrenament unilateral de força](https://pubmed.ncbi.nlm.nih.gov/28630570/). Més
+recentment, [l'entrenament de força convencional comparat amb exercicis de core en ciclistes
+de carretera](https://doi.org/10.7759/cureus.59371) i [la rigidesa muscular en el pedaleig
+segons el nivell de rendiment](https://doi.org/10.3390/medicina57060606).
+
+Busco doctorands per a aquesta línia. [Mira'n les condicions](phd.qmd).
+
+## Validació de tests de camp i rendiment en resistència {#field-test-validation-and-endurance-performance}
+
+És la meva línia més aplicada: com mesurem el rendiment en resistència fora del laboratori,
+i on un test de camp practicable deixa de ser un substitut adequat d'un protocol de
+laboratori.
+
+He treballat el llindar funcional de potència, la predicció del VO~2~màx a partir d'un test
+màxim curt i la variabilitat del temps fins a l'extenuació a un llindar estimat. Entre els
+estudis hi ha la comparació del [llindar funcional de potència amb els llindars de
+lactat](https://doi.org/10.1519/JSC.0000000000004070), un [test de cinc minuts basat en
+potència per predir el VO~2~màx](https://doi.org/10.1123/ijspp.2020-0923) i el [temps fins a
+l'extenuació al llindar funcional de potència
+estimat](https://doi.org/10.1016/j.jsams.2022.06.007).
+
+Les preguntes obertes són quines estimacions dels tests de camp segueixen sent vàlides a
+escala de l'esportista individual, i com haurien d'afectar la interpretació l'error del
+test, el nivell de rendiment i la variabilitat entre persones.
+
+*Col·laboradors principals: Sebastian Sitko i Isaac López-Laval (Universidad de Zaragoza).*
+
+## Biomarcadors cardíacs després de l'exercici {#cardiac-biomarkers-after-exercise}
+
+És la meva línia més consolidada, tot i que ara ocupa un lloc menys central: com respon el
+cos de manera aguda a l'exercici, i en particular com canvia la troponina cardíaca en
+infants i adolescents.
+
+M'he centrat en el curs temporal de la resposta més que no pas en un únic valor
+post-exercici. Hi ha una [revisió sistemàtica i meta-anàlisi en infants i adolescents
+sans](https://doi.org/10.1123/pes.2018-0058), un estudi de [l'estat maduratiu i la troponina
+T cardíaca en nedadors joves](https://doi.org/10.1016/j.jsams.2020.06.019) i una [comparació
+de la cinètica modelada de cTnT i cTnI](https://doi.org/10.1080/1354750X.2022.2080272).
+
+Les preguntes obertes són com el moment de l'extracció canvia la interpretació d'un valor
+observat, i com la maduració, la càrrega d'exercici i la variabilitat entre persones donen
+forma a la resposta.
+
+*Col·laboradors principals: Keith George (Liverpool John Moores University), Alejandro
+Legaz-Arrese (Universidad de Zaragoza) i Luis Enrique Carranza-García (Universidad Autónoma
+de Nuevo León).*
+
+## El mètode que hi ha a sota {#the-method-underneath}
+
+La bioestadística aplicada no és una quarta línia de recerca. És la perspectiva des de la
+qual abordo les altres tres.
+
+Treballo amb models d'efectes mixtos, regressió bayesiana, revisions sistemàtiques i
+meta-anàlisi. Amb mesures biològiques repetides, modelo les observacions dins de cada
+individu i la forma del canvi al llarg del temps, en comptes d'analitzar cada moment com si
+fos independent. També faig l'anàlisi estadística del grup Clinical Neurosciences de
+l'IRBLleida, incloent-hi l'assaig clínic REMOTE-CAT sobre l'ictus.
+
+L'estadística comença abans que arribin les dades: ajuda a formular la pregunta, a dissenyar
+l'estudi i a establir què podrà sostenir aquell estudi.
