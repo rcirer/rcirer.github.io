@@ -14,28 +14,9 @@ This page is in Catalan: the teaching material is used in Catalan-taught courses
 translating it would help nobody. The rest of the site is in English.
 :::
 
-## Assignatures
+<!-- El cos és a `_teaching-body.qmd`, compartit amb `ca/teaching.qmd`.
+     Aquesta versió és la del lloc anglès i duu l'avís de sobre; la
+     catalana no el necessita. Per canviar el contingut, edita el
+     fragment, no aquest fitxer. -->
 
-**Grau en Ciències de l'Activitat Física i l'Esport** — UdL / INEFC Lleida
-
-- Cinesiologia i Tecnologia de l'Exercici Físic, des del 2017; corresponsable de
-  l'assignatura des del 2024.
-- Anatomia Aplicada a l'Activitat Física i l'Esport, des del 2020.
-- Metodologia de la Investigació en Activitat Física i Salut, des del 2024.
-
-**Màster en Activitat Física i Salut** — Universitat de Barcelona
-
-- Metodologia de la Investigació en Activitat Física i Salut, des del curs 2024-25.
-
-## Materials oberts
-
-- **[Iniciació al tractament de dades amb R](https://github.com/rcirer/24-intro-R)** —
-  materials del curs de doctorat de l'INEFC, disponibles a GitHub.
-
----
-
-::: {.callout-note appearance="simple"}
-Llevat que s'indiqui el contrari, aquest material es publica amb llicència
-[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca): el pots fer
-servir i adaptar citant-ne l'origen, sense ús comercial i compartint igual.
-:::
+{{< include _teaching-body.qmd >}}

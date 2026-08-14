@@ -1,0 +1,24 @@
+---
+title: "Docència"
+subtitle: "Materials i recursos oberts."
+# `lang` s'ha de declarar AQUÍ, pàgina per pàgina. El `lang: ca` del
+# perfil no serveix per a les pàgines dins de subcarpetes: Quarto el
+# tracta com si fos una ruta i en surt `lang="../ca"`. Totes les
+# pàgines de `ca/` el porten al capçal per aquest motiu.
+lang: ca
+toc-title: "En aquesta pàgina"
+description-meta: "Assignatures de cinesiologia, anatomia aplicada i metodologia de la investigació, i materials docents oberts."
+---
+
+<!-- Aquesta pàgina NO és una traducció: el contingut original ja és en
+     català. És la mateixa pàgina que `teaching.qmd` de l'arrel, amb el
+     menú català en comptes de l'anglès, perquè entrant-hi des del lloc
+     català no et canviï l'idioma de la navegació.
+
+     Les dues comparteixen el cos, que és a `_teaching-body.qmd`. Per
+     canviar el contingut, edita el fragment.
+
+     La versió anglesa duu un avís al capdamunt explicant que la pàgina
+     és en català. Aquí no cal. -->
+
+{{< include ../_teaching-body.qmd >}}

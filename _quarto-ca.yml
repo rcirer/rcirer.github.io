@@ -25,9 +25,11 @@ website:
         text: Recerca
       - href: ca/publications.qmd
         text: Publicacions
-      # Docència no té versió catalana perquè l'original JA és en català
-      # (CLAUDE.md §5). L'enllaç va a l'arrel, no a `ca/`.
-      - href: teaching.html
+      # Docència sí que té pàgina pròpia a `ca/`, tot i que el contingut
+      # no es tradueix: totes dues inclouen el mateix `_teaching-body.qmd`.
+      # Existeix perquè, si el menú català enviés a `/teaching.html`, en
+      # entrar-hi el lector es trobaria el menú en anglès.
+      - href: ca/teaching.qmd
         text: Docència
       - href: ca/phd.qmd
         text: Doctorat
@@ -46,9 +48,13 @@ website:
       <span class="footer-note">Sense galetes. Recompte de visites anònim i agregat amb
       <a href="https://www.goatcounter.com/">GoatCounter</a>, que no desa adreces IP.</span>
 
-# Idioma del document. Importa per als lectors de pantalla, que apliquen
-# les regles de pronunciació segons aquest atribut, i perquè Quarto
-# tradueixi sol la seva pròpia interfície (filtres, ordenació...).
+# Idioma del document. Importa per als lectors de pantalla i perquè
+# Quarto tradueixi sol la seva pròpia interfície (filtres, ordenació...).
+#
+# COMPTE: això NO és suficient. Per a les pàgines dins de `ca/`, Quarto
+# tracta aquest valor com si fos una ruta i en surt `lang="../ca"`, que
+# no és cap idioma. Per això TOTES les pàgines de `ca/` declaren
+# `lang: ca` al seu propi capçal. Si n'afegeixes una, no te'n descuidis.
 lang: ca
 
 format:

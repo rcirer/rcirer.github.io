@@ -155,8 +155,21 @@ Tres trampes que van costar de trobar i que no s'han de tornar a trepitjar:
 El selector va a l'INICI de l'altra versió, no a la pàgina equivalent: el menú és el mateix
 per a tot el perfil i no pot saber en quina pàgina ets.
 
-`teaching.qmd` és a l'arrel i ja és en català: el menú català hi enllaça directament, i no
-en té versió a `ca/`.
+**Docència existeix als dos llocs, sense duplicar el contingut.** El cos viu a
+`_teaching-body.qmd` i el comparteixen `teaching.qmd` (arrel, menú anglès) i
+`ca/teaching.qmd` (menú català), que l'inclouen amb `{{< include >}}`. La versió de l'arrel
+duu l'avís en anglès explicant que la pàgina és en català; la de `ca/` no el necessita.
+**Per afegir una assignatura o un material, edita el fragment, no les pàgines.** El nom
+comença amb guió baix perquè Quarto no el publiqui com a pàgina.
+
+Existeix a `ca/` perquè, si el menú català enviés a `/teaching.html`, en entrar-hi el lector
+es trobaria el menú en anglès. Va ser en Rafel qui ho va detectar.
+
+**Quarta trampa: `lang` s'ha de declarar pàgina per pàgina a `ca/`.** El `lang: ca` del
+perfil no serveix per a les pàgines dins de subcarpetes: Quarto el tracta com si fos una ruta
+i en surt `lang="../ca"`, que no és cap idioma i que els lectors de pantalla no entenen. No
+avisa de res. Totes les pàgines de `ca/` el porten al seu capçal; si n'afegeixes una, no
+te'n descuidis.
 
 ---
 
