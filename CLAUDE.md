@@ -105,6 +105,25 @@ Sense duplicar contingut i sense maquinària multilingüe:
 
 Els noms de fitxer són URL públiques i han de ser en anglès i estables
 (`phd.qmd`, `teaching.qmd`...). Renombrar-los un cop publicats trenca enllaços externs.
+Això val també per a `ca/`: `ca/research.qmd`, no `ca/recerca.qmd`.
+
+**Versió catalana a `/ca/`, feta el 12 d'agost de 2026.** Cinc pàgines: `index`, `research`,
+`phd`, `publications`, `cv`. `teaching.qmd` no en té perquè ja és en català. Cada fitxer de
+`ca/` duu al capdamunt un comentari amb el commit de l'original del qual s'ha traduït; quan
+l'original canviï, cal revisar.
+
+**Trampa de Quarto que costa de trobar:** el comentari HTML **no pot anar a la línia 1** d'un
+`.qmd`. Quarto només reconeix el capçal YAML si comença dalt de tot; amb un comentari al
+davant, renderitza el YAML com a text del cos i **no avisa de res**. Va sota el capçal.
+
+**Selector d'idioma: un parell `EN` / `CA` a la dreta del menú**, apuntant als dos inicis.
+Va als inicis i no a la pàgina equivalent perquè el menú de Quarto és el mateix per a tot el
+projecte i no pot saber en quina pàgina ets.
+
+Es va descartar la via de manual, els *profiles* de Quarto (dos `_quarto.yml`, un per idioma,
+cadascun amb el menú traduït): canvia la comanda de publicar per sempre —`--profile` i
+`--no-render` encadenats— i la secció 3 mana. **Conseqüència assumida: a les pàgines de
+`/ca/` els noms del menú es queden en anglès.** No ho «arreglis» amb JavaScript.
 
 ---
 

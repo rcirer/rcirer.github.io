@@ -48,6 +48,23 @@ website:
     right:
       - text: ORCID
         href: https://orcid.org/0000-0001-6687-8201
+      # Selector d'idioma. Va als dos INICIS, no a la pàgina equivalent:
+      # el menú de Quarto és el mateix per a tot el projecte i no pot
+      # saber en quina pàgina ets.
+      #
+      # La via de manual per a un lloc bilingüe són els «profiles» de
+      # Quarto: dos _quarto.yml, un per idioma, cadascun amb el menú
+      # traduït. Es va descartar el 12 d'agost de 2026 perquè canvia la
+      # comanda de publicar per sempre (`--profile` i `--no-render`
+      # encadenats), i la secció 3 del CLAUDE.md diu que guanya el que en
+      # Rafel pugui reparar sol.
+      #
+      # Conseqüència assumida: a les pàgines de /ca/ els noms del menú
+      # (Home, Research...) es queden en anglès.
+      - text: "EN"
+        href: index.qmd
+      - text: "CA"
+        href: ca/index.qmd
   page-footer:
     center: |
       Rafel Cirer-Sastre · INEFC Lleida, Universitat de Lleida<br>
