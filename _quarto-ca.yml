@@ -1,0 +1,59 @@
+# Perfil català del lloc.
+#
+# Quarto el fusiona A SOBRE de `_quarto.yml`: aquí només hi ha el que
+# canvia. Tot el que no s'hi digui —tema, analítica, targeta social,
+# domini— surt del fitxer per defecte i no s'ha de repetir.
+#
+# S'activa amb `quarto render --profile ca --no-clean`. Sense el
+# `--no-clean` esborraria les pàgines angleses acabades de construir.
+#
+# Les instruccions senceres de publicació són al capdamunt de
+# `_quarto.yml`.
+
+project:
+  # Només les pàgines catalanes. El perfil per defecte ja exclou `ca/**`,
+  # de manera que cada idioma el construeix un sol pas i no es trepitgen.
+  render:
+    - "ca/*.qmd"
+
+website:
+  navbar:
+    left:
+      - href: ca/index.qmd
+        text: Inici
+      - href: ca/research.qmd
+        text: Recerca
+      - href: ca/publications.qmd
+        text: Publicacions
+      # Docència no té versió catalana perquè l'original JA és en català
+      # (CLAUDE.md §5). L'enllaç va a l'arrel, no a `ca/`.
+      - href: teaching.html
+        text: Docència
+      - href: ca/phd.qmd
+        text: Doctorat
+      - href: ca/cv.qmd
+        text: CV
+    right:
+      - text: ORCID
+        href: https://orcid.org/0000-0001-6687-8201
+      # .html i no .qmd: aquest perfil no construeix les pàgines
+      # angleses i no en pot reescriure l'extensió.
+      - text: "English"
+        href: index.html
+  page-footer:
+    center: |
+      Rafel Cirer-Sastre · INEFC Lleida, Universitat de Lleida<br>
+      <span class="footer-note">Sense galetes. Recompte de visites anònim i agregat amb
+      <a href="https://www.goatcounter.com/">GoatCounter</a>, que no desa adreces IP.</span>
+
+# Idioma del document. Importa per als lectors de pantalla, que apliquen
+# les regles de pronunciació segons aquest atribut, i perquè Quarto
+# tradueixi sol la seva pròpia interfície (filtres, ordenació...).
+lang: ca
+
+format:
+  html:
+    toc-title: "En aquesta pàgina"
+
+language:
+  title-block-published: "Última actualització"

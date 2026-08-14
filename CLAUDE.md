@@ -116,14 +116,47 @@ l'original canviï, cal revisar.
 `.qmd`. Quarto només reconeix el capçal YAML si comença dalt de tot; amb un comentari al
 davant, renderitza el YAML com a text del cos i **no avisa de res**. Va sota el capçal.
 
-**Selector d'idioma: un parell `EN` / `CA` a la dreta del menú**, apuntant als dos inicis.
-Va als inicis i no a la pàgina equivalent perquè el menú de Quarto és el mateix per a tot el
-projecte i no pot saber en quina pàgina ets.
+### El lloc és bilingüe amb *profiles* de Quarto
 
-Es va descartar la via de manual, els *profiles* de Quarto (dos `_quarto.yml`, un per idioma,
-cadascun amb el menú traduït): canvia la comanda de publicar per sempre —`--profile` i
-`--no-render` encadenats— i la secció 3 mana. **Conseqüència assumida: a les pàgines de
-`/ca/` els noms del menú es queden en anglès.** No ho «arreglis» amb JavaScript.
+Decisió d'en Rafel del 12 d'agost de 2026. Jo havia proposat la via simple —un sol menú amb
+un parell d'enllaços EN/CA— i ell la va rebutjar: deixava el menú en anglès a les pàgines
+catalanes i portava a les pàgines angleses, i això és un defecte de debò. Té raó.
+
+Tres fitxers de configuració:
+
+    _quarto.yml      NOMÉS el que és comú: tema, analítica, domini, targeta social
+    _quarto-en.yml   anglès, a l'arrel. És el perfil PER DEFECTE
+    _quarto-ca.yml   català, sota /ca/
+
+**PER PUBLICAR, TRES COMANDES EN AQUEST ORDRE:**
+
+    quarto render
+    quarto render --profile ca --no-clean
+    quarto publish gh-pages --no-render
+
+El `--no-clean` evita que el segon pas esborri l'anglès acabat de construir, i el
+`--no-render` que el tercer torni a construir el lloc i es carregui el català.
+
+**SI FAS NOMÉS `quarto publish gh-pages`, `/ca/` DESAPAREIX DEL WEB.** És el preu d'aquesta
+solució i estava avisat abans de triar-la.
+
+Tres trampes que van costar de trobar i que no s'han de tornar a trepitjar:
+
+- **Quarto CONCATENA les llistes en fusionar un perfil amb la base, no les substitueix.**
+  Si el menú anglès fos a `_quarto.yml`, el perfil català hi afegiria el seu a sota i
+  sortirien els dos junts, onze elements. Per això a la base no hi ha ni menú ni llista de
+  `render`: cada perfil porta els seus.
+- **Cada perfil ha d'excloure les pàgines de l'altre.** L'anglès porta `!ca/**`. Sense
+  això, `quarto render` construiria `/ca/` amb el menú anglès.
+- **Els enllaços entre idiomes s'escriuen amb `.html`, no amb `.qmd`.** Quarto només
+  reescriu l'extensió dels fitxers que el perfil actiu construeix; per als de l'altre
+  perfil deixaria un `.qmd` mort al menú.
+
+El selector va a l'INICI de l'altra versió, no a la pàgina equivalent: el menú és el mateix
+per a tot el perfil i no pot saber en quina pàgina ets.
+
+`teaching.qmd` és a l'arrel i ja és en català: el menú català hi enllaça directament, i no
+en té versió a `ca/`.
 
 ---
 

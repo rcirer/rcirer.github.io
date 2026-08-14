@@ -1,16 +1,44 @@
+# ATENCIÓ: EL LLOC ÉS BILINGÜE I ES RENDERITZA EN DOS PASSOS.
+#
+# Aquest fitxer només conté el que és COMÚ als dos idiomes. Tot el que
+# canvia —menú, peu, idioma— és als dos perfils:
+#
+#     _quarto-en.yml   anglès, l'arrel del lloc
+#     _quarto-ca.yml   català, sota /ca/
+#
+# L'anglès és el perfil per defecte (`profile: default: en` a baix), o
+# sigui que `quarto render` a seques ja fa l'anglès.
+#
+# PER PUBLICAR, LES TRES COMANDES EN AQUEST ORDRE:
+#
+#     quarto render
+#     quarto render --profile ca --no-clean
+#     quarto publish gh-pages --no-render
+#
+# El `--no-clean` evita que el segon pas esborri l'anglès acabat de fer,
+# i el `--no-render` que el tercer torni a construir el lloc, cosa que
+# es carregaria el català.
+#
+# SI FAS NOMÉS `quarto publish gh-pages`, /ca/ DESAPAREIX DEL WEB.
+#
+# PER QUÈ NO HI HA MENÚ EN AQUEST FITXER: Quarto CONCATENA les llistes
+# quan fusiona un perfil amb la base, no les substitueix. Si el menú
+# anglès fos aquí, el perfil català hi afegiria el seu a sota i sortirien
+# els dos junts. Per això cada menú viu al seu perfil i aquí no n'hi ha
+# cap. El mateix val per a la llista de `render`.
+
 project:
   type: website
   output-dir: _site
-  # Només els .qmd són pàgines del lloc. Sense això, Quarto publicaria també
-  # qualsevol .md de la carpeta (CLAUDE.md, cv-extracte-web.md...), que són
-  # documents interns i no han de sortir al web.
-  render:
-    - "**/*.qmd"
   # El fitxer CNAME és el que diu a GitHub Pages quin és el domini propi.
   # Ha d'anar a _site perquè `quarto publish gh-pages` reescriu la branca
   # sencera: si no es copiés, cada publicació esborraria el domini.
   resources:
     - CNAME
+
+# Sense això, `quarto render` a seques construiria un lloc sense menú.
+profile:
+  default: en
 
 website:
   title: "Rafel Cirer-Sastre"
@@ -24,52 +52,6 @@ website:
   # `python3 scripts/targeta-social.py`. És una imatge com qualsevol altra:
   # el lloc no necessita res per servir-la.
   image: images/social-card.png
-  navbar:
-    # Lloc en anglès per defecte. Teaching és l'única pàgina en català,
-    # perquè el seu públic són els estudiants d'aquí (CLAUDE.md §5).
-    left:
-      - href: index.qmd
-        text: Home
-      - href: research.qmd
-        text: Research
-      - href: publications.qmd
-        text: Publications
-      # Blog amagat del menú fins que hi hagi un primer post publicat: un
-      # apartat buit resta credibilitat. La pàgina segueix existint a
-      # /blog/; per tornar-la a mostrar, descomenta aquestes dues línies.
-      # - href: blog/index.qmd
-      #   text: Blog
-      - href: teaching.qmd
-        text: Teaching
-      - href: phd.qmd
-        text: PhD
-      - href: cv.qmd
-        text: CV
-    right:
-      - text: ORCID
-        href: https://orcid.org/0000-0001-6687-8201
-      # Selector d'idioma. Va als dos INICIS, no a la pàgina equivalent:
-      # el menú de Quarto és el mateix per a tot el projecte i no pot
-      # saber en quina pàgina ets.
-      #
-      # La via de manual per a un lloc bilingüe són els «profiles» de
-      # Quarto: dos _quarto.yml, un per idioma, cadascun amb el menú
-      # traduït. Es va descartar el 12 d'agost de 2026 perquè canvia la
-      # comanda de publicar per sempre (`--profile` i `--no-render`
-      # encadenats), i la secció 3 del CLAUDE.md diu que guanya el que en
-      # Rafel pugui reparar sol.
-      #
-      # Conseqüència assumida: a les pàgines de /ca/ els noms del menú
-      # (Home, Research...) es queden en anglès.
-      - text: "EN"
-        href: index.qmd
-      - text: "CA"
-        href: ca/index.qmd
-  page-footer:
-    center: |
-      Rafel Cirer-Sastre · INEFC Lleida, Universitat de Lleida<br>
-      <span class="footer-note">No cookies. Anonymous, aggregate visit counts via
-      <a href="https://www.goatcounter.com/">GoatCounter</a>, which stores no IP addresses.</span>
 
 format:
   html:
@@ -81,9 +63,6 @@ format:
       light: [cosmo, theme.scss]
       dark: [cosmo, theme.scss, theme-dark.scss]
     toc: true
-    # El lloc és en anglès: aquest text sortia en català a totes les pàgines.
-    # teaching.qmd, que sí que és en català, el sobreescriu al seu capçal.
-    toc-title: "On this page"
     anchor-sections: true
     # ÚNICA dependència de JavaScript de tercers del lloc (CLAUDE.md §3).
     # Són ~3 KB, es carrega de manera asíncrona i, si el servei desaparegués,
@@ -93,12 +72,3 @@ format:
       - text: |
           <script data-goatcounter="https://rcirer.goatcounter.com/count"
                   async src="https://gc.zgo.at/count.js"></script>
-
-# Idioma per defecte del lloc. Importa per als lectors de pantalla, que
-# apliquen les regles de pronunciació segons aquest atribut.
-lang: en
-
-# Per defecte, Quarto etiqueta el camp de data com a "Published". Al CV la
-# data és la de l'últim canvi, i dir-ne "publicat" enganya.
-language:
-  title-block-published: "Last updated"

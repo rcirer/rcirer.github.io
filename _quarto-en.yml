@@ -1,0 +1,68 @@
+# Perfil anglès: el lloc a l'arrel. És el perfil PER DEFECTE, o sigui que
+# `quarto render` a seques ja el fa servir.
+#
+# Aquí hi ha el que canvia respecte de `_quarto.yml`: la llista de pàgines
+# a construir, el menú, el peu i l'idioma. La resta —tema, analítica,
+# domini, targeta social— surt del fitxer base i no s'ha de repetir.
+
+project:
+  # Només els .qmd són pàgines del lloc. Sense això, Quarto publicaria també
+  # qualsevol .md de la carpeta (CLAUDE.md, cv-extracte-web.md...), que són
+  # documents interns i no han de sortir al web.
+  #
+  # `!ca/**` treu les pàgines catalanes: les construeix l'altre perfil, amb
+  # el seu menú. Sense l'exclusió sortirien aquí amb el menú anglès.
+  render:
+    - "**/*.qmd"
+    - "!ca/**"
+
+website:
+  navbar:
+    # Teaching apunta a `teaching.qmd`, que és en català: el seu públic són
+    # els estudiants d'aquí i no en té versió anglesa (CLAUDE.md §5).
+    left:
+      - href: index.qmd
+        text: Home
+      - href: research.qmd
+        text: Research
+      - href: publications.qmd
+        text: Publications
+      # Blog amagat del menú fins que hi hagi un primer post publicat: un
+      # apartat buit resta credibilitat. La pàgina segueix existint a
+      # /blog/; per tornar-la a mostrar, descomenta aquestes dues línies.
+      # - href: blog/index.qmd
+      #   text: Blog
+      - href: teaching.qmd
+        text: Teaching
+      - href: phd.qmd
+        text: PhD
+      - href: cv.qmd
+        text: CV
+    right:
+      - text: ORCID
+        href: https://orcid.org/0000-0001-6687-8201
+      # Selector d'idioma. Va a l'inici de l'altra versió, no a la pàgina
+      # equivalent: el menú és el mateix per a tot el perfil i no pot saber
+      # en quina pàgina ets.
+      # .html i no .qmd: Quarto només reescriu l'extensió dels fitxers
+      # que el perfil actiu construeix, i aquest no construeix /ca/.
+      - text: "Català"
+        href: ca/index.html
+  page-footer:
+    center: |
+      Rafel Cirer-Sastre · INEFC Lleida, Universitat de Lleida<br>
+      <span class="footer-note">No cookies. Anonymous, aggregate visit counts via
+      <a href="https://www.goatcounter.com/">GoatCounter</a>, which stores no IP addresses.</span>
+
+# Importa per als lectors de pantalla, que apliquen les regles de
+# pronunciació segons aquest atribut.
+lang: en
+
+format:
+  html:
+    toc-title: "On this page"
+
+# Per defecte, Quarto etiqueta el camp de data com a "Published". Al CV la
+# data és la de l'últim canvi, i dir-ne "publicat" enganya.
+language:
+  title-block-published: "Last updated"
