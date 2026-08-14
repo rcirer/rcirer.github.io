@@ -357,7 +357,7 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
       </div>
 
       <div class="panell" data-panell="rangs" hidden>
-        <svg id="grafic-rangs" class="grafic" viewBox="0 0 900 330" role="img"
+        <svg id="grafic-rangs" class="grafic" viewBox="0 0 900 262" role="img"
              aria-label="Sarcomere length range of each quadriceps head according to different studies, on the same axis as the force–length curve."></svg>
       </div>
 
@@ -431,20 +431,33 @@ code { font-size: .9em; background: var(--fons-panell); padding: .1em .35em; bor
 
 <p>
   <strong>Operating ranges.</strong> Same axis, so you can drop your eye from the curve to
-  any bar. Every study measured at two knee angles; from that slope all bars are recomputed
-  for the range you select, which makes them comparable. The solid part is what was
-  measured, the pale part is extrapolation.
+  any bar. One source per muscle, chosen as the one that best shows the phenomenon. Every
+  study measured at two knee angles; from that slope the bars are recomputed for the range
+  you select, and the dot marks the angle you have selected. The solid part is what was
+  actually measured, the pale part is extrapolation.
 </p>
 
 <div class="avis">
-  <strong>That second chart is the most important one here.</strong> Three studies measure
-  vastus lateralis at the same angles and return answers that do not overlap: ascending
-  limb, optimal range or descending limb depending on whom you believe. And vastus medialis
-  measured intraoperatively<sup class="ref"><a href="#r11">11</a></sup> reaches 4.1 µm at
-  90° of flexion, next to zero active force — the authors themselves call these values
-  "dramatically longer" than the biomechanical model predicts. Any categorical claim about
-  where the quadriceps works on the curve, yours or mine, has to be made with that chart in
-  view.
+  <strong>Read the differences between those bars with care.</strong> Three muscles, three
+  methods: vastus lateralis by in vivo microendoscopy<sup class="ref"><a href="#r4">4</a></sup>,
+  vastus medialis intraoperatively<sup class="ref"><a href="#r11">11</a></sup>, vastus
+  intermedius by ultrasound and modelling<sup class="ref"><a href="#r3">3</a></sup>. The
+  gaps between the bars are therefore <em>not</em> cleanly differences between muscles —
+  method is mixed in. The only internally valid muscle-to-muscle comparison in this
+  literature is vastus lateralis against vastus medialis within Son's
+  study<sup class="ref"><a href="#r11">11</a></sup>, the one work that measured two heads
+  with the same protocol.
+</div>
+
+<div class="avis">
+  <strong>And the disagreement is larger than the chart now shows.</strong> Three studies
+  have measured vastus lateralis at comparable angles and returned answers that do not
+  overlap: 2.28–2.30 µm<sup class="ref"><a href="#r3">3</a></sup>,
+  2.84–3.17 µm<sup class="ref"><a href="#r4">4</a></sup> and
+  3.20–3.80 µm<sup class="ref"><a href="#r11">11</a></sup> — ascending limb, optimal range
+  or descending limb depending on whom you believe. This page shows the middle one, as the
+  most direct measurement in awake humans, but any categorical claim about where the
+  quadriceps works on the curve has to be made knowing that spread exists.
 </div>
 
 <h2>What it would look like on an electromyograph</h2>
@@ -1571,12 +1584,32 @@ const xSL = sl => M.esq + (sl - SL_EIX_0) / (SL_EIX_1 - SL_EIX_0) * (900 - M.dre
 
    Fora dels angles que l'estudi va mesurar, això és EXTRAPOLACIÓ, i el
    gràfic ho marca: només el tram mesurat va ple. */
+// UNA font per múscul. N'hi havia set files i confonien; ara cada múscul
+// hi surt un sol cop, amb l'estudi que millor representa el fenomen:
+//
+//   Vast lateral   → Chen 2016. Microendoscòpia in vivo en persones
+//     despertes: la mesura més directa i menys artificiosa que hi ha, i
+//     el pendent que dona (0,0055 µm/°) és el que la geometria fa
+//     esperar. Ando dona 0,02 µm de canvi entre 0° i 90°, cosa que
+//     voldria dir que flexionar el genoll no allarga el vast lateral, i
+//     és inconsistent fins i tot amb el vast intermedi del seu propi
+//     treball.
+//   Vast medial    → Son 2018. L'única font que el mesura.
+//   Vast intermedi → Ando 2021. L'única font que el mesura.
+//   Recte femoral  → cap. No hi ha mesura publicada per angle de maluc:
+//     el que surt és el model d'aquesta pàgina, i ho diu l'etiqueta.
+//
+// EL QUE AIXÒ COSTA, i el text ho adverteix: tres músculs mesurats amb
+// tres mètodes diferents. Les diferències entre files NO són netament
+// diferències entre músculs, hi ha el mètode barrejat. L'única
+// comparació internament vàlida seria VL contra VM dins de Son 2018,
+// que és l'únic treball que en mesura dos amb el mateix protocol.
+// Ordenats de més curt a més llarg: així les barres avancen cap a la
+// dreta en comptes de fer ziga-zaga, i es llegeix d'un cop d'ull.
 const RANGS_PUBLICATS = [
-  { mus: "Vastus intermedius", font: "Ando 2021 · resting",        sa: 2.19, sb: 2.46, aa:  0, ab:  90, color: "var(--vast)" },
-  { mus: "Vastus lateralis",  font: "Ando 2021 · resting",        sa: 2.28, sb: 2.30, aa:  0, ab:  90, color: "var(--vast)" },
-  { mus: "Vastus lateralis",  font: "Chen 2016 · microendoscopy", sa: 2.84, sb: 3.17, aa: 50, ab: 110, color: "var(--vast)" },
-  { mus: "Vastus lateralis",  font: "Son 2018 · intraoperative",   sa: 3.20, sb: 3.80, aa: 45, ab:  90, color: "var(--vast)" },
-  { mus: "Vastus medialis",   font: "Son 2018 · intraoperative",   sa: 3.60, sb: 4.10, aa: 45, ab:  90, color: "var(--capacitat)" }
+  { mus: "Vastus intermedius", font: "Ando 2021 · ultrasound model",       sa: 2.19, sb: 2.46, aa:  0, ab:  90, color: "var(--vast)" },
+  { mus: "Vastus lateralis",   font: "Chen 2016 · in vivo microendoscopy", sa: 2.84, sb: 3.17, aa: 50, ab: 110, color: "var(--vast)" },
+  { mus: "Vastus medialis",    font: "Son 2018 · intraoperative",          sa: 3.60, sb: 4.10, aa: 45, ab:  90, color: "var(--capacitat)" }
 ];
 // Longitud de sarcòmer que un estudi prediu a qualsevol angle, a partir
 // dels dos punts que va mesurar.
@@ -1594,10 +1627,8 @@ function dibuixaRangs(a, b) {
   const ang = Math.round(a) + "°–" + Math.round(b) + "°";
   const dins = Math.min(Math.max(estat.angle, Math.min(a, b)), Math.max(a, b));
   const files = [
-    { mus: "Rectus femoris", font: "this page's model", color: "var(--rf)", guions: "7 4",
+    { mus: "Rectus femoris", font: "this page's model · no published data", color: "var(--rf)", guions: "7 4",
       a: slRF(a, estat.maluc), b: slRF(b, estat.maluc), ara: slRF(dins, estat.maluc), ang, seu: true },
-    { mus: "Vasti", font: "this page's model · active", color: "var(--vast)",
-      a: slVast(a), b: slVast(b), ara: slVast(dins), ang, seu: true },
     ...RANGS_PUBLICATS.map(f => ({
       mus: f.mus, font: f.font, color: f.color, ang,
       a: slFont(f, a), b: slFont(f, b), ara: slFont(f, dins),
