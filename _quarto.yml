@@ -35,6 +35,10 @@ project:
   # sencera: si no es copiés, cada publicació esborraria el domini.
   resources:
     - CNAME
+    # Els diagrames docents són fitxers HTML autònoms, fora de Quarto
+    # (CLAUDE.md §9 quater). Sense aquesta línia no arribarien a _site i
+    # els enllaços des de Docència quedarien morts.
+    - diagrames
 
 # Sense això, `quarto render` a seques construiria un lloc sense menú.
 profile:

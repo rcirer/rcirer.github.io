@@ -30,6 +30,17 @@
 - **[Iniciació al tractament de dades amb R](https://github.com/rcirer/24-intro-R)** —
   materials del curs de doctorat de l'INEFC, disponibles a GitHub.
 
+## Diagrames interactius
+
+Pàgines autònomes, pensades per projectar a classe. S'obren en una finestra nova. El text
+és en anglès; els controls i els gràfics s'entenen igual.
+
+- **[Excursion range and force profile](/diagrames/excursion-and-force.html){target="_blank"}**
+  — extensió de genoll asseguda: com el rang entrenat decideix quines longituds musculars
+  es carreguen, i com la resistència externa decideix on cau el pic dins d'aquelles
+  longituds. Amb la corba força–longitud, on hi treballa cada porció del quàdriceps segons
+  la font, i un registre d'EMG simulat.
+
 ---
 
 ::: {.callout-note appearance="simple"}
