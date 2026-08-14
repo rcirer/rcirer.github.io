@@ -40,6 +40,9 @@ Pàgines autònomes, pensades per projectar a classe. S'obren en una finestra no
   es carreguen, i com la resistència externa decideix on cau el pic dins d'aquelles
   longituds. Amb la corba força–longitud, on hi treballa cada porció del quàdriceps segons
   la font, i un registre d'EMG simulat.
+- **[The four muscle excursion ranges](/diagrames/muscle-excursion-range.html){target="_blank"}**
+  — esquema animat dels quatre rangs d'excursió que compara l'EXCURSE: inicial, mitjà, final
+  i complet, ancorats als límits d'escurçament i d'allargament.
 
 ---
 

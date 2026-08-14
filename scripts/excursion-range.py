@@ -11,8 +11,27 @@ quatre tinguin la mateixa distància entre bucles.
 
 import os
 
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                   "..", "images", "excursion-range.svg")
+BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+OUT = os.path.join(BASE, "images", "excursion-range.svg")
+# La figura també és un recurs docent per si sola. La pàgina està escrita a
+# mà —el text és seu— però l'SVG de dins el posa aquest script, entre dues
+# marques, perquè no n'hi hagi dues còpies que se separin.
+OUT_HTML = os.path.join(BASE, "diagrames", "muscle-excursion-range.html")
+MARCA_A = "<!-- SVG-INICI: generat per scripts/excursion-range.py. No editar a mà. -->"
+MARCA_B = "<!-- SVG-FI -->"
+
+# Els colors surten com a variables CSS perquè la figura pugui seguir el
+# tema clar/fosc quan va incrustada en una pàgina. El fitxer .svg solt,
+# que es fa servir com a <img> i no pot heretar res, se les defineix ell
+# mateix a sota.
+CLAR = {
+    "limit":      "#0e6b5e",   # línies i títols dels dos límits
+    "gris":       "#5c6670",   # text secundari, gomes, eix, ancoratge
+    "tinta":      "#15181b",   # noms dels rangs
+    "regla":      "#c3cacd",   # origen i longitud de repòs
+    "panxa":      "#c9825f",   # farcit del ventre muscular
+    "panxa-fosc": "#a2603f",   # contorn, tendons, insercions i cota
+}
 
 WALL = 884.0   # ancoratge de les gomes
 LEAD = 6.0     # tram recte a cada punta de la molla
@@ -92,24 +111,32 @@ for name, gloss, cy, lo, hi in ROWS:
 
 hatch = " ".join("M884 %d l10 -9" % y for y in range(116, 381, 24))
 
-svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img" aria-labelledby="exc-t exc-d">
+FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+
+
+def construeix(vars, mides):
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520"{mides} role="img" aria-labelledby="exc-t exc-d">
   <title id="exc-t">The four muscle excursion ranges compared in EXCURSE</title>
   <desc id="exc-d">Four muscles are drawn one above another on a horizontal muscle length axis, all fixed at the same origin on the left. Each is a rounded rectangle standing for the muscle belly, joined by a short tendon at either end to two marked attachment points: a fixed proximal one at the origin and a distal one that moves. From that distal attachment an elastic band runs to a fixed anchor on the right, so every muscle works against a resistance. All four bands are at rest, with the same spacing between coils, when their muscle is at its longest; each then stretches by the length of its own excursion as the muscle shortens. Two vertical lines mark the shortening limit, the shortest length the muscle reaches voluntarily, and the lengthening limit, the longest; a dashed line between them marks the resting length. Each muscle shortens and lengthens only within its own excursion range: Inner MER works against the shortening limit and stays shorter than resting length, Outer MER works against the lengthening limit and stays longer than resting length, Mid MER straddles resting length without reaching either limit, and Complete MER travels the whole distance from one limit to the other. The belly thickens as it shortens and thins as it lengthens, while the tendons keep their length. A bar under each muscle marks the travel of its distal attachment, which is that muscle excursion range.</desc>
 
-  <style>
-    .lim  {{ font: 600 14px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #0e6b5e; }}
-    .sub  {{ font: 400 13px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #5c6670; }}
-    .acr  {{ font: 700 15px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #15181b; }}
-    .glo  {{ font: 400 12.5px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #5c6670; }}
-    .axn  {{ font: 700 12px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #5c6670; letter-spacing: 0.1em; }}
-    .note {{ font: 400 13px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #5c6670; }}
-    .leg  {{ font: 400 13px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #15181b; }}
-    .belly {{ fill: #c9825f; fill-opacity: 0.78; stroke: #a2603f; stroke-width: 1.2; }}
-    .tend  {{ stroke: #a2603f; stroke-width: 3; stroke-linecap: round; }}
-    .ins   {{ fill: #a2603f; }}
-    .trav  {{ stroke: #a2603f; stroke-width: 1.4; fill: none; }}
-    .elas  {{ stroke: #5c6670; stroke-width: 2; fill: none; stroke-linejoin: round; }}
-    .wall  {{ stroke: #5c6670; stroke-width: 1.6; fill: none; }}
+  <style>{vars}
+    .lim  {{ font: 600 14px {FONT}; fill: var(--exc-limit); }}
+    .sub  {{ font: 400 13px {FONT}; fill: var(--exc-gris); }}
+    .acr  {{ font: 700 15px {FONT}; fill: var(--exc-tinta); }}
+    .glo  {{ font: 400 12.5px {FONT}; fill: var(--exc-gris); }}
+    .axn  {{ font: 700 12px {FONT}; fill: var(--exc-gris); letter-spacing: 0.1em; }}
+    .note {{ font: 400 13px {FONT}; fill: var(--exc-gris); }}
+    .leg  {{ font: 400 13px {FONT}; fill: var(--exc-tinta); }}
+    .belly {{ fill: var(--exc-panxa); fill-opacity: 0.78; stroke: var(--exc-panxa-fosc); stroke-width: 1.2; }}
+    .tend  {{ stroke: var(--exc-panxa-fosc); stroke-width: 3; stroke-linecap: round; }}
+    .ins   {{ fill: var(--exc-panxa-fosc); }}
+    .trav  {{ stroke: var(--exc-panxa-fosc); stroke-width: 1.4; fill: none; }}
+    .elas  {{ stroke: var(--exc-gris); stroke-width: 2; fill: none; stroke-linejoin: round; }}
+    .wall  {{ stroke: var(--exc-gris); stroke-width: 1.6; fill: none; }}
+    .regla {{ stroke: var(--exc-regla); stroke-width: 1.5; }}
+    .fita  {{ stroke: var(--exc-limit); stroke-width: 1.6; }}
+    .eix   {{ stroke: var(--exc-gris); stroke-width: 1.5; }}
+    .punta {{ fill: var(--exc-gris); }}
   </style>
 
   <!-- =====================================================================
@@ -155,10 +182,10 @@ svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="9
   <text class="lim" x="810" y="64" text-anchor="middle">lengthening limit</text>
   <text class="sub" x="810" y="82" text-anchor="middle">longest voluntary length</text>
 
-  <line x1="150" y1="96" x2="150" y2="376" stroke="#c3cacd" stroke-width="1.5"/>
-  <line x1="330" y1="96" x2="330" y2="376" stroke="#0e6b5e" stroke-width="1.6"/>
-  <line x1="530" y1="96" x2="530" y2="376" stroke="#c3cacd" stroke-width="1.5" stroke-dasharray="5 5"/>
-  <line x1="810" y1="96" x2="810" y2="376" stroke="#0e6b5e" stroke-width="1.6"/>
+  <line class="regla" x1="150" y1="96" x2="150" y2="376"/>
+  <line class="fita" x1="330" y1="96" x2="330" y2="376"/>
+  <line class="regla" x1="530" y1="96" x2="530" y2="376" stroke-dasharray="5 5"/>
+  <line class="fita" x1="810" y1="96" x2="810" y2="376"/>
 
   <!-- ancoratge de les gomes -->
   <path class="wall" d="M884 104 V376"/>
@@ -166,8 +193,8 @@ svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="9
 {"".join(blocks)}
 
   <!-- eix -->
-  <line x1="150" y1="392" x2="872" y2="392" stroke="#5c6670" stroke-width="1.5"/>
-  <path d="M870 386 L884 392 L870 398 Z" fill="#5c6670"/>
+  <line class="eix" x1="150" y1="392" x2="872" y2="392"/>
+  <path class="punta" d="M870 386 L884 392 L870 398 Z"/>
   <text class="axn" x="150" y="414">MUSCLE LENGTH</text>
 
   <!-- llegenda -->
@@ -182,6 +209,33 @@ svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="9
 </svg>
 """
 
+
+# --- Dues sortides de la mateixa figura ---------------------------------
+#
+# 1. `images/excursion-range.svg`: fitxer solt, per fer-lo servir com a
+#    <img>. Un <img> no hereta el CSS de la pàgina, així que es defineix
+#    els colors ell mateix i es queda sempre en clar.
+# 2. El bloc que va dins de `diagrames/muscle-excursion-range.html`: sense
+#    colors propis, perquè els hereti de la pàgina i segueixi el tema
+#    clar/fosc. Sense width ni height, perquè s'adapti a l'amplada.
+
+defs = "\n" + "\n".join("    svg {{ --exc-%s: %s; }}" % (k, v) for k, v in CLAR.items())
+svg_solt   = construeix(defs, ' width="900" height="520"')
+svg_encast = construeix("", "")
+
 with open(OUT, "w") as f:
-    f.write(svg)
-print("escrit:", OUT, len(svg), "bytes")
+    f.write(svg_solt)
+print("escrit:", OUT, len(svg_solt), "bytes")
+
+if os.path.exists(OUT_HTML):
+    pagina = open(OUT_HTML).read()
+    i, j = pagina.find(MARCA_A), pagina.find(MARCA_B)
+    if i == -1 or j == -1:
+        raise SystemExit("no trobo les marques SVG-INICI/SVG-FI a " + OUT_HTML)
+    nova = (pagina[:i + len(MARCA_A)] + "\n" + svg_encast.rstrip() + "\n"
+            + pagina[j:])
+    with open(OUT_HTML, "w") as f:
+        f.write(nova)
+    print("actualitzat:", OUT_HTML)
+else:
+    print("AVÍS: no existeix", OUT_HTML, "— la pàgina del recurs no s'ha tocat.")

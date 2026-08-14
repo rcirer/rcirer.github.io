@@ -3,19 +3,29 @@
   <desc id="exc-d">Four muscles are drawn one above another on a horizontal muscle length axis, all fixed at the same origin on the left. Each is a rounded rectangle standing for the muscle belly, joined by a short tendon at either end to two marked attachment points: a fixed proximal one at the origin and a distal one that moves. From that distal attachment an elastic band runs to a fixed anchor on the right, so every muscle works against a resistance. All four bands are at rest, with the same spacing between coils, when their muscle is at its longest; each then stretches by the length of its own excursion as the muscle shortens. Two vertical lines mark the shortening limit, the shortest length the muscle reaches voluntarily, and the lengthening limit, the longest; a dashed line between them marks the resting length. Each muscle shortens and lengthens only within its own excursion range: Inner MER works against the shortening limit and stays shorter than resting length, Outer MER works against the lengthening limit and stays longer than resting length, Mid MER straddles resting length without reaching either limit, and Complete MER travels the whole distance from one limit to the other. The belly thickens as it shortens and thins as it lengthens, while the tendons keep their length. A bar under each muscle marks the travel of its distal attachment, which is that muscle excursion range.</desc>
 
   <style>
-    .lim  { font: 600 14px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #0e6b5e; }
-    .sub  { font: 400 13px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #5c6670; }
-    .acr  { font: 700 15px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #15181b; }
-    .glo  { font: 400 12.5px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #5c6670; }
-    .axn  { font: 700 12px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #5c6670; letter-spacing: 0.1em; }
-    .note { font: 400 13px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #5c6670; }
-    .leg  { font: 400 13px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: #15181b; }
-    .belly { fill: #c9825f; fill-opacity: 0.78; stroke: #a2603f; stroke-width: 1.2; }
-    .tend  { stroke: #a2603f; stroke-width: 3; stroke-linecap: round; }
-    .ins   { fill: #a2603f; }
-    .trav  { stroke: #a2603f; stroke-width: 1.4; fill: none; }
-    .elas  { stroke: #5c6670; stroke-width: 2; fill: none; stroke-linejoin: round; }
-    .wall  { stroke: #5c6670; stroke-width: 1.6; fill: none; }
+    svg {{ --exc-limit: #0e6b5e; }}
+    svg {{ --exc-gris: #5c6670; }}
+    svg {{ --exc-tinta: #15181b; }}
+    svg {{ --exc-regla: #c3cacd; }}
+    svg {{ --exc-panxa: #c9825f; }}
+    svg {{ --exc-panxa-fosc: #a2603f; }}
+    .lim  { font: 600 14px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: var(--exc-limit); }
+    .sub  { font: 400 13px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: var(--exc-gris); }
+    .acr  { font: 700 15px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: var(--exc-tinta); }
+    .glo  { font: 400 12.5px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: var(--exc-gris); }
+    .axn  { font: 700 12px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: var(--exc-gris); letter-spacing: 0.1em; }
+    .note { font: 400 13px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: var(--exc-gris); }
+    .leg  { font: 400 13px system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; fill: var(--exc-tinta); }
+    .belly { fill: var(--exc-panxa); fill-opacity: 0.78; stroke: var(--exc-panxa-fosc); stroke-width: 1.2; }
+    .tend  { stroke: var(--exc-panxa-fosc); stroke-width: 3; stroke-linecap: round; }
+    .ins   { fill: var(--exc-panxa-fosc); }
+    .trav  { stroke: var(--exc-panxa-fosc); stroke-width: 1.4; fill: none; }
+    .elas  { stroke: var(--exc-gris); stroke-width: 2; fill: none; stroke-linejoin: round; }
+    .wall  { stroke: var(--exc-gris); stroke-width: 1.6; fill: none; }
+    .regla { stroke: var(--exc-regla); stroke-width: 1.5; }
+    .fita  { stroke: var(--exc-limit); stroke-width: 1.6; }
+    .eix   { stroke: var(--exc-gris); stroke-width: 1.5; }
+    .punta { fill: var(--exc-gris); }
   </style>
 
   <!-- =====================================================================
@@ -61,10 +71,10 @@
   <text class="lim" x="810" y="64" text-anchor="middle">lengthening limit</text>
   <text class="sub" x="810" y="82" text-anchor="middle">longest voluntary length</text>
 
-  <line x1="150" y1="96" x2="150" y2="376" stroke="#c3cacd" stroke-width="1.5"/>
-  <line x1="330" y1="96" x2="330" y2="376" stroke="#0e6b5e" stroke-width="1.6"/>
-  <line x1="530" y1="96" x2="530" y2="376" stroke="#c3cacd" stroke-width="1.5" stroke-dasharray="5 5"/>
-  <line x1="810" y1="96" x2="810" y2="376" stroke="#0e6b5e" stroke-width="1.6"/>
+  <line class="regla" x1="150" y1="96" x2="150" y2="376"/>
+  <line class="fita" x1="330" y1="96" x2="330" y2="376"/>
+  <line class="regla" x1="530" y1="96" x2="530" y2="376" stroke-dasharray="5 5"/>
+  <line class="fita" x1="810" y1="96" x2="810" y2="376"/>
 
   <!-- ancoratge de les gomes -->
   <path class="wall" d="M884 104 V376"/>
@@ -180,8 +190,8 @@
   <path class="trav" d="M330 354 v12 M330 360 H810 M810 354 v12"/>
 
   <!-- eix -->
-  <line x1="150" y1="392" x2="872" y2="392" stroke="#5c6670" stroke-width="1.5"/>
-  <path d="M870 386 L884 392 L870 398 Z" fill="#5c6670"/>
+  <line class="eix" x1="150" y1="392" x2="872" y2="392"/>
+  <path class="punta" d="M870 386 L884 392 L870 398 Z"/>
   <text class="axn" x="150" y="414">MUSCLE LENGTH</text>
 
   <!-- llegenda -->
