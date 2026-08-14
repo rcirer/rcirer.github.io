@@ -116,6 +116,16 @@ l'original canviï, cal revisar.
 `.qmd`. Quarto només reconeix el capçal YAML si comença dalt de tot; amb un comentari al
 davant, renderitza el YAML com a text del cos i **no avisa de res**. Va sota el capçal.
 
+### REGLA: tot canvi va als dos idiomes
+
+Ordre d'en Rafel del 14 d'agost de 2026, i no admet excepcions. **Qualsevol modificació
+—navegació, contingut, estructura— s'aplica alhora a l'anglès i al català.** Deixar-ne un
+dels dos endarrerit és pitjor que no haver fet el canvi: el lector que canvia d'idioma es
+troba dos llocs diferents i no sap quin creure.
+
+A la pràctica: si toques `_quarto-en.yml`, mira `_quarto-ca.yml`. Si toques una pàgina de
+l'arrel, mira la seva bessona a `ca/`. Si n'afegeixes una de nova, fes-ne les dues.
+
 ### El lloc és bilingüe amb *profiles* de Quarto
 
 Decisió d'en Rafel del 12 d'agost de 2026. Jo havia proposat la via simple —un sol menú amb

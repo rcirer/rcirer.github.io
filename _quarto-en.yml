@@ -36,8 +36,12 @@ website:
         text: Teaching
       - href: phd.qmd
         text: PhD
-      - href: cv.qmd
-        text: CV
+      # CV tret del menú el 14 d'agost de 2026 a petició d'en Rafel: de
+      # moment prefereix no parlar-ne. La pàgina segueix existint a
+      # /cv.html; per tornar-la a mostrar, descomenta aquestes dues
+      # línies I les equivalents de `_quarto-ca.yml`.
+      # - href: cv.qmd
+      #   text: CV
     right:
       - text: ORCID
         href: https://orcid.org/0000-0001-6687-8201

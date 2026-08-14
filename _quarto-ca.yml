@@ -33,8 +33,10 @@ website:
         text: Docència
       - href: ca/phd.qmd
         text: Doctorat
-      - href: ca/cv.qmd
-        text: CV
+      # Tret del menú alhora que l'anglès: qualsevol canvi de navegació
+      # va als DOS idiomes (CLAUDE.md §5).
+      # - href: ca/cv.qmd
+      #   text: CV
     right:
       - text: ORCID
         href: https://orcid.org/0000-0001-6687-8201
