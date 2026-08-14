@@ -286,15 +286,15 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./phd.html"> 
 <span class="menu-text">PhD</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./cv.html"> 
-<span class="menu-text">CV</span></a>
-  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="https://orcid.org/0000-0001-6687-8201"> 
 <span class="menu-text">ORCID</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ca/index.html"> 
+<span class="menu-text">Català</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -315,6 +315,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#assignatures" id="toc-assignatures" class="nav-link active" data-scroll-target="#assignatures">Assignatures</a></li>
   <li><a href="#materials-oberts" id="toc-materials-oberts" class="nav-link" data-scroll-target="#materials-oberts">Materials oberts</a></li>
+  <li><a href="#diagrames-interactius" id="toc-diagrames-interactius" class="nav-link" data-scroll-target="#diagrames-interactius">Diagrames interactius</a></li>
   </ul>
 </nav>
     </div>
@@ -352,6 +353,23 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<!-- El cos és a `_teaching-body.qmd`, compartit amb `ca/teaching.qmd`.
+     Aquesta versió és la del lloc anglès i duu l'avís de sobre; la
+     catalana no el necessita. Per canviar el contingut, edita el
+     fragment, no aquest fitxer. -->
+<!-- Cos compartit de la pàgina de docència.
+
+     El contingut és en català i no es tradueix (CLAUDE.md §5): el seu
+     públic són els estudiants d'aquí. Però la pàgina ha d'existir als
+     DOS llocs, cadascun amb el seu menú, perquè si no, entrant-hi des
+     del lloc català et trobes el menú en anglès.
+
+     Per no tenir-ne dues còpies, el cos viu aquí i les dues pàgines
+     l'inclouen: `teaching.qmd` (arrel, menú anglès) i `ca/teaching.qmd`
+     (menú català). Si has d'afegir una assignatura o un material, es fa
+     UN SOL COP, en aquest fitxer.
+
+     El nom comença amb guió baix: Quarto no el publica com a pàgina. -->
 <section id="assignatures" class="level2">
 <h2 class="anchored" data-anchor-id="assignatures">Assignatures</h2>
 <p><strong>Grau en Ciències de l’Activitat Física i l’Esport</strong> — UdL / INEFC Lleida</p>
@@ -369,6 +387,13 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="materials-oberts">Materials oberts</h2>
 <ul>
 <li><strong><a href="https://github.com/rcirer/24-intro-R">Iniciació al tractament de dades amb R</a></strong> — materials del curs de doctorat de l’INEFC, disponibles a GitHub.</li>
+</ul>
+</section>
+<section id="diagrames-interactius" class="level2">
+<h2 class="anchored" data-anchor-id="diagrames-interactius">Diagrames interactius</h2>
+<p>Pàgines autònomes, pensades per projectar a classe. S’obren en una finestra nova. El text és en anglès; els controls i els gràfics s’entenen igual.</p>
+<ul>
+<li><strong><a href="./diagrames/excursion-and-force.html" target="_blank">Excursion range and force profile</a></strong> — extensió de genoll asseguda: com el rang entrenat decideix quines longituds musculars es carreguen, i com la resistència externa decideix on cau el pic dins d’aquelles longituds. Amb la corba força–longitud, on hi treballa cada porció del quàdriceps segons la font, i un registre d’EMG simulat.</li>
 </ul>
 <hr>
 <div class="callout callout-style-simple callout-note">
