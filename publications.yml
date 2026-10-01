@@ -2,11 +2,24 @@
 # Prové d'ORCID; per canviar-ne el contingut, edita el teu perfil
 # d'ORCID, o bé exclusions.yml / extres.yml, i torna a executar:
 #   python3 scripts/publications.py
+- doi: 10.5281/zenodo.19454148
+  title: Projecte docent i de recerca professor titular cinesiologia i tecnologia de l'exercici físic
+  year: 2026
+  journal: Zenodo (CERN European Organization for Nuclear Research)
+  authors: Rafel Cirer-Sastre
+  citations: 0
+  open_access: true
+  type: book
+  source: orcid
+  path: https://doi.org/10.5281/zenodo.19454148
+  categories:
+  - '2026'
+  oa: Open access
 - doi: 10.7759/cureus.101718
   title: 'Effects of Bike-Fitting on Lower Back Pain in Cyclists: A Systematic Review'
   year: 2026
   journal: Cureus
-  authors: Cristina Barrajón, Alejandro Legaz‐Arrese, Rafel Cirer-Sastre, Isaac López-Laval, Sebastián
+  authors: Cristina Barrajón, Alejandro Legaz‐Arrese, Rafel Cirer-Sastre, Isaac López‐Laval, Sebastián
     Sitko
   citations: 0
   open_access: true
@@ -21,8 +34,8 @@
     in Catalonia: the REMOTE-CAT clinical trial'
   year: 2025
   journal: eClinicalMedicine
-  authors: Francisco Purroy, Glòria Arqué, Francesc Xavier Jiménez-Fàbrega, Teresa Subirats, José Ramon
-    Ropero, Mikel Vicente‐Pascual, Pere Cardona, Manuel Gómez‐Choco et al.
+  authors: Francisco F. Purroy, Glòria Arqué, Francesc Xavier Jiménez-Fàbrega, Teresa Subirats, José Ramon
+    Ropero, Mikel Vicente Pascual, Pere Cardona, Manuel Jesús Gómez-Choco et al.
   citations: 7
   open_access: true
   type: article
@@ -65,7 +78,7 @@
   journal: Children
   authors: Álvaro Pano-Rodríguez, Carme Jové Deltell, Vicenç Hernández‐González, Rafel Cirer-Sastre, Alejandro
     Legaz‐Arrese, Joaquín Reverter Masià
-  citations: 0
+  citations: 1
   open_access: true
   type: article
   source: orcid
@@ -106,7 +119,8 @@
   title: 'Effects of Pull-Up Training on 50-Meter Freestyle Swimming Performance: A Preliminary Analysis'
   year: 2024
   journal: Cureus
-  authors: Carlota Pardo-Atarés, Eduardo Generelo, Rafel Cirer-Sastre, Isaac López‐Laval, Sebastián Sitko
+  authors: Carlota Pardo-Atarés, Eduardo Generelo Lanaspa, Rafel Cirer-Sastre, Isaac López‐Laval, Sebastián
+    Sitko
   citations: 1
   open_access: true
   type: article
@@ -136,7 +150,7 @@
   journal: PeerJ
   authors: Shuoqi Li, Shazlin Shaharudin, Rafel Cirer-Sastre, Feifei Li, Faizal Abdul Manaf, Mohd Faiz
     Mohd Shukri
-  citations: 25
+  citations: 27
   open_access: true
   type: review
   source: orcid
@@ -150,7 +164,7 @@
   journal: Healthcare
   authors: Enric Conesa‐Milian, Rafel Cirer-Sastre, Vicenç Hernández‐González, Alejandro Legaz‐Arrese,
     Francisco Corbi, Joaquín Reverter Masià
-  citations: 7
+  citations: 10
   open_access: true
   type: review
   source: orcid
@@ -245,18 +259,18 @@
   authors: Rafel Cirer-Sastre, Romario Rivelino Jiménez-Gaytán, Luis Enrique Carranza García, Keith George,
     Fred S. Apple, Ricardo Navarro Orocio, Ricardo López García, Joaquín Reverter Masià et al.
   citations: 6
-  open_access: false
+  open_access: true
   type: article
   source: orcid
   path: https://doi.org/10.1080/1354750x.2022.2080272
   categories:
   - '2022'
-  oa: ''
+  oa: Open access
 - doi: 10.23736/s0393-3660.20.04425-3
   title: Concurrent validity and reliability of an accelerometer to assess punching velocity in boxers
   year: 2022
   journal: Gazzetta Medica Italiana Archivio per le Scienze Mediche
-  authors: Isaac López‐Laval, Rafel Cirer-Sastre, Javier LOS ARCOS-LÓPEZ DE PARIZA, Francisco CORBI, Julio
+  authors: Isaac López‐Laval, Rafel Cirer-Sastre, Javier LOS ARCOS-LÓPEZ DE PARIZA, Francisco Corbi, Julio
     Calleja-González, Sebastián Sitko
   citations: 6
   open_access: false
@@ -271,7 +285,7 @@
     point in road cycling
   year: 2022
   journal: The Journal of Sports Medicine and Physical Fitness
-  authors: Sebastian SITKO, Rafel CIRER-SASTRE, Francisco CORBI, Isaac LÓPEZ-LAVAL
+  authors: Sebastian SITKO, Rafel Cirer-Sastre, Francisco Corbi, Isaac LÓPEZ-LAVAL
   citations: 5
   open_access: false
   type: article
@@ -314,7 +328,7 @@
   year: 2021
   journal: Biology of Sport
   authors: Jose Canós, Francisco Corbi, Joshua Colomar, Rafel Cirer-Sastre, Ernest Baiget
-  citations: 22
+  citations: 24
   open_access: true
   type: article
   source: orcid
@@ -342,7 +356,7 @@
   year: 2021
   journal: The Journal of Strength and Conditioning Research
   authors: Sebastián Sitko, Rafel Cirer-Sastre, Francisco Corbi, Isaac López‐Laval
-  citations: 10
+  citations: 11
   open_access: false
   type: article
   source: orcid
@@ -356,7 +370,7 @@
   journal: International Journal of Environmental Research and Public Health
   authors: Rafel Cirer-Sastre, Francisco Corbi, Isaac López‐Laval, Luis Enrique Carranza García, Joaquín
     Reverter Masià
-  citations: 8
+  citations: 9
   open_access: true
   type: article
   source: orcid
@@ -408,7 +422,7 @@
   year: 2020
   journal: Sustainability
   authors: Sebastián Sitko, Rafel Cirer-Sastre, Francisco Corbi, Isaac López‐Laval
-  citations: 31
+  citations: 33
   open_access: true
   type: review
   source: orcid
@@ -492,7 +506,7 @@
   journal: Pediatric Exercise Science
   authors: Rafel Cirer-Sastre, Alejandro Legaz‐Arrese, Francisco Corbi, Keith George, Jinlei Nie, Luis
     Enrique Carranza García, Joaquín Reverter Masià
-  citations: 31
+  citations: 32
   open_access: true
   type: review
   source: orcid
@@ -519,7 +533,7 @@
   year: 2019
   journal: Nutrición Hospitalaria
   authors: Sebastián Sitko, Rafel Cirer-Sastre, Isaac López‐Laval
-  citations: 12
+  citations: 13
   open_access: true
   type: review
   source: orcid
